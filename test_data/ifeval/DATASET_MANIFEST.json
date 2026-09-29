@@ -1,0 +1,89 @@
+{
+  "name": "ifeval",
+  "source": "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+  "revision": "d36068b845da4c2b24927fee2cea1e6ef98dadda",
+  "files": [
+    {
+      "destination": "test_data/ifeval/instruction_following_eval/README.md",
+      "size": 1457,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/README.md",
+      "sha256": "fef3c44408e4b39837af345095ccce7da798853fd60ea94a1de63afa9d3d67b3"
+    },
+    {
+      "destination": "test_data/ifeval/instruction_following_eval/data/input_data.jsonl",
+      "size": 207111,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/data/input_data.jsonl",
+      "sha256": "67ffeee0fcb87c317c5b08a2de85557b4a7e96ada6178aa645b4954fe4b53d49"
+    },
+    {
+      "destination": "test_data/ifeval/instruction_following_eval/data/input_response_data_gpt4_20231107_145030.jsonl",
+      "size": 830335,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/data/input_response_data_gpt4_20231107_145030.jsonl",
+      "sha256": "0cff1d1469b774e80296bee20ca696894df35f3c6d6539f2c886d67c07599dcb"
+    },
+    {
+      "destination": "test_data/ifeval/instruction_following_eval/evaluation_lib.py",
+      "size": 6984,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/evaluation_lib.py",
+      "sha256": "35decc06000718487f44d7deafa6d3f48a8ec0886281edf40162c0265b7d248c"
+    },
+    {
+      "destination": "test_data/ifeval/instruction_following_eval/evaluation_main.py",
+      "size": 2449,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/evaluation_main.py",
+      "sha256": "e6df07a04d25a0e7134933ba2400c26e0129a243e449c88df55043e583fc4b4a"
+    },
+    {
+      "destination": "test_data/ifeval/instruction_following_eval/instructions.py",
+      "size": 55162,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/instructions.py",
+      "sha256": "60e086f5342a03ce8e18b64bbcccf86308f523c08aa826707a562150a52f3edf"
+    },
+    {
+      "destination": "test_data/ifeval/instruction_following_eval/instructions_registry.py",
+      "size": 7240,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/instructions_registry.py",
+      "sha256": "ec92d72c264f6d906978613085db262356174300370a3fffe6fefd5969ce9cfc"
+    },
+    {
+      "destination": "test_data/ifeval/instruction_following_eval/instructions_test.py",
+      "size": 48520,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/instructions_test.py",
+      "sha256": "e677c190c393162f7733e89ca3b47ae98b6d9e816d800681d6e14ad918128de5"
+    },
+    {
+      "destination": "test_data/ifeval/instruction_following_eval/instructions_util.py",
+      "size": 19538,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/instructions_util.py",
+      "sha256": "a73797261eee5bf447e279d82a2b700b1bdd3cb1193412dbab1270a85832bc6b"
+    },
+    {
+      "destination": "test_data/ifeval/instruction_following_eval/instructions_util_test.py",
+      "size": 4255,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/instructions_util_test.py",
+      "sha256": "e8e17d434e074c6e2ad997334f4d743b3cafe0abf15cca46d4cf97b94d67ccfe"
+    },
+    {
+      "destination": "test_data/ifeval/instruction_following_eval/requirements.txt",
+      "size": 35,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/requirements.txt",
+      "sha256": "1b1716c9ac21b9cc2bd0d7354ed8f7b6982ccf35598529601a7c08508acec94a"
+    },
+    {
+      "destination": "test_data/ifeval/instruction_following_eval/run.sh",
+      "size": 895,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/run.sh",
+      "sha256": "2025ec7289bf952b09e1f568737fc341c3de4224aca75dbee162e85913c07449"
+    },
+    {
+      "destination": "test_data/ifeval/LICENSE",
+      "size": 11358,
+      "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ],
+  "rows": 541,
+  "entrypoint": "test_data/ifeval/instruction_following_eval/data/input_data.jsonl",
+  "constraint_count": 834,
+  "verification": "sha256_and_schema_count_passed"
+}

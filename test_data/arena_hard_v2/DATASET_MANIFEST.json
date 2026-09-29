@@ -1,0 +1,152 @@
+{
+  "name": "arena_hard_v2",
+  "source": "https://github.com/lmarena/arena-hard-auto",
+  "revision": "196f6b826783b3da7310e361a805fa36f0be83f3",
+  "files": [
+    {
+      "destination": "test_data/arena_hard_v2/LICENSE",
+      "size": 11357,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/README.md",
+      "size": 21360,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/README.md",
+      "sha256": "f0563c344399179df0fb7abbb2503762b0446584ace78039f1f792058e0ab0dc"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/config/api_config.yaml",
+      "size": 2048,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/config/api_config.yaml",
+      "sha256": "dc6c164a888a4955851a4f4b7dd2fb144885e70c028bacf583693896b6e8865e"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/config/api_config_bedrock_models.yaml",
+      "size": 6122,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/config/api_config_bedrock_models.yaml",
+      "sha256": "f678debf5db3a8c7fd2f092296de041ba154835617be4f2c4e537cfd2b497a95"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/config/arena-hard-v0.1.yaml",
+      "size": 428,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/config/arena-hard-v0.1.yaml",
+      "sha256": "87ac45a188421218349697b5eda95cc77f6e60b6f61495d67d8cfebba3210528"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/config/arena-hard-v2.0.yaml",
+      "size": 543,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/config/arena-hard-v2.0.yaml",
+      "sha256": "ee68e5c6ac98a79720bf11014fc3f7fc3c3e5899153b3b08efe3db0e174215a0"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/config/gen_answer_config.yaml",
+      "size": 117,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/config/gen_answer_config.yaml",
+      "sha256": "5be5b71c60aec8de77fd8e89d4dff18f2eb499fd429c3961d5f489a169847d79"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/data/arena-hard-v2.0/model_answer/deepseek-r1.jsonl",
+      "size": 11911466,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/data/arena-hard-v2.0/model_answer/deepseek-r1.jsonl",
+      "sha256": "5e510626a8856f9ce2909ff0d8a47960475b955a0be3fdd47c07f37e5a1c3052"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/data/arena-hard-v2.0/model_answer/gemini-2.0-flash-001.jsonl",
+      "size": 5717133,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/data/arena-hard-v2.0/model_answer/gemini-2.0-flash-001.jsonl",
+      "sha256": "70f614e1345f787a1da98c239d27f6df3c1d26b411cf894949f934a3039d6f0b"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/data/arena-hard-v2.0/model_answer/o3-mini-2025-01-31.jsonl",
+      "size": 4184593,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/data/arena-hard-v2.0/model_answer/o3-mini-2025-01-31.jsonl",
+      "sha256": "c23a7c255eead99f7f86ad48aa1d8ccdb5b3334f2097e0e1e09184df87265e03"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/data/arena-hard-v2.0/model_answer/qwq-32b.jsonl",
+      "size": 15385044,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/data/arena-hard-v2.0/model_answer/qwq-32b.jsonl",
+      "sha256": "f3b433d057a69bbd31cbecbc7794a01990f7887714e9fe0e99a518fda296bb10"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/data/arena-hard-v2.0/question.jsonl",
+      "size": 947596,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/data/arena-hard-v2.0/question.jsonl",
+      "sha256": "a75cef6623db6b27aec810497b059f0659705d7ff48dcbccc5bd5b130728ac73"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/gen_answer.py",
+      "size": 4434,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/gen_answer.py",
+      "sha256": "929a2362ad0c55c83a897d0d099c5ef5c77be7295e7eb682bb0df33c1e016d20"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/gen_judgment.py",
+      "size": 6307,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/gen_judgment.py",
+      "sha256": "eddf78a88ce0e3348dd54debd3cb668e1b1d8773d4b239e47b71e5f2564bb402"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/requirements-optional.txt",
+      "size": 27,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/requirements-optional.txt",
+      "sha256": "990c81e552362c97a97ce4a3fefcfdb29bbf57b5919c3203851f0baa75a3ab4c"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/requirements.txt",
+      "size": 84,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/requirements.txt",
+      "sha256": "fb83d689283d166ac18c5f2322b60557a6979abd6eaa9ba8225e8eaa51fbd5ca"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/show_result.py",
+      "size": 8717,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/show_result.py",
+      "sha256": "5da0fa30a807a150da37e97811c2bc248959015eedb884d9d471e894c8bf90c6"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/utils/add_markdown_info.py",
+      "size": 2698,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/utils/add_markdown_info.py",
+      "sha256": "a34f3cc457bb35b6ef66854b55359c8669b1c7307c466230cce1ebfa28ab54be"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/utils/bedrock_utils.py",
+      "size": 3065,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/utils/bedrock_utils.py",
+      "sha256": "fcf3f1650fba2990a3f6ec6cd333059d2ed2d9fd9b5c859675c6d61ee1fa1fd8"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/utils/completion.py",
+      "size": 37849,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/utils/completion.py",
+      "sha256": "ff2e88971b250f29c682dd9c485a7ea67c46f405e6e8f6901f9f82e7d629a9ab"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/utils/judge_utils.py",
+      "size": 3957,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/utils/judge_utils.py",
+      "sha256": "cbb093f4fc27408d8447e946392f26f98538b1e3950f574aca91a0f7595167b4"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/utils/math_utils.py",
+      "size": 6915,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/utils/math_utils.py",
+      "sha256": "c2e927dc0f45771d9b387c29837c76c2b5008b1f6f81819259c288c01f49ade0"
+    },
+    {
+      "destination": "test_data/arena_hard_v2/utils/sglang_server.py",
+      "size": 9941,
+      "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/utils/sglang_server.py",
+      "sha256": "ff5e616b25bf511e30ac548e7fc2efddbc7a663d827998f1f39ce0c8b2da77ab"
+    }
+  ],
+  "rows": 750,
+  "categories": {
+    "hard_prompt": 500,
+    "creative_writing": 250
+  },
+  "entrypoint": "test_data/arena_hard_v2/data/arena-hard-v2.0/question.jsonl",
+  "verification": "sha256_and_schema_count_passed"
+}

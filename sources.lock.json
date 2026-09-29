@@ -1,0 +1,501 @@
+[
+  {
+    "name": "arena_hard_v2",
+    "source": "https://github.com/lmarena/arena-hard-auto",
+    "revision": "196f6b826783b3da7310e361a805fa36f0be83f3",
+    "files": [
+      {
+        "destination": "test_data/arena_hard_v2/LICENSE",
+        "size": 11357,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/LICENSE"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/README.md",
+        "size": 21360,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/README.md"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/config/api_config.yaml",
+        "size": 2048,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/config/api_config.yaml"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/config/api_config_bedrock_models.yaml",
+        "size": 6122,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/config/api_config_bedrock_models.yaml"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/config/arena-hard-v0.1.yaml",
+        "size": 428,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/config/arena-hard-v0.1.yaml"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/config/arena-hard-v2.0.yaml",
+        "size": 543,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/config/arena-hard-v2.0.yaml"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/config/gen_answer_config.yaml",
+        "size": 117,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/config/gen_answer_config.yaml"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/data/arena-hard-v2.0/model_answer/deepseek-r1.jsonl",
+        "size": 11911466,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/data/arena-hard-v2.0/model_answer/deepseek-r1.jsonl"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/data/arena-hard-v2.0/model_answer/gemini-2.0-flash-001.jsonl",
+        "size": 5717133,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/data/arena-hard-v2.0/model_answer/gemini-2.0-flash-001.jsonl"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/data/arena-hard-v2.0/model_answer/o3-mini-2025-01-31.jsonl",
+        "size": 4184593,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/data/arena-hard-v2.0/model_answer/o3-mini-2025-01-31.jsonl"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/data/arena-hard-v2.0/model_answer/qwq-32b.jsonl",
+        "size": 15385044,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/data/arena-hard-v2.0/model_answer/qwq-32b.jsonl"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/data/arena-hard-v2.0/question.jsonl",
+        "size": 947596,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/data/arena-hard-v2.0/question.jsonl"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/gen_answer.py",
+        "size": 4434,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/gen_answer.py"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/gen_judgment.py",
+        "size": 6307,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/gen_judgment.py"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/requirements-optional.txt",
+        "size": 27,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/requirements-optional.txt"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/requirements.txt",
+        "size": 84,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/requirements.txt"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/show_result.py",
+        "size": 8717,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/show_result.py"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/utils/add_markdown_info.py",
+        "size": 2698,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/utils/add_markdown_info.py"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/utils/bedrock_utils.py",
+        "size": 3065,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/utils/bedrock_utils.py"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/utils/completion.py",
+        "size": 37849,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/utils/completion.py"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/utils/judge_utils.py",
+        "size": 3957,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/utils/judge_utils.py"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/utils/math_utils.py",
+        "size": 6915,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/utils/math_utils.py"
+      },
+      {
+        "destination": "test_data/arena_hard_v2/utils/sglang_server.py",
+        "size": 9941,
+        "url": "https://raw.githubusercontent.com/lmarena/arena-hard-auto/196f6b826783b3da7310e361a805fa36f0be83f3/utils/sglang_server.py"
+      }
+    ]
+  },
+  {
+    "name": "eq_bench3",
+    "source": "https://github.com/EQ-bench/eqbench3",
+    "revision": "affc5a000bbdb965b807e09ca7875f8530fa8f56",
+    "files": [
+      {
+        "destination": "test_data/eq_bench3/.env.example",
+        "size": 1594,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/.env.example"
+      },
+      {
+        "destination": "test_data/eq_bench3/LICENSE",
+        "size": 1074,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/LICENSE"
+      },
+      {
+        "destination": "test_data/eq_bench3/README.md",
+        "size": 21506,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/README.md"
+      },
+      {
+        "destination": "test_data/eq_bench3/core/benchmark.py",
+        "size": 64135,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/benchmark.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/core/conversation.py",
+        "size": 36441,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/conversation.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/core/elo.py",
+        "size": 31018,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/elo.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/core/elo_config.py",
+        "size": 2578,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/elo_config.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/core/elo_helpers.py",
+        "size": 14932,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/elo_helpers.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/core/matchup_selection.py",
+        "size": 7584,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/matchup_selection.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/core/pairwise_judging.py",
+        "size": 35129,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/pairwise_judging.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/core/trueskill_solver.py",
+        "size": 17005,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/trueskill_solver.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/canonical_leaderboard_elo_results.json.gz",
+        "size": 26641447,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/canonical_leaderboard_elo_results.json.gz"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/canonical_leaderboard_results.json.gz",
+        "size": 34093885,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/canonical_leaderboard_results.json.gz"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/debrief_prompt.txt",
+        "size": 432,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/debrief_prompt.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/pairwise_prompt_eqbench3.txt",
+        "size": 2546,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/pairwise_prompt_eqbench3.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/pairwise_prompt_eqbench3_analysis.txt",
+        "size": 2526,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/pairwise_prompt_eqbench3_analysis.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/rubric_scoring_criteria.txt",
+        "size": 247,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/rubric_scoring_criteria.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/rubric_scoring_criteria_analysis.txt",
+        "size": 109,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/rubric_scoring_criteria_analysis.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/rubric_scoring_prompt.txt",
+        "size": 1308,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/rubric_scoring_prompt.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/rubric_scoring_prompt_analysis.txt",
+        "size": 901,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/rubric_scoring_prompt_analysis.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/scenario_master_prompt.txt",
+        "size": 619,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/scenario_master_prompt.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/scenario_master_prompt_analysis.txt",
+        "size": 1433,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/scenario_master_prompt_analysis.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/scenario_master_prompt_message_drafting.txt",
+        "size": 451,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/scenario_master_prompt_message_drafting.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/scenario_notes.txt",
+        "size": 15528,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/scenario_notes.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/data/scenario_prompts.txt",
+        "size": 218478,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/scenario_prompts.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/eqbench3.py",
+        "size": 35926,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/eqbench3.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/requirements.txt",
+        "size": 70,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/requirements.txt"
+      },
+      {
+        "destination": "test_data/eq_bench3/utils/api.py",
+        "size": 12935,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/utils/api.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/utils/constants.py",
+        "size": 5899,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/utils/constants.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/utils/file_io.py",
+        "size": 11629,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/utils/file_io.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/utils/logging_setup.py",
+        "size": 1354,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/utils/logging_setup.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/utils/merge_utils.py",
+        "size": 23910,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/utils/merge_utils.py"
+      },
+      {
+        "destination": "test_data/eq_bench3/utils/utils.py",
+        "size": 4464,
+        "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/utils/utils.py"
+      }
+    ]
+  },
+  {
+    "name": "multi_challenge",
+    "source": "https://github.com/ekwinox117/multi-challenge",
+    "revision": "5ccefcca6a39020d66c1383c4e6a809cb07afa33",
+    "files": [
+      {
+        "destination": "test_data/multi_challenge/README.md",
+        "size": 3968,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/README.md"
+      },
+      {
+        "destination": "test_data/multi_challenge/data/benchmark_questions.jsonl",
+        "size": 2270010,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/data/benchmark_questions.jsonl"
+      },
+      {
+        "destination": "test_data/multi_challenge/data/response_template.jsonl",
+        "size": 241,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/data/response_template.jsonl"
+      },
+      {
+        "destination": "test_data/multi_challenge/main.py",
+        "size": 3853,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/main.py"
+      },
+      {
+        "destination": "test_data/multi_challenge/requirements.txt",
+        "size": 99,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/requirements.txt"
+      },
+      {
+        "destination": "test_data/multi_challenge/src/conversation.py",
+        "size": 517,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/conversation.py"
+      },
+      {
+        "destination": "test_data/multi_challenge/src/data_loader.py",
+        "size": 3323,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/data_loader.py"
+      },
+      {
+        "destination": "test_data/multi_challenge/src/evaluator.py",
+        "size": 4695,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/evaluator.py"
+      },
+      {
+        "destination": "test_data/multi_challenge/src/models/base.py",
+        "size": 252,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/models/base.py"
+      },
+      {
+        "destination": "test_data/multi_challenge/src/models/factory.py",
+        "size": 1019,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/models/factory.py"
+      },
+      {
+        "destination": "test_data/multi_challenge/src/models/huggingface.py",
+        "size": 1031,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/models/huggingface.py"
+      },
+      {
+        "destination": "test_data/multi_challenge/src/models/openai.py",
+        "size": 1786,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/models/openai.py"
+      },
+      {
+        "destination": "test_data/multi_challenge/src/result_parser.py",
+        "size": 4135,
+        "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/result_parser.py"
+      }
+    ]
+  },
+  {
+    "name": "ifeval",
+    "source": "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+    "revision": "d36068b845da4c2b24927fee2cea1e6ef98dadda",
+    "files": [
+      {
+        "destination": "test_data/ifeval/instruction_following_eval/README.md",
+        "size": 1457,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/README.md"
+      },
+      {
+        "destination": "test_data/ifeval/instruction_following_eval/data/input_data.jsonl",
+        "size": 207111,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/data/input_data.jsonl"
+      },
+      {
+        "destination": "test_data/ifeval/instruction_following_eval/data/input_response_data_gpt4_20231107_145030.jsonl",
+        "size": 830335,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/data/input_response_data_gpt4_20231107_145030.jsonl"
+      },
+      {
+        "destination": "test_data/ifeval/instruction_following_eval/evaluation_lib.py",
+        "size": 6984,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/evaluation_lib.py"
+      },
+      {
+        "destination": "test_data/ifeval/instruction_following_eval/evaluation_main.py",
+        "size": 2449,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/evaluation_main.py"
+      },
+      {
+        "destination": "test_data/ifeval/instruction_following_eval/instructions.py",
+        "size": 55162,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/instructions.py"
+      },
+      {
+        "destination": "test_data/ifeval/instruction_following_eval/instructions_registry.py",
+        "size": 7240,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/instructions_registry.py"
+      },
+      {
+        "destination": "test_data/ifeval/instruction_following_eval/instructions_test.py",
+        "size": 48520,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/instructions_test.py"
+      },
+      {
+        "destination": "test_data/ifeval/instruction_following_eval/instructions_util.py",
+        "size": 19538,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/instructions_util.py"
+      },
+      {
+        "destination": "test_data/ifeval/instruction_following_eval/instructions_util_test.py",
+        "size": 4255,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/instructions_util_test.py"
+      },
+      {
+        "destination": "test_data/ifeval/instruction_following_eval/requirements.txt",
+        "size": 35,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/requirements.txt"
+      },
+      {
+        "destination": "test_data/ifeval/instruction_following_eval/run.sh",
+        "size": 895,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/instruction_following_eval/run.sh"
+      },
+      {
+        "destination": "test_data/ifeval/LICENSE",
+        "size": 11358,
+        "url": "https://raw.githubusercontent.com/google-research/google-research/d36068b845da4c2b24927fee2cea1e6ef98dadda/LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "lmarena_140k",
+    "source": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k",
+    "revision": "6322995ab34d7c2693e3f47dd13fa5caa0789a74",
+    "expected_rows": 135634,
+    "role": "raw_source_not_ready_SFT",
+    "files": [
+      {
+        "destination": "training_data/lmarena_140k/.gitattributes",
+        "size": 2461,
+        "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k/resolve/6322995ab34d7c2693e3f47dd13fa5caa0789a74/.gitattributes?download=true"
+      },
+      {
+        "destination": "training_data/lmarena_140k/README.md",
+        "size": 5536,
+        "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k/resolve/6322995ab34d7c2693e3f47dd13fa5caa0789a74/README.md?download=true"
+      },
+      {
+        "destination": "training_data/lmarena_140k/data/train-00000-of-00007.parquet",
+        "size": 231962042,
+        "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k/resolve/6322995ab34d7c2693e3f47dd13fa5caa0789a74/data/train-00000-of-00007.parquet?download=true",
+        "sha256": "7b871a964dc9b238fe0d59f817dbe1a7a56934e23ec4d989f86e6891e5a891cf"
+      },
+      {
+        "destination": "training_data/lmarena_140k/data/train-00001-of-00007.parquet",
+        "size": 232661776,
+        "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k/resolve/6322995ab34d7c2693e3f47dd13fa5caa0789a74/data/train-00001-of-00007.parquet?download=true",
+        "sha256": "0cd29a6e3261159f41a69b28cd7f08c0bbbc1ef08ba18438d386a1b0c144af8a"
+      },
+      {
+        "destination": "training_data/lmarena_140k/data/train-00002-of-00007.parquet",
+        "size": 230389901,
+        "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k/resolve/6322995ab34d7c2693e3f47dd13fa5caa0789a74/data/train-00002-of-00007.parquet?download=true",
+        "sha256": "c633264fe8f0fa26cc9aa49961a75dc428791f70c7a476cbed766963b88bee24"
+      },
+      {
+        "destination": "training_data/lmarena_140k/data/train-00003-of-00007.parquet",
+        "size": 230215643,
+        "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k/resolve/6322995ab34d7c2693e3f47dd13fa5caa0789a74/data/train-00003-of-00007.parquet?download=true",
+        "sha256": "5bcf04c9f4488006a4a7ee944d886ee123e118b7f7d2db04b4ff6dbd8125e6b0"
+      },
+      {
+        "destination": "training_data/lmarena_140k/data/train-00004-of-00007.parquet",
+        "size": 229291118,
+        "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k/resolve/6322995ab34d7c2693e3f47dd13fa5caa0789a74/data/train-00004-of-00007.parquet?download=true",
+        "sha256": "2c50b4b3f6a5c02d660f5a70d5006332ddc00f5eb21f8e4d92bde3856647969b"
+      },
+      {
+        "destination": "training_data/lmarena_140k/data/train-00005-of-00007.parquet",
+        "size": 231971298,
+        "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k/resolve/6322995ab34d7c2693e3f47dd13fa5caa0789a74/data/train-00005-of-00007.parquet?download=true",
+        "sha256": "de59f74dce7477beaec55936b31a88537b93c5cbb4b483cfc6879a6862ce5e3b"
+      },
+      {
+        "destination": "training_data/lmarena_140k/data/train-00006-of-00007.parquet",
+        "size": 227311927,
+        "url": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k/resolve/6322995ab34d7c2693e3f47dd13fa5caa0789a74/data/train-00006-of-00007.parquet?download=true",
+        "sha256": "1a32a1c6934ebcaa3019643a08fb57563ee0a9be282d3222def3c572a49e9f4c"
+      }
+    ]
+  }
+]

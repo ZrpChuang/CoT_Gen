@@ -1,0 +1,94 @@
+{
+  "name": "multi_challenge",
+  "source": "https://github.com/ekwinox117/multi-challenge",
+  "revision": "5ccefcca6a39020d66c1383c4e6a809cb07afa33",
+  "files": [
+    {
+      "destination": "test_data/multi_challenge/README.md",
+      "size": 3968,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/README.md",
+      "sha256": "84981f8da67c87e4cc5711a6c1e60ecead4e5ba77f55467b320b71e02c677e08"
+    },
+    {
+      "destination": "test_data/multi_challenge/data/benchmark_questions.jsonl",
+      "size": 2270010,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/data/benchmark_questions.jsonl",
+      "sha256": "06c72d1ffa387481910d100b146295f28ab68c4ba0032743eac5c9195edb596e"
+    },
+    {
+      "destination": "test_data/multi_challenge/data/response_template.jsonl",
+      "size": 241,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/data/response_template.jsonl",
+      "sha256": "c0acf44078d2f28a6fb3e0e9f1898d7e81e967d9e7715b390dd8f8e50405f8cf"
+    },
+    {
+      "destination": "test_data/multi_challenge/main.py",
+      "size": 3853,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/main.py",
+      "sha256": "b1bf3524e61f50da2de5c24d7306d7ecd02d8d6e18bf88a8e6a63f08d73c73e9"
+    },
+    {
+      "destination": "test_data/multi_challenge/requirements.txt",
+      "size": 99,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/requirements.txt",
+      "sha256": "8a2a16595a6ab68425ed370515062d978d57fd8476116317a98b901a25fddf7a"
+    },
+    {
+      "destination": "test_data/multi_challenge/src/conversation.py",
+      "size": 517,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/conversation.py",
+      "sha256": "a89a1ff2fa79ba4f2cc1df91795faccaaa0aa5f488e3c3e1a3ca5d6809857c97"
+    },
+    {
+      "destination": "test_data/multi_challenge/src/data_loader.py",
+      "size": 3323,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/data_loader.py",
+      "sha256": "98178d95719a915f5cd0ab4e76e7bcd7c25e742d43d53cf5f78dbc042b2a3894"
+    },
+    {
+      "destination": "test_data/multi_challenge/src/evaluator.py",
+      "size": 4695,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/evaluator.py",
+      "sha256": "17f53109b2c7c0d13dafce7a181414467ac0af00209d48b32b9e4bb209d0997b"
+    },
+    {
+      "destination": "test_data/multi_challenge/src/models/base.py",
+      "size": 252,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/models/base.py",
+      "sha256": "7ce6693b59e8ae2b4505d23ec3f03d9e536e3e176fc48b90095df6ca6d500db3"
+    },
+    {
+      "destination": "test_data/multi_challenge/src/models/factory.py",
+      "size": 1019,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/models/factory.py",
+      "sha256": "6a9a35ff820170b44dbbf020d0e0a7da8bc0cc8d217a97312440dda8e24b3d10"
+    },
+    {
+      "destination": "test_data/multi_challenge/src/models/huggingface.py",
+      "size": 1031,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/models/huggingface.py",
+      "sha256": "cfd4c4c97c30665ebf6ffa5e3ac56ecff1c920dfc079a337bf9d58bb6178ef33"
+    },
+    {
+      "destination": "test_data/multi_challenge/src/models/openai.py",
+      "size": 1786,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/models/openai.py",
+      "sha256": "8742c16dc1266a19f31660892232601eedb40c731a84786e084617699763fe12"
+    },
+    {
+      "destination": "test_data/multi_challenge/src/result_parser.py",
+      "size": 4135,
+      "url": "https://raw.githubusercontent.com/ekwinox117/multi-challenge/5ccefcca6a39020d66c1383c4e6a809cb07afa33/src/result_parser.py",
+      "sha256": "35b807f65c0cccf0c3d7e0aa3b5b81bac808773c19891a399dde6538ba448e95"
+    }
+  ],
+  "rows": 273,
+  "entrypoint": "test_data/multi_challenge/data/benchmark_questions.jsonl",
+  "categories": {
+    "INFERENCE_MEMORY": 113,
+    "SELF_COHERENCE": 50,
+    "INSTRUCTION_RETENTION": 69,
+    "RELIABLE_VERSION_EDITING": 41
+  },
+  "verification": "sha256_and_schema_count_passed"
+}
