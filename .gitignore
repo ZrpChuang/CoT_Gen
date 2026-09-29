@@ -1,0 +1,26 @@
+# Raw datasets are reproducible from DOWNLOAD_MANIFEST.json.
+/training_data/**
+!/training_data/*/
+!/training_data/*/DATASET_MANIFEST.json
+/test_data/**
+!/test_data/*/
+!/test_data/*/DATASET_MANIFEST.json
+/runs/
+/.matplotlib-cache/
+/.data-staging/
+/.venv/
+/venv/
+__pycache__/
+*.pyc
+*.log
+*.part
+*.cdn-part
+.DS_Store
+.env
+.env.*
+*.pem
+*.key
+*.safetensors
+*.ckpt
+*.pt
+*.pth

@@ -1,0 +1,210 @@
+{
+  "name": "eq_bench3",
+  "source": "https://github.com/EQ-bench/eqbench3",
+  "revision": "affc5a000bbdb965b807e09ca7875f8530fa8f56",
+  "files": [
+    {
+      "destination": "test_data/eq_bench3/.env.example",
+      "size": 1594,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/.env.example",
+      "sha256": "42732d8b0b2e839a2256c5bda177873ccd16e72d119ba806069166871e4679e6"
+    },
+    {
+      "destination": "test_data/eq_bench3/LICENSE",
+      "size": 1074,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/LICENSE",
+      "sha256": "6406f413f884ffcd5de6c28d77ccc44b62764a6f5fb912de93dee1f0bb2439be"
+    },
+    {
+      "destination": "test_data/eq_bench3/README.md",
+      "size": 21506,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/README.md",
+      "sha256": "00c588c77363ba3982e5a18ff6bdf9f7465894844200fa6532ba26193df29778"
+    },
+    {
+      "destination": "test_data/eq_bench3/core/benchmark.py",
+      "size": 64135,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/benchmark.py",
+      "sha256": "d428a288e93a9b09ef73885aa6f7bb58ebfdaf8ed17dcbfd95dfa8c7a63e7840"
+    },
+    {
+      "destination": "test_data/eq_bench3/core/conversation.py",
+      "size": 36441,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/conversation.py",
+      "sha256": "87bc3e0e086c72d018cd62e8bab9cfa21c38f3359530430ce19bcacc02c9e779"
+    },
+    {
+      "destination": "test_data/eq_bench3/core/elo.py",
+      "size": 31018,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/elo.py",
+      "sha256": "52a03be38d21332699218778a6c1f697682b53cc4642c1422bd4b80deb0c6f48"
+    },
+    {
+      "destination": "test_data/eq_bench3/core/elo_config.py",
+      "size": 2578,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/elo_config.py",
+      "sha256": "d6e44ff947db683328f0442d455a6abfb69478c8a8a343430474b6774b5ca0b5"
+    },
+    {
+      "destination": "test_data/eq_bench3/core/elo_helpers.py",
+      "size": 14932,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/elo_helpers.py",
+      "sha256": "54e4cc96dfa0e2faae744ceffdede39b660e9163abc438cf11a1c999b0893d6e"
+    },
+    {
+      "destination": "test_data/eq_bench3/core/matchup_selection.py",
+      "size": 7584,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/matchup_selection.py",
+      "sha256": "f946be7f6dd18a0d37f5d9703a1ee710527b49fdc7aeadb9639bbcaedbc6807a"
+    },
+    {
+      "destination": "test_data/eq_bench3/core/pairwise_judging.py",
+      "size": 35129,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/pairwise_judging.py",
+      "sha256": "9555f2cffa8d21df7aa47341cc0bcf94d4d290db5f291219656ba8144c7c7112"
+    },
+    {
+      "destination": "test_data/eq_bench3/core/trueskill_solver.py",
+      "size": 17005,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/core/trueskill_solver.py",
+      "sha256": "39acf5593c95ed54481a070e83be60f40fe4237f80fcacd2772ebf3eafda4767"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/canonical_leaderboard_elo_results.json.gz",
+      "size": 26641447,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/canonical_leaderboard_elo_results.json.gz",
+      "sha256": "23f0b36076b77b02f326d5d8b5193cd966065189f13a9720ba2e2bd9c1000b7a"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/canonical_leaderboard_results.json.gz",
+      "size": 34093885,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/canonical_leaderboard_results.json.gz",
+      "sha256": "e8ad6f961bb42eac2ebfa2dbd1008b6a06d64683c354fc0157818eeca568605f"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/debrief_prompt.txt",
+      "size": 432,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/debrief_prompt.txt",
+      "sha256": "5f63279c27e444b7f8b154a190f9ce10a79d4d9cebb556fae97c70346f52c6fa"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/pairwise_prompt_eqbench3.txt",
+      "size": 2546,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/pairwise_prompt_eqbench3.txt",
+      "sha256": "6b0be4d94f089a53e207ef4d916f078bae72609c9f2a4101e0ee1bb33d83b3fd"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/pairwise_prompt_eqbench3_analysis.txt",
+      "size": 2526,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/pairwise_prompt_eqbench3_analysis.txt",
+      "sha256": "9ad372bc6feac6bdbd5c0e7c6f0adc01c50fcbeff54edd0721d0bbc76f675bf4"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/rubric_scoring_criteria.txt",
+      "size": 247,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/rubric_scoring_criteria.txt",
+      "sha256": "11fefca1f467bbabfab8618731338aeeb167141c80756bf2d040d000d8318727"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/rubric_scoring_criteria_analysis.txt",
+      "size": 109,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/rubric_scoring_criteria_analysis.txt",
+      "sha256": "a83e91be22a4233c364c7cd3e611702360af94d045b170b6a88848dabf9d4d21"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/rubric_scoring_prompt.txt",
+      "size": 1308,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/rubric_scoring_prompt.txt",
+      "sha256": "423612b81594601548bf4625ca32c4400637fb3876171a153f3067cbcc0ec939"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/rubric_scoring_prompt_analysis.txt",
+      "size": 901,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/rubric_scoring_prompt_analysis.txt",
+      "sha256": "78927fbb695c5c5374ce23ce39a1add4033abc5c99870e6be9747368df0e3f96"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/scenario_master_prompt.txt",
+      "size": 619,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/scenario_master_prompt.txt",
+      "sha256": "8f76e06423fa6110e2afe9e88561b3511fc97a68dcd1aa1a4459c7af6424785c"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/scenario_master_prompt_analysis.txt",
+      "size": 1433,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/scenario_master_prompt_analysis.txt",
+      "sha256": "b5773ced14ab7fc6d96ae1d6a0da981d7797804359a38d4992ad530edb3915e9"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/scenario_master_prompt_message_drafting.txt",
+      "size": 451,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/scenario_master_prompt_message_drafting.txt",
+      "sha256": "719dc595c4fb3127a0347bbd90ceb2af7bdb5f86a0218df3cc51888a31b3f133"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/scenario_notes.txt",
+      "size": 15528,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/scenario_notes.txt",
+      "sha256": "d66a4463bdd45d2a32dac04afcf448346fa4d9cb20e2dbd50c424c86055e2ff9"
+    },
+    {
+      "destination": "test_data/eq_bench3/data/scenario_prompts.txt",
+      "size": 218478,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/data/scenario_prompts.txt",
+      "sha256": "736f67a8f18ef5bba1f4eca89e60daef1a26ac58c8fea956560726357da39cae"
+    },
+    {
+      "destination": "test_data/eq_bench3/eqbench3.py",
+      "size": 35926,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/eqbench3.py",
+      "sha256": "eb635c47e747b29e3e8d061b5e3dbc79e733dc816d1999b209a7cb741a0d53b6"
+    },
+    {
+      "destination": "test_data/eq_bench3/requirements.txt",
+      "size": 70,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/requirements.txt",
+      "sha256": "f05798144b741fa9efad1c7f45c4ab373f178176310dbd4b8a6991a1238138b2"
+    },
+    {
+      "destination": "test_data/eq_bench3/utils/api.py",
+      "size": 12935,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/utils/api.py",
+      "sha256": "4c849b4be6ec233e0b816b549f6e381c4612d2fdf6de44431f0fc2f19f2c4399"
+    },
+    {
+      "destination": "test_data/eq_bench3/utils/constants.py",
+      "size": 5899,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/utils/constants.py",
+      "sha256": "aded3776b3a07248b647e6b2b2e7abd07f2f7ccde8a86484ae5db255df02980a"
+    },
+    {
+      "destination": "test_data/eq_bench3/utils/file_io.py",
+      "size": 11629,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/utils/file_io.py",
+      "sha256": "58968cfbe5786d4b0d98337e90e396c55b5f6ba2d4690898f3ade791086f8bc8"
+    },
+    {
+      "destination": "test_data/eq_bench3/utils/logging_setup.py",
+      "size": 1354,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/utils/logging_setup.py",
+      "sha256": "c10336c8c2c4db90dac995349d9a3c8f93e3138514df01c4d043ca51cc5b4f61"
+    },
+    {
+      "destination": "test_data/eq_bench3/utils/merge_utils.py",
+      "size": 23910,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/utils/merge_utils.py",
+      "sha256": "cde18484b36a20384b8b5d3ad8cf475a8c4f70bb0ec328972defb65f4e41e9a7"
+    },
+    {
+      "destination": "test_data/eq_bench3/utils/utils.py",
+      "size": 4464,
+      "url": "https://raw.githubusercontent.com/EQ-bench/eqbench3/affc5a000bbdb965b807e09ca7875f8530fa8f56/utils/utils.py",
+      "sha256": "4c15f056e5a1860f48eea1845c732b2b5aa66ff3b00176a2a6f6621805de3a08"
+    }
+  ],
+  "rows": 46,
+  "unit": "scenarios",
+  "prompt_blocks": 92,
+  "entrypoint": "test_data/eq_bench3/data/scenario_prompts.txt",
+  "verification": "sha256_and_schema_count_passed"
+}
