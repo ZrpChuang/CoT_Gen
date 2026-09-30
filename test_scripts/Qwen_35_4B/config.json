@@ -1,0 +1,47 @@
+{
+  "data_root": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data",
+  "target": {
+    "model": "qwen35-4b-baseline",
+    "local": true,
+    "base_urls": [
+      "http://127.0.0.1:8111/v1",
+      "http://127.0.0.1:8112/v1"
+    ],
+    "max_tokens": 32768,
+    "supports_temperature": true,
+    "top_p": 0.95,
+    "extra_body": {
+      "chat_template_kwargs": {
+        "enable_thinking": true
+      },
+      "temperature": 1.0,
+      "presence_penalty": 1.5,
+      "top_k": 20,
+      "min_p": 0.0,
+      "repetition_penalty": 1.0
+    }
+  },
+  "workers": 64,
+  "judge_workers": 96,
+  "judges": [
+    {
+      "model": "gpt-6-astra",
+      "local": false,
+      "base_urls": [
+        "https://search.bytedance.net/gpt/openapi/online/responses"
+      ],
+      "max_tokens": 32768,
+      "supports_temperature": false,
+      "credential_group": "GPT",
+      "protocol": "azure_responses",
+      "api_version": "2025-04-01-preview",
+      "extra_body": {
+        "reasoning": {
+          "effort": "medium",
+          "summary": "auto"
+        }
+      },
+      "judge_max_tokens": 16384
+    }
+  ]
+}

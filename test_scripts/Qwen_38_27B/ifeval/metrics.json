@@ -1,0 +1,43 @@
+{
+  "model": "qwen38-27b-base",
+  "benchmark": "ifeval",
+  "n": 541,
+  "status": "complete",
+  "generation_protocol_hash": "859c3069a25e46f9272dd30aa12f89723cec03283658147ecc49ebd3d391fc68",
+  "paper_exact_reproduction": false,
+  "metrics": {
+    "prompt_strict": {
+      "score": 90.57301293900186,
+      "ci95": [
+        87.81675653189687,
+        92.75714123098868
+      ],
+      "n": 541
+    },
+    "prompt_loose": {
+      "score": 93.90018484288355,
+      "ci95": [
+        91.55738836470985,
+        95.62393609399318
+      ],
+      "n": 541
+    },
+    "instruction_strict": {
+      "score": 93.76498800959233,
+      "ci95": [
+        91.91486035750634,
+        95.21379534634407
+      ],
+      "n": 834
+    },
+    "instruction_loose": {
+      "score": 95.92326139088729,
+      "ci95": [
+        94.35723676616838,
+        97.06817456143355
+      ],
+      "n": 834
+    },
+    "primary_metric": "prompt_strict"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "repo_id": "Qwen/Qwen3.5-4B",
+  "model_dir": "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-4B",
+  "gpus": [
+    0,
+    1
+  ],
+  "ports": [
+    8111,
+    8112
+  ],
+  "python": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/vllm-0.26.0/bin/python"
+}

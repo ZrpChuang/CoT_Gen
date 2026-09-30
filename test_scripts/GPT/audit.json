@@ -1,0 +1,77 @@
+{
+  "ifeval": {
+    "generation_diagnostics": {
+      "returned_model_counts": {
+        "ptu_2200": 9,
+        "deployment-gpt-6-astra-platform-global": 532
+      },
+      "finish_reason_counts": {
+        "stop": 541
+      },
+      "empty_final_answers": 0,
+      "mean_reported_output_tokens": 453.33456561922367,
+      "max_reported_output_tokens": 2755,
+      "reported_output_over_requested_limit": 0
+    },
+    "n": 541,
+    "verified": true,
+    "responses_sha256": "5191cfc331693d31788be99d79e3e1477ed4621060c8b8bdc75e46de5aa8a449",
+    "metrics_sha256": "bfb1ba407c69592366677d102808b0e867b38934edb104bf67d69f7d748b1396"
+  },
+  "multi_challenge": {
+    "generation_diagnostics": {
+      "returned_model_counts": {
+        "deployment-gpt-6-astra-platform-global": 273
+      },
+      "finish_reason_counts": {
+        "stop": 273
+      },
+      "empty_final_answers": 0,
+      "mean_reported_output_tokens": 615.1282051282051,
+      "max_reported_output_tokens": 7442,
+      "reported_output_over_requested_limit": 0
+    },
+    "n": 273,
+    "verified": true,
+    "responses_sha256": "e0c77b41e83f6f9effcd3a52347b128377d83ca912ec6d5c2f34f45cba29391f",
+    "metrics_sha256": "e44ea78f5b7a727d1cb94a8b612864c81a4bd03a07f1b04fc5647b7b544b9e37"
+  },
+  "eq_bench3": {
+    "generation_diagnostics": {
+      "returned_model_counts": {
+        "deployment-gpt-6-astra-platform-global": 117,
+        "ptu_2200": 1
+      },
+      "finish_reason_counts": {
+        "stop": 118
+      },
+      "empty_final_answers": 0,
+      "mean_reported_output_tokens": 1274.5338983050847,
+      "max_reported_output_tokens": 1575,
+      "reported_output_over_requested_limit": 0
+    },
+    "n": 45,
+    "verified": true,
+    "responses_sha256": "ad721810f1692067c6a6e5194859888d6d9a8e497ce386a448cb93bc299cf504",
+    "metrics_sha256": "8b61550ca1cbe7dd156437559b93c68b4bae438e4eba0457f9f67fb9948e0c51"
+  },
+  "arena_hard_v2": {
+    "generation_diagnostics": {
+      "returned_model_counts": {
+        "deployment-gpt-6-astra-platform-global": 748,
+        "ptu_2200": 2
+      },
+      "finish_reason_counts": {
+        "stop": 750
+      },
+      "empty_final_answers": 0,
+      "mean_reported_output_tokens": 1461.18,
+      "max_reported_output_tokens": 24372,
+      "reported_output_over_requested_limit": 0
+    },
+    "n": 750,
+    "verified": true,
+    "responses_sha256": "2633d11c7649abb42053d01bc5b9b5c877486bd70f02a986db2b6eb279a1c809",
+    "metrics_sha256": "a39bfb5a42aceab5996201e6f0834b66ba0c08a88fdf459502c6604128750167"
+  }
+}

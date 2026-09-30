@@ -1,0 +1,22 @@
+{
+  "model": "qwen35-4b-baseline",
+  "benchmark": "eq_bench3",
+  "n": 45,
+  "status": "complete",
+  "generation_protocol_hash": "3648e5f2facea16f228ab0d7173c345d5af38498d4c54fe6d4f0c932033cc19a",
+  "paper_exact_reproduction": false,
+  "judges": {
+    "gpt-6-astra": {
+      "rubric_0_100": {
+        "score": 26.425925925925924,
+        "ci95": [
+          24.0427636670954,
+          28.809088184756448
+        ],
+        "n": 45
+      },
+      "elo": null,
+      "elo_note": "Rubric evaluation; no leaderboard ELO calibration."
+    }
+  }
+}

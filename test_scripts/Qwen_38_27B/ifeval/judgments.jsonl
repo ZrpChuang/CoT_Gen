@@ -1,0 +1,541 @@
+{"id": "1000", "instruction_ids": ["punctuation:no_comma", "detectable_format:number_highlighted_sections", "length_constraints:number_words"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1001", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "1005", "instruction_ids": ["detectable_content:number_placeholders"], "strict": [true], "loose": [true]}
+{"id": "1012", "instruction_ids": ["combination:repeat_prompt", "detectable_format:title"], "strict": [true, true], "loose": [true, true]}
+{"id": "1019", "instruction_ids": ["change_case:english_lowercase"], "strict": [true], "loose": [true]}
+{"id": "102", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "1021", "instruction_ids": ["change_case:english_capital", "detectable_format:multiple_sections"], "strict": [true, true], "loose": [true, true]}
+{"id": "1040", "instruction_ids": ["change_case:capital_word_frequency", "change_case:capital_word_frequency", "startend:quotation"], "strict": [false, true, true], "loose": [false, true, true]}
+{"id": "1051", "instruction_ids": ["change_case:english_lowercase"], "strict": [true], "loose": [true]}
+{"id": "1069", "instruction_ids": ["keywords:existence", "length_constraints:number_words", "punctuation:no_comma"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1072", "instruction_ids": ["length_constraints:number_words"], "strict": [true], "loose": [true]}
+{"id": "1075", "instruction_ids": ["detectable_format:json_format"], "strict": [true], "loose": [true]}
+{"id": "1082", "instruction_ids": ["length_constraints:number_paragraphs"], "strict": [true], "loose": [true]}
+{"id": "1087", "instruction_ids": ["change_case:english_lowercase"], "strict": [true], "loose": [true]}
+{"id": "1092", "instruction_ids": ["length_constraints:number_words"], "strict": [true], "loose": [true]}
+{"id": "1094", "instruction_ids": ["detectable_format:json_format"], "strict": [true], "loose": [true]}
+{"id": "1098", "instruction_ids": ["combination:two_responses"], "strict": [true], "loose": [true]}
+{"id": "1107", "instruction_ids": ["punctuation:no_comma", "combination:two_responses"], "strict": [true, true], "loose": [true, true]}
+{"id": "1108", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "1122", "instruction_ids": ["change_case:english_lowercase", "keywords:letter_frequency"], "strict": [true, false], "loose": [true, true]}
+{"id": "1127", "instruction_ids": ["detectable_format:multiple_sections", "startend:end_checker"], "strict": [true, true], "loose": [true, true]}
+{"id": "1128", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "1129", "instruction_ids": ["keywords:letter_frequency", "combination:repeat_prompt"], "strict": [true, true], "loose": [true, true]}
+{"id": "1130", "instruction_ids": ["keywords:letter_frequency"], "strict": [true], "loose": [true]}
+{"id": "1131", "instruction_ids": ["detectable_format:multiple_sections"], "strict": [true], "loose": [true]}
+{"id": "1132", "instruction_ids": ["change_case:english_capital", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1137", "instruction_ids": ["detectable_format:json_format", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1139", "instruction_ids": ["combination:repeat_prompt", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "1147", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "1148", "instruction_ids": ["detectable_format:json_format"], "strict": [true], "loose": [true]}
+{"id": "1153", "instruction_ids": ["change_case:english_lowercase", "keywords:frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "1154", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "1162", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "1174", "instruction_ids": ["keywords:letter_frequency", "length_constraints:number_sentences", "detectable_format:number_highlighted_sections"], "strict": [false, true, true], "loose": [false, true, true]}
+{"id": "1180", "instruction_ids": ["combination:two_responses", "detectable_format:title"], "strict": [true, true], "loose": [true, true]}
+{"id": "1187", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "1203", "instruction_ids": ["keywords:frequency", "keywords:frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "1216", "instruction_ids": ["startend:quotation", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1217", "instruction_ids": ["length_constraints:number_words"], "strict": [true], "loose": [true]}
+{"id": "1219", "instruction_ids": ["change_case:english_capital", "detectable_content:postscript", "keywords:frequency"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "122", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "1220", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "1233", "instruction_ids": ["startend:end_checker", "keywords:frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "1236", "instruction_ids": ["length_constraints:number_paragraphs"], "strict": [true], "loose": [true]}
+{"id": "1237", "instruction_ids": ["detectable_format:number_highlighted_sections", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "1242", "instruction_ids": ["detectable_format:json_format", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1246", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "1248", "instruction_ids": ["length_constraints:number_paragraphs"], "strict": [true], "loose": [true]}
+{"id": "1251", "instruction_ids": ["length_constraints:number_words"], "strict": [true], "loose": [true]}
+{"id": "1258", "instruction_ids": ["length_constraints:number_words"], "strict": [true], "loose": [true]}
+{"id": "1259", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "1262", "instruction_ids": ["detectable_format:title", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "1265", "instruction_ids": ["keywords:existence", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "1268", "instruction_ids": ["length_constraints:number_sentences"], "strict": [true], "loose": [true]}
+{"id": "127", "instruction_ids": ["keywords:forbidden_words", "keywords:frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "1281", "instruction_ids": ["combination:repeat_prompt", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "1286", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "1287", "instruction_ids": ["detectable_format:number_bullet_lists", "change_case:english_lowercase"], "strict": [true, true], "loose": [true, true]}
+{"id": "13", "instruction_ids": ["detectable_format:json_format"], "strict": [false], "loose": [false]}
+{"id": "1300", "instruction_ids": ["punctuation:no_comma", "keywords:letter_frequency", "length_constraints:number_words"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1305", "instruction_ids": ["detectable_content:postscript", "detectable_format:number_bullet_lists"], "strict": [true, true], "loose": [true, true]}
+{"id": "1307", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "1314", "instruction_ids": ["change_case:capital_word_frequency", "change_case:capital_word_frequency"], "strict": [false, true], "loose": [true, true]}
+{"id": "1322", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "1325", "instruction_ids": ["startend:quotation", "detectable_format:number_bullet_lists"], "strict": [true, true], "loose": [true, true]}
+{"id": "1332", "instruction_ids": ["combination:two_responses"], "strict": [true], "loose": [true]}
+{"id": "1342", "instruction_ids": ["keywords:frequency", "detectable_format:number_highlighted_sections", "length_constraints:number_paragraphs"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1348", "instruction_ids": ["punctuation:no_comma", "detectable_format:number_highlighted_sections", "keywords:existence"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "136", "instruction_ids": ["detectable_format:number_bullet_lists", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1361", "instruction_ids": ["change_case:english_lowercase"], "strict": [true], "loose": [true]}
+{"id": "1367", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "1372", "instruction_ids": ["detectable_content:number_placeholders"], "strict": [true], "loose": [true]}
+{"id": "1375", "instruction_ids": ["length_constraints:number_paragraphs", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "1377", "instruction_ids": ["length_constraints:number_paragraphs"], "strict": [true], "loose": [true]}
+{"id": "1379", "instruction_ids": ["detectable_format:number_highlighted_sections", "keywords:frequency", "keywords:existence"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1381", "instruction_ids": ["length_constraints:number_sentences"], "strict": [true], "loose": [true]}
+{"id": "1389", "instruction_ids": ["change_case:english_capital", "keywords:letter_frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "1392", "instruction_ids": ["detectable_format:title", "length_constraints:number_sentences", "length_constraints:number_words"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1393", "instruction_ids": ["keywords:frequency"], "strict": [true], "loose": [true]}
+{"id": "1402", "instruction_ids": ["keywords:letter_frequency", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1418", "instruction_ids": ["punctuation:no_comma", "length_constraints:number_sentences", "length_constraints:number_sentences"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "142", "instruction_ids": ["startend:quotation", "keywords:frequency", "keywords:existence"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "143", "instruction_ids": ["length_constraints:number_paragraphs", "detectable_content:postscript"], "strict": [true, true], "loose": [true, true]}
+{"id": "1436", "instruction_ids": ["change_case:english_lowercase", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1446", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "1466", "instruction_ids": ["startend:quotation", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1476", "instruction_ids": ["keywords:forbidden_words", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "1477", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "1480", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "1481", "instruction_ids": ["detectable_format:multiple_sections", "detectable_format:number_bullet_lists"], "strict": [true, true], "loose": [true, true]}
+{"id": "1498", "instruction_ids": ["keywords:frequency"], "strict": [false], "loose": [false]}
+{"id": "1508", "instruction_ids": ["keywords:existence", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "1512", "instruction_ids": ["detectable_content:number_placeholders", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "1516", "instruction_ids": ["change_case:english_lowercase", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "1518", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "152", "instruction_ids": ["change_case:english_lowercase", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1531", "instruction_ids": ["keywords:existence"], "strict": [true], "loose": [true]}
+{"id": "1535", "instruction_ids": ["change_case:english_lowercase", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "1537", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "1546", "instruction_ids": ["combination:repeat_prompt", "punctuation:no_comma"], "strict": [false, false], "loose": [false, false]}
+{"id": "1548", "instruction_ids": ["detectable_format:multiple_sections"], "strict": [true], "loose": [true]}
+{"id": "1551", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "1561", "instruction_ids": ["combination:repeat_prompt", "detectable_format:title"], "strict": [true, true], "loose": [true, true]}
+{"id": "1566", "instruction_ids": ["change_case:english_capital"], "strict": [true], "loose": [true]}
+{"id": "1571", "instruction_ids": ["keywords:frequency", "change_case:english_lowercase", "keywords:existence"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1580", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "1582", "instruction_ids": ["combination:two_responses", "language:response_language", "punctuation:no_comma"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1591", "instruction_ids": ["combination:two_responses"], "strict": [true], "loose": [true]}
+{"id": "1592", "instruction_ids": ["change_case:capital_word_frequency"], "strict": [true], "loose": [true]}
+{"id": "1593", "instruction_ids": ["change_case:english_lowercase"], "strict": [true], "loose": [true]}
+{"id": "16", "instruction_ids": ["detectable_format:title", "combination:repeat_prompt"], "strict": [true, false], "loose": [true, false]}
+{"id": "1601", "instruction_ids": ["detectable_format:number_highlighted_sections", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1609", "instruction_ids": ["length_constraints:nth_paragraph_first_word", "startend:quotation"], "strict": [false, true], "loose": [true, true]}
+{"id": "1619", "instruction_ids": ["detectable_content:postscript", "detectable_content:number_placeholders"], "strict": [true, true], "loose": [true, true]}
+{"id": "1620", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "1627", "instruction_ids": ["combination:repeat_prompt", "detectable_format:title", "punctuation:no_comma"], "strict": [true, true, false], "loose": [true, true, false]}
+{"id": "1629", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "163", "instruction_ids": ["startend:quotation", "keywords:letter_frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "1634", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "164", "instruction_ids": ["length_constraints:number_words"], "strict": [true], "loose": [true]}
+{"id": "1643", "instruction_ids": ["punctuation:no_comma", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1644", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "1645", "instruction_ids": ["change_case:english_capital"], "strict": [true], "loose": [true]}
+{"id": "1646", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "1653", "instruction_ids": ["change_case:capital_word_frequency", "length_constraints:number_sentences"], "strict": [false, true], "loose": [false, true]}
+{"id": "1656", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "1658", "instruction_ids": ["startend:quotation", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "1659", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "1667", "instruction_ids": ["change_case:english_lowercase"], "strict": [true], "loose": [true]}
+{"id": "167", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "1670", "instruction_ids": ["startend:quotation", "length_constraints:number_paragraphs", "change_case:capital_word_frequency"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1675", "instruction_ids": ["keywords:forbidden_words"], "strict": [false], "loose": [true]}
+{"id": "168", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "1686", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "1691", "instruction_ids": ["detectable_format:json_format", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1705", "instruction_ids": ["detectable_content:postscript", "startend:end_checker"], "strict": [true, true], "loose": [true, true]}
+{"id": "1713", "instruction_ids": ["keywords:frequency", "detectable_format:number_highlighted_sections"], "strict": [false, true], "loose": [false, true]}
+{"id": "1730", "instruction_ids": ["startend:quotation", "detectable_format:multiple_sections"], "strict": [true, true], "loose": [true, true]}
+{"id": "1733", "instruction_ids": ["keywords:frequency"], "strict": [true], "loose": [true]}
+{"id": "1738", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "1739", "instruction_ids": ["punctuation:no_comma", "language:response_language"], "strict": [true, true], "loose": [true, true]}
+{"id": "1746", "instruction_ids": ["combination:two_responses"], "strict": [true], "loose": [true]}
+{"id": "1759", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "1773", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "1776", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "1779", "instruction_ids": ["change_case:english_capital", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "1781", "instruction_ids": ["length_constraints:number_words", "change_case:english_lowercase"], "strict": [true, true], "loose": [true, true]}
+{"id": "179", "instruction_ids": ["length_constraints:number_sentences"], "strict": [true], "loose": [true]}
+{"id": "1793", "instruction_ids": ["combination:two_responses", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1800", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "1802", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "181", "instruction_ids": ["length_constraints:nth_paragraph_first_word"], "strict": [false], "loose": [true]}
+{"id": "1813", "instruction_ids": ["change_case:english_capital", "length_constraints:number_words"], "strict": [false, true], "loose": [false, true]}
+{"id": "1823", "instruction_ids": ["detectable_format:number_highlighted_sections", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "1825", "instruction_ids": ["punctuation:no_comma", "detectable_content:postscript", "keywords:existence"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1834", "instruction_ids": ["length_constraints:number_sentences", "change_case:capital_word_frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "1837", "instruction_ids": ["length_constraints:number_sentences", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "1843", "instruction_ids": ["change_case:english_lowercase", "startend:quotation"], "strict": [false, true], "loose": [false, true]}
+{"id": "1845", "instruction_ids": ["keywords:existence", "length_constraints:number_paragraphs"], "strict": [true, true], "loose": [true, true]}
+{"id": "1857", "instruction_ids": ["keywords:frequency"], "strict": [true], "loose": [true]}
+{"id": "1858", "instruction_ids": ["length_constraints:number_paragraphs"], "strict": [true], "loose": [true]}
+{"id": "1879", "instruction_ids": ["length_constraints:number_sentences", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1880", "instruction_ids": ["keywords:letter_frequency", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1883", "instruction_ids": ["keywords:letter_frequency", "length_constraints:number_paragraphs"], "strict": [true, true], "loose": [true, true]}
+{"id": "1886", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "1893", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "1897", "instruction_ids": ["detectable_format:number_highlighted_sections", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "19", "instruction_ids": ["length_constraints:number_words", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1902", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "1906", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "1908", "instruction_ids": ["length_constraints:number_sentences", "detectable_format:number_bullet_lists", "detectable_content:number_placeholders"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1922", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "1927", "instruction_ids": ["detectable_content:number_placeholders"], "strict": [true], "loose": [true]}
+{"id": "1928", "instruction_ids": ["detectable_format:title", "punctuation:no_comma", "keywords:frequency"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1934", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "1936", "instruction_ids": ["keywords:forbidden_words", "detectable_format:number_bullet_lists"], "strict": [true, true], "loose": [true, true]}
+{"id": "1939", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "1943", "instruction_ids": ["length_constraints:number_paragraphs", "startend:end_checker"], "strict": [true, true], "loose": [true, true]}
+{"id": "1944", "instruction_ids": ["punctuation:no_comma", "combination:repeat_prompt"], "strict": [true, true], "loose": [true, true]}
+{"id": "1954", "instruction_ids": ["length_constraints:nth_paragraph_first_word"], "strict": [false], "loose": [false]}
+{"id": "1964", "instruction_ids": ["keywords:letter_frequency", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "1967", "instruction_ids": ["change_case:english_lowercase", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "1980", "instruction_ids": ["length_constraints:number_words", "detectable_format:number_bullet_lists", "detectable_content:postscript"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "1996", "instruction_ids": ["change_case:capital_word_frequency"], "strict": [true], "loose": [true]}
+{"id": "1999", "instruction_ids": ["change_case:english_capital"], "strict": [true], "loose": [true]}
+{"id": "201", "instruction_ids": ["keywords:letter_frequency"], "strict": [true], "loose": [true]}
+{"id": "2010", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "2015", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "202", "instruction_ids": ["change_case:english_lowercase"], "strict": [false], "loose": [false]}
+{"id": "2023", "instruction_ids": ["detectable_format:multiple_sections"], "strict": [true], "loose": [true]}
+{"id": "2028", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "2034", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "2035", "instruction_ids": ["detectable_format:number_highlighted_sections", "startend:quotation", "length_constraints:number_sentences"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "2041", "instruction_ids": ["length_constraints:number_sentences", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "2063", "instruction_ids": ["combination:repeat_prompt", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "2069", "instruction_ids": ["length_constraints:number_words", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "2070", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "2071", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "2078", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "2084", "instruction_ids": ["keywords:frequency", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "209", "instruction_ids": ["length_constraints:number_words"], "strict": [true], "loose": [true]}
+{"id": "2097", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "2100", "instruction_ids": ["detectable_format:number_bullet_lists", "change_case:english_lowercase"], "strict": [true, true], "loose": [true, true]}
+{"id": "2107", "instruction_ids": ["keywords:letter_frequency"], "strict": [true], "loose": [true]}
+{"id": "2118", "instruction_ids": ["length_constraints:number_paragraphs", "detectable_format:number_bullet_lists"], "strict": [true, true], "loose": [true, true]}
+{"id": "2136", "instruction_ids": ["detectable_content:number_placeholders"], "strict": [true], "loose": [true]}
+{"id": "2139", "instruction_ids": ["length_constraints:number_sentences", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "2142", "instruction_ids": ["keywords:frequency"], "strict": [true], "loose": [true]}
+{"id": "2143", "instruction_ids": ["keywords:forbidden_words", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "2162", "instruction_ids": ["length_constraints:number_sentences", "detectable_content:number_placeholders"], "strict": [true, true], "loose": [true, true]}
+{"id": "2164", "instruction_ids": ["detectable_content:number_placeholders"], "strict": [true], "loose": [true]}
+{"id": "2169", "instruction_ids": ["keywords:letter_frequency", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "218", "instruction_ids": ["detectable_content:number_placeholders", "change_case:english_lowercase"], "strict": [true, true], "loose": [true, true]}
+{"id": "2180", "instruction_ids": ["change_case:capital_word_frequency", "length_constraints:number_paragraphs"], "strict": [true, true], "loose": [true, true]}
+{"id": "219", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "2192", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "2195", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "2207", "instruction_ids": ["keywords:forbidden_words"], "strict": [false], "loose": [true]}
+{"id": "2209", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "2215", "instruction_ids": ["length_constraints:nth_paragraph_first_word"], "strict": [false], "loose": [true]}
+{"id": "2216", "instruction_ids": ["change_case:english_lowercase", "punctuation:no_comma", "detectable_content:postscript"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "2225", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "2229", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "2230", "instruction_ids": ["punctuation:no_comma", "detectable_format:number_highlighted_sections"], "strict": [true, true], "loose": [true, true]}
+{"id": "2239", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "2243", "instruction_ids": ["length_constraints:number_words"], "strict": [true], "loose": [true]}
+{"id": "2245", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "2246", "instruction_ids": ["length_constraints:number_words", "keywords:frequency", "detectable_content:number_placeholders"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "2247", "instruction_ids": ["change_case:english_capital"], "strict": [true], "loose": [true]}
+{"id": "2250", "instruction_ids": ["length_constraints:nth_paragraph_first_word"], "strict": [false], "loose": [true]}
+{"id": "2253", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "2265", "instruction_ids": ["keywords:letter_frequency"], "strict": [true], "loose": [true]}
+{"id": "2266", "instruction_ids": ["length_constraints:number_sentences"], "strict": [false], "loose": [false]}
+{"id": "2268", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "227", "instruction_ids": ["detectable_format:constrained_response"], "strict": [true], "loose": [true]}
+{"id": "2273", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "2275", "instruction_ids": ["change_case:capital_word_frequency", "punctuation:no_comma", "keywords:frequency"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "2284", "instruction_ids": ["length_constraints:number_words", "detectable_content:number_placeholders", "detectable_format:number_bullet_lists"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "2292", "instruction_ids": ["keywords:frequency"], "strict": [true], "loose": [true]}
+{"id": "2299", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "2303", "instruction_ids": ["startend:quotation", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "2304", "instruction_ids": ["detectable_content:number_placeholders"], "strict": [true], "loose": [true]}
+{"id": "2305", "instruction_ids": ["combination:repeat_prompt", "detectable_format:title"], "strict": [false, true], "loose": [false, true]}
+{"id": "2309", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "2311", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "2314", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "2323", "instruction_ids": ["length_constraints:number_words"], "strict": [true], "loose": [true]}
+{"id": "2324", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "2328", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "2337", "instruction_ids": ["combination:repeat_prompt", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "2341", "instruction_ids": ["change_case:english_capital"], "strict": [true], "loose": [true]}
+{"id": "2350", "instruction_ids": ["keywords:letter_frequency"], "strict": [true], "loose": [true]}
+{"id": "2355", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "2357", "instruction_ids": ["length_constraints:number_paragraphs"], "strict": [true], "loose": [true]}
+{"id": "2359", "instruction_ids": ["combination:repeat_prompt"], "strict": [false], "loose": [false]}
+{"id": "2362", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "2372", "instruction_ids": ["detectable_format:number_highlighted_sections", "change_case:english_lowercase"], "strict": [true, true], "loose": [true, true]}
+{"id": "2374", "instruction_ids": ["punctuation:no_comma"], "strict": [false], "loose": [false]}
+{"id": "2380", "instruction_ids": ["detectable_format:number_bullet_lists", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "2381", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "2383", "instruction_ids": ["combination:two_responses"], "strict": [true], "loose": [true]}
+{"id": "2386", "instruction_ids": ["length_constraints:number_paragraphs", "keywords:frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "2391", "instruction_ids": ["length_constraints:number_words", "change_case:english_lowercase"], "strict": [true, true], "loose": [true, true]}
+{"id": "2392", "instruction_ids": ["keywords:frequency"], "strict": [true], "loose": [true]}
+{"id": "2395", "instruction_ids": ["detectable_format:json_format", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "2396", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "2398", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "24", "instruction_ids": ["change_case:english_capital"], "strict": [true], "loose": [true]}
+{"id": "240", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "2404", "instruction_ids": ["detectable_format:json_format"], "strict": [true], "loose": [true]}
+{"id": "2416", "instruction_ids": ["length_constraints:number_words", "keywords:letter_frequency", "change_case:english_capital"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "2417", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "2422", "instruction_ids": ["change_case:english_capital", "detectable_format:title"], "strict": [true, true], "loose": [true, true]}
+{"id": "2432", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "2436", "instruction_ids": ["combination:two_responses", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "2439", "instruction_ids": ["punctuation:no_comma", "length_constraints:nth_paragraph_first_word", "detectable_content:number_placeholders"], "strict": [true, false, true], "loose": [true, true, true]}
+{"id": "2441", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "2447", "instruction_ids": ["keywords:letter_frequency"], "strict": [true], "loose": [true]}
+{"id": "2449", "instruction_ids": ["punctuation:no_comma", "keywords:letter_frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "2457", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "2464", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "2465", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "2467", "instruction_ids": ["length_constraints:number_paragraphs"], "strict": [true], "loose": [true]}
+{"id": "247", "instruction_ids": ["combination:two_responses"], "strict": [true], "loose": [true]}
+{"id": "2471", "instruction_ids": ["keywords:forbidden_words", "detectable_content:number_placeholders"], "strict": [true, true], "loose": [true, true]}
+{"id": "2475", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "2482", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "2485", "instruction_ids": ["keywords:existence"], "strict": [true], "loose": [true]}
+{"id": "2497", "instruction_ids": ["detectable_format:number_highlighted_sections", "startend:quotation"], "strict": [true, true], "loose": [true, true]}
+{"id": "2505", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "251", "instruction_ids": ["keywords:letter_frequency"], "strict": [true], "loose": [true]}
+{"id": "2515", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "2517", "instruction_ids": ["change_case:english_lowercase"], "strict": [true], "loose": [true]}
+{"id": "2531", "instruction_ids": ["change_case:english_lowercase"], "strict": [true], "loose": [true]}
+{"id": "2532", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "2534", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "2549", "instruction_ids": ["length_constraints:nth_paragraph_first_word", "keywords:existence", "detectable_content:postscript"], "strict": [false, true, true], "loose": [true, true, true]}
+{"id": "2563", "instruction_ids": ["change_case:english_capital"], "strict": [true], "loose": [true]}
+{"id": "2567", "instruction_ids": ["keywords:existence"], "strict": [true], "loose": [true]}
+{"id": "2571", "instruction_ids": ["change_case:english_capital", "punctuation:no_comma", "length_constraints:number_sentences"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "2577", "instruction_ids": ["combination:two_responses", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "2583", "instruction_ids": ["keywords:frequency", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "2585", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "2589", "instruction_ids": ["length_constraints:number_sentences"], "strict": [true], "loose": [true]}
+{"id": "2590", "instruction_ids": ["length_constraints:nth_paragraph_first_word"], "strict": [false], "loose": [true]}
+{"id": "2591", "instruction_ids": ["detectable_format:json_format", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "2596", "instruction_ids": ["combination:two_responses", "language:response_language", "punctuation:no_comma"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "260", "instruction_ids": ["keywords:existence", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "2602", "instruction_ids": ["keywords:existence"], "strict": [true], "loose": [true]}
+{"id": "2605", "instruction_ids": ["startend:quotation", "keywords:letter_frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "2616", "instruction_ids": ["detectable_format:number_highlighted_sections", "keywords:frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "2617", "instruction_ids": ["length_constraints:number_sentences"], "strict": [true], "loose": [true]}
+{"id": "2622", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "2628", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "2637", "instruction_ids": ["detectable_format:multiple_sections", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "2649", "instruction_ids": ["detectable_format:json_format", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "2653", "instruction_ids": ["keywords:letter_frequency", "detectable_format:number_bullet_lists"], "strict": [true, false], "loose": [true, true]}
+{"id": "2662", "instruction_ids": ["keywords:existence"], "strict": [true], "loose": [true]}
+{"id": "2667", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "2674", "instruction_ids": ["length_constraints:number_sentences"], "strict": [true], "loose": [true]}
+{"id": "2677", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "2683", "instruction_ids": ["combination:two_responses", "detectable_format:title", "keywords:existence"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "2685", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "2691", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "2704", "instruction_ids": ["combination:two_responses", "detectable_format:title", "punctuation:no_comma"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "2713", "instruction_ids": ["combination:repeat_prompt", "punctuation:no_comma"], "strict": [true, false], "loose": [true, false]}
+{"id": "2716", "instruction_ids": ["keywords:frequency"], "strict": [true], "loose": [true]}
+{"id": "2724", "instruction_ids": ["language:response_language", "startend:quotation"], "strict": [true, true], "loose": [true, true]}
+{"id": "2728", "instruction_ids": ["change_case:english_lowercase"], "strict": [true], "loose": [true]}
+{"id": "2736", "instruction_ids": ["change_case:english_capital", "startend:end_checker"], "strict": [true, true], "loose": [true, true]}
+{"id": "2739", "instruction_ids": ["combination:repeat_prompt", "punctuation:no_comma"], "strict": [true, false], "loose": [true, false]}
+{"id": "2749", "instruction_ids": ["length_constraints:number_sentences"], "strict": [true], "loose": [true]}
+{"id": "2751", "instruction_ids": ["length_constraints:number_words", "startend:quotation"], "strict": [true, true], "loose": [true, true]}
+{"id": "2752", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "2759", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "2765", "instruction_ids": ["change_case:english_lowercase", "detectable_content:number_placeholders"], "strict": [true, true], "loose": [true, true]}
+{"id": "2768", "instruction_ids": ["keywords:letter_frequency"], "strict": [true], "loose": [true]}
+{"id": "2779", "instruction_ids": ["keywords:letter_frequency"], "strict": [true], "loose": [true]}
+{"id": "2780", "instruction_ids": ["length_constraints:number_sentences"], "strict": [true], "loose": [true]}
+{"id": "2785", "instruction_ids": ["detectable_format:number_highlighted_sections", "detectable_content:number_placeholders"], "strict": [true, true], "loose": [true, true]}
+{"id": "2787", "instruction_ids": ["keywords:letter_frequency", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "279", "instruction_ids": ["change_case:english_lowercase", "keywords:letter_frequency", "detectable_format:title"], "strict": [false, true, true], "loose": [false, true, true]}
+{"id": "2790", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "2798", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "2801", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "2807", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "281", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "2811", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "2817", "instruction_ids": ["change_case:english_lowercase"], "strict": [true], "loose": [true]}
+{"id": "2820", "instruction_ids": ["change_case:capital_word_frequency"], "strict": [true], "loose": [true]}
+{"id": "2825", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "2828", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "2829", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "2832", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "2844", "instruction_ids": ["detectable_format:number_highlighted_sections", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "2849", "instruction_ids": ["change_case:capital_word_frequency"], "strict": [true], "loose": [true]}
+{"id": "2853", "instruction_ids": ["change_case:capital_word_frequency", "detectable_format:title"], "strict": [true, true], "loose": [true, true]}
+{"id": "2857", "instruction_ids": ["detectable_format:json_format"], "strict": [true], "loose": [true]}
+{"id": "2859", "instruction_ids": ["length_constraints:number_sentences"], "strict": [true], "loose": [true]}
+{"id": "286", "instruction_ids": ["startend:end_checker", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "2870", "instruction_ids": ["change_case:capital_word_frequency"], "strict": [true], "loose": [true]}
+{"id": "2871", "instruction_ids": ["keywords:frequency"], "strict": [true], "loose": [true]}
+{"id": "288", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "2880", "instruction_ids": ["length_constraints:nth_paragraph_first_word"], "strict": [false], "loose": [true]}
+{"id": "2887", "instruction_ids": ["detectable_format:title", "keywords:letter_frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "2889", "instruction_ids": ["startend:quotation", "detectable_format:multiple_sections"], "strict": [true, true], "loose": [true, true]}
+{"id": "2904", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "2905", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "2908", "instruction_ids": ["detectable_content:postscript", "change_case:english_capital"], "strict": [true, true], "loose": [true, true]}
+{"id": "2909", "instruction_ids": ["detectable_format:number_highlighted_sections", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "2912", "instruction_ids": ["combination:two_responses", "keywords:letter_frequency"], "strict": [true, true], "loose": [true, true]}
+{"id": "2918", "instruction_ids": ["combination:two_responses"], "strict": [true], "loose": [true]}
+{"id": "292", "instruction_ids": ["length_constraints:number_sentences"], "strict": [true], "loose": [true]}
+{"id": "2921", "instruction_ids": ["length_constraints:number_paragraphs"], "strict": [true], "loose": [true]}
+{"id": "2925", "instruction_ids": ["detectable_format:multiple_sections"], "strict": [true], "loose": [true]}
+{"id": "2929", "instruction_ids": ["detectable_content:postscript"], "strict": [true], "loose": [true]}
+{"id": "2941", "instruction_ids": ["length_constraints:number_paragraphs"], "strict": [true], "loose": [true]}
+{"id": "2943", "instruction_ids": ["keywords:frequency", "change_case:english_lowercase", "length_constraints:number_paragraphs"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "295", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "2957", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "296", "instruction_ids": ["keywords:frequency", "change_case:english_lowercase", "length_constraints:number_words"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "2969", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "2977", "instruction_ids": ["length_constraints:number_paragraphs"], "strict": [true], "loose": [true]}
+{"id": "2985", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "2997", "instruction_ids": ["keywords:frequency"], "strict": [true], "loose": [true]}
+{"id": "30", "instruction_ids": ["startend:quotation", "length_constraints:number_words", "startend:quotation"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3001", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "301", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "3025", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "3035", "instruction_ids": ["detectable_content:number_placeholders", "change_case:english_lowercase"], "strict": [true, true], "loose": [true, true]}
+{"id": "3041", "instruction_ids": ["length_constraints:number_sentences", "detectable_format:number_bullet_lists"], "strict": [true, true], "loose": [true, true]}
+{"id": "3048", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "3057", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "3063", "instruction_ids": ["length_constraints:number_paragraphs", "language:response_language"], "strict": [true, true], "loose": [true, true]}
+{"id": "3069", "instruction_ids": ["detectable_format:number_bullet_lists", "change_case:english_lowercase", "detectable_content:postscript"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3071", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "3073", "instruction_ids": ["length_constraints:nth_paragraph_first_word"], "strict": [false], "loose": [true]}
+{"id": "3079", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "3081", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "3084", "instruction_ids": ["punctuation:no_comma", "startend:end_checker"], "strict": [true, true], "loose": [true, true]}
+{"id": "3089", "instruction_ids": ["detectable_format:number_highlighted_sections", "length_constraints:number_sentences", "length_constraints:number_sentences"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3091", "instruction_ids": ["keywords:frequency"], "strict": [true], "loose": [true]}
+{"id": "3098", "instruction_ids": ["detectable_format:number_bullet_lists", "length_constraints:number_paragraphs", "change_case:capital_word_frequency"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3109", "instruction_ids": ["keywords:frequency"], "strict": [true], "loose": [true]}
+{"id": "3112", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "3114", "instruction_ids": ["length_constraints:number_words", "keywords:forbidden_words", "startend:end_checker"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3126", "instruction_ids": ["detectable_content:number_placeholders"], "strict": [true], "loose": [true]}
+{"id": "3130", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "3131", "instruction_ids": ["detectable_format:title", "detectable_content:postscript"], "strict": [true, true], "loose": [true, true]}
+{"id": "3150", "instruction_ids": ["change_case:english_lowercase"], "strict": [true], "loose": [true]}
+{"id": "3156", "instruction_ids": ["keywords:existence"], "strict": [true], "loose": [true]}
+{"id": "3166", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "3186", "instruction_ids": ["change_case:english_capital"], "strict": [true], "loose": [true]}
+{"id": "3188", "instruction_ids": ["change_case:capital_word_frequency", "change_case:capital_word_frequency", "keywords:frequency"], "strict": [false, true, true], "loose": [false, true, true]}
+{"id": "3191", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "3195", "instruction_ids": ["keywords:letter_frequency", "punctuation:no_comma", "language:response_language"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3198", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "32", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "3203", "instruction_ids": ["startend:end_checker"], "strict": [true], "loose": [true]}
+{"id": "3204", "instruction_ids": ["punctuation:no_comma", "change_case:english_capital"], "strict": [true, true], "loose": [true, true]}
+{"id": "321", "instruction_ids": ["detectable_format:json_format"], "strict": [true], "loose": [true]}
+{"id": "322", "instruction_ids": ["combination:two_responses"], "strict": [true], "loose": [true]}
+{"id": "3221", "instruction_ids": ["detectable_content:number_placeholders"], "strict": [true], "loose": [true]}
+{"id": "3223", "instruction_ids": ["detectable_format:json_format"], "strict": [true], "loose": [true]}
+{"id": "3224", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "3241", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "3243", "instruction_ids": ["detectable_format:number_highlighted_sections", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "3245", "instruction_ids": ["punctuation:no_comma", "detectable_content:number_placeholders"], "strict": [true, true], "loose": [true, true]}
+{"id": "3256", "instruction_ids": ["length_constraints:number_sentences", "detectable_format:title", "punctuation:no_comma"], "strict": [false, true, true], "loose": [true, true, true]}
+{"id": "3263", "instruction_ids": ["combination:two_responses"], "strict": [true], "loose": [true]}
+{"id": "3272", "instruction_ids": ["combination:repeat_prompt", "detectable_format:title", "keywords:frequency"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3276", "instruction_ids": ["change_case:english_capital", "length_constraints:number_sentences", "length_constraints:number_sentences"], "strict": [false, true, true], "loose": [false, true, true]}
+{"id": "3280", "instruction_ids": ["detectable_content:number_placeholders"], "strict": [true], "loose": [true]}
+{"id": "3281", "instruction_ids": ["combination:two_responses", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "3287", "instruction_ids": ["combination:two_responses", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "3294", "instruction_ids": ["length_constraints:number_paragraphs", "startend:quotation"], "strict": [true, true], "loose": [true, true]}
+{"id": "3305", "instruction_ids": ["language:response_language", "combination:repeat_prompt", "keywords:existence"], "strict": [true, false, true], "loose": [true, false, true]}
+{"id": "331", "instruction_ids": ["change_case:capital_word_frequency", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "3311", "instruction_ids": ["language:response_language", "detectable_format:title", "keywords:existence"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3315", "instruction_ids": ["length_constraints:number_paragraphs", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "332", "instruction_ids": ["combination:repeat_prompt", "length_constraints:number_words"], "strict": [true, false], "loose": [true, false]}
+{"id": "3323", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "3324", "instruction_ids": ["combination:two_responses", "detectable_format:multiple_sections"], "strict": [true, true], "loose": [true, true]}
+{"id": "3326", "instruction_ids": ["keywords:letter_frequency", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "3327", "instruction_ids": ["keywords:existence", "keywords:frequency", "keywords:frequency"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3329", "instruction_ids": ["length_constraints:number_sentences"], "strict": [true], "loose": [true]}
+{"id": "3335", "instruction_ids": ["combination:two_responses", "language:response_language", "punctuation:no_comma"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "334", "instruction_ids": ["startend:quotation", "detectable_format:number_bullet_lists"], "strict": [true, true], "loose": [true, true]}
+{"id": "3345", "instruction_ids": ["keywords:frequency", "detectable_format:number_bullet_lists", "keywords:forbidden_words"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3350", "instruction_ids": ["punctuation:no_comma", "detectable_content:number_placeholders"], "strict": [true, true], "loose": [true, true]}
+{"id": "3351", "instruction_ids": ["length_constraints:number_paragraphs", "detectable_format:number_highlighted_sections"], "strict": [true, true], "loose": [true, true]}
+{"id": "3362", "instruction_ids": ["length_constraints:number_sentences", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "3367", "instruction_ids": ["startend:quotation", "detectable_format:multiple_sections"], "strict": [true, true], "loose": [true, true]}
+{"id": "3369", "instruction_ids": ["combination:repeat_prompt", "keywords:frequency"], "strict": [true, false], "loose": [true, false]}
+{"id": "337", "instruction_ids": ["length_constraints:number_words", "detectable_format:title"], "strict": [true, true], "loose": [true, true]}
+{"id": "3371", "instruction_ids": ["combination:repeat_prompt", "keywords:existence", "keywords:forbidden_words"], "strict": [true, true, false], "loose": [true, true, false]}
+{"id": "3376", "instruction_ids": ["keywords:existence", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "3380", "instruction_ids": ["change_case:english_lowercase", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "3386", "instruction_ids": ["keywords:forbidden_words", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "340", "instruction_ids": ["detectable_format:number_highlighted_sections", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "3401", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "3407", "instruction_ids": ["change_case:capital_word_frequency", "change_case:capital_word_frequency"], "strict": [true, false], "loose": [true, false]}
+{"id": "3409", "instruction_ids": ["startend:quotation", "detectable_format:number_highlighted_sections"], "strict": [true, true], "loose": [true, true]}
+{"id": "3414", "instruction_ids": ["change_case:capital_word_frequency", "change_case:capital_word_frequency"], "strict": [true, false], "loose": [true, false]}
+{"id": "3415", "instruction_ids": ["length_constraints:number_words", "keywords:frequency", "keywords:frequency"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3424", "instruction_ids": ["change_case:english_capital"], "strict": [true], "loose": [true]}
+{"id": "3425", "instruction_ids": ["length_constraints:number_words"], "strict": [true], "loose": [true]}
+{"id": "3428", "instruction_ids": ["keywords:letter_frequency"], "strict": [true], "loose": [true]}
+{"id": "3429", "instruction_ids": ["detectable_format:multiple_sections", "length_constraints:number_sentences"], "strict": [true, true], "loose": [true, true]}
+{"id": "343", "instruction_ids": ["length_constraints:number_words"], "strict": [true], "loose": [true]}
+{"id": "3434", "instruction_ids": ["change_case:english_lowercase", "length_constraints:nth_paragraph_first_word"], "strict": [true, false], "loose": [true, true]}
+{"id": "3439", "instruction_ids": ["keywords:existence"], "strict": [true], "loose": [true]}
+{"id": "3442", "instruction_ids": ["length_constraints:number_words", "detectable_format:title"], "strict": [true, true], "loose": [true, true]}
+{"id": "3445", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "3453", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "3455", "instruction_ids": ["change_case:capital_word_frequency"], "strict": [true], "loose": [true]}
+{"id": "3456", "instruction_ids": ["detectable_format:number_highlighted_sections", "change_case:english_capital"], "strict": [true, true], "loose": [true, true]}
+{"id": "3478", "instruction_ids": ["keywords:letter_frequency"], "strict": [true], "loose": [true]}
+{"id": "3479", "instruction_ids": ["keywords:forbidden_words", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "3484", "instruction_ids": ["combination:repeat_prompt"], "strict": [false], "loose": [false]}
+{"id": "349", "instruction_ids": ["detectable_format:number_highlighted_sections", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "3494", "instruction_ids": ["detectable_content:number_placeholders", "language:response_language"], "strict": [true, true], "loose": [true, true]}
+{"id": "3502", "instruction_ids": ["language:response_language", "detectable_format:title"], "strict": [true, true], "loose": [true, true]}
+{"id": "3505", "instruction_ids": ["punctuation:no_comma", "combination:repeat_prompt"], "strict": [false, true], "loose": [false, true]}
+{"id": "3506", "instruction_ids": ["detectable_format:json_format", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "3513", "instruction_ids": ["change_case:capital_word_frequency"], "strict": [true], "loose": [true]}
+{"id": "3518", "instruction_ids": ["detectable_format:json_format", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "3534", "instruction_ids": ["change_case:english_lowercase", "length_constraints:number_sentences", "length_constraints:number_sentences"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3536", "instruction_ids": ["startend:quotation"], "strict": [true], "loose": [true]}
+{"id": "3538", "instruction_ids": ["keywords:frequency", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "3540", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "3549", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "3557", "instruction_ids": ["detectable_format:number_bullet_lists"], "strict": [true], "loose": [true]}
+{"id": "3563", "instruction_ids": ["combination:repeat_prompt"], "strict": [true], "loose": [true]}
+{"id": "3565", "instruction_ids": ["keywords:forbidden_words", "length_constraints:number_paragraphs"], "strict": [true, true], "loose": [true, true]}
+{"id": "3567", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "3569", "instruction_ids": ["detectable_format:number_highlighted_sections", "length_constraints:number_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "357", "instruction_ids": ["detectable_format:multiple_sections"], "strict": [true], "loose": [true]}
+{"id": "3572", "instruction_ids": ["change_case:english_capital"], "strict": [true], "loose": [true]}
+{"id": "3595", "instruction_ids": ["keywords:forbidden_words"], "strict": [true], "loose": [true]}
+{"id": "3606", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "3608", "instruction_ids": ["keywords:letter_frequency", "change_case:english_lowercase"], "strict": [true, true], "loose": [true, true]}
+{"id": "3615", "instruction_ids": ["punctuation:no_comma"], "strict": [false], "loose": [true]}
+{"id": "3617", "instruction_ids": ["change_case:english_capital"], "strict": [true], "loose": [true]}
+{"id": "3619", "instruction_ids": ["detectable_content:number_placeholders", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "3623", "instruction_ids": ["startend:quotation", "language:response_language"], "strict": [true, true], "loose": [true, true]}
+{"id": "3624", "instruction_ids": ["length_constraints:nth_paragraph_first_word"], "strict": [false], "loose": [true]}
+{"id": "3629", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "3631", "instruction_ids": ["punctuation:no_comma"], "strict": [true], "loose": [true]}
+{"id": "3633", "instruction_ids": ["combination:repeat_prompt", "punctuation:no_comma"], "strict": [true, false], "loose": [true, false]}
+{"id": "3644", "instruction_ids": ["detectable_format:number_highlighted_sections"], "strict": [true], "loose": [true]}
+{"id": "3653", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "3669", "instruction_ids": ["punctuation:no_comma", "language:response_language"], "strict": [true, true], "loose": [true, true]}
+{"id": "3672", "instruction_ids": ["startend:quotation", "length_constraints:number_sentences", "length_constraints:number_sentences"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3680", "instruction_ids": ["keywords:frequency", "detectable_format:number_highlighted_sections"], "strict": [true, true], "loose": [true, true]}
+{"id": "3682", "instruction_ids": ["language:response_language"], "strict": [true], "loose": [true]}
+{"id": "3690", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "3691", "instruction_ids": ["length_constraints:number_sentences", "punctuation:no_comma"], "strict": [true, true], "loose": [true, true]}
+{"id": "3697", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "3703", "instruction_ids": ["change_case:english_lowercase"], "strict": [true], "loose": [true]}
+{"id": "3709", "instruction_ids": ["startend:quotation", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "371", "instruction_ids": ["detectable_format:json_format", "keywords:forbidden_words"], "strict": [true, true], "loose": [true, true]}
+{"id": "3710", "instruction_ids": ["detectable_format:number_highlighted_sections", "detectable_format:title", "detectable_content:postscript"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3718", "instruction_ids": ["detectable_format:title", "combination:repeat_prompt", "punctuation:no_comma"], "strict": [true, true, false], "loose": [true, true, false]}
+{"id": "3719", "instruction_ids": ["detectable_format:title"], "strict": [true], "loose": [true]}
+{"id": "3724", "instruction_ids": ["detectable_format:number_highlighted_sections", "punctuation:no_comma", "startend:end_checker"], "strict": [true, true, true], "loose": [true, true, true]}
+{"id": "3732", "instruction_ids": ["keywords:existence"], "strict": [true], "loose": [true]}
+{"id": "3739", "instruction_ids": ["length_constraints:number_sentences"], "strict": [true], "loose": [true]}
+{"id": "374", "instruction_ids": ["combination:repeat_prompt", "keywords:forbidden_words"], "strict": [false, true], "loose": [false, true]}
+{"id": "3743", "instruction_ids": ["detectable_content:number_placeholders"], "strict": [true], "loose": [true]}
+{"id": "3744", "instruction_ids": ["detectable_content:number_placeholders", "language:response_language"], "strict": [true, true], "loose": [true, true]}
+{"id": "3748", "instruction_ids": ["combination:two_responses", "keywords:existence"], "strict": [true, true], "loose": [true, true]}
+{"id": "3749", "instruction_ids": ["detectable_format:constrained_response"], "strict": [true], "loose": [true]}
+{"id": "3750", "instruction_ids": ["detectable_format:constrained_response"], "strict": [true], "loose": [true]}
+{"id": "3751", "instruction_ids": ["detectable_format:constrained_response"], "strict": [true], "loose": [true]}
+{"id": "3752", "instruction_ids": ["detectable_format:constrained_response"], "strict": [true], "loose": [true]}
+{"id": "3753", "instruction_ids": ["detectable_format:constrained_response"], "strict": [true], "loose": [true]}
+{"id": "3754", "instruction_ids": ["detectable_format:constrained_response"], "strict": [true], "loose": [true]}
+{"id": "3755", "instruction_ids": ["detectable_format:constrained_response"], "strict": [true], "loose": [true]}
+{"id": "3756", "instruction_ids": ["detectable_format:constrained_response"], "strict": [true], "loose": [true]}
+{"id": "3757", "instruction_ids": ["detectable_format:constrained_response"], "strict": [true], "loose": [true]}

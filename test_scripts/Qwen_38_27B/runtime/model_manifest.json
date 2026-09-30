@@ -1,0 +1,97 @@
+{
+  "model_path": "/mnt/bn/vai-llm-hl/ruipeng/text_model_qwen3_8_27b",
+  "config_sha256": "72c59b456c787ac14ac1063d9e065f37a2772f9d8e76f86de7e2c828cdcbc72c",
+  "index_sha256": "bd9e1a69a86cd17da87a681dfb0a02cff73d1a443220dae33357243dec053d1f",
+  "files": [
+    {
+      "name": "model-00001-of-00018.safetensors",
+      "bytes": 3966730552,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00001-of-00018.safetensors"
+    },
+    {
+      "name": "model-00002-of-00018.safetensors",
+      "bytes": 3043080328,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00002-of-00018.safetensors"
+    },
+    {
+      "name": "model-00003-of-00018.safetensors",
+      "bytes": 2542796952,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00003-of-00018.safetensors"
+    },
+    {
+      "name": "model-00004-of-00018.safetensors",
+      "bytes": 3988973152,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00004-of-00018.safetensors"
+    },
+    {
+      "name": "model-00005-of-00018.safetensors",
+      "bytes": 2099339864,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00005-of-00018.safetensors"
+    },
+    {
+      "name": "model-00006-of-00018.safetensors",
+      "bytes": 3979553696,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00006-of-00018.safetensors"
+    },
+    {
+      "name": "model-00007-of-00018.safetensors",
+      "bytes": 2108759344,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00007-of-00018.safetensors"
+    },
+    {
+      "name": "model-00008-of-00018.safetensors",
+      "bytes": 3979553696,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00008-of-00018.safetensors"
+    },
+    {
+      "name": "model-00009-of-00018.safetensors",
+      "bytes": 2108759344,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00009-of-00018.safetensors"
+    },
+    {
+      "name": "model-00010-of-00018.safetensors",
+      "bytes": 3979553696,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00010-of-00018.safetensors"
+    },
+    {
+      "name": "model-00011-of-00018.safetensors",
+      "bytes": 2108759344,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00011-of-00018.safetensors"
+    },
+    {
+      "name": "model-00012-of-00018.safetensors",
+      "bytes": 3979553696,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00012-of-00018.safetensors"
+    },
+    {
+      "name": "model-00013-of-00018.safetensors",
+      "bytes": 2108759344,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00013-of-00018.safetensors"
+    },
+    {
+      "name": "model-00014-of-00018.safetensors",
+      "bytes": 3979553696,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00014-of-00018.safetensors"
+    },
+    {
+      "name": "model-00015-of-00018.safetensors",
+      "bytes": 2108759344,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00015-of-00018.safetensors"
+    },
+    {
+      "name": "model-00016-of-00018.safetensors",
+      "bytes": 3979564040,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00016-of-00018.safetensors"
+    },
+    {
+      "name": "model-00017-of-00018.safetensors",
+      "bytes": 2108759344,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00017-of-00018.safetensors"
+    },
+    {
+      "name": "model-00018-of-00018.safetensors",
+      "bytes": 3392197344,
+      "resolved_path": "/mnt/bn/vai-llm-hl/xianyi/ckpts/Qwen/Qwen3.8-27B/model-00018-of-00018.safetensors"
+    }
+  ]
+}

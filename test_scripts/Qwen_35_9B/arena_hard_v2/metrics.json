@@ -1,0 +1,41 @@
+{
+  "model": "qwen35-9b-baseline",
+  "benchmark": "arena_hard_v2",
+  "n": 750,
+  "status": "complete",
+  "generation_protocol_hash": "a44d63aa2b92b83ea2fefec6c27cfcd0c60d22af8789c94a3f35422906e031e3",
+  "paper_exact_reproduction": false,
+  "judges": {
+    "gpt-6-astra": {
+      "weighted_win_rate": {
+        "all": {
+          "score": 12.221159974506055,
+          "ci95": [
+            10.061728395061728,
+            14.491077329808327
+          ],
+          "n": 750
+        },
+        "creative_writing": {
+          "score": 11.345776031434184,
+          "ci95": [
+            8.143939393939394,
+            15.113871635610765
+          ],
+          "n": 250
+        },
+        "hard_prompt": {
+          "score": 12.641509433962264,
+          "ci95": [
+            10.101253616200578,
+            15.364583333333334
+          ],
+          "n": 500
+        }
+      },
+      "strong_win_weight": 3,
+      "style_control": false,
+      "primary_metric": "hard_prompt"
+    }
+  }
+}

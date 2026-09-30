@@ -1,0 +1,23 @@
+{
+  "benchmark": "multi_challenge",
+  "n": 273,
+  "dataset_hash": "1056d7b45506f96e6a52157534c561e1d39793bf4fa423d9631f043adefa3631",
+  "target": {
+    "model": "qwen38-27b-base",
+    "local": true,
+    "base_urls": [
+      "http://127.0.0.1:8101/v1",
+      "http://127.0.0.1:8102/v1"
+    ],
+    "max_tokens": 32768,
+    "supports_temperature": true,
+    "top_p": 0.95,
+    "extra_body": {
+      "chat_template_kwargs": {
+        "enable_thinking": true,
+        "reasoning_effort": "medium"
+      }
+    }
+  },
+  "decoding_policy": "Native reasoning; single attempt; visible final answer only is judged. Budget exhaustion is retained, not rerolled."
+}

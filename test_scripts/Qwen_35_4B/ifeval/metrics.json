@@ -1,0 +1,43 @@
+{
+  "model": "qwen35-4b-baseline",
+  "benchmark": "ifeval",
+  "n": 541,
+  "status": "complete",
+  "generation_protocol_hash": "ac46300c7f1fcc062d6491728e3960f122ae463fb267ae836f7596eebe8f3658",
+  "paper_exact_reproduction": false,
+  "metrics": {
+    "prompt_strict": {
+      "score": 88.909426987061,
+      "ci95": [
+        85.98413977431511,
+        91.28604464066169
+      ],
+      "n": 541
+    },
+    "prompt_loose": {
+      "score": 91.86691312384472,
+      "ci95": [
+        89.25762339426642,
+        93.88582919477035
+      ],
+      "n": 541
+    },
+    "instruction_strict": {
+      "score": 91.72661870503596,
+      "ci95": [
+        89.6601861047227,
+        93.41042262114016
+      ],
+      "n": 834
+    },
+    "instruction_loose": {
+      "score": 93.64508393285371,
+      "ci95": [
+        91.78106947106973,
+        95.1088775870167
+      ],
+      "n": 834
+    },
+    "primary_metric": "prompt_strict"
+  }
+}
