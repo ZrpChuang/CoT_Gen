@@ -1,0 +1,75 @@
+{
+  "ifeval": {
+    "generation_diagnostics": {
+      "returned_model_counts": {
+        "qwen3.8-max-0902": 541
+      },
+      "finish_reason_counts": {
+        "stop": 541
+      },
+      "empty_final_answers": 0,
+      "mean_reported_output_tokens": 1609.807763401109,
+      "max_reported_output_tokens": 40842,
+      "reported_output_over_requested_limit": 1
+    },
+    "n": 541,
+    "verified": true,
+    "responses_sha256": "99be4f6b524b7bcf6618953c0089d814bc19ea415eeb3d23e2ebb4b51188eb08",
+    "metrics_sha256": "09be0ff894c0f532d0f1da52f70f3db83a060484c7602454e632786201ad7975"
+  },
+  "multi_challenge": {
+    "generation_diagnostics": {
+      "returned_model_counts": {
+        "qwen3.8-max-0902": 273
+      },
+      "finish_reason_counts": {
+        "stop": 273
+      },
+      "empty_final_answers": 0,
+      "mean_reported_output_tokens": 3818.7509157509157,
+      "max_reported_output_tokens": 49404,
+      "reported_output_over_requested_limit": 2
+    },
+    "n": 273,
+    "verified": true,
+    "responses_sha256": "bb4327c1630d3787e3fe3a16a155b7e73f0b2ea3bfc94b6352c200d7d55fe0f4",
+    "metrics_sha256": "d8ff045ddbc24429ee7ee5d727b54f0d976ecc4cdf331599395c60acf5d38de9"
+  },
+  "eq_bench3": {
+    "generation_diagnostics": {
+      "returned_model_counts": {
+        "qwen3.8-max-0902": 118
+      },
+      "finish_reason_counts": {
+        "stop": 118
+      },
+      "empty_final_answers": 0,
+      "mean_reported_output_tokens": 5491.686440677966,
+      "max_reported_output_tokens": 15445,
+      "reported_output_over_requested_limit": 0
+    },
+    "n": 45,
+    "verified": true,
+    "responses_sha256": "04e020d5021126d8816f32015e67d68e4d082a390b8d3860271cbcb617a6942d",
+    "metrics_sha256": "e6724774f7e9eb3397aa7f6e8b0de0611199e4a7ee92d74beee22b323a0f655d"
+  },
+  "arena_hard_v2": {
+    "generation_diagnostics": {
+      "returned_model_counts": {
+        "qwen3.8-max-0902": 750
+      },
+      "finish_reason_counts": {
+        "stop": 749,
+        "length": 1
+      },
+      "empty_final_answers": 0,
+      "mean_reported_output_tokens": 11998.748,
+      "max_reported_output_tokens": 140699,
+      "reported_output_over_requested_limit": 52
+    },
+    "n": 750,
+    "verified": true,
+    "responses_sha256": "53be8503c6200b9d4c50ce03373b38f32d46768f5c80afdecd7f2ae4b29cfeec",
+    "metrics_sha256": "754e6f28b5d8f96d080ff539bfa3abcfd13413bbd55f625fcf2aa12106706529"
+  }
+}

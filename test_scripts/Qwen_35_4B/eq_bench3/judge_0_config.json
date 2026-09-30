@@ -1,0 +1,22 @@
+{
+  "spec": {
+    "model": "gpt-6-astra",
+    "local": false,
+    "base_urls": [
+      "https://search.bytedance.net/gpt/openapi/online/responses"
+    ],
+    "max_tokens": 32768,
+    "supports_temperature": false,
+    "credential_group": "GPT",
+    "protocol": "azure_responses",
+    "api_version": "2025-04-01-preview",
+    "extra_body": {
+      "reasoning": {
+        "effort": "medium",
+        "summary": "auto"
+      }
+    },
+    "judge_max_tokens": 16384
+  },
+  "answer_hash": "4470055b7735911e64455b6401055b016a20cf3724e99bb2fdd541b91437cc19"
+}

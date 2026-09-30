@@ -1,0 +1,20 @@
+{
+  "spec": {
+    "model": "qwen3.8-max-0902",
+    "local": false,
+    "base_urls": [
+      "https://aidp.bytedance.net/api/modelhub/online/v2/crawl"
+    ],
+    "max_tokens": 32768,
+    "supports_temperature": true,
+    "top_p": 0.95,
+    "credential_group": "Qwen_Max",
+    "protocol": "azure_chat",
+    "api_version": "2025-04-01-preview",
+    "extra_body": {
+      "reasoning_effort": "medium"
+    },
+    "judge_max_tokens": 16384
+  },
+  "answer_hash": "f334701de2cab81e7937a8ff32894c8d06ba34e40a9f48f9fc7f463a8c63d5db"
+}

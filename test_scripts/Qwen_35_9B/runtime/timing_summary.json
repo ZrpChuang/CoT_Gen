@@ -1,0 +1,34 @@
+{
+  "official_run_started_at": 1790743969.4204385,
+  "generation_complete_at": 1790746585.5667276,
+  "audit_complete_at": 1790746618.9574203,
+  "generation_wall_minutes": 43.602438151836395,
+  "suite_wall_minutes": 44.15894969701767,
+  "benchmarks": {
+    "ifeval": {
+      "requests": 541,
+      "latency_sum_seconds": 33901.34099999998,
+      "latency_mean_seconds": 62.66421626617375,
+      "latency_max_seconds": 500.165
+    },
+    "multi_challenge": {
+      "requests": 273,
+      "latency_sum_seconds": 18761.430000000015,
+      "latency_mean_seconds": 68.72318681318681,
+      "latency_max_seconds": 511.623
+    },
+    "eq_bench3": {
+      "requests": 118,
+      "latency_sum_seconds": 5734.592000000001,
+      "latency_mean_seconds": 48.59823728813559,
+      "latency_max_seconds": 98.227
+    },
+    "arena_hard_v2": {
+      "requests": 750,
+      "latency_sum_seconds": 80298.32500000003,
+      "latency_mean_seconds": 107.06443333333333,
+      "latency_max_seconds": 621.929
+    }
+  },
+  "retained_request_hours": 38.52658000000001
+}

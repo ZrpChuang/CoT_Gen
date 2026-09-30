@@ -1,0 +1,2 @@
+{"time": "2026-09-29T23:40:46.899397", "reason": "Confirmed scoring failures; resume all missing judgments with invalid-output diagnostics. Preserve every completed judgment.", "completed_before": {"judgments_0.jsonl": 750, "judgments_1.jsonl": 732, "responses.jsonl": 750}, "recorded_errors": 16, "old_pid": 24247}
+{"time": "2026-09-29T23:44:00.657153", "reason": "Repair invalid judge responses by uniform quoted-data and verdict-format reminder; retain every valid judgment.", "old_worker": 25838}

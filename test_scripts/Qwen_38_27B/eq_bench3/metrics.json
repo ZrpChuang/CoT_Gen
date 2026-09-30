@@ -1,0 +1,34 @@
+{
+  "model": "qwen38-27b-base",
+  "benchmark": "eq_bench3",
+  "n": 45,
+  "status": "complete",
+  "generation_protocol_hash": "e843eca48153b47431cbcbcd843ddd2b6159d579a08cbd2b3ff595761efb36c7",
+  "paper_exact_reproduction": false,
+  "judges": {
+    "gpt-6-astra": {
+      "rubric_0_100": {
+        "score": 45.01851851851852,
+        "ci95": [
+          42.07627885947504,
+          47.960758177562
+        ],
+        "n": 45
+      },
+      "elo": null,
+      "elo_note": "Rubric evaluation; no leaderboard ELO calibration."
+    },
+    "qwen3.8-max-0902": {
+      "rubric_0_100": {
+        "score": 73.07407407407408,
+        "ci95": [
+          71.25436585645882,
+          74.89378229168932
+        ],
+        "n": 45
+      },
+      "elo": null,
+      "elo_note": "Rubric evaluation; no leaderboard ELO calibration."
+    }
+  }
+}

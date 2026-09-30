@@ -1,0 +1,32 @@
+{"time": 1790742857.1925373, "stage": "waiting_for_download"}
+{"time": 1790742907.2058532, "stage": "suite_start"}
+{"time": 1790742940.3518572, "stage": "waiting_for_download"}
+{"time": 1790742940.354893, "stage": "suite_start"}
+{"time": 1790743222.5553854, "stage": "servers_ready"}
+{"time": 1790743222.5593736, "stage": "generate_start", "benchmark": "ifeval"}
+{"time": 1790743969.4180012, "stage": "waiting_for_download"}
+{"time": 1790743969.4204385, "stage": "suite_start"}
+{"time": 1790743971.4445856, "stage": "servers_ready"}
+{"time": 1790743971.447362, "stage": "generate_start", "benchmark": "ifeval"}
+{"time": 1790744574.1134288, "stage": "generation_overlap_start", "benchmark": "multi_challenge", "pid": 32104, "reason": "Use spare serving slots while final IFEval requests complete. Identical frozen decoding."}
+{"time": 1790744847.661568, "stage": "generation_overlap_start", "benchmark": "eq_bench3", "pid": 32301, "reason": "Overlap final long requests of previous benchmarks; frozen decoding unchanged."}
+{"time": 1790744897.024814, "stage": "generate_complete", "benchmark": "ifeval"}
+{"time": 1790744897.0278776, "stage": "score_start", "benchmark": "ifeval"}
+{"time": 1790744898.5712893, "stage": "score_complete", "benchmark": "ifeval"}
+{"time": 1790744898.5738568, "stage": "generate_start", "benchmark": "multi_challenge"}
+{"time": 1790745039.3401368, "stage": "arena_hard_v2_generate_overlap_start", "pid": 32455, "reason": "Overlap generation and judging; shared locks and per-answer hashes prevent duplicate or stale judgments. Full 750 denominator required."}
+{"time": 1790745039.3459585, "stage": "arena_progressive_overlap_start", "pid": 32456, "reason": "Overlap generation and judging; shared locks and per-answer hashes prevent duplicate or stale judgments. Full 750 denominator required."}
+{"time": 1790745123.9193192, "stage": "eq_score_overlap_start", "pid": 32799}
+{"time": 1790745156.864431, "stage": "generate_complete", "benchmark": "multi_challenge"}
+{"time": 1790745156.8678725, "stage": "score_start", "benchmark": "multi_challenge"}
+{"time": 1790745156.8690443, "stage": "generate_start", "benchmark": "eq_bench3"}
+{"time": 1790745259.0788388, "stage": "generate_complete", "benchmark": "eq_bench3"}
+{"time": 1790745259.0819514, "stage": "score_start", "benchmark": "eq_bench3"}
+{"time": 1790745259.0831006, "stage": "generate_start", "benchmark": "arena_hard_v2"}
+{"time": 1790745259.3286557, "stage": "score_complete", "benchmark": "eq_bench3"}
+{"time": 1790745550.7045255, "stage": "score_complete", "benchmark": "multi_challenge"}
+{"time": 1790746585.5631695, "stage": "generate_complete", "benchmark": "arena_hard_v2"}
+{"time": 1790746585.5667276, "stage": "generation_complete"}
+{"time": 1790746585.567749, "stage": "score_start", "benchmark": "arena_hard_v2"}
+{"time": 1790746616.8392587, "stage": "score_complete", "benchmark": "arena_hard_v2"}
+{"time": 1790746618.9574203, "stage": "suite_complete"}

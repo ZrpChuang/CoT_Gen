@@ -1,6 +1,18 @@
 # CoT_Gen
 
-逆向构造 CoT 的实验数据准备目录。当前保存数据来源、固定版本、校验清单和下载工具，尚未开展正式训练。
+逆向构造 CoT 的实验目录。已完成五个原始模型在四项 benchmark 上的基座评测，保存数据来源、固定版本、下载工具、评测代码及逐题结果，尚未开展正式训练。
+
+## 基座评测
+
+完整成绩与评测口径见 [基座评测总结](test_scripts/Base_model_result_conclusion.md)。
+
+- 模型：Qwen3.5-4B、Qwen3.5-9B、Qwen3.8-27B、GPT-6 Astra、Qwen3.8-Max。
+- Benchmark：IFEval、MultiChallenge、EQ-Bench3、Arena-Hard-v2。
+- 各模型代码和结果独立存放在 `test_scripts/` 下；`metrics.json` 为最终成绩，`responses.jsonl` 为逐题回答，`judgments*.jsonl` 为评分记录，`audit.json` 为完整性检查。
+- 汇总表采用 Astra 裁判；早期三个模型的 Qwen Max 裁判记录保留用于追溯。
+- Qwen3.5 使用官方通用思考采样，其余模型沿用各自已记录的配置；结果不代表严格等计算预算比较或 SSR 论文数值复现。
+
+运行前按各模型 README 配置数据路径、模型路径和 API 凭证；配置中的绝对路径对应实验服务器。API 密钥从项目外读取，不包含在仓库中。原始模型权重不提交到 Git。
 
 ## 数据
 
@@ -8,7 +20,7 @@
 |---|---|---:|
 | `training_data/lmarena_140k/` | LMArena 原始用户对话 | 135,634 |
 | `test_data/arena_hard_v2/` | ArenaHard v2 | 750 题（500 hard + 250 creative） |
-| `test_data/eq_bench3/` | EQ-Bench3 | 46 个场景 |
+| `test_data/eq_bench3/` | EQ-Bench3 | 46 个标题，45 个有效场景（1 个为空） |
 | `test_data/ifeval/` | IFEval | 541 题 |
 | `test_data/multi_challenge/` | MultiChallenge | 273 段对话 |
 

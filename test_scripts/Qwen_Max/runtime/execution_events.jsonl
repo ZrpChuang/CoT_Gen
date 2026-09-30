@@ -1,0 +1,3 @@
+{"time": "2026-09-29T22:45:36.457154", "benchmark": "arena_hard_v2", "stage": "generate", "reason": "Increase concurrency; retain all completed rows; retry unfinished in-flight requests only. No score-based filtering or decoding changes.", "completed_before": {"responses.jsonl": 132}, "old_pid": 23346}
+{"time": "2026-09-29T23:53:21.082708", "reason": "Extend network read timeout to 3600 seconds for long native reasoning; preserve all 748 answers and resume missing 2 without decoding changes.", "old_pid": 24801}
+{"time": "2026-09-30T00:03:44.191189", "reason": "Overlap Arena judging with completed answers while final two generations run; per-answer hashes checked; full 750-question denominator required before metrics."}

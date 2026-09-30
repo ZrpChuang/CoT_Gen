@@ -1,0 +1,43 @@
+{
+  "model": "qwen3.8-max-0902",
+  "benchmark": "ifeval",
+  "n": 541,
+  "status": "complete",
+  "generation_protocol_hash": "3941f0bf790800ad62a49b991ba3b57e568f71e466812fe1e5bc6823ed6037fd",
+  "paper_exact_reproduction": false,
+  "metrics": {
+    "prompt_strict": {
+      "score": 94.26987060998152,
+      "ci95": [
+        91.98137939034643,
+        95.93410359011409
+      ],
+      "n": 541
+    },
+    "prompt_loose": {
+      "score": 96.30314232902033,
+      "ci95": [
+        94.35904745265836,
+        97.5943073974684
+      ],
+      "n": 541
+    },
+    "instruction_strict": {
+      "score": 96.0431654676259,
+      "ci95": [
+        94.4952844466317,
+        97.16883552673423
+      ],
+      "n": 834
+    },
+    "instruction_loose": {
+      "score": 97.60191846522783,
+      "ci95": [
+        96.32499972109444,
+        98.44233264720313
+      ],
+      "n": 834
+    },
+    "primary_metric": "prompt_strict"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "benchmark": "eq_bench3",
+  "n": 45,
+  "dataset_hash": "3d65b4133682e16dbf0d14d47b6d1b170479211b0f23459dd0a6c38ce51d2903",
+  "target": {
+    "model": "gpt-6-astra",
+    "local": false,
+    "base_urls": [
+      "https://search.bytedance.net/gpt/openapi/online/responses"
+    ],
+    "max_tokens": 32768,
+    "supports_temperature": false,
+    "credential_group": "GPT",
+    "protocol": "azure_responses",
+    "api_version": "2025-04-01-preview",
+    "extra_body": {
+      "reasoning": {
+        "effort": "medium",
+        "summary": "auto"
+      }
+    }
+  },
+  "decoding_policy": "Native reasoning; single attempt; visible final answer only is judged. Budget exhaustion is retained, not rerolled."
+}

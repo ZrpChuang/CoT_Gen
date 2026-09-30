@@ -24,3 +24,8 @@ __pycache__/
 *.ckpt
 *.pt
 *.pth
+*.pid
+*.lock
+/test_scripts/*/runtime/preflight*.json
+/test_scripts/*/runtime/judge_preflight.json
+/test_scripts/BASELINE_SUMMARY.md

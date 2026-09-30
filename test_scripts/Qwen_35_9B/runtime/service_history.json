@@ -1,0 +1,98 @@
+{
+  "started_at": 1790742940.8221385,
+  "servers": [
+    {
+      "pid": 28917,
+      "gpu": 2,
+      "port": 8121,
+      "args": [
+        "/mnt/bn/vai-llm-hl/ruipeng/.venvs/vllm-0.26.0/bin/python",
+        "-m",
+        "vllm.entrypoints.cli.main",
+        "serve",
+        "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8121",
+        "--served-model-name",
+        "qwen35-9b-baseline",
+        "--dtype",
+        "bfloat16",
+        "--tensor-parallel-size",
+        "1",
+        "--max-model-len",
+        "65536",
+        "--max-num-seqs",
+        "32",
+        "--max-num-batched-tokens",
+        "16384",
+        "--gpu-memory-utilization",
+        "0.88",
+        "--enable-prefix-caching",
+        "--enable-chunked-prefill",
+        "--gdn-prefill-backend",
+        "triton",
+        "--language-model-only",
+        "--reasoning-parser",
+        "qwen3",
+        "--default-chat-template-kwargs",
+        "{\"enable_thinking\":true}",
+        "--compilation-config",
+        "{\"mode\":3}"
+      ]
+    },
+    {
+      "pid": 28919,
+      "gpu": 3,
+      "port": 8122,
+      "args": [
+        "/mnt/bn/vai-llm-hl/ruipeng/.venvs/vllm-0.26.0/bin/python",
+        "-m",
+        "vllm.entrypoints.cli.main",
+        "serve",
+        "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8122",
+        "--served-model-name",
+        "qwen35-9b-baseline",
+        "--dtype",
+        "bfloat16",
+        "--tensor-parallel-size",
+        "1",
+        "--max-model-len",
+        "65536",
+        "--max-num-seqs",
+        "32",
+        "--max-num-batched-tokens",
+        "16384",
+        "--gpu-memory-utilization",
+        "0.88",
+        "--enable-prefix-caching",
+        "--enable-chunked-prefill",
+        "--gdn-prefill-backend",
+        "triton",
+        "--language-model-only",
+        "--reasoning-parser",
+        "qwen3",
+        "--default-chat-template-kwargs",
+        "{\"enable_thinking\":true}",
+        "--compilation-config",
+        "{\"mode\":3}"
+      ]
+    }
+  ],
+  "keepalives": [
+    {
+      "pid": 3050,
+      "args": "/mnt/bn/vai-llm-hl/ruipeng/.venv-rl/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 2 --target-utilization 80.0 "
+    },
+    {
+      "pid": 3051,
+      "args": "/mnt/bn/vai-llm-hl/ruipeng/.venv-rl/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 3 --target-utilization 80.0 "
+    }
+  ],
+  "stopped_at": 1790746586.623587
+}

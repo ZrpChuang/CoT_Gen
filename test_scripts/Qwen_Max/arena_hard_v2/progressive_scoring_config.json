@@ -1,0 +1,58 @@
+{
+  "dataset_hash": "810f4247b0f85f4eeaffcbe3843702ccc80d7d26336c132d0908e433bebe4b31",
+  "target": {
+    "model": "qwen3.8-max-0902",
+    "local": false,
+    "base_urls": [
+      "https://aidp.bytedance.net/api/modelhub/online/v2/crawl"
+    ],
+    "max_tokens": 32768,
+    "supports_temperature": true,
+    "top_p": 0.95,
+    "credential_group": "Qwen_Max",
+    "protocol": "azure_chat",
+    "api_version": "2025-04-01-preview",
+    "extra_body": {
+      "reasoning_effort": "medium"
+    }
+  },
+  "judges": [
+    {
+      "model": "gpt-6-astra",
+      "local": false,
+      "base_urls": [
+        "https://search.bytedance.net/gpt/openapi/online/responses"
+      ],
+      "max_tokens": 32768,
+      "supports_temperature": false,
+      "credential_group": "GPT",
+      "protocol": "azure_responses",
+      "api_version": "2025-04-01-preview",
+      "extra_body": {
+        "reasoning": {
+          "effort": "medium",
+          "summary": "auto"
+        }
+      },
+      "judge_max_tokens": 16384
+    },
+    {
+      "model": "qwen3.8-max-0902",
+      "local": false,
+      "base_urls": [
+        "https://aidp.bytedance.net/api/modelhub/online/v2/crawl"
+      ],
+      "max_tokens": 32768,
+      "supports_temperature": true,
+      "top_p": 0.95,
+      "credential_group": "Qwen_Max",
+      "protocol": "azure_chat",
+      "api_version": "2025-04-01-preview",
+      "extra_body": {
+        "reasoning_effort": "medium"
+      },
+      "judge_max_tokens": 16384
+    }
+  ],
+  "policy": "Score every question once a complete answer is saved; retain all valid judgments; publish only at full denominator."
+}

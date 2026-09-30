@@ -1,0 +1,77 @@
+{
+  "ifeval": {
+    "generation_diagnostics": {
+      "returned_model_counts": {
+        "qwen35-4b-baseline": 541
+      },
+      "finish_reason_counts": {
+        "stop": 532,
+        "length": 9
+      },
+      "empty_final_answers": 8,
+      "mean_reported_output_tokens": 4977.3918669131235,
+      "max_reported_output_tokens": 32768,
+      "reported_output_over_requested_limit": 0
+    },
+    "n": 541,
+    "verified": true,
+    "responses_sha256": "496546636d8361995193fbbccbc2e9e3a4d0ffa6b0b30d013c94e9b79d7f11d1",
+    "metrics_sha256": "51c25f65fb6d99a33e4f962f72851990ccffecdf5077586bb1624662a04874ee"
+  },
+  "multi_challenge": {
+    "generation_diagnostics": {
+      "returned_model_counts": {
+        "qwen35-4b-baseline": 273
+      },
+      "finish_reason_counts": {
+        "stop": 265,
+        "length": 8
+      },
+      "empty_final_answers": 8,
+      "mean_reported_output_tokens": 4751.4322344322345,
+      "max_reported_output_tokens": 32768,
+      "reported_output_over_requested_limit": 0
+    },
+    "n": 273,
+    "verified": true,
+    "responses_sha256": "f41a20e124cd131e9cf152fac62825484971054bdbec32fc5b5e85e6c9fa2527",
+    "metrics_sha256": "c1011b24b11ed32a2e0ca9e2fcda8f8aa0e5c654c663375f0613fdd22e569c06"
+  },
+  "eq_bench3": {
+    "generation_diagnostics": {
+      "returned_model_counts": {
+        "qwen35-4b-baseline": 118
+      },
+      "finish_reason_counts": {
+        "stop": 118
+      },
+      "empty_final_answers": 0,
+      "mean_reported_output_tokens": 3219.406779661017,
+      "max_reported_output_tokens": 6803,
+      "reported_output_over_requested_limit": 0
+    },
+    "n": 45,
+    "verified": true,
+    "responses_sha256": "ec8c4700f8b5fa3a658c1038a269d89111091f7253c4a1fe8b8d80a45f9104ab",
+    "metrics_sha256": "0e1c178c911bbebe8ed7ae79a40b10f448b740471b704f3bde6738939fc58fe4"
+  },
+  "arena_hard_v2": {
+    "generation_diagnostics": {
+      "returned_model_counts": {
+        "qwen35-4b-baseline": 750
+      },
+      "finish_reason_counts": {
+        "stop": 741,
+        "length": 9
+      },
+      "empty_final_answers": 9,
+      "mean_reported_output_tokens": 6196.926666666666,
+      "max_reported_output_tokens": 32768,
+      "reported_output_over_requested_limit": 0
+    },
+    "n": 750,
+    "verified": true,
+    "responses_sha256": "c3dc54a40b2fac51e7835a91cd7e80aa0025bd8a97bc50b8e2750596f062fb75",
+    "metrics_sha256": "ecc1027c1b6b81f01b2961253f1f20b7822406f9108a0be31033babf3a9ae7bd"
+  }
+}

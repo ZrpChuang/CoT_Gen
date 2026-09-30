@@ -1,0 +1,22 @@
+{
+  "benchmark": "ifeval",
+  "n": 541,
+  "dataset_hash": "cff73ece68a97806515d9f9ca45b464f9eb8b6e52caed95e91c2101b9fe031b5",
+  "target": {
+    "model": "qwen3.8-max-0902",
+    "local": false,
+    "base_urls": [
+      "https://aidp.bytedance.net/api/modelhub/online/v2/crawl"
+    ],
+    "max_tokens": 32768,
+    "supports_temperature": true,
+    "top_p": 0.95,
+    "credential_group": "Qwen_Max",
+    "protocol": "azure_chat",
+    "api_version": "2025-04-01-preview",
+    "extra_body": {
+      "reasoning_effort": "medium"
+    }
+  },
+  "decoding_policy": "Native reasoning; single attempt; visible final answer only is judged. Budget exhaustion is retained, not rerolled."
+}

@@ -1,0 +1,72 @@
+{
+  "model": "gpt-6-astra",
+  "benchmark": "arena_hard_v2",
+  "n": 750,
+  "status": "complete",
+  "generation_protocol_hash": "57bf87292a30e81b34a151c733458575919be0c4765aabc6125fcd0596686c86",
+  "paper_exact_reproduction": false,
+  "judges": {
+    "gpt-6-astra": {
+      "weighted_win_rate": {
+        "all": {
+          "score": 99.09451046972269,
+          "ci95": [
+            98.46196868008948,
+            99.64609286523216
+          ],
+          "n": 750
+        },
+        "creative_writing": {
+          "score": 99.40119760479041,
+          "ci95": [
+            98.33333333333333,
+            100.0
+          ],
+          "n": 250
+        },
+        "hard_prompt": {
+          "score": 98.9080982711556,
+          "ci95": [
+            97.96747967479675,
+            99.62894248608535
+          ],
+          "n": 500
+        }
+      },
+      "strong_win_weight": 3,
+      "style_control": false,
+      "primary_metric": "hard_prompt"
+    },
+    "qwen3.8-max-0902": {
+      "weighted_win_rate": {
+        "all": {
+          "score": 97.3559037493005,
+          "ci95": [
+            96.49744753261487,
+            98.20627802690582
+          ],
+          "n": 750
+        },
+        "creative_writing": {
+          "score": 98.03625377643505,
+          "ci95": [
+            96.484375,
+            99.26362297496318
+          ],
+          "n": 250
+        },
+        "hard_prompt": {
+          "score": 96.95555555555555,
+          "ci95": [
+            95.81128747795414,
+            97.97237076648841
+          ],
+          "n": 500
+        }
+      },
+      "strong_win_weight": 3,
+      "style_control": false,
+      "primary_metric": "hard_prompt"
+    }
+  }
+}

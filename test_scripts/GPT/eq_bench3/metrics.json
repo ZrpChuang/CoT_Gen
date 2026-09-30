@@ -1,0 +1,34 @@
+{
+  "model": "gpt-6-astra",
+  "benchmark": "eq_bench3",
+  "n": 45,
+  "status": "complete",
+  "generation_protocol_hash": "0bb1198f03ca234bad0bcf28260c68476e143f66cfac7b9eb4f4c51889b5247b",
+  "paper_exact_reproduction": false,
+  "judges": {
+    "gpt-6-astra": {
+      "rubric_0_100": {
+        "score": 82.77777777777777,
+        "ci95": [
+          81.67292012282378,
+          83.88263543273176
+        ],
+        "n": 45
+      },
+      "elo": null,
+      "elo_note": "Rubric evaluation; no leaderboard ELO calibration."
+    },
+    "qwen3.8-max-0902": {
+      "rubric_0_100": {
+        "score": 75.11111111111111,
+        "ci95": [
+          73.43816717476973,
+          76.7840550474525
+        ],
+        "n": 45
+      },
+      "elo": null,
+      "elo_note": "Rubric evaluation; no leaderboard ELO calibration."
+    }
+  }
+}
