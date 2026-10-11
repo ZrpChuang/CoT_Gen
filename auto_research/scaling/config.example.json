@@ -1,0 +1,66 @@
+{
+  "run_id": "scale_100k_20261011",
+  "project_root": "/absolute/path/to/project_root",
+  "output_root": "/absolute/path/to/output_root",
+  "training_python": "/absolute/path/to/training_python",
+  "evaluation_python": "/absolute/path/to/evaluation_python",
+  "vllm_python": "/absolute/path/to/vllm_python",
+  "evaluation_dependencies": "/absolute/path/to/evaluation_dependencies",
+  "cuda_compat": "/absolute/path/to/cuda_compat",
+  "api_credentials": "/absolute/path/to/api_credentials",
+  "wandb_credentials": "/absolute/path/to/wandb_credentials",
+  "wandb_entity": "your-wandb-entity",
+  "wandb_project": "cot-analyse",
+  "models": {
+    "Qwen_35_9B": "/absolute/path/to/Qwen_35_9B",
+    "Qwen_38_27B": "/absolute/path/to/Qwen_38_27B"
+  },
+  "target_unique_inputs": 100000,
+  "parent_unique_inputs": 4175,
+  "milestones": [
+    10000,
+    25000,
+    50000,
+    100000
+  ],
+  "gpus": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "training_gpu_count": {
+    "Qwen_35_9B": 2,
+    "Qwen_38_27B": 4
+  },
+  "max_prompt_tokens": 2048,
+  "reserve_prompt_tokens": 4096,
+  "max_sequence_tokens": 8192,
+  "candidate_seed": 20261011,
+  "generation_workers": 32,
+  "generation_batch": 128,
+  "max_candidate_attempts": 3,
+  "semantic_quality_gate": true,
+  "max_job_attempts": 3,
+  "retry_backoff_seconds": 120,
+  "checkpoint_steps": 100,
+  "poll_seconds": 15,
+  "free_memory_mib": 90000,
+  "idle_utilization_percent": 15,
+  "train_timeout_hours": 72,
+  "inference_timeout_hours": 24,
+  "cpu_job_timeout_hours": 72,
+  "selection_shards": 4,
+  "token_chunk": 32,
+  "preserve_old_learning_rates": true,
+  "stage_optimizer_policy": "parent_adapter_with_fresh_adamw_and_fresh_stage_scheduler; exact_resume_within_stage",
+  "stage_epochs": 1,
+  "evaluation_at": [
+    100000
+  ],
+  "protocol_scope": "local frozen four-benchmark protocol; expanded multilingual and multi-turn distribution; stage-wise continuation, not exact paper reproduction"
+}

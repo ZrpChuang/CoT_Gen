@@ -6,21 +6,6 @@ action=${1:-status}
 PY=/mnt/bn/vai-llm-hl/ruipeng/.venvs/vllm-0.26.0/bin/python
 MODEL=/mnt/bn/vai-llm-hl/ruipeng/text_model_qwen3_8_27b
 if [[ "$action" == start ]]; then
-  "$PY" - <<'PY'
-import json, pathlib, os, signal
-r=pathlib.Path('runtime'); saved=[]
-for p in pathlib.Path('/proc').glob('[0-9]*'):
-    try:
-        args=(p/'cmdline').read_bytes().replace(b'\0',b' ').decode()
-        if '/gpu/gpu_keepalive.py --gpu-index ' in args:
-            gpu=int(args.split('--gpu-index ')[1].split()[0])
-            if gpu in range(4):
-                saved.append({'pid':int(p.name),'args':args})
-                os.kill(int(p.name),signal.SIGSTOP)
-    except (OSError,ValueError): pass
-(r/'paused_keepalive.json').write_text(json.dumps(saved))
-print('Paused keepalive processes:',len(saved))
-PY
   for replica in 0 1; do
     port=$((8101+replica)); g0=$((replica*2)); g1=$((g0+1))
     if curl -fsS --max-time 2 "http://127.0.0.1:$port/v1/models" >/dev/null; then continue; fi
@@ -44,7 +29,7 @@ PY
   done
 elif [[ "$action" == stop ]]; then
   "$PY" - <<'PY'
-import pathlib,os,signal,json
+import pathlib,os,signal
 r=pathlib.Path('runtime')
 for p in r.glob('server-*.pid'):
     pid=int(p.read_text())
@@ -54,14 +39,6 @@ for p in r.glob('server-*.pid'):
     except ProcessLookupError: pass
     except FileNotFoundError: pass
     p.unlink(missing_ok=True)
-p=r/'paused_keepalive.json'
-if p.exists():
-    for v in json.loads(p.read_text()):
-        try:
-            args=pathlib.Path(f'/proc/{v["pid"]}/cmdline').read_bytes().replace(b'\0',b' ').decode()
-            if args==v['args']: os.kill(v['pid'],signal.SIGCONT)
-        except (OSError,ProcessLookupError): pass
-    p.unlink()
 PY
 else
   for port in 8101 8102; do curl -fsS --max-time 2 "http://127.0.0.1:$port/v1/models" || true; done

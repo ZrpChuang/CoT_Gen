@@ -1,0 +1,127 @@
+{
+  "schema": "confirm-body-source-v1",
+  "candidate_run_dir": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format",
+  "reference_run_dir": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b",
+  "candidate_screen_metrics_sha256": "3c398a6909c03a13ff2c486ff7a29e593932987f2c5aa8a0f61550295ee84ba4",
+  "protected_sha256": {
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/CONFIRM_BODY_PLAN.md": "8aa3cc548edf05572b7197025c64b76e8b0c38ac68c2cf824ae23dccea1d880a",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/PHASE3_FINAL_SCREEN_REVIEW.json": "e6ae930069e0120a5f0bc6c960eeb740ce20c47674bbdce5cadcbccd17e38eb7",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/PHASE3_FINAL_TRAINING_REVIEW.json": "f548773b04c428f474323b9ac6293527def0a3ca56f07ea0bab8e4b2c3072d98",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/data/body_format/train.jsonl": "8a15b7b74e3a695e64b04c83926d6576c321d40c95121f5ed55f090b23661a26",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/data/body_selection/selection_manifest.json": "217fe44ac73274ff5ab8b2641a9449dc97c624c1f7a709a8a095b4598be1f176",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev/manifest.json": "237466945a8591ae5ebb4788ca07af17f0326440c5f783114a15c448ef604f31",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev/transport/config.json": "1e247adcc686d3c6e808c66ec269f5bc1f5eb73526de227cec592f899211524b",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev/transport/evaluate.py": "50d4dd40b0dd218dde9561b40980cbfab3bacc5f253dae29014ee76230e8bc97",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b/screen/generation_config.json": "1bc459cf37fee0b0a6c87a4d72df553de96dec21571e6251bf6e7b21175b1ad2",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b/screen/responses.jsonl": "69f347974d905b321313454d95970de5acd6ee37cb420ab996b5bea9456382f5",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/screen/generation_config.json": "a5ffc74fda163eac0cd542f14dcf2581a2b12598814ba9ae297b20799c68e9bc",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/screen/judge_config.json": "472adf242ac4bb2f5ae2cefc1c033424811bcc2e6e0012c979122ae700f338ef",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/screen/judgments.jsonl": "a9bc31fc56c0fd0384c4800e3a6bdaed12efb76e9a5c67e4aec4b8893c71598d",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/screen/metrics.json": "3c398a6909c03a13ff2c486ff7a29e593932987f2c5aa8a0f61550295ee84ba4",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/screen/responses.jsonl": "b22e5f75702963c3c360929431187a85200f18478e1859c2beb26dd6ab072d1c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase3_decision.json": "ac3796f780e38b3b3bb09f29f17ed4b7d1dc7f4bab80e4b552dae1fa4a30fa7d",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/config.json": "fc2779b032506dcaada069cbf6a724ad376a3f4ce14e7f2bbfa688faf17c6dbd",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/generation_config.json": "a78aebbc7804389b2f7863eaaac64c0bbe0b8a3fceb3d7ca71d539d3a3d96a83",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model.safetensors.index.json": "941305ff9f77551e145a6cea976ef456cd5cb208cbece99f168376c752fcf96c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/tokenizer_config.json": "bee8eba30f0eb4af73c0fe2cd06d0f89b657d7819941c438157ec42f7c80ea87",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/training/complete.json": "22efad772b027d7ae172710f9a974aade3184004d2c7508d15008a68a6ba0c0c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/experiment.json": "08e24b80e3dcb11cf70cbe684452a65066515c595a58f2170e795bece8be6704",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/manifest.json": "f5aa5af6fab232abb7b156f64ad0142fd464b42b14eb86aa4db166ebcd43f7ba",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/training_review.json": "af3612c640aeb56bfddcd78c3930d9fe2befb9173d4ebe864b8e0a0218bdc34e",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/common.py": "cc674735094f3e445bb2f313039f2041ad8b3c07f894be6c5026b0fecbc6ffe2",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/confirm_body_v1.py": "a220a8eb6d00615dc399f2a2a18b3703fd513f3d22622a0df35d3d8921c5dc9e",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/deploy_inference.py": "f80ce8201f772d93f88f104815ef19ae48f649357a396ff66a3744902b5738ae",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/dev_harness.py": "93dc80847ce382a5226de9cb21203b4680d4c83265b2e64626b34844dc0baa2f",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/NEU/Qwen_35_9B/evaluation/config.json": "ba1a02cdc297aaa82a371fa3fc00b59a5f951ed836bf7afa20fc06de13807fa7",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/NEU/Qwen_35_9B/evaluation/deployment.json": "5c0b1f6a997d851c136b6a8f2ff295853c10275fe7802cbaaf915fcc1e47d626",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/NEU/Qwen_35_9B/evaluation/serve.py": "bfec5d61429b7a9fbbd300bfa7a86af494948e917386fd282ad698c6473227cf",
+    "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/config.json": "d0883072e01861ed0b2d47be3c16c36a8e81c224c7ffaa310c6558fb3f932b05",
+    "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/configuration.json": "2d4464e2ead06bc9bc718c781309ad1e7baded626d66e8dcdc8b469ba185faf0",
+    "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/merges.txt": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+    "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/model.safetensors.index.json": "26d3539b516be613f39563617cb9d33b3f83d401298125be392c80cefb8f7fe5",
+    "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+    "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+    "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+    "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+    "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+  },
+  "models": {
+    "base9b": {
+      "model_dir": "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B",
+      "index_sha256": "26d3539b516be613f39563617cb9d33b3f83d401298125be392c80cefb8f7fe5",
+      "file_identities": {
+        "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/model.safetensors-00001-of-00004.safetensors": {
+          "size": 5276436216,
+          "mtime_ns": 1790742763166968000,
+          "inode": 40532396647162992,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/model.safetensors-00002-of-00004.safetensors": {
+          "size": 5335161512,
+          "mtime_ns": 1790742838462142000,
+          "inode": 40532396647162995,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/model.safetensors-00003-of-00004.safetensors": {
+          "size": 5368717440,
+          "mtime_ns": 1790742899130321000,
+          "inode": 40532396647162996,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/model.safetensors-00004-of-00004.safetensors": {
+          "size": 3325995712,
+          "mtime_ns": 1790742761396020000,
+          "inode": 40532396647162999,
+          "device": 205
+        }
+      },
+      "scope": "Config/index hashes and weight file identities; no new full-weight checksum or tensor inference."
+    },
+    "body_format": {
+      "model_dir": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model",
+      "index_sha256": "941305ff9f77551e145a6cea976ef456cd5cb208cbece99f168376c752fcf96c",
+      "file_identities": {
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model-00001-of-00004.safetensors": {
+          "size": 4942706120,
+          "mtime_ns": 1791127396454492000,
+          "inode": 40532396647720659,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model-00002-of-00004.safetensors": {
+          "size": 4987757928,
+          "mtime_ns": 1791127403246239000,
+          "inode": 40532396647720687,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model-00003-of-00004.safetensors": {
+          "size": 4954810240,
+          "mtime_ns": 1791127409610935000,
+          "inode": 40532396647720711,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model-00004-of-00004.safetensors": {
+          "size": 3934446832,
+          "mtime_ns": 1791127414808121000,
+          "inode": 40532396647720732,
+          "device": 205
+        }
+      },
+      "scope": "Config/index hashes and weight file identities; no new full-weight checksum or tensor inference."
+    }
+  },
+  "dev_manifest_confirm_sha256": "352feb3a121ce689903f77a7dbed7745c6c3e7e5a446d1a587888cd2db800bf4",
+  "holdout_content_read": false,
+  "fixed_budget": {
+    "batch": 3600,
+    "cleanup": 90,
+    "serve": 500,
+    "generate": 1200,
+    "judge": 480,
+    "summarize_and_audit": 300,
+    "technical_starts_per_stage": 2,
+    "service_lease": 1800
+  }
+}

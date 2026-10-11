@@ -1,0 +1,14 @@
+{
+  "models": {
+    "Qwen_35_9B": "/absolute/path/to/Qwen3.5-9B",
+    "Qwen_38_27B": "/absolute/path/to/Qwen3.8-27B"
+  },
+  "python": {
+    "train": "/absolute/path/to/training-env/bin/python",
+    "evaluation": "/absolute/path/to/evaluation-env/bin/python"
+  },
+  "gpus": {
+    "Qwen_35_9B": [4, 5, 6, 7],
+    "Qwen_38_27B": [0, 1, 2, 3]
+  }
+}

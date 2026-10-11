@@ -1,0 +1,40 @@
+{
+  "run_id": "balanced_5k_example",
+  "methods": ["NEU", "SUP", "AUG-SUP", "SSR"],
+  "reference_generator": {
+    "model": "YOUR_REFERENCE_MODEL",
+    "local": false,
+    "base_urls": ["https://YOUR_API_ENDPOINT"],
+    "max_tokens": 8192,
+    "supports_temperature": true,
+    "top_p": 1.0,
+    "credential_group": "YOUR_CREDENTIAL_GROUP",
+    "protocol": "azure_chat",
+    "api_version": "YOUR_API_VERSION",
+    "extra_body": {}
+  },
+  "cot_generator": {
+    "model": "YOUR_COT_MODEL",
+    "local": false,
+    "base_urls": ["https://YOUR_API_ENDPOINT"],
+    "max_tokens": 8192,
+    "supports_temperature": false,
+    "credential_group": "YOUR_CREDENTIAL_GROUP",
+    "protocol": "azure_responses",
+    "api_version": "YOUR_API_VERSION",
+    "extra_body": {}
+  },
+  "training": {
+    "epochs": 1,
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "learning_rate": 0.0001,
+    "max_seq_length": 8192,
+    "global_batch_size": 32,
+    "warmup_ratio": 0.03,
+    "weight_decay": 0.01,
+    "seed": 20261001
+  },
+  "minimum_usable_per_stratum": 835
+}

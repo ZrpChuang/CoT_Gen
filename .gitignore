@@ -1,4 +1,4 @@
-# Raw datasets are reproducible from DOWNLOAD_MANIFEST.json.
+# Data and run artifacts are kept locally; manifests and source code remain versionable.
 /training_data/**
 !/training_data/*/
 !/training_data/*/DATASET_MANIFEST.json
@@ -29,3 +29,40 @@ __pycache__/
 /test_scripts/*/runtime/preflight*.json
 /test_scripts/*/runtime/judge_preflight.json
 /test_scripts/BASELINE_SUMMARY.md
+
+# Baseline datasets, results, machine configuration and logs remain local.
+/baseline_method/NEU/
+/baseline_method/SUP/
+/baseline_method/AUG-SUP/
+/baseline_method/SSR/
+/baseline_method/data/
+/baseline_method/configs/local_paths.json
+/baseline_method/configs/experiment.json
+
+# CoT pattern data, raw results and host-specific evidence indices.
+/auto_research/*/data/
+/auto_research/*/results/
+/auto_research/*/configs/local_paths.json
+/auto_research/*/configs/integrity.json
+/auto_research/*/configs/artifacts.json
+
+# Generated evidence and per-host settings stay in the artifact store.
+/auto_research/scaling/config.json
+*.tar.gz
+*.tsv.gz
+**/responses*.jsonl
+**/judgments*.jsonl
+**/runtime/
+**/.cache/
+
+# Publish effort conclusions without cloned runners or machine state.
+/test_scripts/Qwen_38_27B/effort_low/*
+!/test_scripts/Qwen_38_27B/effort_low/README.md
+!/test_scripts/Qwen_38_27B/effort_low/*/
+/test_scripts/Qwen_38_27B/effort_low/*/*
+!/test_scripts/Qwen_38_27B/effort_low/*/metrics.json
+/test_scripts/Qwen_38_27B/effort_xhigh/*
+!/test_scripts/Qwen_38_27B/effort_xhigh/README.md
+!/test_scripts/Qwen_38_27B/effort_xhigh/*/
+/test_scripts/Qwen_38_27B/effort_xhigh/*/*
+!/test_scripts/Qwen_38_27B/effort_xhigh/*/metrics.json

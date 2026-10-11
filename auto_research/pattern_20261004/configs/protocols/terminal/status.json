@@ -1,0 +1,21 @@
+{
+  "stage": "needs_attention",
+  "time": 1791171674.5463789,
+  "pid": 120906,
+  "failed_stage": "wave2_lane",
+  "lane_results": {
+    "ssr_lr1e5": {
+      "model": "ssr_lr1e5",
+      "passed": false,
+      "failed_stage": "cleanup",
+      "error_type": "AssertionError"
+    },
+    "aug_sup_lr1e5": {
+      "model": "aug_sup_lr1e5",
+      "passed": false,
+      "error_type": "TimeoutExpired"
+    }
+  },
+  "first_wave": "blocked_no_dispatch",
+  "retrain_allowed": false
+}

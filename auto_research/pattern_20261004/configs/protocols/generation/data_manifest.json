@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "training_n": 4175,
+  "strata": {
+    "code": 835,
+    "instruction_following": 835,
+    "other": 835,
+    "creative_writing": 835,
+    "math": 835
+  },
+  "qa_sha256": "eccfd5bef7d5c1bb849a45dea7f03d26faf6c30c04f9d3ede5a8d438ab17a631",
+  "source_sha256": "be256870b2dddf1867a138fb5420ec2a21f23c8308a7df5c5afbbfb1ab3804f6",
+  "prompt_sha256": "b0257544b9c9efa4086bbb57f043155a0d1729963e8c9951d8d0c4c65790a36f",
+  "original_files": {
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/NEU/train.jsonl": "be256870b2dddf1867a138fb5420ec2a21f23c8308a7df5c5afbbfb1ab3804f6",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/SUP/train.jsonl": "6781dcd4712752580b529d91ba0cb3f1ad71ddc2734c4213d6e9216a5b706622",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/AUG-SUP/train.jsonl": "6f35de404b1d52a74b2a217d73f899f8bb33d155a5dc63eb94844381635709f9",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/SSR/train.jsonl": "fec36d3144f799cf0445d4b9c1c89fe021f445f163fc587be3a330c4851adca0",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/experiment.json": "272fc82a8e1f42249313516d5df9823ceacb378ef59227a7c4ff2186c5f834c6",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/train.py": "dd7e56ab10c979776e8f3ab508f89d5601c5b4903ea06bb772f527306a7c8244",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/prepare_training.py": "4ab5a925356685555f2d6db4717336bade3a8e1ca1556fbfa24ad044b4a746fe",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/NEU/Qwen_35_9B/evaluation/evaluate.py": "132335ff0154c0ba4195a4f714d86bdc3c767292b754644b39454e0f6964cb86",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/NEU/Qwen_35_9B/evaluation/verify_results.py": "0d6508590e3af6d4931fb63761ab4d36bf953bd4126032b6f3e554e1c578140c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/NEU/Qwen_35_9B/evaluation/config.json": "ba1a02cdc297aaa82a371fa3fc00b59a5f951ed836bf7afa20fc06de13807fa7",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/NEU/Qwen_35_9B/evaluation/evaluation_sources.sha256.json": "fc1f75f15c02a155aed6b75d52de46ce6434b8b6db292a5bd83108f92e70535f"
+  },
+  "allowed_change": "cot only; exact Q/A/ID/stratum/order and both 8K input limits fixed",
+  "construction": "same canonical step sentences rendered as prose or numbered typed steps; generated content is shared, not verified gold",
+  "matching": "each render within 25% or 24 tokens of original NEU; pair difference <=15% or 20 tokens",
+  "fallback": "on refusal or bounded invalid reconstruction retain original NEU for BOTH arms, record reason, no sample deletion; >5% fallback blocks training",
+  "transport_source_sha256": "b3b3318d75c13d05dc93ffe32b9024dfdaeac55ea41d919fc66926667be83df5",
+  "transport_delta": "construction only: at most 3 transport attempts per generation and 3 persisted format attempts (9 HTTP attempts max per row); original eval unchanged"
+}

@@ -1,0 +1,63 @@
+name: Baseline code checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Ruff
+        run: python -m pip install ruff==0.17.0
+      - name: Lint
+        working-directory: baseline_method
+        run: ruff check --config configs/pyproject.toml .
+      - name: Formatting
+        working-directory: baseline_method
+        run: ruff format --check --config configs/pyproject.toml .
+      - name: Unit tests
+        working-directory: baseline_method
+        run: PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=core python -m unittest discover -s core/tests -v
+
+  pattern:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install check dependencies
+        run: python -m pip install ruff==0.17.0 httpx==0.28.1
+      - name: Lint and format
+        working-directory: auto_research/pattern_20261004
+        run: |
+          ruff check --config configs/pyproject.toml .
+          ruff format --check --config configs/pyproject.toml .
+      - name: Offline tests
+        working-directory: auto_research/pattern_20261004
+        run: PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=core python -m unittest discover -s core/tests -v
+
+  scaling:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Ruff
+        run: python -m pip install ruff==0.17.0
+      - name: Syntax and format
+        working-directory: auto_research/scaling
+        run: |
+          ruff check --isolated --select E9,F .
+          ruff format --check --isolated .
+      - name: Offline queue and data contracts
+        working-directory: auto_research/scaling
+        run: |
+          cp config.example.json config.json
+          PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s tests -v

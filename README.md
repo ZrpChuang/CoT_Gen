@@ -1,54 +1,30 @@
-# CoT_Gen
+# CoT_Analyse
 
-逆向构造 CoT 的实验目录。已完成五个原始模型在四项 benchmark 上的基座评测，保存数据来源、固定版本、下载工具、评测代码及逐题结果，尚未开展正式训练。
+先看成绩，再按实验进入代码和原始证据。
 
-## 基座评测
+| 内容 | 阅读入口 | 运行入口 |
+|---|---|---|
+| 四种逆向 CoT 方法 × 两模型 × 四 benchmark | [总表与结论](baseline_method/docs/RESULTS.md) | [统一流水线](baseline_method/README.md) |
+| 100K 扩训：本轮先跑 15 项 9B，27B 暂缓 | [进度与 TODO](baseline_method/docs/SCALE_100K_TODO.md) | [远端队列与效率规则](auto_research/scaling/README.md) |
+| 原始模型、27B effort 对照 | [基座结论](test_scripts/Base_model_result_conclusion.md) | 各模型目录中的冻结评测代码 |
+| CoT 格式研究与尚未完成的终评 | [研究结论](auto_research/pattern_20261004/RESULTS.md) | 研究目录中的阶段说明 |
+| 固定训练源、采样索引和四个测试集 | [数据说明](docs/data/DATASETS.md) | training_data/、test_data/ |
+| 本次整理范围、逐文件用途和待删除项 | [整理方案](baseline_method/docs/PLAN.md)、[文件用途](baseline_method/docs/FILES.md)、[待 review](baseline_method/docs/REVIEW.md) | — |
 
-完整成绩与评测口径见 [基座评测总结](test_scripts/Base_model_result_conclusion.md)。
+## 当前结果范围
 
-- 模型：Qwen3.5-4B、Qwen3.5-9B、Qwen3.8-27B、GPT-6 Astra、Qwen3.8-Max。
-- Benchmark：IFEval、MultiChallenge、EQ-Bench3、Arena-Hard-v2。
-- 各模型代码和结果独立存放在 `test_scripts/` 下；`metrics.json` 为最终成绩，`responses.jsonl` 为逐题回答，`judgments*.jsonl` 为评分记录，`audit.json` 为完整性检查。
-- 汇总表采用 Astra 裁判；早期三个模型的 Qwen Max 裁判记录保留用于追溯。
-- Qwen3.5 使用官方通用思考采样，其余模型沿用各自已记录的配置；结果不代表严格等计算预算比较或 SSR 论文数值复现。
+100K 队列已部署，本轮启用 9B，27B 配置和历史 checkpoint 保留待恢复。正式扩训等待教师凭证；已有训练数据用于独立效率对照，不计入 100K 训练。实时状态在外部产物目录的 reports/STATUS.md，维护结论见扩训 TODO。
 
-运行前按各模型 README 配置数据路径、模型路径和 API 凭证；配置中的绝对路径对应实验服务器。API 密钥从项目外读取，不包含在仓库中。原始模型权重不提交到 Git。
+- 基座：五个模型、四个 benchmark，另有 27B effort 对照。
+- 逆向 CoT：NEU、SUP、AUG-SUP、SSR，共 8 次训练、32 项评测，每次训练 131 步；总表首行保留未训练 Baseline。独立 9B NEU 低学习率对照为另 1 次训练、4 项评测。
+- 格式研究：开发与 confirm200 已完成；冻结终评最后记录为 7/16，现有结果不能支持完整终评的胜者结论。
 
-## 数据
+## 目录约定
 
-| 目录 | 数据 | 数量 |
-|---|---|---:|
-| `training_data/lmarena_140k/` | LMArena 原始用户对话 | 135,634 |
-| `test_data/arena_hard_v2/` | ArenaHard v2 | 750 题（500 hard + 250 creative） |
-| `test_data/eq_bench3/` | EQ-Bench3 | 46 个标题，45 个有效场景（1 个为空） |
-| `test_data/ifeval/` | IFEval | 541 题 |
-| `test_data/multi_challenge/` | MultiChallenge | 273 段对话 |
+baseline_method/ 顶层只保留阅读入口、流水线、core/、configs/、docs/、data/ 和四种方法目录。各方法下按 benchmark → 模型保存结果；CoT 和训练样本放在方法根目录。日志集中在 baseline_method/data/logs/，基座历史日志位于各 runtime/logs.tar.gz，归档内带逐文件 SHA256 清单。
 
-原始数据及配套评测资源约 1.72 GB，通过清单恢复，不直接提交到 Git。数据及第三方代码的许可证以各上游来源为准；下载时保留上游提供的许可证或数据卡。
+固定数据和评测实现保留原始协议。数据来源清单在 [docs/data/sources.lock.json](docs/data/sources.lock.json)，各数据集另有 DATASET_MANIFEST.json；第三方数据与代码遵守各自许可和数据卡。公开快照不等同于已复现论文的全部数据版本；本项目的小规模训练设置和本地 EQ/Arena 指标限制见实验结论。
 
-LMArena 当前仅作为训练原料，尚未抽取 100k 样本、生成新的参考答案或 CoT。测试数据不参与训练。论文未给出精确数据快照版本，这里记录的是实际下载的固定版本。
+模型权重、checkpoint 和独立诊断产物位于同级 CoT_Analyse_artifacts/baseline_method/，实验目录通过链接引用。原始回答、评分和机器配置保留在本地，不进入 Git。本次整理的变更记录在同级 CoT_Analyse_cleanup_backup_20261010/layout_20261010/；此前一次性脚本的备份也在该备份库。待 review 的唯一实验资料当前保留。
 
-## 下载与校验
-
-需要 Python 3.9+，下载工具仅依赖标准库。
-
-```bash
-python3 download_data.py --dry-run
-python3 download_data.py                 # 下载全部，并核对 SHA256
-python3 download_data.py --group test    # 只下载四个测试集
-python3 download_data.py --verify-only   # 检查本地已有文件
-```
-
-默认将文件放在仓库根目录下，也可用 `--root /path/to/CoT_Analyse` 指定位置。
-运行环境需能访问清单中的官方 GitHub/Hugging Face 文件地址；如果服务器直连失败，可在联网机器下载后同步目录。
-
-## 文件说明
-
-- `DATASETS.md`：数据入口及使用说明。
-- `DATASET_SUMMARY.json`：数量、规模和来源版本。
-- `DOWNLOAD_MANIFEST.json`：全部文件的固定下载地址、大小和 SHA256。
-- `sources.lock.json`：下载前固定的源版本。
-- 各数据目录的 `DATASET_MANIFEST.json`：分数据集的校验与统计结果。
-- `Chain-of-Thought_Generation/experiment_design.md`：原目录中的空白实验设计占位文件。
-
-当前快照不含 SSR 训练代码或已训练权重，也不代表完整复现 SSR-D。
+CoT格式研究现有独立pipeline.py入口；维护代码、最终训练集和逐题结果已分开，历史缓存/巡检和权重位于外部产物库。详见 [研究目录](auto_research/pattern_20261004/README.md) 和其 docs/CLEANUP.md。

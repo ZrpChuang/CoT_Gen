@@ -19,7 +19,7 @@
 
 ## 运行
 
-`bash <benchmark>/run.sh --stage generate` 生成；`--stage score` 评分；省略 stage 连续执行。
+`python evaluate.py --bench <benchmark> --stage generate` 生成；`--stage score` 评分；省略 stage 连续执行。
 
 Responses 接口使用 Azure 路由，EQ 同一场景的所有轮次与 debrief 使用固定 session_id 及固定凭证。Astra 返回的 reasoning summary 单独保存，不当作原始 CoT。所有模型 reasoning effort=medium；Astra 不传不支持的采样温度参数。
 

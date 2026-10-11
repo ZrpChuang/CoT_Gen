@@ -1,0 +1,545 @@
+{
+  "common_tokenizer": "/mnt/bn/vai-llm-hl/ruipeng/text_model_qwen3_8_27b/tokenizer.json",
+  "models": {
+    "Qwen_35_4B": {
+      "template": {
+        "path": "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-4B/tokenizer_config.json",
+        "references_reasoning_effort": false,
+        "rendered_prompt_hash_by_effort": {
+          "low": "b1b501e0287d9a4e7f047518c24f217ee708798ac870ab89949e12f1edb86dad",
+          "medium": "b1b501e0287d9a4e7f047518c24f217ee708798ac870ab89949e12f1edb86dad",
+          "xhigh": "b1b501e0287d9a4e7f047518c24f217ee708798ac870ab89949e12f1edb86dad"
+        }
+      },
+      "benchmarks": {
+        "ifeval": {
+          "questions": 541,
+          "calls": 541,
+          "reasoning_total": 2513919,
+          "output_total": 2692769,
+          "reasoning_mean_per_question": 4646.800369685767,
+          "reasoning_median_per_call": 3764,
+          "reasoning_max_per_call": 32768,
+          "common_tokenizer_reasoning_total": 2513919,
+          "reasoning_chars_total": 9006563,
+          "over_requested_output_limit": 0,
+          "max_output": 32768,
+          "finish_reasons": {
+            "stop": 532,
+            "length": 9
+          },
+          "settings": {
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true}, \"max_tokens\": 32768, \"min_p\": 0.0, \"model\": \"qwen35-4b-baseline\", \"presence_penalty\": 1.5, \"repetition_penalty\": 1.0, \"temperature\": 1.0, \"top_k\": 20, \"top_p\": 0.95}": 541
+          },
+          "retokenization_overshoots": []
+        },
+        "multi_challenge": {
+          "questions": 273,
+          "calls": 273,
+          "reasoning_total": 1129731,
+          "output_total": 1297141,
+          "reasoning_mean_per_question": 4138.208791208791,
+          "reasoning_median_per_call": 2713,
+          "reasoning_max_per_call": 32769,
+          "common_tokenizer_reasoning_total": 1129731,
+          "reasoning_chars_total": 4360710,
+          "over_requested_output_limit": 0,
+          "max_output": 32768,
+          "finish_reasons": {
+            "stop": 265,
+            "length": 8
+          },
+          "settings": {
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true}, \"max_tokens\": 32768, \"min_p\": 0.0, \"model\": \"qwen35-4b-baseline\", \"presence_penalty\": 1.5, \"repetition_penalty\": 1.0, \"temperature\": 1.0, \"top_k\": 20, \"top_p\": 0.95}": 273
+          },
+          "retokenization_overshoots": [
+            {
+              "id": "67456856fadca0e416e9e85e",
+              "retokenized_reasoning": 32769,
+              "reported_output": 32768,
+              "difference": 1
+            }
+          ]
+        },
+        "eq_bench3": {
+          "questions": 45,
+          "calls": 118,
+          "reasoning_total": 271268,
+          "output_total": 379890,
+          "reasoning_mean_per_question": 6028.177777777778,
+          "reasoning_median_per_call": 1895.0,
+          "reasoning_max_per_call": 6083,
+          "common_tokenizer_reasoning_total": 271268,
+          "reasoning_chars_total": 1163321,
+          "over_requested_output_limit": 0,
+          "max_output": 6803,
+          "finish_reasons": {
+            "stop": 118
+          },
+          "settings": {
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true}, \"max_tokens\": 32768, \"min_p\": 0.0, \"model\": \"qwen35-4b-baseline\", \"presence_penalty\": 1.5, \"repetition_penalty\": 1.0, \"temperature\": 1.0, \"top_k\": 20, \"top_p\": 0.95}": 118
+          },
+          "retokenization_overshoots": []
+        },
+        "arena_hard_v2": {
+          "questions": 750,
+          "calls": 750,
+          "reasoning_total": 3579324,
+          "output_total": 4647695,
+          "reasoning_mean_per_question": 4772.432,
+          "reasoning_median_per_call": 3414.5,
+          "reasoning_max_per_call": 32768,
+          "common_tokenizer_reasoning_total": 3579324,
+          "reasoning_chars_total": 11930211,
+          "over_requested_output_limit": 0,
+          "max_output": 32768,
+          "finish_reasons": {
+            "stop": 741,
+            "length": 9
+          },
+          "settings": {
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true}, \"max_tokens\": 32768, \"min_p\": 0.0, \"model\": \"qwen35-4b-baseline\", \"presence_penalty\": 1.5, \"repetition_penalty\": 1.0, \"temperature\": 1.0, \"top_k\": 20, \"top_p\": 0.95}": 750
+          },
+          "retokenization_overshoots": [],
+          "hard_500": {
+            "n": 500,
+            "reasoning_total": 2660202,
+            "output_total": 3447717,
+            "common_total": 2660202
+          },
+          "creative_250": {
+            "n": 250,
+            "reasoning_total": 919122,
+            "output_total": 1199978,
+            "common_total": 919122
+          }
+        }
+      }
+    },
+    "Qwen_35_9B": {
+      "template": {
+        "path": "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B/tokenizer_config.json",
+        "references_reasoning_effort": false,
+        "rendered_prompt_hash_by_effort": {
+          "low": "b1b501e0287d9a4e7f047518c24f217ee708798ac870ab89949e12f1edb86dad",
+          "medium": "b1b501e0287d9a4e7f047518c24f217ee708798ac870ab89949e12f1edb86dad",
+          "xhigh": "b1b501e0287d9a4e7f047518c24f217ee708798ac870ab89949e12f1edb86dad"
+        }
+      },
+      "benchmarks": {
+        "ifeval": {
+          "questions": 541,
+          "calls": 541,
+          "reasoning_total": 2219025,
+          "output_total": 2366605,
+          "reasoning_mean_per_question": 4101.709796672828,
+          "reasoning_median_per_call": 3390,
+          "reasoning_max_per_call": 32769,
+          "common_tokenizer_reasoning_total": 2219025,
+          "reasoning_chars_total": 7980691,
+          "over_requested_output_limit": 0,
+          "max_output": 32768,
+          "finish_reasons": {
+            "stop": 535,
+            "length": 6
+          },
+          "settings": {
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true}, \"max_tokens\": 32768, \"min_p\": 0.0, \"model\": \"qwen35-9b-baseline\", \"presence_penalty\": 1.5, \"repetition_penalty\": 1.0, \"temperature\": 1.0, \"top_k\": 20, \"top_p\": 0.95}": 541
+          },
+          "retokenization_overshoots": [
+            {
+              "id": "3478",
+              "retokenized_reasoning": 32769,
+              "reported_output": 32768,
+              "difference": 1
+            }
+          ]
+        },
+        "multi_challenge": {
+          "questions": 273,
+          "calls": 273,
+          "reasoning_total": 973264,
+          "output_total": 1150217,
+          "reasoning_mean_per_question": 3565.069597069597,
+          "reasoning_median_per_call": 2646,
+          "reasoning_max_per_call": 32768,
+          "common_tokenizer_reasoning_total": 973264,
+          "reasoning_chars_total": 3840162,
+          "over_requested_output_limit": 0,
+          "max_output": 32768,
+          "finish_reasons": {
+            "stop": 270,
+            "length": 3
+          },
+          "settings": {
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true}, \"max_tokens\": 32768, \"min_p\": 0.0, \"model\": \"qwen35-9b-baseline\", \"presence_penalty\": 1.5, \"repetition_penalty\": 1.0, \"temperature\": 1.0, \"top_k\": 20, \"top_p\": 0.95}": 273
+          },
+          "retokenization_overshoots": []
+        },
+        "eq_bench3": {
+          "questions": 45,
+          "calls": 118,
+          "reasoning_total": 280855,
+          "output_total": 394716,
+          "reasoning_mean_per_question": 6241.222222222223,
+          "reasoning_median_per_call": 1911.0,
+          "reasoning_max_per_call": 6210,
+          "common_tokenizer_reasoning_total": 280855,
+          "reasoning_chars_total": 1216894,
+          "over_requested_output_limit": 0,
+          "max_output": 7175,
+          "finish_reasons": {
+            "stop": 118
+          },
+          "settings": {
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true}, \"max_tokens\": 32768, \"min_p\": 0.0, \"model\": \"qwen35-9b-baseline\", \"presence_penalty\": 1.5, \"repetition_penalty\": 1.0, \"temperature\": 1.0, \"top_k\": 20, \"top_p\": 0.95}": 118
+          },
+          "retokenization_overshoots": []
+        },
+        "arena_hard_v2": {
+          "questions": 750,
+          "calls": 750,
+          "reasoning_total": 3503100,
+          "output_total": 4660739,
+          "reasoning_mean_per_question": 4670.8,
+          "reasoning_median_per_call": 3077.5,
+          "reasoning_max_per_call": 32768,
+          "common_tokenizer_reasoning_total": 3503100,
+          "reasoning_chars_total": 11682253,
+          "over_requested_output_limit": 0,
+          "max_output": 32768,
+          "finish_reasons": {
+            "stop": 740,
+            "length": 10
+          },
+          "settings": {
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true}, \"max_tokens\": 32768, \"min_p\": 0.0, \"model\": \"qwen35-9b-baseline\", \"presence_penalty\": 1.5, \"repetition_penalty\": 1.0, \"temperature\": 1.0, \"top_k\": 20, \"top_p\": 0.95}": 750
+          },
+          "retokenization_overshoots": [],
+          "hard_500": {
+            "n": 500,
+            "reasoning_total": 2663755,
+            "output_total": 3503342,
+            "common_total": 2663755
+          },
+          "creative_250": {
+            "n": 250,
+            "reasoning_total": 839345,
+            "output_total": 1157397,
+            "common_total": 839345
+          }
+        }
+      }
+    },
+    "Qwen_38_27B": {
+      "template": {
+        "path": "/mnt/bn/vai-llm-hl/ruipeng/text_model_qwen3_8_27b/tokenizer_config.json",
+        "references_reasoning_effort": true,
+        "rendered_prompt_hash_by_effort": {
+          "low": "199052eba7f7a49685f7178ca88547559810700da264a77cb08681d56dbbcec7",
+          "medium": "b1b501e0287d9a4e7f047518c24f217ee708798ac870ab89949e12f1edb86dad",
+          "xhigh": "b5887ebc26d0a0f5ad9df1e394036fbb1365cb6d904cbd24a845e5acad7f5af2"
+        }
+      },
+      "benchmarks": {
+        "ifeval": {
+          "questions": 541,
+          "calls": 541,
+          "reasoning_total": 523359,
+          "output_total": 760605,
+          "reasoning_mean_per_question": 967.3918669131239,
+          "reasoning_median_per_call": 523,
+          "reasoning_max_per_call": 16410,
+          "common_tokenizer_reasoning_total": 523359,
+          "reasoning_chars_total": 1782377,
+          "over_requested_output_limit": 0,
+          "max_output": 16722,
+          "finish_reasons": {
+            "stop": 541
+          },
+          "settings": {
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true, \"reasoning_effort\": \"medium\"}, \"max_tokens\": 32768, \"model\": \"qwen38-27b-base\", \"temperature\": 0.6, \"top_p\": 0.95}": 541
+          },
+          "retokenization_overshoots": []
+        },
+        "multi_challenge": {
+          "questions": 273,
+          "calls": 273,
+          "reasoning_total": 255771,
+          "output_total": 461232,
+          "reasoning_mean_per_question": 936.8901098901099,
+          "reasoning_median_per_call": 574,
+          "reasoning_max_per_call": 13321,
+          "common_tokenizer_reasoning_total": 255771,
+          "reasoning_chars_total": 990321,
+          "over_requested_output_limit": 0,
+          "max_output": 20857,
+          "finish_reasons": {
+            "stop": 273
+          },
+          "settings": {
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true, \"reasoning_effort\": \"medium\"}, \"max_tokens\": 32768, \"model\": \"qwen38-27b-base\", \"temperature\": 0.6, \"top_p\": 0.95}": 273
+          },
+          "retokenization_overshoots": []
+        },
+        "eq_bench3": {
+          "questions": 45,
+          "calls": 118,
+          "reasoning_total": 170509,
+          "output_total": 380153,
+          "reasoning_mean_per_question": 3789.088888888889,
+          "reasoning_median_per_call": 1230.5,
+          "reasoning_max_per_call": 4739,
+          "common_tokenizer_reasoning_total": 170509,
+          "reasoning_chars_total": 718218,
+          "over_requested_output_limit": 0,
+          "max_output": 7241,
+          "finish_reasons": {
+            "stop": 118
+          },
+          "settings": {
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true, \"reasoning_effort\": \"medium\"}, \"max_tokens\": 32768, \"model\": \"qwen38-27b-base\", \"temperature\": 0.7, \"top_p\": 0.95}": 92,
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true, \"reasoning_effort\": \"medium\"}, \"max_tokens\": 32768, \"model\": \"qwen38-27b-base\", \"temperature\": 0.5, \"top_p\": 0.95}": 26
+          },
+          "retokenization_overshoots": []
+        },
+        "arena_hard_v2": {
+          "questions": 750,
+          "calls": 750,
+          "reasoning_total": 1648042,
+          "output_total": 3025118,
+          "reasoning_mean_per_question": 2197.3893333333335,
+          "reasoning_median_per_call": 885.5,
+          "reasoning_max_per_call": 32768,
+          "common_tokenizer_reasoning_total": 1648042,
+          "reasoning_chars_total": 4522779,
+          "over_requested_output_limit": 0,
+          "max_output": 32768,
+          "finish_reasons": {
+            "stop": 746,
+            "length": 4
+          },
+          "settings": {
+            "{\"chat_template_kwargs\": {\"enable_thinking\": true, \"reasoning_effort\": \"medium\"}, \"max_tokens\": 32768, \"model\": \"qwen38-27b-base\", \"temperature\": 0.6, \"top_p\": 0.95}": 750
+          },
+          "retokenization_overshoots": [],
+          "hard_500": {
+            "n": 500,
+            "reasoning_total": 1279624,
+            "output_total": 2114501,
+            "common_total": 1279624
+          },
+          "creative_250": {
+            "n": 250,
+            "reasoning_total": 368418,
+            "output_total": 910617,
+            "common_total": 368418
+          }
+        }
+      }
+    },
+    "GPT": {
+      "template": {},
+      "benchmarks": {
+        "ifeval": {
+          "questions": 541,
+          "calls": 541,
+          "reasoning_total": 56566,
+          "output_total": 245254,
+          "reasoning_mean_per_question": 104.55822550831793,
+          "reasoning_median_per_call": 63,
+          "reasoning_max_per_call": 2018,
+          "common_tokenizer_reasoning_total": null,
+          "reasoning_chars_total": null,
+          "over_requested_output_limit": 0,
+          "max_output": 2755,
+          "finish_reasons": {
+            "stop": 541
+          },
+          "settings": {
+            "{\"max_output_tokens\": 32768, \"model\": \"gpt-6-astra\", \"reasoning\": {\"effort\": \"medium\", \"summary\": \"auto\"}}": 541
+          },
+          "retokenization_overshoots": []
+        },
+        "multi_challenge": {
+          "questions": 273,
+          "calls": 273,
+          "reasoning_total": 20501,
+          "output_total": 167930,
+          "reasoning_mean_per_question": 75.0952380952381,
+          "reasoning_median_per_call": 35,
+          "reasoning_max_per_call": 2070,
+          "common_tokenizer_reasoning_total": null,
+          "reasoning_chars_total": null,
+          "over_requested_output_limit": 0,
+          "max_output": 7442,
+          "finish_reasons": {
+            "stop": 273
+          },
+          "settings": {
+            "{\"max_output_tokens\": 32768, \"model\": \"gpt-6-astra\", \"reasoning\": {\"effort\": \"medium\", \"summary\": \"auto\"}}": 273
+          },
+          "retokenization_overshoots": []
+        },
+        "eq_bench3": {
+          "questions": 45,
+          "calls": 118,
+          "reasoning_total": 10654,
+          "output_total": 150395,
+          "reasoning_mean_per_question": 236.75555555555556,
+          "reasoning_median_per_call": 64.0,
+          "reasoning_max_per_call": 347,
+          "common_tokenizer_reasoning_total": null,
+          "reasoning_chars_total": null,
+          "over_requested_output_limit": 0,
+          "max_output": 1575,
+          "finish_reasons": {
+            "stop": 118
+          },
+          "settings": {
+            "{\"max_output_tokens\": 32768, \"model\": \"gpt-6-astra\", \"reasoning\": {\"effort\": \"medium\", \"summary\": \"auto\"}}": 118
+          },
+          "retokenization_overshoots": []
+        },
+        "arena_hard_v2": {
+          "questions": 750,
+          "calls": 750,
+          "reasoning_total": 208309,
+          "output_total": 1095885,
+          "reasoning_mean_per_question": 277.74533333333335,
+          "reasoning_median_per_call": 131.0,
+          "reasoning_max_per_call": 6548,
+          "common_tokenizer_reasoning_total": null,
+          "reasoning_chars_total": null,
+          "over_requested_output_limit": 0,
+          "max_output": 24372,
+          "finish_reasons": {
+            "stop": 750
+          },
+          "settings": {
+            "{\"max_output_tokens\": 32768, \"model\": \"gpt-6-astra\", \"reasoning\": {\"effort\": \"medium\", \"summary\": \"auto\"}}": 750
+          },
+          "retokenization_overshoots": [],
+          "hard_500": {
+            "n": 500,
+            "reasoning_total": 162472,
+            "output_total": 719698,
+            "common_total": null
+          },
+          "creative_250": {
+            "n": 250,
+            "reasoning_total": 45837,
+            "output_total": 376187,
+            "common_total": null
+          }
+        }
+      }
+    },
+    "Qwen_Max": {
+      "template": {},
+      "benchmarks": {
+        "ifeval": {
+          "questions": 541,
+          "calls": 541,
+          "reasoning_total": 701632,
+          "output_total": 870906,
+          "reasoning_mean_per_question": 1296.916820702403,
+          "reasoning_median_per_call": 553,
+          "reasoning_max_per_call": 33253,
+          "common_tokenizer_reasoning_total": 701622,
+          "reasoning_chars_total": 2558867,
+          "over_requested_output_limit": 1,
+          "max_output": 40842,
+          "finish_reasons": {
+            "stop": 541
+          },
+          "settings": {
+            "{\"max_tokens\": 32768, \"model\": \"qwen3.8-max-0902\", \"reasoning_effort\": \"medium\", \"temperature\": 0.6, \"top_p\": 0.95}": 541
+          },
+          "retokenization_overshoots": []
+        },
+        "multi_challenge": {
+          "questions": 273,
+          "calls": 273,
+          "reasoning_total": 711231,
+          "output_total": 1042519,
+          "reasoning_mean_per_question": 2605.2417582417584,
+          "reasoning_median_per_call": 977,
+          "reasoning_max_per_call": 44129,
+          "common_tokenizer_reasoning_total": 711221,
+          "reasoning_chars_total": 2762913,
+          "over_requested_output_limit": 2,
+          "max_output": 49404,
+          "finish_reasons": {
+            "stop": 273
+          },
+          "settings": {
+            "{\"max_tokens\": 32768, \"model\": \"qwen3.8-max-0902\", \"reasoning_effort\": \"medium\", \"temperature\": 0.6, \"top_p\": 0.95}": 273
+          },
+          "retokenization_overshoots": []
+        },
+        "eq_bench3": {
+          "questions": 45,
+          "calls": 118,
+          "reasoning_total": 500184,
+          "output_total": 648019,
+          "reasoning_mean_per_question": 11115.2,
+          "reasoning_median_per_call": 2922.0,
+          "reasoning_max_per_call": 14172,
+          "common_tokenizer_reasoning_total": 500184,
+          "reasoning_chars_total": 1843070,
+          "over_requested_output_limit": 0,
+          "max_output": 15445,
+          "finish_reasons": {
+            "stop": 118
+          },
+          "settings": {
+            "{\"max_tokens\": 32768, \"model\": \"qwen3.8-max-0902\", \"reasoning_effort\": \"medium\", \"temperature\": 0.7, \"top_p\": 0.95}": 92,
+            "{\"max_tokens\": 32768, \"model\": \"qwen3.8-max-0902\", \"reasoning_effort\": \"medium\", \"temperature\": 0.5, \"top_p\": 0.95}": 26
+          },
+          "retokenization_overshoots": []
+        },
+        "arena_hard_v2": {
+          "questions": 750,
+          "calls": 750,
+          "reasoning_total": 7312012,
+          "output_total": 8999061,
+          "reasoning_mean_per_question": 9749.349333333334,
+          "reasoning_median_per_call": 4817.0,
+          "reasoning_max_per_call": 131072,
+          "common_tokenizer_reasoning_total": 7311954,
+          "reasoning_chars_total": 24874052,
+          "over_requested_output_limit": 52,
+          "max_output": 140699,
+          "finish_reasons": {
+            "stop": 749,
+            "length": 1
+          },
+          "settings": {
+            "{\"max_tokens\": 32768, \"model\": \"qwen3.8-max-0902\", \"reasoning_effort\": \"medium\", \"temperature\": 0.6, \"top_p\": 0.95}": 750
+          },
+          "retokenization_overshoots": [],
+          "hard_500": {
+            "n": 500,
+            "reasoning_total": 6344970,
+            "output_total": 7486767,
+            "common_total": 6344920
+          },
+          "creative_250": {
+            "n": 250,
+            "reasoning_total": 967042,
+            "output_total": 1512294,
+            "common_total": 967034
+          }
+        }
+      }
+    }
+  },
+  "scope": "Retained generations only, including EQ debrief. No inference.",
+  "input_hashes_match_across_models": {
+    "ifeval": true,
+    "multi_challenge": true,
+    "eq_bench3": true,
+    "arena_hard_v2": true
+  }
+}

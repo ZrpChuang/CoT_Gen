@@ -1,0 +1,8 @@
+{
+  "schema": "confirm-body-budget-v1",
+  "first_started_at": 1791132709.541298,
+  "expires_at": 1791136309.541298,
+  "cleanup_deadline": 1791136399.541298,
+  "hard_seconds": 3600,
+  "cleanup_seconds": 90
+}

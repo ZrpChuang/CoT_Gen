@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Own two single-GPU vLLM replicas and restore temporarily paused keepalives."""
+"""Own two single-GPU vLLM replicas."""
 import json
 import os
 from pathlib import Path
@@ -38,47 +38,19 @@ def stop():
     for p in state['servers']:
         if NAME in cmdline(p['pid']):
             os.killpg(p['pid'], signal.SIGKILL)
-    for p in state['keepalives']:
-        if cmdline(p['pid']) == p['args']:
-            os.kill(p['pid'], signal.SIGCONT)
     state['stopped_at'] = time.time()
     (RUN / 'service_history.json').write_text(json.dumps(state, indent=2) + '\n')
     STATE.unlink()
-    print('Services stopped; keepalives restored', flush=True)
+    print('Services stopped', flush=True)
 
 
 def start():
     if STATE.exists():
         raise RuntimeError('Service state exists; inspect or stop before restart')
     assert (RUN / 'download_complete.json').exists(), 'Model download is not verified'
-    # Check that the selected GPUs contain no other workloads.
-    gpu_rows = subprocess.check_output(['nvidia-smi', '--query-gpu=index,uuid', '--format=csv,noheader'], text=True)
-    uuids = {r.split(',')[1].strip(): int(r.split(',')[0]) for r in gpu_rows.splitlines() if int(r.split(',')[0]) in C['gpus']}
-    keepalive_gpus = set()
-    for p in Path('/proc').glob('[0-9]*'):
-        args = cmdline(int(p.name))
-        if args.startswith('/') and '/gpu/gpu_keepalive.py --gpu-index ' in args:
-            keepalive_gpus.add(int(args.split('--gpu-index ')[1].split()[0]))
-    processes = subprocess.check_output(['nvidia-smi', '--query-compute-apps=gpu_uuid,pid,used_memory', '--format=csv,noheader,nounits'], text=True)
-    for row in processes.splitlines():
-        uuid, pid, memory = row.split(',')
-        args = cmdline(int(pid))
-        # NVML exposes host PIDs while /proc is in the container PID namespace.
-        # The known keepalive occupies <1 GiB; a larger/identified foreign task blocks startup.
-        known_namespace_keepalive = not args and uuids.get(uuid.strip()) in keepalive_gpus and float(memory) < 1024
-        if uuid.strip() in uuids and 'gpu_keepalive.py' not in args and not known_namespace_keepalive:
-            raise RuntimeError('Selected GPU has another workload; refusing to disturb it')
-    state = {'started_at': time.time(), 'servers': [], 'keepalives': []}
+    state = {'started_at': time.time(), 'servers': []}
     STATE.write_text(json.dumps(state))
     try:
-        for p in Path('/proc').glob('[0-9]*'):
-            args = cmdline(int(p.name))
-            if '/gpu/gpu_keepalive.py --gpu-index ' in args:
-                gpu = int(args.split('--gpu-index ')[1].split()[0])
-                if gpu in C['gpus']:
-                    state['keepalives'].append({'pid': int(p.name), 'args': args})
-                    STATE.write_text(json.dumps(state))
-                    os.kill(int(p.name), signal.SIGSTOP)
         for gpu, port in zip(C['gpus'], C['ports']):
             env = os.environ.copy()
             env.update(CUDA_VISIBLE_DEVICES=str(gpu), HF_HUB_OFFLINE='1', TRANSFORMERS_OFFLINE='1', TOKENIZERS_PARALLELISM='false', PYTHONUNBUFFERED='1', NCCL_DEBUG='WARN', VLLM_WORKER_MULTIPROC_METHOD='spawn')

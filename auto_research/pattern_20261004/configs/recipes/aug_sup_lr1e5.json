@@ -1,0 +1,83 @@
+{
+  "run_id": "pattern_20261004_aug_sup_lr1e5",
+  "methods": [
+    "aug_sup_lr1e5"
+  ],
+  "reference_generator": {
+    "model": "qwen3.8-max-0902",
+    "local": false,
+    "base_urls": [
+      "https://aidp.bytedance.net/api/modelhub/online/v2/crawl"
+    ],
+    "max_tokens": 8192,
+    "supports_temperature": true,
+    "top_p": 0.95,
+    "credential_group": "Qwen_Max",
+    "protocol": "azure_chat",
+    "api_version": "2025-04-01-preview",
+    "extra_body": {
+      "reasoning_effort": "medium"
+    }
+  },
+  "cot_generator": {
+    "model": "gpt-6-astra",
+    "local": false,
+    "base_urls": [
+      "https://search.bytedance.net/gpt/openapi/online/responses"
+    ],
+    "max_tokens": 8192,
+    "supports_temperature": false,
+    "credential_group": "GPT",
+    "protocol": "azure_responses",
+    "api_version": "2025-04-01-preview",
+    "extra_body": {
+      "reasoning": {
+        "effort": "medium",
+        "summary": "auto"
+      }
+    }
+  },
+  "sample_manifest": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/training_data/sample/manifest.json",
+  "training": {
+    "recipe": "BF16 LoRA pilot, not exact 100k full-parameter paper reproduction",
+    "epochs": 1,
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "learning_rate": 1e-05,
+    "max_seq_length": 8192,
+    "global_batch_size": 32,
+    "warmup_ratio": 0.03,
+    "weight_decay": 0.01,
+    "seed": 20261001,
+    "development_indices": "Reserved development split only for new-method selection; original four benchmarks held out until final selection"
+  },
+  "evaluation": {
+    "benchmarks": [
+      "ifeval",
+      "multi_challenge",
+      "eq_bench3",
+      "arena_hard_v2"
+    ],
+    "judge": "gpt-6-astra",
+    "qwen27b_effort": "medium",
+    "qwen9b_thinking": true,
+    "max_output_tokens": 32768,
+    "checkpoint_selection": "final epoch, no test-set selection"
+  },
+  "paper_differences": [
+    "5000 balanced English single-turn queries rather than 100000 queries",
+    "Qwen3.8-Max reference answers and GPT-6 Astra synthetic reverse-CoT teacher rather than original Qwen3-Max / Qwen3-235B",
+    "LoRA one epoch / 8192 sequence length rather than paper full training recipe",
+    "Existing local benchmark protocols retained; EQ rubric score and Arena unadjusted weighted hard win rate are not official leaderboard scores"
+  ],
+  "reference_length_retry_max_tokens": 32768,
+  "recovery_notes": [
+    "2026-10-02: retain all successful Q/A and CoT. For failed reference requests only, record raw failures, retry normal 8192-token cap, then permit one 32768-token attempt only if finish_reason=length. Same model, medium effort, prompt and temperature. Refusals are not bypassed. Frozen indices, four-method shared answers, 8192 training cap and minimum 900 per stratum unchanged.",
+    "2026-10-02: User explicitly authorized starting with 4175 balanced examples (835 per stratum). Minimum lowered from 900 to 835 per stratum; frozen candidate indices, paired filtering, 8192-token cap, model settings and evaluation unchanged."
+  ],
+  "minimum_usable_per_stratum": 835,
+  "authorized_training_n": 4175,
+  "physical_method_directory": "NEU",
+  "new_method": "aug_sup_lr1e5"
+}

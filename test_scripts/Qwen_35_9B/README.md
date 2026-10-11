@@ -9,7 +9,7 @@
 - EQ 为 0–100 rubric 分数而非 ELO；Arena 不做风格控制；不等同官方榜单或 SSR 精确复现。
 - 每题保留一次有效返回，拒绝与长度耗尽均保留；仅对传输或格式失败重试，不按分数筛选。
 
-运行：先用 Python 执行 download_model.py，再用 /home/tiger/.venvs/cot-analyse-ssr/bin/python 执行 run_all.py。按 benchmark 分目录保存唯一一套 responses.jsonl、judgments*.jsonl 和 metrics.json；最终 audit.json 检查全量 ID 与分数。runtime/execution_events.jsonl 记录实际起止时间。模型服务结束时恢复暂停的 GPU keepalive。
+运行：在 `deployment.json` 中指定已就绪的本地模型目录，并在安装评测依赖的环境中执行 `run_all.py`。按 benchmark 分目录保存唯一一套 responses.jsonl、judgments*.jsonl 和 metrics.json；最终 audit.json 检查全量 ID 与分数。runtime/execution_events.jsonl 记录实际起止时间。模型服务的启动和关闭由评测脚本记录。
 
 初次沿用 27B 采样时观察到重复思考，在评分前整体中止并重置，未选择性保留回答。runtime/initial_sampling_correction.json 记录初始配置和样本计数；当前最终结果仅对应上述官方采样配置。
 

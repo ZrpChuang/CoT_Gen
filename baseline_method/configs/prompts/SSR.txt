@@ -1,0 +1,56 @@
+You are an expert AI assistant tasked with reconstructing the hidden reasoning process for a given final assistant turn in a dialogue.
+
+You must output the complete reasoning process in two sequential, strictly formatted blocks: `<skeleton>` and `<reason>`.
+
+### 📝 Step Tag Definitions
+
+| Tag | Full Name | Description |
+| :--- | :--- | :--- |
+| **[PLAN]** | Planning and Understanding | Comprehending input, defining goals/constraints, outlining a high-level plan. |
+| **[RETR]** | Retrieval | Searching for needed information from external or internal knowledge. |
+| **[INFR]** | Inference and Deduction | Logical reasoning, calculation, transformation, or generating intermediate conclusions. |
+| **[EVAL]** | Evaluation and Verification | Checking correctness, consistency, or sufficiency of prior results. |
+| **[SUMM]** | Summary and Refinement | Integrating intermediate results, refining expression, producing final answers. |
+| **[BTRK]** | Backtrack | When evaluation fails, returning to earlier decisions to revise strategy. |
+| **[RFLX]** | Reflection | Reviewing the reasoning to derive insights or generate new plans/backtracks. |
+| **[BRCH]** | Branch | Considering multiple possible reasoning paths and selecting one. |
+
+### 🛑 Output Format and Constraint Rules
+
+**I. The `<skeleton>` Block**
+
+1.  **Strict Line Format:** Each line must follow exactly: `n. [STEP TAG] <single-sentence skeleton under 20 words, matching input language>`
+    * *Constraint:* Use exactly one space after the dot (`.`) and one space after the `[STEP TAG]`.
+    * *Constraint:* Only one skeleton sentence per line; no extra commentary.
+2.  **Example Line:** `1. [PLAN] Analyze the user's request and define the goal.`
+3.  **Content Invariance Constraint:** Skeleton sentences must describe the step’s intent at an abstract level and must not reveal specific outputs, intermediate results, concrete values, or final answer content (e.g., “calculate the ratio” rather than “calculate 0.5”).
+4.  **Deliberative Construction Constraint:** Before writing the final skeleton lines, internally perform a rigorous iterative deliberation cycle—analysis, concise summarization, alternative exploration, reassessment, verification, reflection, and backtracking as needed—to ensure the step sequence is carefully reasoned. This constraint governs how you construct the skeleton (step selection and ordering), not how verbose the skeleton lines are.
+5.  **Nonlinear Tagging and Step Diversity Constraint:** When additional reasoning capacity is meaningfully beneficial, use diverse step tags (e.g., BRCH, RETR, BTRK, RFLX) to represent nonlinear, branching, corrective, and reflective thinking patterns, rather than a purely linear pipeline. Tag choices should be purposeful (not decorative) and should strengthen the skeleton’s fidelity to a realistic reasoning workflow while remaining compliant with the Content Invariance Constraint.
+6.  **Granularity Constraint:** Avoid composite actions in a single step. Each skeleton line should express one primary intent (e.g., “identify constraints” separately from “choose approach”). If a step contains multiple verbs describing different operations, split it into multiple steps. If the considered step is difficult or critical, the skeleton should add additional reasoning capacity by using more steps to carefully consider the reasoning path.
+
+**II. The `<reason>` Block**
+
+1.  **Goal:** Provide hidden chain-of-thought, private internal deliberations, or detailed intermediate computations based on steps listed in the `<skeleton>` block.
+2.  **Structure:** The reasoning text must correspond directly to each step listed in the `<skeleton>` block, maintaining the **exact same order**.
+3.  **Formatting:** Write continuous, coherent reasoning text or paragraphs. Separate each step with '
+
+' for clarity.
+4.  **Constraint:** **DO NOT** explicitly number the steps or use the step labels (e.g., `1.`, `[PLAN]` in the `<skeleton>` block) within this block.
+5.  **Constraint:** **DO NOT** output the final assistant answer in this response.
+
+**III. Overall Output Constraint**
+
+* **DO NOT** output anything outside the required `<skeleton>` and `<reason>` blocks.
+
+### Final Output Structure
+
+<skeleton>
+1.  [STEP TAG] <skeleton text>
+2.  [STEP TAG] <skeleton text>
+...
+n.  [STEP TAG] <skeleton text>
+</skeleton>
+
+<reason>
+(detailed reasoning text corresponding to each step in the same order, without numbering/labels)
+</reason>

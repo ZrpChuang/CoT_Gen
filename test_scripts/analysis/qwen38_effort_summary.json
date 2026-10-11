@@ -1,0 +1,252 @@
+{
+  "low": {
+    "scores": {
+      "ifeval": 87.8003696857671,
+      "multi_challenge": 56.043956043956044,
+      "eq_bench3": 44.55555555555556,
+      "arena_hard_v2": 41.853600944510035
+    },
+    "tokens": {
+      "ifeval": {
+        "questions": 541,
+        "calls": 541,
+        "reasoning_tokens": 417811,
+        "output_tokens": 638453,
+        "mean_reasoning": 772.2939001848429,
+        "mean_output": 1180.1349353049907,
+        "latency_seconds": 11412.630999999998,
+        "length_finish_calls": 0,
+        "calls_with_retry_field": 541,
+        "retained_calls_with_retries": 1,
+        "responses_sha256": "bf64285d404c8c925103317b04f024e35f8b0d06c13d4fbecdcc374786eada38"
+      },
+      "multi_challenge": {
+        "questions": 273,
+        "calls": 273,
+        "reasoning_tokens": 201154,
+        "output_tokens": 358618,
+        "mean_reasoning": 736.8278388278388,
+        "mean_output": 1313.6190476190477,
+        "latency_seconds": 25702.126999999993,
+        "length_finish_calls": 0,
+        "calls_with_retry_field": 273,
+        "retained_calls_with_retries": 3,
+        "responses_sha256": "956b77c3b57259b5cb6a0887951262f2a75200c9cb51d23b1506f31b4db76f09"
+      },
+      "eq_bench3": {
+        "questions": 45,
+        "calls": 118,
+        "reasoning_tokens": 117484,
+        "output_tokens": 279940,
+        "mean_reasoning": 2610.7555555555555,
+        "mean_output": 6220.888888888889,
+        "latency_seconds": 11677.842999999997,
+        "length_finish_calls": 0,
+        "calls_with_retry_field": 118,
+        "retained_calls_with_retries": 0,
+        "responses_sha256": "e88b8af66ece3f1b724f9f3dd9a69da2e6ac11174d99a727bc59c2d7c9d93e7b"
+      },
+      "arena_hard_v2": {
+        "questions": 750,
+        "calls": 750,
+        "reasoning_tokens": 1534880,
+        "output_tokens": 2835046,
+        "mean_reasoning": 2046.5066666666667,
+        "mean_output": 3780.0613333333336,
+        "latency_seconds": 82954.87500000004,
+        "length_finish_calls": 6,
+        "calls_with_retry_field": 750,
+        "retained_calls_with_retries": 2,
+        "responses_sha256": "d7da76bcc29fc6d9ba79c55a860f0534b01eecef3f656036d3f035b8b4db008d"
+      }
+    },
+    "reasoning_total": 2271329,
+    "output_total": 4112057,
+    "timing": {
+      "generation_started_at": 1790760814.4408214,
+      "generation_completed_at": 1790762795.0523295,
+      "generation_wall_minutes": 33.01019180218379,
+      "retained_request_hours": 36.596521111111116
+    }
+  },
+  "medium": {
+    "scores": {
+      "ifeval": 90.57301293900186,
+      "multi_challenge": 57.14285714285714,
+      "eq_bench3": 45.01851851851852,
+      "arena_hard_v2": 41.56734207389749
+    },
+    "tokens": {
+      "ifeval": {
+        "questions": 541,
+        "calls": 541,
+        "reasoning_tokens": 523359,
+        "output_tokens": 760605,
+        "mean_reasoning": 967.3918669131239,
+        "mean_output": 1405.924214417745,
+        "latency_seconds": 13419.580000000007,
+        "length_finish_calls": 0,
+        "calls_with_retry_field": 0,
+        "retained_calls_with_retries": 0,
+        "responses_sha256": "8b36c75dc222fc26100f0bdc65505498aea4bcbfca6a43ac22aa2c7b231375f2"
+      },
+      "multi_challenge": {
+        "questions": 273,
+        "calls": 273,
+        "reasoning_tokens": 255771,
+        "output_tokens": 461232,
+        "mean_reasoning": 936.8901098901099,
+        "mean_output": 1689.4945054945056,
+        "latency_seconds": 10864.248000000001,
+        "length_finish_calls": 0,
+        "calls_with_retry_field": 0,
+        "retained_calls_with_retries": 0,
+        "responses_sha256": "3f285508ddb51455f257a3058814e6c85e1935f9b09d32be2d5ed8167595af7e"
+      },
+      "eq_bench3": {
+        "questions": 45,
+        "calls": 118,
+        "reasoning_tokens": 170509,
+        "output_tokens": 380153,
+        "mean_reasoning": 3789.088888888889,
+        "mean_output": 8447.844444444445,
+        "latency_seconds": 12069.703000000001,
+        "length_finish_calls": 0,
+        "calls_with_retry_field": 0,
+        "retained_calls_with_retries": 0,
+        "responses_sha256": "d1214bf20ef2cfadcd84ec3023fa3b33e157601b622111145677fdad9310803e"
+      },
+      "arena_hard_v2": {
+        "questions": 750,
+        "calls": 750,
+        "reasoning_tokens": 1648042,
+        "output_tokens": 3025118,
+        "mean_reasoning": 2197.3893333333335,
+        "mean_output": 4033.4906666666666,
+        "latency_seconds": 76020.33700000009,
+        "length_finish_calls": 4,
+        "calls_with_retry_field": 0,
+        "retained_calls_with_retries": 0,
+        "responses_sha256": "dbd7613d1284f6f1ad07834e002c7ba32a5de9061a891fa2fbbc1f591729a07e"
+      }
+    },
+    "reasoning_total": 2597681,
+    "output_total": 4627108
+  },
+  "xhigh": {
+    "scores": {
+      "ifeval": 92.60628465804066,
+      "multi_challenge": 64.46886446886447,
+      "eq_bench3": 48.05555555555556,
+      "arena_hard_v2": 51.849836779107726
+    },
+    "tokens": {
+      "ifeval": {
+        "questions": 541,
+        "calls": 541,
+        "reasoning_tokens": 890156,
+        "output_tokens": 1033092,
+        "mean_reasoning": 1645.3900184842882,
+        "mean_output": 1909.5970425138632,
+        "latency_seconds": 22695.628999999994,
+        "length_finish_calls": 3,
+        "calls_with_retry_field": 541,
+        "retained_calls_with_retries": 3,
+        "responses_sha256": "7beafb91e5425a458fd352822e0e7e34cae0eb9d46c7cd5eaf942f20cb34ab38"
+      },
+      "multi_challenge": {
+        "questions": 273,
+        "calls": 273,
+        "reasoning_tokens": 738744,
+        "output_tokens": 1033758,
+        "mean_reasoning": 2706.021978021978,
+        "mean_output": 3786.6593406593406,
+        "latency_seconds": 162045.1520000001,
+        "length_finish_calls": 3,
+        "calls_with_retry_field": 273,
+        "retained_calls_with_retries": 8,
+        "responses_sha256": "b4a260921c259aa9cf02318fc51167b01f57ec602cffde75fcf7be7133faff49"
+      },
+      "eq_bench3": {
+        "questions": 45,
+        "calls": 118,
+        "reasoning_tokens": 2255994,
+        "output_tokens": 2377604,
+        "mean_reasoning": 50133.2,
+        "mean_output": 52835.64444444444,
+        "latency_seconds": 108418.43599999999,
+        "length_finish_calls": 20,
+        "calls_with_retry_field": 118,
+        "retained_calls_with_retries": 1,
+        "responses_sha256": "29247ec5dfc01816fc63839209c7e2a2f10fab096dd59e150c51ed1c4aa3d54c"
+      },
+      "arena_hard_v2": {
+        "questions": 750,
+        "calls": 750,
+        "reasoning_tokens": 9496558,
+        "output_tokens": 10524396,
+        "mean_reasoning": 12662.077333333333,
+        "mean_output": 14032.528,
+        "latency_seconds": 419402.76600000064,
+        "length_finish_calls": 154,
+        "calls_with_retry_field": 750,
+        "retained_calls_with_retries": 12,
+        "responses_sha256": "9a1da36a38f2406c97bc33932d18a04ed413d01debd491dda132e2e6ccb3df99"
+      }
+    },
+    "reasoning_total": 13381452,
+    "output_total": 14968850,
+    "timing": {
+      "generation_started_at": 1790760822.2476895,
+      "generation_completed_at": 1790767894.37515,
+      "generation_wall_minutes": 117.86879100799561,
+      "retained_request_hours": 197.93388416666687
+    },
+    "execution_adjustments": [
+      {
+        "time": 1790763983.489414,
+        "stage": "resume_timeout_adjusted",
+        "local_timeout_seconds": 3600,
+        "note": "Observed ReadTimeout at 1800s during overlapping long generations. Applies to newly started resume processes; active workers retain their loaded timeout. Sampling and output cap unchanged."
+      },
+      {
+        "time": 1790764330.6922855,
+        "stage": "extra_replicas_start",
+        "gpus": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "ports": [
+          8143,
+          8144
+        ]
+      },
+      {
+        "time": 1790764612.874073,
+        "stage": "extra_replicas_activated",
+        "gpu_count": 8,
+        "replicas": 4
+      },
+      {
+        "time": 1790764612.8741026,
+        "stage": "arena_generation_resumed",
+        "pid": 41151,
+        "preserved_responses": 158,
+        "discarded_partial_tail_bytes": 0,
+        "workers": 128,
+        "note": "Cancelled unsaved in-flight Arena calls to redistribute remaining work; retained outputs verified unchanged."
+      },
+      {
+        "time": 1790766156.6091535,
+        "stage": "terminal_empty_recovery",
+        "benchmark": "multi_challenge",
+        "id": "6765f440b0ca0453b824ac33",
+        "prior_exhausted_attempts": 6,
+        "pid": 41583,
+        "note": "Stop automatic quality-based rerolls after repeated empty finals. Capture one actual HTTP response and retain even an empty final as failure; preserve measured usage."
+      }
+    ]
+  }
+}

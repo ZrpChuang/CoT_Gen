@@ -1,0 +1,827 @@
+{
+  "schema": "confirm-body-result-v1",
+  "passed": true,
+  "time": 1791133674.347797,
+  "candidate": "body_format",
+  "reference": "base9b",
+  "n": 200,
+  "ordered_judge_outputs": 400,
+  "score": 53.25,
+  "ci95": [
+    48.0,
+    58.25
+  ],
+  "by_domain": {
+    "code": {
+      "score": 47.5,
+      "ci95": [
+        36.25,
+        58.75
+      ],
+      "n": 40,
+      "bootstrap_samples": 5000,
+      "wins": 9,
+      "ties": 20,
+      "losses": 11,
+      "order_disagreement_n": 10,
+      "axis_delta_0_4": {
+        "correctness": 0.125,
+        "instruction_compliance": 0,
+        "usefulness": 0.05
+      }
+    },
+    "creative_writing": {
+      "score": 53.75,
+      "ci95": [
+        41.25,
+        66.25
+      ],
+      "n": 40,
+      "bootstrap_samples": 5000,
+      "wins": 15,
+      "ties": 13,
+      "losses": 12,
+      "order_disagreement_n": 3,
+      "axis_delta_0_4": {
+        "correctness": 0.2,
+        "instruction_compliance": -0.0625,
+        "usefulness": -0.025
+      }
+    },
+    "instruction_following": {
+      "score": 51.24999999999999,
+      "ci95": [
+        41.25,
+        61.25000000000001
+      ],
+      "n": 40,
+      "bootstrap_samples": 5000,
+      "wins": 10,
+      "ties": 21,
+      "losses": 9,
+      "order_disagreement_n": 8,
+      "axis_delta_0_4": {
+        "correctness": 0.125,
+        "instruction_compliance": -0.1125,
+        "usefulness": -0.05
+      }
+    },
+    "math": {
+      "score": 48.75,
+      "ci95": [
+        37.5,
+        58.75
+      ],
+      "n": 40,
+      "bootstrap_samples": 5000,
+      "wins": 9,
+      "ties": 21,
+      "losses": 10,
+      "order_disagreement_n": 7,
+      "axis_delta_0_4": {
+        "correctness": -0.1375,
+        "instruction_compliance": -0.075,
+        "usefulness": -0.2
+      }
+    },
+    "other": {
+      "score": 65.0,
+      "ci95": [
+        53.75,
+        75.0
+      ],
+      "n": 40,
+      "bootstrap_samples": 5000,
+      "wins": 17,
+      "ties": 18,
+      "losses": 5,
+      "order_disagreement_n": 11,
+      "axis_delta_0_4": {
+        "correctness": 0.4375,
+        "instruction_compliance": -0.0125,
+        "usefulness": 0.175
+      }
+    }
+  },
+  "axes": {
+    "correctness": 2.2475,
+    "instruction_compliance": 3.115,
+    "usefulness": 2.205
+  },
+  "interpretation": "not_determined_relative_to_base",
+  "resource_constraints": {
+    "output_ratio_vs_base": 0.5007163880963466,
+    "output_le_1_5x_base": true,
+    "truncated_n_delta_vs_base": -2,
+    "truncation_increase_le_2pp": true
+  },
+  "resource_constraints_passed": true,
+  "usage": {
+    "base9b": {
+      "output_tokens": 887089,
+      "mean_output_tokens": 4435.445,
+      "cot_tokens_estimate": {
+        "total": 653076,
+        "mean": 3265.38,
+        "median": 1852.0,
+        "p95": 8980
+      },
+      "final_tokens_estimate": {
+        "total": 234201,
+        "mean": 1171.005,
+        "median": 836.5,
+        "p95": 3622
+      },
+      "native_cot_tokens": null,
+      "native_cot_usage_coverage": 0,
+      "truncated_n": 3
+    },
+    "body_format": {
+      "output_tokens": 444180,
+      "mean_output_tokens": 2220.9,
+      "cot_tokens_estimate": {
+        "total": 264245,
+        "mean": 1321.225,
+        "median": 305.0,
+        "p95": 6083
+      },
+      "final_tokens_estimate": {
+        "total": 179622,
+        "mean": 898.11,
+        "median": 479.5,
+        "p95": 2717
+      },
+      "native_cot_tokens": null,
+      "native_cot_usage_coverage": 0,
+      "truncated_n": 1
+    }
+  },
+  "judge_usage": {
+    "n": 400,
+    "output_tokens": {
+      "total": 109827,
+      "mean": 274.5675,
+      "median": 275.0,
+      "p95": 398
+    },
+    "input_tokens": {
+      "total": 1047100,
+      "mean": 2617.75,
+      "median": 1860.0,
+      "p95": 7122
+    },
+    "output_usage_coverage": 400,
+    "native_cot_tokens": {
+      "total": 56426,
+      "mean": 141.065,
+      "median": 132.5,
+      "p95": 253
+    },
+    "native_cot_usage_coverage": 400,
+    "cot_tokens_estimate": null,
+    "final_tokens_estimate": null,
+    "final_answer_characters": {
+      "total": 251367,
+      "mean": 628.4175,
+      "median": 639.0,
+      "p95": 866
+    },
+    "cot_characters": {
+      "total": 0,
+      "mean": 0,
+      "median": 0.0,
+      "p95": 0
+    },
+    "latency_seconds": {
+      "total": 3063.4940000000006,
+      "mean": 7.658735,
+      "median": 7.487,
+      "p95": 11.777
+    },
+    "truncated_n": 0,
+    "empty_final_n": 0,
+    "refusal_n": 0,
+    "note": "Native output usage includes CoT; estimated CoT/final tokens re-tokenize returned text and may differ from provider usage. Sum latency is not concurrent wall time."
+  },
+  "operational": {
+    "base9b": {
+      "attempts": 200,
+      "technical_failures": 0,
+      "unknown_failed_request_usage": 0,
+      "returned_response_missing_output_usage": 0,
+      "all_returned_output_tokens_lower_bound": 887089
+    },
+    "body_format": {
+      "attempts": 603,
+      "technical_failures": 3,
+      "unknown_failed_request_usage": 3,
+      "returned_response_missing_output_usage": 0,
+      "all_returned_output_tokens_lower_bound": 554007
+    }
+  },
+  "source_sha256": {
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b/confirm/responses.jsonl": "ecdad9d2923aed3ef1f64dc59ba034d1c7f66f732ec6466958da5602d720569a",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b/confirm/attempts.jsonl": "68af8c44e5e3d652253b66ec31077672c6db6a266c31d833094a42da557ad4ca",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b/confirm/dispatches.jsonl": "f53246da79b8677fa1b21654eea3a8cb5520ac814816d807f4dfbce4799d2972",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b/confirm/generation_config.json": "236fc32b06b494f80c3a57377d34fd8633e956123b74be3462477a9f36ffa232",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b/confirm/stage_invocations.jsonl": "b56c39ff373e4963548efdd7d27d8cb3fc8c59d5f7394e819fc8a96a8b6125da",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/confirm/responses.jsonl": "c22c47c0ac34dc7c2823b02a8da271a36e9dc1513c4dd8f6fc25a3fc8db5e751",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/confirm/attempts.jsonl": "8de26180a6983ed16698222505f2dbcd4c1b61696859d8a14ae52a63b1c1375f",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/confirm/dispatches.jsonl": "a9f3a851fdf483a405c35086682d7f27afae619cafdca8d20de74c49cf43646e",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/confirm/generation_config.json": "88925ac1deee61b202124070eb7664898c9640d416ae037573878b3a979b9278",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/confirm/stage_invocations.jsonl": "84fc8275ee1bff3e84d12cab41c4038f90eae4e181877b3059a0f86e5ca4a79c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/confirm/metrics.json": "f4787ca7ee17ca70883a36ef576825445f89495b97d22d34e9f869486583535c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/confirm/judgments.jsonl": "139f2e628bc642e150d82e6b3de6e47973e1bf5c21fc8b58b898b70266f6fa59",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/confirm/judge_config.json": "5274f6f097b7cc678936453f698d39a0c3a3a35a54647d5cd6687f91e46ec3c0",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format/confirm/token_count_config.json": "01296131eced48f336f744a4172f500b010738fdf57e470f85ceafd6b35b6603"
+  },
+  "source_manifest_sha256": "cdc30211c903f3e722540474bb4295c02c7b3f380d08eec92e6c076e60240437",
+  "selection_sha256": "b50a5cdcbfc27c0d8cb5fe7eaf96bbbb9622e4cca0bf3263d275aa70bce02895",
+  "service_checks": {
+    "base9b": {
+      "owner_exited": true,
+      "owned_members_remaining": 0
+    },
+    "body_format": {
+      "owner_exited": true,
+      "owned_members_remaining": 0
+    }
+  },
+  "guard_snapshot": {
+    "time": 1791133664.9159157,
+    "pid": 2758,
+    "probe_seconds": 3,
+    "interval_seconds": 30,
+    "gpus": {
+      "0": {
+        "real_util_pct": 0,
+        "memory_mib": 683,
+        "protection": "running",
+        "keepalive_pid": 2750
+      },
+      "1": {
+        "real_util_pct": 0,
+        "memory_mib": 683,
+        "protection": "running",
+        "keepalive_pid": 2751
+      },
+      "2": {
+        "real_util_pct": 0,
+        "memory_mib": 683,
+        "protection": "running",
+        "keepalive_pid": 2752
+      },
+      "3": {
+        "real_util_pct": 0,
+        "memory_mib": 683,
+        "protection": "running",
+        "keepalive_pid": 2753
+      },
+      "4": {
+        "real_util_pct": 0,
+        "memory_mib": 683,
+        "protection": "running",
+        "keepalive_pid": 2754
+      },
+      "5": {
+        "real_util_pct": 0,
+        "memory_mib": 683,
+        "protection": "running",
+        "keepalive_pid": 2755
+      },
+      "6": {
+        "real_util_pct": 0,
+        "memory_mib": 683,
+        "protection": "running",
+        "keepalive_pid": 2756
+      },
+      "7": {
+        "real_util_pct": 0,
+        "memory_mib": 683,
+        "protection": "running",
+        "keepalive_pid": 2757
+      }
+    }
+  },
+  "keeper_actual": {
+    "0": {
+      "identity": {
+        "pid": 2750,
+        "start_ticks": "109833053",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 0 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    },
+    "1": {
+      "identity": {
+        "pid": 2751,
+        "start_ticks": "109833053",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 1 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    },
+    "2": {
+      "identity": {
+        "pid": 2752,
+        "start_ticks": "109833054",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 2 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    },
+    "3": {
+      "identity": {
+        "pid": 2753,
+        "start_ticks": "109833054",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 3 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    },
+    "4": {
+      "identity": {
+        "pid": 2754,
+        "start_ticks": "109833054",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 4 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    },
+    "5": {
+      "identity": {
+        "pid": 2755,
+        "start_ticks": "109833054",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 5 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    },
+    "6": {
+      "identity": {
+        "pid": 2756,
+        "start_ticks": "109833055",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 6 --target-utilization 80 "
+      },
+      "state": "S",
+      "reported_protection": "running"
+    },
+    "7": {
+      "identity": {
+        "pid": 2757,
+        "start_ticks": "109833055",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 7 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    }
+  },
+  "keeper_first_sample": {
+    "0": {
+      "identity": {
+        "pid": 2750,
+        "start_ticks": "109833053",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 0 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    },
+    "1": {
+      "identity": {
+        "pid": 2751,
+        "start_ticks": "109833053",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 1 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    },
+    "2": {
+      "identity": {
+        "pid": 2752,
+        "start_ticks": "109833054",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 2 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    },
+    "3": {
+      "identity": {
+        "pid": 2753,
+        "start_ticks": "109833054",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 3 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    },
+    "4": {
+      "identity": {
+        "pid": 2754,
+        "start_ticks": "109833054",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 4 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    },
+    "5": {
+      "identity": {
+        "pid": 2755,
+        "start_ticks": "109833054",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 5 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    },
+    "6": {
+      "identity": {
+        "pid": 2756,
+        "start_ticks": "109833055",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 6 --target-utilization 80 "
+      },
+      "state": "S",
+      "reported_protection": "running"
+    },
+    "7": {
+      "identity": {
+        "pid": 2757,
+        "start_ticks": "109833055",
+        "cmdline": "/mnt/bn/vai-llm-hl/ruipeng/.venvs/gui-training-v2/bin/python -u /mnt/bn/vai-llm-hl/ruipeng/gpu/gpu_keepalive.py --gpu-index 7 --target-utilization 80 "
+      },
+      "state": "R",
+      "reported_protection": "running"
+    }
+  },
+  "selected_keeper_restoration_passed": true,
+  "stage_timings": [
+    {
+      "label": "select_confirm",
+      "attempt": 1,
+      "event": "started",
+      "started_at": 1791132710.0039642,
+      "deadline": 1791132740.0039642,
+      "limit_seconds": 30,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/dev_harness.py",
+        "select-confirm",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format",
+        "--reference",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b"
+      ]
+    },
+    {
+      "label": "select_confirm",
+      "attempt": 1,
+      "event": "success",
+      "started_at": 1791132710.0039642,
+      "deadline": 1791132740.0039642,
+      "limit_seconds": 30,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/dev_harness.py",
+        "select-confirm",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format",
+        "--reference",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b"
+      ],
+      "ended_at": 1791132710.1287243
+    },
+    {
+      "label": "body_format_serve",
+      "attempt": 1,
+      "event": "started",
+      "started_at": 1791132710.412405,
+      "deadline": 1791133210.412405,
+      "limit_seconds": 500,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/deploy_inference.py",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/confirmation_body_v1/serving/body_format",
+        "--model",
+        "Qwen_35_9B",
+        "--reference-model-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model",
+        "--gpus",
+        "4,5,6",
+        "--port",
+        "8120",
+        "--max-service-seconds",
+        "1800",
+        "start"
+      ]
+    },
+    {
+      "label": "base9b_serve",
+      "attempt": 1,
+      "event": "started",
+      "started_at": 1791132710.415347,
+      "deadline": 1791133210.415347,
+      "limit_seconds": 500,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/deploy_inference.py",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/confirmation_body_v1/serving/base9b",
+        "--model",
+        "Qwen_35_9B",
+        "--reference-model-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B",
+        "--gpus",
+        "0,1,2",
+        "--port",
+        "8140",
+        "--max-service-seconds",
+        "1800",
+        "start"
+      ]
+    },
+    {
+      "label": "body_format_serve",
+      "attempt": 1,
+      "event": "success",
+      "started_at": 1791132710.412405,
+      "deadline": 1791133210.412405,
+      "limit_seconds": 500,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/deploy_inference.py",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/confirmation_body_v1/serving/body_format",
+        "--model",
+        "Qwen_35_9B",
+        "--reference-model-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model",
+        "--gpus",
+        "4,5,6",
+        "--port",
+        "8120",
+        "--max-service-seconds",
+        "1800",
+        "start"
+      ],
+      "ended_at": 1791132865.652653
+    },
+    {
+      "label": "body_format_generate",
+      "attempt": 1,
+      "event": "started",
+      "started_at": 1791132865.8005924,
+      "deadline": 1791134065.8005924,
+      "limit_seconds": 1200,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/dev_harness.py",
+        "generate",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format",
+        "--split",
+        "confirm",
+        "--endpoint",
+        "http://127.0.0.1:8120/v1,http://127.0.0.1:8121/v1,http://127.0.0.1:8122/v1",
+        "--model",
+        "pattern-body_format",
+        "--workers",
+        "32"
+      ]
+    },
+    {
+      "label": "base9b_serve",
+      "attempt": 1,
+      "event": "success",
+      "started_at": 1791132710.415347,
+      "deadline": 1791133210.415347,
+      "limit_seconds": 500,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/deploy_inference.py",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/confirmation_body_v1/serving/base9b",
+        "--model",
+        "Qwen_35_9B",
+        "--reference-model-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/models/Qwen3.5-9B",
+        "--gpus",
+        "0,1,2",
+        "--port",
+        "8140",
+        "--max-service-seconds",
+        "1800",
+        "start"
+      ],
+      "ended_at": 1791133025.7190769
+    },
+    {
+      "label": "base9b_generate",
+      "attempt": 1,
+      "event": "started",
+      "started_at": 1791133025.8614094,
+      "deadline": 1791134225.8614094,
+      "limit_seconds": 1200,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/dev_harness.py",
+        "generate",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b",
+        "--split",
+        "confirm",
+        "--endpoint",
+        "http://127.0.0.1:8140/v1,http://127.0.0.1:8141/v1,http://127.0.0.1:8142/v1",
+        "--model",
+        "pattern-base9b",
+        "--workers",
+        "32"
+      ]
+    },
+    {
+      "label": "body_format_generate",
+      "attempt": 1,
+      "event": "success",
+      "started_at": 1791132865.8005924,
+      "deadline": 1791134065.8005924,
+      "limit_seconds": 1200,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/dev_harness.py",
+        "generate",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format",
+        "--split",
+        "confirm",
+        "--endpoint",
+        "http://127.0.0.1:8120/v1,http://127.0.0.1:8121/v1,http://127.0.0.1:8122/v1",
+        "--model",
+        "pattern-body_format",
+        "--workers",
+        "32"
+      ],
+      "ended_at": 1791133147.89956
+    },
+    {
+      "label": "base9b_generate",
+      "attempt": 1,
+      "event": "success",
+      "started_at": 1791133025.8614094,
+      "deadline": 1791134225.8614094,
+      "limit_seconds": 1200,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/dev_harness.py",
+        "generate",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b",
+        "--split",
+        "confirm",
+        "--endpoint",
+        "http://127.0.0.1:8140/v1,http://127.0.0.1:8141/v1,http://127.0.0.1:8142/v1",
+        "--model",
+        "pattern-base9b",
+        "--workers",
+        "32"
+      ],
+      "ended_at": 1791133456.2256317
+    },
+    {
+      "label": "judge",
+      "attempt": 1,
+      "event": "started",
+      "started_at": 1791133459.7380807,
+      "deadline": 1791133939.7380807,
+      "limit_seconds": 480,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/dev_harness.py",
+        "judge",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format",
+        "--split",
+        "confirm",
+        "--reference",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b",
+        "--judge-workers",
+        "24"
+      ]
+    },
+    {
+      "label": "judge",
+      "attempt": 1,
+      "event": "success",
+      "started_at": 1791133459.7380807,
+      "deadline": 1791133939.7380807,
+      "limit_seconds": 480,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/dev_harness.py",
+        "judge",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format",
+        "--split",
+        "confirm",
+        "--reference",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b",
+        "--judge-workers",
+        "24"
+      ],
+      "ended_at": 1791133643.7653892
+    },
+    {
+      "label": "summarize",
+      "attempt": 1,
+      "event": "started",
+      "started_at": 1791133643.919638,
+      "deadline": 1791133943.919638,
+      "limit_seconds": 300,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/dev_harness.py",
+        "summarize",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format",
+        "--split",
+        "confirm",
+        "--reference",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b"
+      ]
+    },
+    {
+      "label": "summarize",
+      "attempt": 1,
+      "event": "success",
+      "started_at": 1791133643.919638,
+      "deadline": 1791133943.919638,
+      "limit_seconds": 300,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/dev_harness.py",
+        "summarize",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--run-dir",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/body_format",
+        "--split",
+        "confirm",
+        "--reference",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/dev_runs/base9b"
+      ],
+      "ended_at": 1791133673.298061
+    },
+    {
+      "label": "audit",
+      "attempt": 1,
+      "event": "started",
+      "started_at": 1791133673.416633,
+      "deadline": 1791133943.919638,
+      "limit_seconds": 270.6178774833679,
+      "argv": [
+        "/home/tiger/.venvs/cot-analyse-ssr/bin/python",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/confirm_body_v1.py",
+        "--root",
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004",
+        "--audit-only"
+      ]
+    }
+  ],
+  "budget": {
+    "schema": "confirm-body-budget-v1",
+    "first_started_at": 1791132709.541298,
+    "expires_at": 1791136309.541298,
+    "cleanup_deadline": 1791136399.541298,
+    "hard_seconds": 3600,
+    "cleanup_seconds": 90
+  },
+  "limits": [
+    "Only selected body versus frozen base; no claim against NEU/random/four baselines from this split.",
+    "Intervals omit training, generation and judge variance; one training run cannot establish pattern causality.",
+    "Estimated CoT tokens differ from provider-native usage; unknown failed-request usage is not zero.",
+    "No new training, hyperparameter search or full benchmark is launched."
+  ]
+}

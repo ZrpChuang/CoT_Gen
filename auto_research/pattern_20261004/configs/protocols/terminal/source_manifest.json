@@ -1,0 +1,551 @@
+{
+  "schema": "phase5-frozen-source-v1",
+  "batch_id": "phase5_frozen_terminal_eval",
+  "methods": [
+    "body_format",
+    "sup_lr1e5",
+    "aug_sup_lr1e5",
+    "ssr_lr1e5"
+  ],
+  "waves": [
+    [
+      "body_format",
+      "sup_lr1e5"
+    ],
+    [
+      "aug_sup_lr1e5",
+      "ssr_lr1e5"
+    ]
+  ],
+  "plan_sha256": "bc88486abcdb18d08b1acfbafaae86e5ced120151dd49d13c9be584434a8bb2b",
+  "protected_sha256": {
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/FINAL_EVALUATION_PLAN.md": "bc88486abcdb18d08b1acfbafaae86e5ced120151dd49d13c9be584434a8bb2b",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/FINAL_EVAL_TRANSPORT_REVIEW.md": "393741d13535e15ce8f841c2be3896a5e3bf2fcae8381ceab6bb934372b5b428",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/PHASE3_FINAL_TRAINING_REVIEW.json": "f548773b04c428f474323b9ac6293527def0a3ca56f07ea0bab8e4b2c3072d98",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/PHASE4_FINAL_TRAINING_REVIEW.json": "e37cc86d4a4938b9a33d36c6c2a38ad5e9f7e179e33532524d53a5b998df6f53",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/evaluations/aug_sup_lr1e5/config.json": "73e130d6d8bb87a9493dcbe5a396add6322ad5f72bed7e01d9b72c8bf7fb2b47",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/evaluations/aug_sup_lr1e5/evaluate.py": "132335ff0154c0ba4195a4f714d86bdc3c767292b754644b39454e0f6964cb86",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/evaluations/aug_sup_lr1e5/verify_results.py": "0d6508590e3af6d4931fb63761ab4d36bf953bd4126032b6f3e554e1c578140c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/evaluations/body_format/config.json": "ab513d2bf9a30ad18f5b4505b2af1c27232cce87b95981f5d13461589a3c9f2a",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/evaluations/body_format/evaluate.py": "132335ff0154c0ba4195a4f714d86bdc3c767292b754644b39454e0f6964cb86",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/evaluations/body_format/verify_results.py": "0d6508590e3af6d4931fb63761ab4d36bf953bd4126032b6f3e554e1c578140c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/evaluations/ssr_lr1e5/config.json": "250110f53e2f513c8656d6c09f892ed4b9e101ecf44dff7ed571a9efb4cd5da8",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/evaluations/ssr_lr1e5/evaluate.py": "132335ff0154c0ba4195a4f714d86bdc3c767292b754644b39454e0f6964cb86",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/evaluations/ssr_lr1e5/verify_results.py": "0d6508590e3af6d4931fb63761ab4d36bf953bd4126032b6f3e554e1c578140c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/evaluations/sup_lr1e5/config.json": "7c0bb1909cfa76aaaf251552c337335a06274555ada71e28c0bc6b0e61b06b0a",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/evaluations/sup_lr1e5/evaluate.py": "132335ff0154c0ba4195a4f714d86bdc3c767292b754644b39454e0f6964cb86",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/evaluations/sup_lr1e5/verify_results.py": "0d6508590e3af6d4931fb63761ab4d36bf953bd4126032b6f3e554e1c578140c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/adapter/adapter_model.safetensors": "9cd0c1c3ef79d67861862c8a5f8879d15ff3bb11d57d3aaba0956302a620d063",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/evaluation/serve.py": "bfec5d61429b7a9fbbd300bfa7a86af494948e917386fd282ad698c6473227cf",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/config.json": "fc2779b032506dcaada069cbf6a724ad376a3f4ce14e7f2bbfa688faf17c6dbd",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/generation_config.json": "a78aebbc7804389b2f7863eaaac64c0bbe0b8a3fceb3d7ca71d539d3a3d96a83",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/model.safetensors.index.json": "941305ff9f77551e145a6cea976ef456cd5cb208cbece99f168376c752fcf96c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/tokenizer_config.json": "bee8eba30f0eb4af73c0fe2cd06d0f89b657d7819941c438157ec42f7c80ea87",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/training/checkpoints/checkpoint-131/trainer_state.json": "1586fbfca5f3a4d2107f62bda6cf0ea8d951ee403aafe3b8e284d7af09b20307",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/training/complete.json": "50e3e5c23c1269dbe117d39b32d9fa1625e8ea5adcefc94ea214cdef603cc4cd",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/train.jsonl": "6f35de404b1d52a74b2a217d73f899f8bb33d155a5dc63eb94844381635709f9",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/train.py": "dd7e56ab10c979776e8f3ab508f89d5601c5b4903ea06bb772f527306a7c8244",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/baseline_sources/pipeline.py": "e080d0447ef9fc5a471b65faa673b9b1a9b34836ad611244c9e3f3d45c8f24ee",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/baseline_sources/wandb_loss_sync.py": "249bc76facfc208c142088d768fda4ac8c98389573a9b430ceb9c056dbc0663c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/data_audit.json": "97b61d4a6f1bd76355f4a99fb7e866e386e2120bb0fcb8d35309a140af885209",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/experiment.json": "cb582327e60c6842cded27fb5784960cfda44f5114153a737bcc52d7f8a80678",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/manifest.json": "354b9e091bf6a3364d48306ac22cca35c751c85510fea9786ad3ceb1a5a508bc",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/prepare_training.py": "4ab5a925356685555f2d6db4717336bade3a8e1ca1556fbfa24ad044b4a746fe",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/training_review.json": "6cb7642c454eaff04377972431ae75b7811129764218caf23269a15c692a014e",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/adapter/adapter_model.safetensors": "6c0db460347f1656907907b4be496a34888b1800ce54937989b54df790e6d41d",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/evaluation/serve.py": "bfec5d61429b7a9fbbd300bfa7a86af494948e917386fd282ad698c6473227cf",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/config.json": "fc2779b032506dcaada069cbf6a724ad376a3f4ce14e7f2bbfa688faf17c6dbd",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/generation_config.json": "a78aebbc7804389b2f7863eaaac64c0bbe0b8a3fceb3d7ca71d539d3a3d96a83",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model.safetensors.index.json": "941305ff9f77551e145a6cea976ef456cd5cb208cbece99f168376c752fcf96c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/tokenizer_config.json": "bee8eba30f0eb4af73c0fe2cd06d0f89b657d7819941c438157ec42f7c80ea87",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/training/checkpoints/checkpoint-131/trainer_state.json": "c51f5948b6a6a6be8a4151af7882ca5b0b19fd3204c4b9a19988a74a6940e877",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/training/complete.json": "22efad772b027d7ae172710f9a974aade3184004d2c7508d15008a68a6ba0c0c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/train.jsonl": "8a15b7b74e3a695e64b04c83926d6576c321d40c95121f5ed55f090b23661a26",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/train.py": "dd7e56ab10c979776e8f3ab508f89d5601c5b4903ea06bb772f527306a7c8244",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/baseline_sources/pipeline.py": "e080d0447ef9fc5a471b65faa673b9b1a9b34836ad611244c9e3f3d45c8f24ee",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/baseline_sources/wandb_loss_sync.py": "249bc76facfc208c142088d768fda4ac8c98389573a9b430ceb9c056dbc0663c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/data_audit.json": "17c96dca1522065f20a819332664e17f417fef2f8e076c989bcf76e784dcb97f",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/experiment.json": "08e24b80e3dcb11cf70cbe684452a65066515c595a58f2170e795bece8be6704",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/manifest.json": "f5aa5af6fab232abb7b156f64ad0142fd464b42b14eb86aa4db166ebcd43f7ba",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/prepare_training.py": "4ab5a925356685555f2d6db4717336bade3a8e1ca1556fbfa24ad044b4a746fe",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/training_review.json": "af3612c640aeb56bfddcd78c3930d9fe2befb9173d4ebe864b8e0a0218bdc34e",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/adapter/adapter_model.safetensors": "83655382e88a1f62b651bfbc10e5bfc16654befde31b18335fdb4a652fe26509",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/evaluation/serve.py": "bfec5d61429b7a9fbbd300bfa7a86af494948e917386fd282ad698c6473227cf",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/config.json": "fc2779b032506dcaada069cbf6a724ad376a3f4ce14e7f2bbfa688faf17c6dbd",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/generation_config.json": "a78aebbc7804389b2f7863eaaac64c0bbe0b8a3fceb3d7ca71d539d3a3d96a83",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/model.safetensors.index.json": "941305ff9f77551e145a6cea976ef456cd5cb208cbece99f168376c752fcf96c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/tokenizer_config.json": "bee8eba30f0eb4af73c0fe2cd06d0f89b657d7819941c438157ec42f7c80ea87",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/training/checkpoints/checkpoint-131/trainer_state.json": "60c39f1ff05ab9ccf8f241cb9e9d4864e5ba0c53694981c9880d16c60393ef04",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/training/complete.json": "cd7f763bc83401d812c855d0a79e8232eb548400ed2dcad73e8c5607487517b2",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/train.jsonl": "fec36d3144f799cf0445d4b9c1c89fe021f445f163fc587be3a330c4851adca0",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/train.py": "dd7e56ab10c979776e8f3ab508f89d5601c5b4903ea06bb772f527306a7c8244",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/baseline_sources/pipeline.py": "e080d0447ef9fc5a471b65faa673b9b1a9b34836ad611244c9e3f3d45c8f24ee",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/baseline_sources/wandb_loss_sync.py": "249bc76facfc208c142088d768fda4ac8c98389573a9b430ceb9c056dbc0663c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/data_audit.json": "166158c7d5646c0f76068900a5e6b1d0c664a8109bff80964571554de0822ff2",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/experiment.json": "ad0e20e8bce0dbc68d428fe5f6e4d948b96af7947d782bac825b0b07d154fb48",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/manifest.json": "7687b99bc0751dfd4a876fbc0c0e7a6ff1a839171f99c258779fbdfcb41b3a77",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/prepare_training.py": "4ab5a925356685555f2d6db4717336bade3a8e1ca1556fbfa24ad044b4a746fe",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/training_review.json": "05d4290ab9007651c15b80c851bd24e43cf67038fedbd082f8b06fd52fa13bc5",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/adapter/adapter_model.safetensors": "0f1804d18eb2e089c1fd247fb6095ab18c3a30e9a60ead462ab774be54c576d1",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/evaluation/serve.py": "bfec5d61429b7a9fbbd300bfa7a86af494948e917386fd282ad698c6473227cf",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/config.json": "fc2779b032506dcaada069cbf6a724ad376a3f4ce14e7f2bbfa688faf17c6dbd",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/generation_config.json": "a78aebbc7804389b2f7863eaaac64c0bbe0b8a3fceb3d7ca71d539d3a3d96a83",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/model.safetensors.index.json": "941305ff9f77551e145a6cea976ef456cd5cb208cbece99f168376c752fcf96c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/tokenizer_config.json": "bee8eba30f0eb4af73c0fe2cd06d0f89b657d7819941c438157ec42f7c80ea87",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/training/checkpoints/checkpoint-131/trainer_state.json": "3ebb8ccd526950bd784e178ab521e1ba78c3c98fb3e7c9fdb6deda047838764a",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/training/complete.json": "f5e0e4cbc8e3a48f39d4721ef5811644ca8481334e466b9348ebdb54559be28b",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/train.jsonl": "6781dcd4712752580b529d91ba0cb3f1ad71ddc2734c4213d6e9216a5b706622",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/train.py": "dd7e56ab10c979776e8f3ab508f89d5601c5b4903ea06bb772f527306a7c8244",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/baseline_sources/pipeline.py": "e080d0447ef9fc5a471b65faa673b9b1a9b34836ad611244c9e3f3d45c8f24ee",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/baseline_sources/wandb_loss_sync.py": "249bc76facfc208c142088d768fda4ac8c98389573a9b430ceb9c056dbc0663c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/data_audit.json": "87e1bbb8878431ba23ceee4cf7ac9bd635126fd94afa1aee7e44590da17279fd",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/experiment.json": "aecea794a0ede378d7917f7d7888b4c99df7b0e14b03d300f840bdbf07d90f15",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/manifest.json": "a3b71810649aaf25fa266e310c980af4f8d4fbecb2e7ad7123fc1e307e438393",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/prepare_training.py": "4ab5a925356685555f2d6db4717336bade3a8e1ca1556fbfa24ad044b4a746fe",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/training_review.json": "68c2d5ac4799af068b285823339cb13c8b9287a6f3bf68c5a7fcb3758d5c6303",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/CACHED_TRANSPORT_CPU_VALIDATION.json": "45fc69de2fa92f632447832e929631c40bc8bcfcc4d1456bdb476261d6404dcd",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/CONTROLLER_LOCAL_VALIDATION.json": "be05949f33d85ea5e94c1419efe394a9a330f34a19c1a152c6d9b4594a7afdaf",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/cached_eval_transport.py": "d60832a69217b35cfe18f96e117ef6954b62a482cf63ba7a63f7d7cd4146ebb5",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/common.py": "cc674735094f3e445bb2f313039f2041ad8b3c07f894be6c5026b0fecbc6ffe2",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/deploy_inference.py": "f80ce8201f772d93f88f104815ef19ae48f649357a396ff66a3744902b5738ae",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/phase5_frozen_eval.py": "0a6b30d45160292cbcb5f7f649d5ff8cc0bfa976ebdb485b0c2c253a8cf86320",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/phase5_preflight.py": "4eb4fba16e19c2272ae653d04a4e5366349f5c827545268976335e34af67904f",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/phase5_report.py": "66232a4a0f0568fee3510c3186e1f54d92cf949c5a90f30bb9331e05b2b47f51",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/NEU/Qwen_35_9B/evaluation/config.json": "ba1a02cdc297aaa82a371fa3fc00b59a5f951ed836bf7afa20fc06de13807fa7",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/NEU/Qwen_35_9B/evaluation/deployment.json": "5c0b1f6a997d851c136b6a8f2ff295853c10275fe7802cbaaf915fcc1e47d626",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/NEU/Qwen_35_9B/evaluation/serve.py": "bfec5d61429b7a9fbbd300bfa7a86af494948e917386fd282ad698c6473227cf",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/arena_hard_v2/generation_config.json": "d5260b484f0457ef2ca10a2fbc264ff873749f464d948b05c820b53410d19c2c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/arena_hard_v2/judge_0_config.json": "b9d1ea306d66b238d5c4f3607c4b33701b2d507e2109f9395a8531ab3cbff0ed",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/arena_hard_v2/judgments_0.jsonl": "f8701cfc89348cc894ebd89cfac7f05fffb646a5c6faddc9c5ec9a36dba061d4",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/arena_hard_v2/metrics.json": "71e5b0e23820dee175047973733868cde026043fb9869bb40d1f2344e7d832f4",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/arena_hard_v2/progress.json": "e64b562e844fbabbfa3bb8ba79be7cc73eb4044b0e61622bf3b4644f71c70a9c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/arena_hard_v2/responses.jsonl": "d56a5b312c940012cedfed779dfb80807872f84d59e1b1bd4424a600b512a012",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/audit.json": "3ea072190766cb23c75128524cff537db3fd260581a2aaeda6565349f7ee5931",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/config.json": "0339a3f98600b940c4e5ed04b1e6df66399cf56c7bc6b4ea6904b9e289a95a56",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/eq_bench3/generation_config.json": "c84e155d4ca0f36a26e6d20f18d7314a78e93ab779d4102fdbe45e456060795a",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/eq_bench3/judge_0_config.json": "90ff85b44fabfe4d198db18ddd6db111fcb805fd769b1a65a3752915b1d3dc67",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/eq_bench3/judgments_0.jsonl": "1d080dcbde5df05ddbe3aae0f75d6041c53574b715275db889b58ba11c98ce7b",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/eq_bench3/metrics.json": "0fa85d81d334be75594d1c6867cf2a8395248a544ad8d541aa0f339dcb108718",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/eq_bench3/progress.json": "c4ca5a8d99333fde4a910858a10e037da42c996cee990c492cf729c407c1291a",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/eq_bench3/responses.jsonl": "b3d0bbf2f629cd67955ca18f789b79e1e46acba0b2c7d683eeed9b7cb7ecf7bd",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/evaluate.py": "132335ff0154c0ba4195a4f714d86bdc3c767292b754644b39454e0f6964cb86",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/ifeval/generation_config.json": "955ea2b931d381afed431e65a23633bcf5bd82f3930ed49d576bbf79fc96f86b",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/ifeval/judgments.jsonl": "927de26796599b3822191f5f7fcbb4268180d4273f9e3833a6b5e916b1242b4b",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/ifeval/metrics.json": "6cab8c9304d821aae0e92b3facc17a1ac4c00e144dcef30551bc5870ea332bda",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/ifeval/progress.json": "5990190fb7b0d1e55e33182cfe5a1e7baf03b353f24cf59624726ba69935bd2b",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/ifeval/responses.jsonl": "cbd74eaa02b5e3390a72eca5fa3dfa906f8884c81b2993c89aadc423decb427d",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/multi_challenge/generation_config.json": "9b1fd2b41627f7d58709fa4037c238719256a08d3d9f1c847b3dfa6bf66163c1",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/multi_challenge/judge_0_config.json": "87910b88ba26126f2a631e1c34e87d712d810ea7d97c7a6069a255002afb5bab",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/multi_challenge/judgments_0.jsonl": "f466f4bc2336a3b767f9d0ccb8e70fbfc7e326d75e851ab312afae9e7babef3f",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/multi_challenge/metrics.json": "f2adc0aa6184f2526bd6d09608b48058aedd9bf457a5d2b4af09b38f483f7b1e",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/multi_challenge/progress.json": "498667c673cd53c86b735a66b91dff0cf58a83ec99cf93a33a0e39f8ce5bf686",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/multi_challenge/responses.jsonl": "9a23b8abdf48c1e8b335c56f03b570a838e25a3249991fe1bc2523e2a1c95ac0",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation/verify_results.py": "0d6508590e3af6d4931fb63761ab4d36bf953bd4126032b6f3e554e1c578140c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/arena_hard_v2/data/arena-hard-v2.0/model_answer/gemini-2.0-flash-001.jsonl": "70f614e1345f787a1da98c239d27f6df3c1d26b411cf894949f934a3039d6f0b",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/arena_hard_v2/data/arena-hard-v2.0/model_answer/o3-mini-2025-01-31.jsonl": "c23a7c255eead99f7f86ad48aa1d8ccdb5b3334f2097e0e1e09184df87265e03",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/arena_hard_v2/data/arena-hard-v2.0/question.jsonl": "a75cef6623db6b27aec810497b059f0659705d7ff48dcbccc5bd5b130728ac73",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/arena_hard_v2/utils/add_markdown_info.py": "a34f3cc457bb35b6ef66854b55359c8669b1c7307c466230cce1ebfa28ab54be",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/arena_hard_v2/utils/bedrock_utils.py": "fcf3f1650fba2990a3f6ec6cd333059d2ed2d9fd9b5c859675c6d61ee1fa1fd8",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/arena_hard_v2/utils/completion.py": "ff2e88971b250f29c682dd9c485a7ea67c46f405e6e8f6901f9f82e7d629a9ab",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/arena_hard_v2/utils/judge_utils.py": "cbb093f4fc27408d8447e946392f26f98538b1e3950f574aca91a0f7595167b4",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/arena_hard_v2/utils/math_utils.py": "c2e927dc0f45771d9b387c29837c76c2b5008b1f6f81819259c288c01f49ade0",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/arena_hard_v2/utils/sglang_server.py": "ff5e616b25bf511e30ac548e7fc2efddbc7a663d827998f1f39ce0c8b2da77ab",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/core/benchmark.py": "d428a288e93a9b09ef73885aa6f7bb58ebfdaf8ed17dcbfd95dfa8c7a63e7840",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/core/conversation.py": "87bc3e0e086c72d018cd62e8bab9cfa21c38f3359530430ce19bcacc02c9e779",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/core/elo.py": "52a03be38d21332699218778a6c1f697682b53cc4642c1422bd4b80deb0c6f48",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/core/elo_config.py": "d6e44ff947db683328f0442d455a6abfb69478c8a8a343430474b6774b5ca0b5",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/core/elo_helpers.py": "54e4cc96dfa0e2faae744ceffdede39b660e9163abc438cf11a1c999b0893d6e",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/core/matchup_selection.py": "f946be7f6dd18a0d37f5d9703a1ee710527b49fdc7aeadb9639bbcaedbc6807a",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/core/pairwise_judging.py": "9555f2cffa8d21df7aa47341cc0bcf94d4d290db5f291219656ba8144c7c7112",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/core/trueskill_solver.py": "39acf5593c95ed54481a070e83be60f40fe4237f80fcacd2772ebf3eafda4767",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/data/debrief_prompt.txt": "5f63279c27e444b7f8b154a190f9ce10a79d4d9cebb556fae97c70346f52c6fa",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/data/pairwise_prompt_eqbench3.txt": "6b0be4d94f089a53e207ef4d916f078bae72609c9f2a4101e0ee1bb33d83b3fd",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/data/pairwise_prompt_eqbench3_analysis.txt": "9ad372bc6feac6bdbd5c0e7c6f0adc01c50fcbeff54edd0721d0bbc76f675bf4",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/data/rubric_scoring_criteria.txt": "11fefca1f467bbabfab8618731338aeeb167141c80756bf2d040d000d8318727",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/data/rubric_scoring_criteria_analysis.txt": "a83e91be22a4233c364c7cd3e611702360af94d045b170b6a88848dabf9d4d21",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/data/rubric_scoring_prompt.txt": "423612b81594601548bf4625ca32c4400637fb3876171a153f3067cbcc0ec939",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/data/rubric_scoring_prompt_analysis.txt": "78927fbb695c5c5374ce23ce39a1add4033abc5c99870e6be9747368df0e3f96",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/data/scenario_master_prompt.txt": "8f76e06423fa6110e2afe9e88561b3511fc97a68dcd1aa1a4459c7af6424785c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/data/scenario_master_prompt_analysis.txt": "b5773ced14ab7fc6d96ae1d6a0da981d7797804359a38d4992ad530edb3915e9",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/data/scenario_master_prompt_message_drafting.txt": "719dc595c4fb3127a0347bbd90ceb2af7bdb5f86a0218df3cc51888a31b3f133",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/data/scenario_notes.txt": "d66a4463bdd45d2a32dac04afcf448346fa4d9cb20e2dbd50c424c86055e2ff9",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/data/scenario_prompts.txt": "736f67a8f18ef5bba1f4eca89e60daef1a26ac58c8fea956560726357da39cae",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/utils/api.py": "4c849b4be6ec233e0b816b549f6e381c4612d2fdf6de44431f0fc2f19f2c4399",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/utils/constants.py": "aded3776b3a07248b647e6b2b2e7abd07f2f7ccde8a86484ae5db255df02980a",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/utils/file_io.py": "58968cfbe5786d4b0d98337e90e396c55b5f6ba2d4690898f3ade791086f8bc8",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/utils/logging_setup.py": "c10336c8c2c4db90dac995349d9a3c8f93e3138514df01c4d043ca51cc5b4f61",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/utils/merge_utils.py": "cde18484b36a20384b8b5d3ad8cf475a8c4f70bb0ec328972defb65f4e41e9a7",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/eq_bench3/utils/utils.py": "4c15f056e5a1860f48eea1845c732b2b5aa66ff3b00176a2a6f6621805de3a08",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/ifeval/instruction_following_eval/data/input_data.jsonl": "67ffeee0fcb87c317c5b08a2de85557b4a7e96ada6178aa645b4954fe4b53d49",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/ifeval/instruction_following_eval/evaluation_lib.py": "35decc06000718487f44d7deafa6d3f48a8ec0886281edf40162c0265b7d248c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/ifeval/instruction_following_eval/evaluation_main.py": "e6df07a04d25a0e7134933ba2400c26e0129a243e449c88df55043e583fc4b4a",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/ifeval/instruction_following_eval/instructions.py": "60e086f5342a03ce8e18b64bbcccf86308f523c08aa826707a562150a52f3edf",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/ifeval/instruction_following_eval/instructions_registry.py": "ec92d72c264f6d906978613085db262356174300370a3fffe6fefd5969ce9cfc",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/ifeval/instruction_following_eval/instructions_test.py": "e677c190c393162f7733e89ca3b47ae98b6d9e816d800681d6e14ad918128de5",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/ifeval/instruction_following_eval/instructions_util.py": "a73797261eee5bf447e279d82a2b700b1bdd3cb1193412dbab1270a85832bc6b",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/ifeval/instruction_following_eval/instructions_util_test.py": "e8e17d434e074c6e2ad997334f4d743b3cafe0abf15cca46d4cf97b94d67ccfe",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_data/multi_challenge/data/benchmark_questions.jsonl": "06c72d1ffa387481910d100b146295f28ab68c4ba0032743eac5c9195edb596e",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/arena_hard_v2/generation_config.json": "77683a4fbc90a3a18753fcffb1f9cb9ea3c2774db25bd4ef12cf451c18a5abe1",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/arena_hard_v2/judge_0_config.json": "587bbd97476bd97d82240ff110a6293239683c68d32438636d7b65f683900ab2",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/arena_hard_v2/judgments_0.jsonl": "c075440744f97874ffe0257c887bacefefb1e52f35ceb0a37adde001a7af82c7",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/arena_hard_v2/metrics.json": "59f1f809d7fe88146ac26921ecc461a0cc9a2fdd4cb89ea278969ef05a980088",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/arena_hard_v2/progress.json": "e64b562e844fbabbfa3bb8ba79be7cc73eb4044b0e61622bf3b4644f71c70a9c",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/arena_hard_v2/progressive_scoring_config.json": "9a8f9d5a1df49cb88acf1f6d77bf2d4631cbf343f9ca6fdc884fcbdd5e26bafe",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/arena_hard_v2/responses.jsonl": "b2071f3f1eada767c01e6a3640f5ae0330c19a5f0979a4adc6b6d0708de1a6d7",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/audit.json": "911f19faa4b2933a241861c9f355cca7c1cb4d2278118666fb928d3f3f7d1533",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/config.json": "1e247adcc686d3c6e808c66ec269f5bc1f5eb73526de227cec592f899211524b",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/eq_bench3/generation_config.json": "6ba537939f759621c560d5b723b0a5d28dd758b5cdeceebf0bde54b417efc0f8",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/eq_bench3/judge_0_config.json": "9f88860320a941d956ecd0b93a6572dc7a3bcd663cc75d18d5d700b475665894",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/eq_bench3/judgments_0.jsonl": "07d8e6da84c844aa742d858f6a2bbdbfe4841cba16b2226c1e52bfe1bd820ba5",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/eq_bench3/metrics.json": "fbe875b1a82a55c8afcc32fb5587cdd96790b62333cce7f0dd7534e7604de80d",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/eq_bench3/progress.json": "c4ca5a8d99333fde4a910858a10e037da42c996cee990c492cf729c407c1291a",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/eq_bench3/responses.jsonl": "c265fea164553e606ee66a2d95d55ac9f7d011a26518cd6e31b264e1f730ef1f",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/evaluate.py": "132335ff0154c0ba4195a4f714d86bdc3c767292b754644b39454e0f6964cb86",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/ifeval/generation_config.json": "f42ee0bb5abb0997e0c8eb589c716932ae725a220925f5feae7c0c368cb8a68f",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/ifeval/judgments.jsonl": "c11ffd4416ef4d5b7f4450e75d4b7e9cbb007cb26297962e2525e840de6ee235",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/ifeval/metrics.json": "8b5db1128fbce7979d8059ece18e97739a3cb7a3bdcccdf9aff8070bcba53e97",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/ifeval/progress.json": "5990190fb7b0d1e55e33182cfe5a1e7baf03b353f24cf59624726ba69935bd2b",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/ifeval/responses.jsonl": "fdac637a980c90901364fdb18520a1f11faaf8967274be01b1739f449e5249e5",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/multi_challenge/generation_config.json": "51e579f92f0b9ffd67c5630e46e114d5ed97c90ae648608dc7bbfc6ca1824cc0",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/multi_challenge/judge_0_config.json": "cfe5f3029afd2a06bf9f0921ffb7bd014913e455ffab44601dd14b610878fed8",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/multi_challenge/judgments_0.jsonl": "d817eda41b871497dc227232fd5517f4d90e5089084dadef94f419e93da44bd7",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/multi_challenge/metrics.json": "d629b7183b5899cfd4bc8c6df4fb13ed01df6708bbd478112259059e638a6170",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/multi_challenge/progress.json": "498667c673cd53c86b735a66b91dff0cf58a83ec99cf93a33a0e39f8ce5bf686",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/multi_challenge/responses.jsonl": "09eff76507957f8540f863817359a922f1cb6d5dac9a6d9e5ee8f19791d08f69",
+    "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B/verify_results.py": "0d6508590e3af6d4931fb63761ab4d36bf953bd4126032b6f3e554e1c578140c"
+  },
+  "models": {
+    "body_format": {
+      "model_dir": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model",
+      "index_sha256": "941305ff9f77551e145a6cea976ef456cd5cb208cbece99f168376c752fcf96c",
+      "file_identities": {
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model-00001-of-00004.safetensors": {
+          "size": 4942706120,
+          "mtime_ns": 1791127396454492000,
+          "inode": 40532396647720659,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model-00002-of-00004.safetensors": {
+          "size": 4987757928,
+          "mtime_ns": 1791127403246239000,
+          "inode": 40532396647720687,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model-00003-of-00004.safetensors": {
+          "size": 4954810240,
+          "mtime_ns": 1791127409610935000,
+          "inode": 40532396647720711,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model-00004-of-00004.safetensors": {
+          "size": 3934446832,
+          "mtime_ns": 1791127414808121000,
+          "inode": 40532396647720732,
+          "device": 205
+        }
+      },
+      "headers": {
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model-00001-of-00004.safetensors": {
+          "header_sha256": "42ef31dbba3592511696c9110d1dba4d8817e64e558002578bd5cbc102abd901",
+          "tensor_count": 36,
+          "header_bytes": 4672,
+          "exact_contiguous_file_bounds": true
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model-00002-of-00004.safetensors": {
+          "header_sha256": "5c0213fa6e05e137723f5a9514ee7ca4e3bcd268a946dab9f11fdb7d7746caba",
+          "tensor_count": 150,
+          "header_bytes": 19552,
+          "exact_contiguous_file_bounds": true
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model-00003-of-00004.safetensors": {
+          "header_sha256": "b8baeaae09549ce18cc1ec7ed9e2070990f7375a8bddac65bb5262cfb6cd9511",
+          "tensor_count": 154,
+          "header_bytes": 20216,
+          "exact_contiguous_file_bounds": true
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/body_format/NEU/Qwen_35_9B/model/model-00004-of-00004.safetensors": {
+          "header_sha256": "2db97c47a628c411d6fc5ce98a0bc35ff770985d7c8d02aab410f9ef53def544",
+          "tensor_count": 420,
+          "header_bytes": 49160,
+          "exact_contiguous_file_bounds": true
+        }
+      },
+      "scope": "All shard structure/header hashes and stable file identities; no full merged payload checksum."
+    },
+    "sup_lr1e5": {
+      "model_dir": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model",
+      "index_sha256": "941305ff9f77551e145a6cea976ef456cd5cb208cbece99f168376c752fcf96c",
+      "file_identities": {
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/model-00001-of-00004.safetensors": {
+          "size": 4942706120,
+          "mtime_ns": 1791146300010835000,
+          "inode": 40532396647798493,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/model-00002-of-00004.safetensors": {
+          "size": 4987757928,
+          "mtime_ns": 1791146306329994000,
+          "inode": 40532396647798560,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/model-00003-of-00004.safetensors": {
+          "size": 4954810240,
+          "mtime_ns": 1791146312945264000,
+          "inode": 40532396647798595,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/model-00004-of-00004.safetensors": {
+          "size": 3934446832,
+          "mtime_ns": 1791146318285674000,
+          "inode": 40532396647798654,
+          "device": 205
+        }
+      },
+      "headers": {
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/model-00001-of-00004.safetensors": {
+          "header_sha256": "42ef31dbba3592511696c9110d1dba4d8817e64e558002578bd5cbc102abd901",
+          "tensor_count": 36,
+          "header_bytes": 4672,
+          "exact_contiguous_file_bounds": true
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/model-00002-of-00004.safetensors": {
+          "header_sha256": "5c0213fa6e05e137723f5a9514ee7ca4e3bcd268a946dab9f11fdb7d7746caba",
+          "tensor_count": 150,
+          "header_bytes": 19552,
+          "exact_contiguous_file_bounds": true
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/model-00003-of-00004.safetensors": {
+          "header_sha256": "b8baeaae09549ce18cc1ec7ed9e2070990f7375a8bddac65bb5262cfb6cd9511",
+          "tensor_count": 154,
+          "header_bytes": 20216,
+          "exact_contiguous_file_bounds": true
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/sup_lr1e5/NEU/Qwen_35_9B/model/model-00004-of-00004.safetensors": {
+          "header_sha256": "2db97c47a628c411d6fc5ce98a0bc35ff770985d7c8d02aab410f9ef53def544",
+          "tensor_count": 420,
+          "header_bytes": 49160,
+          "exact_contiguous_file_bounds": true
+        }
+      },
+      "scope": "All shard structure/header hashes and stable file identities; no full merged payload checksum."
+    },
+    "aug_sup_lr1e5": {
+      "model_dir": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model",
+      "index_sha256": "941305ff9f77551e145a6cea976ef456cd5cb208cbece99f168376c752fcf96c",
+      "file_identities": {
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/model-00001-of-00004.safetensors": {
+          "size": 4942706120,
+          "mtime_ns": 1791148078713871000,
+          "inode": 40532396647809284,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/model-00002-of-00004.safetensors": {
+          "size": 4987757928,
+          "mtime_ns": 1791148085096938000,
+          "inode": 40532396647809341,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/model-00003-of-00004.safetensors": {
+          "size": 4954810240,
+          "mtime_ns": 1791148091941416000,
+          "inode": 40532396647809385,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/model-00004-of-00004.safetensors": {
+          "size": 3934446832,
+          "mtime_ns": 1791148097510220000,
+          "inode": 40532396647809411,
+          "device": 205
+        }
+      },
+      "headers": {
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/model-00001-of-00004.safetensors": {
+          "header_sha256": "42ef31dbba3592511696c9110d1dba4d8817e64e558002578bd5cbc102abd901",
+          "tensor_count": 36,
+          "header_bytes": 4672,
+          "exact_contiguous_file_bounds": true
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/model-00002-of-00004.safetensors": {
+          "header_sha256": "5c0213fa6e05e137723f5a9514ee7ca4e3bcd268a946dab9f11fdb7d7746caba",
+          "tensor_count": 150,
+          "header_bytes": 19552,
+          "exact_contiguous_file_bounds": true
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/model-00003-of-00004.safetensors": {
+          "header_sha256": "b8baeaae09549ce18cc1ec7ed9e2070990f7375a8bddac65bb5262cfb6cd9511",
+          "tensor_count": 154,
+          "header_bytes": 20216,
+          "exact_contiguous_file_bounds": true
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/aug_sup_lr1e5/NEU/Qwen_35_9B/model/model-00004-of-00004.safetensors": {
+          "header_sha256": "2db97c47a628c411d6fc5ce98a0bc35ff770985d7c8d02aab410f9ef53def544",
+          "tensor_count": 420,
+          "header_bytes": 49160,
+          "exact_contiguous_file_bounds": true
+        }
+      },
+      "scope": "All shard structure/header hashes and stable file identities; no full merged payload checksum."
+    },
+    "ssr_lr1e5": {
+      "model_dir": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model",
+      "index_sha256": "941305ff9f77551e145a6cea976ef456cd5cb208cbece99f168376c752fcf96c",
+      "file_identities": {
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/model-00001-of-00004.safetensors": {
+          "size": 4942706120,
+          "mtime_ns": 1791149943052999000,
+          "inode": 40532396647820059,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/model-00002-of-00004.safetensors": {
+          "size": 4987757928,
+          "mtime_ns": 1791149949030870000,
+          "inode": 40532396647820120,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/model-00003-of-00004.safetensors": {
+          "size": 4954810240,
+          "mtime_ns": 1791149954962132000,
+          "inode": 40532396647820142,
+          "device": 205
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/model-00004-of-00004.safetensors": {
+          "size": 3934446832,
+          "mtime_ns": 1791149959751705000,
+          "inode": 40532396647820193,
+          "device": 205
+        }
+      },
+      "headers": {
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/model-00001-of-00004.safetensors": {
+          "header_sha256": "42ef31dbba3592511696c9110d1dba4d8817e64e558002578bd5cbc102abd901",
+          "tensor_count": 36,
+          "header_bytes": 4672,
+          "exact_contiguous_file_bounds": true
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/model-00002-of-00004.safetensors": {
+          "header_sha256": "5c0213fa6e05e137723f5a9514ee7ca4e3bcd268a946dab9f11fdb7d7746caba",
+          "tensor_count": 150,
+          "header_bytes": 19552,
+          "exact_contiguous_file_bounds": true
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/model-00003-of-00004.safetensors": {
+          "header_sha256": "b8baeaae09549ce18cc1ec7ed9e2070990f7375a8bddac65bb5262cfb6cd9511",
+          "tensor_count": 154,
+          "header_bytes": 20216,
+          "exact_contiguous_file_bounds": true
+        },
+        "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/runs/ssr_lr1e5/NEU/Qwen_35_9B/model/model-00004-of-00004.safetensors": {
+          "header_sha256": "2db97c47a628c411d6fc5ce98a0bc35ff770985d7c8d02aab410f9ef53def544",
+          "tensor_count": 420,
+          "header_bytes": 49160,
+          "exact_contiguous_file_bounds": true
+        }
+      },
+      "scope": "All shard structure/header hashes and stable file identities; no full merged payload checksum."
+    }
+  },
+  "anchors": {
+    "base9b": {
+      "evaluation_dir": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/test_scripts/Qwen_35_9B",
+      "verified_copy_dir": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/anchor_checks/base9b",
+      "audit_sha256": "911f19faa4b2933a241861c9f355cca7c1cb4d2278118666fb928d3f3f7d1533",
+      "copied_verified_audit_sha256": "911f19faa4b2933a241861c9f355cca7c1cb4d2278118666fb928d3f3f7d1533",
+      "datasets": {
+        "ifeval": {
+          "n": 541,
+          "dataset_hash": "cff73ece68a97806515d9f9ca45b464f9eb8b6e52caed95e91c2101b9fe031b5"
+        },
+        "multi_challenge": {
+          "n": 273,
+          "dataset_hash": "1056d7b45506f96e6a52157534c561e1d39793bf4fa423d9631f043adefa3631"
+        },
+        "eq_bench3": {
+          "n": 45,
+          "dataset_hash": "3d65b4133682e16dbf0d14d47b6d1b170479211b0f23459dd0a6c38ce51d2903"
+        },
+        "arena_hard_v2": {
+          "n": 750,
+          "dataset_hash": "810f4247b0f85f4eeaffcbe3843702ccc80d7d26336c132d0908e433bebe4b31"
+        }
+      }
+    },
+    "neu_lr1e5": {
+      "evaluation_dir": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/baseline_method/diagnostics/lr_control_20261004/NEU/Qwen_35_9B/evaluation",
+      "verified_copy_dir": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/anchor_checks/neu_lr1e5",
+      "audit_sha256": "3ea072190766cb23c75128524cff537db3fd260581a2aaeda6565349f7ee5931",
+      "copied_verified_audit_sha256": "3ea072190766cb23c75128524cff537db3fd260581a2aaeda6565349f7ee5931",
+      "datasets": {
+        "ifeval": {
+          "n": 541,
+          "dataset_hash": "cff73ece68a97806515d9f9ca45b464f9eb8b6e52caed95e91c2101b9fe031b5"
+        },
+        "multi_challenge": {
+          "n": 273,
+          "dataset_hash": "1056d7b45506f96e6a52157534c561e1d39793bf4fa423d9631f043adefa3631"
+        },
+        "eq_bench3": {
+          "n": 45,
+          "dataset_hash": "3d65b4133682e16dbf0d14d47b6d1b170479211b0f23459dd0a6c38ce51d2903"
+        },
+        "arena_hard_v2": {
+          "n": 750,
+          "dataset_hash": "810f4247b0f85f4eeaffcbe3843702ccc80d7d26336c132d0908e433bebe4b31"
+        }
+      }
+    }
+  },
+  "datasets": {
+    "ifeval": {
+      "n": 541,
+      "dataset_hash": "cff73ece68a97806515d9f9ca45b464f9eb8b6e52caed95e91c2101b9fe031b5"
+    },
+    "multi_challenge": {
+      "n": 273,
+      "dataset_hash": "1056d7b45506f96e6a52157534c561e1d39793bf4fa423d9631f043adefa3631"
+    },
+    "eq_bench3": {
+      "n": 45,
+      "dataset_hash": "3d65b4133682e16dbf0d14d47b6d1b170479211b0f23459dd0a6c38ce51d2903"
+    },
+    "arena_hard_v2": {
+      "n": 750,
+      "dataset_hash": "810f4247b0f85f4eeaffcbe3843702ccc80d7d26336c132d0908e433bebe4b31"
+    }
+  },
+  "summary_script": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/tools/phase5_report.py",
+  "limits": {
+    "batch": 21600,
+    "model": 7200,
+    "serve": 500,
+    "generate": 1800,
+    "score": {
+      "ifeval": 600,
+      "multi_challenge": 900,
+      "eq_bench3": 900,
+      "arena_hard_v2": 1800
+    },
+    "audit": 600,
+    "summary": 600,
+    "cleanup": 90,
+    "service_lease": 7300
+  },
+  "confirmation_access": false,
+  "cpu_payload_parity_cases": 24,
+  "shared_filesystem_probe": {
+    "passed": true,
+    "filesystem": "/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/pattern_20261004/phase5_frozen_terminal_eval/preflight_scratch",
+    "atomic_file_and_directory_fsync": true,
+    "nonblocking_lock_exclusion": true,
+    "successful_cache_replay_without_send": true,
+    "durable_synthetic_dispatches": 1,
+    "model_or_API_calls": 0
+  }
+}
