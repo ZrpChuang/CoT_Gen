@@ -260,6 +260,10 @@ def apply_scope(jobs):
 
 
 def set_models(models):
+    for name in ("supervisor.json", "controller.json"):
+        path = root() / "state" / name
+        if path.exists() and alive(read(path)):
+            raise DataError("Stop the queue before changing model scope")
     if not models or not set(models) <= set(config()["models"]):
         raise DataError("Unknown model scope")
     jobs_path = root() / "state/jobs.json"
@@ -295,7 +299,11 @@ def marker(job):
         return root() / "state/checks" / ("capacity_" + values["model"] + ".json")
     if kind == "tune":
         return (
-            root() / "efficiency" / values["model"] / values["milestone"] / "plan.json"
+            root()
+            / "efficiency"
+            / values["model"]
+            / str(values["milestone"])
+            / "plan.json"
         )
     if kind == "generate":
         return root() / "data/generation_complete.json"

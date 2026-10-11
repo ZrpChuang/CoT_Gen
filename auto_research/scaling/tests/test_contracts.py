@@ -120,6 +120,13 @@ class SelectionContracts(unittest.TestCase):
 
 
 class QueueContracts(unittest.TestCase):
+    def test_tuning_marker_handles_integer_milestone(self):
+        with patch.object(queue, "root", return_value=Path("/artifacts")):
+            job = {"kind": "tune", "args": ["--model", "Qwen_35_9B", "--milestone", 0]}
+            self.assertEqual(
+                queue.marker(job), Path("/artifacts/efficiency/Qwen_35_9B/0/plan.json")
+            )
+
     def test_dispatch_executes_only_after_durable_ack(self):
         with tempfile.TemporaryDirectory() as temp:
             directory = Path(temp)
