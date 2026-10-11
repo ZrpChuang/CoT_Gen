@@ -1,6 +1,6 @@
 # 9B 训练效率记录
 
-更新时间：2026-10-11。当前正式配置保留每卡 batch=1；27B 暂缓。100K 正式扩训仍等待教师/裁判凭证，以下是独立训练速度试验。
+更新时间：2026-10-12。正式配置保留每卡 batch=1；27B 暂缓。旧计算任务已停止，本次维护没有新增 GPU 测量；远端最新状态待新资源核验。以下为 2026-10-11 已完成的独立训练速度试验。
 
 ## 首轮实际测量
 
@@ -27,13 +27,19 @@
 
 每次只改变一个变量，冻结训练输入、监督 mask、global batch、学习率、LoRA、8K 上限和评测。两次候选均超过较快 baseline 至少 10%，且通过完整长度容量、有限数值、梯度等价和恢复检查，才考虑正式采用。失败和丢弃记录保留。
 
+### 内核试验准备（2026-10-12，尚未执行）
+
+- 官方 `causal_conv1d` 提供 PyTorch reference 与 autograd 实现。恢复 GPU 后先固定源码版本，核对当前 Qwen3.5 实际调用的卷积参数、dtype、布局与激活，再检查输出和反向误差；不能以成功导入代替核验模型已使用该路径。[官方实现](https://github.com/Dao-AILab/causal-conv1d/blob/main/causal_conv1d/causal_conv1d_interface.py)
+- Liger 当前源码的 Qwen3.5 patch 支持 `Qwen3_5ForConditionalGeneration`，但默认同时启用 fused loss、RMSNorm 和 SwiGLU。研究融合 loss 时必须显式关闭其他 patch，分别核验 PEFT 包装、监督 mask、loss 归一化和梯度；源码支持不代表与已装 Transformers 5.12.1 已验证兼容。[官方 patch](https://github.com/linkedin/Liger-Kernel/blob/main/src/liger_kernel/transformers/monkey_patch.py)
+- 安装仅放在隔离目录，固定版本及源码哈希，不更换共享环境的 Torch、Transformers 或 NumPy。固定数据先 baseline，再单变量候选与复测；保存环境清单、实际启用路径、误差、吞吐、GPU 小时、显存与失败原因。只有门槛全部通过，才在尚未开始的阶段应用。
+
 参考：[Transformers Qwen3.5](https://huggingface.co/docs/transformers/v5.12.0/en/model_doc/qwen3_5)、[causal-conv1d](https://github.com/Dao-AILab/causal-conv1d)、[Liger Kernel](https://github.com/linkedin/Liger-Kernel)。
 
 ## 运行与维护
 
 - 本轮启用 15 项 9B、60 项最终评测；27B 的 4 项训练、16 项评测保持暂缓。
 - 正式训练每 5 步记录所有 rank 汇总的真实 sequence / supervised token/s、padding、峰值显存、GPU 小时和 ETA，W&B 侧车同步。
-- 远端 supervisor 独立执行队列。每 6 小时的后续维护负责新效率试验、代码整理和 Git 同步，只在有实质变化时通知。
+- 计算任务存活时，远端 supervisor 独立执行队列；整个计算任务结束后需新资源恢复。每 6 小时的后续维护负责新效率试验、代码整理和 Git 同步，只在有实质变化时通知。当前恢复说明见 [扩训 TODO](SCALE_100K_TODO.md#更换计算任务后恢复)。
 - Git 维护源码、配置示例和核心结论；权重、逐题回答、请求缓存、日志和主机配置留在产物库。原始回答等从 Git 索引移除，服务器文件保留。
 
 ## 证据位置
