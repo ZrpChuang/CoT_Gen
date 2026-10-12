@@ -186,12 +186,16 @@ class GpuReservationContracts(unittest.TestCase):
         output = subprocess.CompletedProcess(
             [], 0, "GPU-0, 456\nGPU-1, 789\nGPU-2, 987\n", ""
         )
+
+        def group(pid):
+            if pid == 987:
+                raise ProcessLookupError()
+            return {456: 123, 789: 999}[pid]
+
         with (
             patch.object(gpu, "alive", return_value=True),
             patch.object(gpu.subprocess, "run", return_value=output),
-            patch.object(
-                gpu.os, "getpgid", side_effect=[123, 999, ProcessLookupError()]
-            ),
+            patch.object(gpu.os, "getpgid", side_effect=group),
         ):
             self.assertEqual(gpu.external_gpus(inventory, records), {1, 2})
 
