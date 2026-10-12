@@ -5,8 +5,9 @@ import sys
 import tempfile
 import time
 import unittest
+from contextlib import nullcontext
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from core import common, data, gpu, queue, train
 from core.common import freeze_lines, prompt_token_count, read, write
@@ -162,7 +163,7 @@ class GpuReservationContracts(unittest.TestCase):
                     set(),
                 )
 
-    def test_reservations_yield_to_leases_and_foreign_processes(self):
+    def test_research_dispatch_respects_leases_and_foreign_processes(self):
         inventory = [
             {
                 "gpu": i,
@@ -179,6 +180,17 @@ class GpuReservationContracts(unittest.TestCase):
         with patch.object(gpu, "config", return_value=cfg):
             devices = gpu.available(inventory, {str(i): {} for i in range(3)}, {1}, {2})
         self.assertEqual(devices, [0, 4])
+
+    def test_reservation_retains_busy_cards_until_our_task_leases_them(self):
+        inventory = [
+            {"gpu": 0, "free_mib": 96000, "utilization": 80},
+            {"gpu": 1, "free_mib": 1000, "utilization": 80},
+            {"gpu": 2, "free_mib": 96000, "utilization": 0},
+            {"gpu": 3, "free_mib": 1000, "utilization": 80},
+            {"gpu": 4, "free_mib": 96000, "utilization": 0},
+        ]
+        with patch.object(gpu, "config", return_value={"gpus": [0, 1, 2, 3]}):
+            self.assertEqual(gpu.reservation_devices(inventory, {"1": {}}, {2}), [0, 1])
 
     def test_compute_process_ownership_uses_exact_live_group(self):
         inventory = [{"gpu": i, "uuid": "GPU-" + str(i)} for i in range(3)]
@@ -246,6 +258,57 @@ class GpuReservationContracts(unittest.TestCase):
 
 
 class QueueContracts(unittest.TestCase):
+    def test_foreign_cuda_does_not_release_reservation_before_dispatch(self):
+        class IterationFinished(Exception):
+            pass
+
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)
+            job = {
+                "id": "generate",
+                "kind": "generate",
+                "status": "running",
+                "identity": {"pid": 123},
+                "category": "generation",
+                "gpus": [],
+                "gpu_count": 0,
+                "priority": 1,
+                "started_at": time.time(),
+            }
+            write(out / "state/jobs.json", {"generate": job})
+            records = {"0": {"identity": {"pid": 456}}}
+            inventory = [
+                {"gpu": 0, "free_mib": 96000, "utilization": 80, "uuid": "GPU-0"}
+            ]
+            db = MagicMock()
+            db.__enter__.return_value.execute.return_value.fetchone.return_value = (
+                1077,
+            )
+            cfg = queue.config()
+            with (
+                patch.object(queue, "root", return_value=out),
+                patch.object(queue, "lock", return_value=nullcontext()),
+                patch.object(queue, "definitions", return_value={"generate": job}),
+                patch.object(queue, "apply_scope"),
+                patch.object(queue, "adopt"),
+                patch.object(queue, "alive", return_value=True),
+                patch.object(queue, "last_progress", return_value=time.time()),
+                patch.object(queue, "database", return_value=db),
+                patch.object(queue, "gpu_inventory", return_value=inventory),
+                patch.object(queue, "render"),
+                patch.object(queue, "log"),
+                patch.object(queue.time, "sleep", side_effect=IterationFinished),
+                patch.object(gpu, "config", return_value=cfg),
+                patch.object(gpu, "load", return_value=records),
+                patch.object(gpu, "external_gpus", return_value={0}),
+                patch.object(gpu, "release") as release,
+                patch.object(gpu, "maintain") as maintain,
+            ):
+                with self.assertRaises(IterationFinished):
+                    queue.run()
+            release.assert_not_called()
+            maintain.assert_called_once_with(records, [0])
+
     def test_fresh_study_has_no_historical_tuning_fixture(self):
         cfg = {
             **queue.config(),

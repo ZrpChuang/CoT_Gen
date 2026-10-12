@@ -908,7 +908,6 @@ def run():
                 inventory = gpu_inventory()
                 held = reservations.load()
                 external = reservations.external_gpus(inventory, held)
-                reservations.release(held, list(external))
             except (OSError, subprocess.SubprocessError):
                 time.sleep(cfg["poll_seconds"])
                 continue
@@ -1009,12 +1008,18 @@ def run():
                 write(intent.parent / "ack.json", {"time": time.time()})
                 log("job_started", job=job["id"], gpus=devices, launch=job["launches"])
             write(path, jobs)
-            # Recheck foreign processes after potentially slow dispatch work.
+            # Retain allocated contexts until our ready GPU work takes over.
             fresh_inventory = gpu_inventory()
-            fresh_external = reservations.external_gpus(fresh_inventory, held)
-            reservations.release(held, list(fresh_external))
-            idle = reservations.available(fresh_inventory, held, leased, fresh_external)
-            reservations.maintain(held, [gpu for gpu in available if gpu in idle])
+            leased = {
+                device
+                for job in jobs.values()
+                if job["status"] in ("running", "dispatching")
+                for device in job.get("gpus", [])
+            }
+            reservations.maintain(
+                held,
+                reservations.reservation_devices(fresh_inventory, held, leased),
+            )
             render(jobs, accepted, fresh_inventory)
             if all(j["status"] in ("done", "deferred") for j in jobs.values()):
                 reservations.stop_all()

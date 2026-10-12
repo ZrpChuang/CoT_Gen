@@ -122,6 +122,17 @@ def available(inventory, records, leased, external):
     ]
 
 
+def reservation_devices(inventory, records, leased):
+    """Keep allocated contexts until our GPU work is ready to take over."""
+    return [
+        row["gpu"]
+        for row in inventory
+        if row["gpu"] in config()["gpus"]
+        and row["gpu"] not in leased
+        and (str(row["gpu"]) in records or row["free_mib"] >= 4096)
+    ]
+
+
 def release(records, devices):
     for device in devices:
         record = records.get(str(device))
@@ -149,10 +160,20 @@ def stop_all():
 def snapshot():
     path = folder() / "processes.json"
     records = read(path)["gpus"] if path.exists() else {}
-    return [
-        {"gpu": int(key), "status": rec["status"], "alive": alive(rec.get("identity"))}
-        for key, rec in records.items()
-    ]
+    rows = []
+    for key, rec in records.items():
+        ready = folder() / key / "ready.json"
+        rows.append(
+            {
+                "gpu": int(key),
+                "status": rec["status"],
+                "alive": alive(rec.get("identity")),
+                "mode": read(ready).get("mode", "starting")
+                if ready.exists()
+                else "starting",
+            }
+        )
+    return rows
 
 
 def maintain(records, devices):
@@ -240,20 +261,21 @@ def hold(device):
     candidates = {pid for name, pid in compute_processes() if name == gpu_uuid} - before
     if len(candidates) != 1:
         raise DataError("Cannot uniquely attest reservation CUDA process")
-    write(
-        folder() / str(device) / "ready.json",
-        {
-            "time": time.time(),
-            "gpu": device,
-            "uuid": gpu_uuid,
-            "nvml_pid": candidates.pop(),
-            "worker": identity(os.getpid()),
-            "kind": "resource_reservation",
-            "research_optimizer_steps": 0,
-            "allocated_mib": torch.cuda.memory_allocated() / 2**20,
-        },
-    )
+    ready_path = folder() / str(device) / "ready.json"
+    witness = {
+        "time": time.time(),
+        "gpu": device,
+        "uuid": gpu_uuid,
+        "nvml_pid": candidates.pop(),
+        "worker": identity(os.getpid()),
+        "kind": "resource_reservation",
+        "research_optimizer_steps": 0,
+        "allocated_mib": torch.cuda.memory_allocated() / 2**20,
+    }
+    write(ready_path, witness)
     lease = folder() / "processes.json"
+    next_check = 0
+    external = True
     while not finished.is_set():
         if (
             any(
@@ -265,6 +287,24 @@ def hold(device):
             or not settings().get("enabled")
         ):
             break
+        if time.monotonic() >= next_check:
+            try:
+                external = any(
+                    name == gpu_uuid and pid != witness["nvml_pid"]
+                    for name, pid in compute_processes()
+                )
+            except (OSError, subprocess.SubprocessError):
+                # Preserve the context without competing when ownership is unknown.
+                external = True
+            mode = "context_only" if external else "keepalive"
+            if witness.get("mode") != mode:
+                witness["mode"] = mode
+                write(ready_path, witness)
+                log("gpu_reservation_mode", gpu=device, mode=mode)
+            next_check = time.monotonic() + 5
+        if external:
+            finished.wait(1)
+            continue
         deadline = time.monotonic() + 0.25
         while time.monotonic() < deadline and not finished.is_set():
             torch.mm(a, b, out=output)
