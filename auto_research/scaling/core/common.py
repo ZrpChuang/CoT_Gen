@@ -217,12 +217,17 @@ def source_module(path, name):
 
 
 def transport():
+    from .api import reserve_quota
+
     os.environ["COT_API_SECRETS"] = os.environ.get(
         "COT_API_SECRETS", config()["api_credentials"]
     )
-    return source_module(
+    module = source_module(
         BASE / "NEU/Qwen_35_9B/evaluation/evaluate.py", "scale_frozen_transport"
     )
+    # Preserve frozen HTTP/prompt/sampling behavior; only tighten admission limits.
+    module.reserve_quota = reserve_quota
+    return module
 
 
 def database():

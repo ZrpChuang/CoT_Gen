@@ -1,6 +1,7 @@
 """Protect data isolation, deterministic selectors, and durable queue dependencies."""
 
 import subprocess
+import sqlite3
 import sys
 import tempfile
 import time
@@ -9,10 +10,61 @@ from contextlib import nullcontext
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from core import common, data, gpu, queue, train
+from core import api, common, data, gpu, queue, train
 from core.common import freeze_lines, prompt_token_count, read, write
 from core.data import Decontaminator, context
 from core.variants import choose, random_assign
+
+
+class ApiContracts(unittest.TestCase):
+    def test_per_key_spacing_and_independent_credentials(self):
+        with tempfile.TemporaryDirectory() as temp:
+            clock = [1000.0]
+
+            def advance(seconds):
+                clock[0] += seconds
+
+            with (
+                patch.object(api, "root", return_value=Path(temp)),
+                patch.object(api.time, "time", side_effect=lambda: clock[0]),
+                patch.object(api.time, "sleep", side_effect=advance),
+            ):
+                path, first = api.reserve_quota("fixture-a", 100)
+                _, other = api.reserve_quota("fixture-b", 100)
+                _, second = api.reserve_quota("fixture-a", 100)
+            with sqlite3.connect(path) as db:
+                times = dict(db.execute("SELECT id,t FROM calls"))
+                fingerprints = [row[0] for row in db.execute("SELECT k FROM calls")]
+            self.assertEqual(times[first], times[other])
+            self.assertGreaterEqual(times[second] - times[first], 2)
+            self.assertNotIn("fixture-a", fingerprints)
+
+    def test_request_and_token_limits_wait_without_oversubscription(self):
+        class WaitingForQuota(Exception):
+            pass
+
+        for field in ("requests_per_minute_per_key", "tokens_per_minute_per_key"):
+            with self.subTest(field=field), tempfile.TemporaryDirectory() as temp:
+                with patch.object(api, "root", return_value=Path(temp)):
+                    policy = api.limits()
+                policy[field] = 1 if field.startswith("requests") else 150
+                clock = [1000.0]
+                with (
+                    patch.object(api, "root", return_value=Path(temp)),
+                    patch.object(api, "limits", return_value=policy),
+                    patch.object(api.time, "time", side_effect=lambda: clock[0]),
+                    patch.object(api.time, "sleep", side_effect=WaitingForQuota),
+                ):
+                    path, _ = api.reserve_quota("fixture", 100)
+                    clock[0] = 1003
+                    with self.assertRaises(WaitingForQuota):
+                        api.reserve_quota("fixture", 100)
+                    with sqlite3.connect(path) as db:
+                        self.assertEqual(
+                            db.execute("SELECT COUNT(*) FROM calls").fetchone()[0], 1
+                        )
+                    clock[0] = 1061.1
+                    api.reserve_quota("fixture", 100)
 
 
 class DataContracts(unittest.TestCase):

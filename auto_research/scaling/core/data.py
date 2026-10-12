@@ -333,6 +333,7 @@ def generation_policy():
 def generate():
     from transformers import AutoTokenizer
 
+    from .api import limits
     from .variants import canonicalize
 
     cfg = config()
@@ -519,7 +520,9 @@ def generate():
         return combined, None
 
     target = cfg["target_unique_inputs"] - cfg["parent_unique_inputs"]
-    with futures.ThreadPoolExecutor(max_workers=cfg["generation_workers"]) as pool:
+    concurrency = min(cfg["generation_workers"], limits()["generation_concurrency"])
+    log("generation_api_limits", **limits(), effective_concurrency=concurrency)
+    with futures.ThreadPoolExecutor(max_workers=concurrency) as pool:
         while True:
             if not credentials_ready():
                 raise Waiting(

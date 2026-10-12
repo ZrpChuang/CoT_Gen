@@ -2,7 +2,9 @@
 
 2026-10-12 用户纠正方案：**GPT 生成答案、GPT 构造四种 CoT；丢弃旧训练权重，从原始基座重新训练。** 旧 `scale_100k_20261011` 队列已退休，禁止再次启动或作为本次 parent。旧结果仅供历史问题分析。
 
-当前产物：`CoT_Analyse_artifacts/gpt_fresh_100k_20261012/`。本轮启用 15 项 9B，27B 的 4 项暂缓。用户于 2026-10-12 明确恢复持续监测并要求空闲时保卡：Codex 每 10 分钟复核，远端 supervisor 独立执行队列，每 15 秒检查资源。
+当前产物：`CoT_Analyse_artifacts/gpt_fresh_100k_20261012/`。本轮启用 15 项 9B，27B 的 4 项暂缓。用户于 2026-10-12 明确恢复持续监测并要求空闲时保卡，随后将 Codex 巡检改为每小时一次；远端 supervisor 独立执行队列，每 15 秒检查资源，此检查不调用 GPT。
+
+GPT 数据生成采用保守运行限流：8 路生成并发、每密钥滑动 60 秒最多 30 次请求及 150 万 token 预算、同密钥发起间隔至少 2 秒。重试也计入次数和 token 预算；成功返回后按 usage 校正预留 token。两个密钥最多合计 60 次/分钟，实际速度取决于响应延迟。配置在产物 `config/operations.json` 的 `api_limits`，账本为 `state/api_quota.sqlite`，只记录密钥哈希。此限流仅覆盖通过 scaling transport 的请求，不修改冻结评测脚本的独立调用策略。模型、提示词、采样、答案与质检规则不变。
 
 ## 监测与保卡
 
@@ -84,6 +86,7 @@ cd /mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/scaling
 | `pipeline.py` | 启动、状态、停止和 worker 命令 |
 | `config.example.json` / 本地 `config.json` | 目标、阶段、资源、环境和重试规则；不保存密钥 |
 | `core/common.py` | 原子落盘、进程身份、配置、原生序列化 |
+| `core/api.py` | GPT 生成运行限流、逐次重试额度与共享事务账本 |
 | `core/data.py` | 原始数据审计、恢复生成、共享配对数据 |
 | `core/variants.py` | 历史格式对、精确正文映射、NLL 和随机对照 |
 | `core/train.py` | 内存映射 token 数据、LoRA 续训、checkpoint、W&B |
