@@ -2,7 +2,7 @@
 
 ## 2026-10-12 用户纠正：旧方案退休，从基座重训
 
-以下旧续训记录仅作历史证据，已经停止执行。当前方案为 GPT 同时生成共享答案及四方法解题说明；100K 全新数据，15 项 9B 从原始基座新建 LoRA，27B 继续暂缓。旧 checkpoint-131、旧 Qwen 答案、旧 GPT 说明及旧生成缓存均不用于新训练。Codex 定时维护保持关闭。
+以下旧续训记录仅作历史证据，已经停止执行。当前方案为 GPT 同时生成共享答案及四方法解题说明；100K 全新数据，15 项 9B 从原始基座新建 LoRA，27B 继续暂缓。旧 checkpoint-131、旧 Qwen 答案、旧 GPT 说明及旧生成缓存均不用于新训练。用户随后明确恢复持续监测与空闲保卡：Codex 每 10 分钟复核，远端队列每 15 秒检查，保卡自动让位于正式任务。
 
 当前产物：`CoT_Analyse_artifacts/gpt_fresh_100k_20261012/`；入口仍为 `auto_research/scaling/pipeline.py`。详细方案见 [训练入口说明](../../auto_research/scaling/README.md) 和新产物 `reports/PLAN.md`。进度读取新产物 `reports/STATUS.md` 并核对进程，不能由下文旧目录推断本次状态。
 

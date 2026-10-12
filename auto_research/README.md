@@ -4,4 +4,4 @@
 - [范围、部署验证与 TODO](../baseline_method/docs/SCALE_100K_TODO.md)：当前执行状态、数据口径和比较限制。
 - `pattern_20261004/`：历史格式选择与对照实验的冻结数据、结果和复用实现；保留证据。
 
-新产物写入 `/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse_artifacts/gpt_fresh_100k_20261012/`，`reports/PLAN.md` 为方案，`reports/STATUS.md` 为进度，`reports/RESULTS.md` 为新结果。旧 `scale_100k_20261011` 已退休，禁止恢复。Codex 定时维护保持关闭。
+新产物写入 `/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse_artifacts/gpt_fresh_100k_20261012/`，`reports/PLAN.md` 为方案，`reports/STATUS.md` 为进度，`reports/RESULTS.md` 为新结果。旧 `scale_100k_20261011` 已退休，禁止恢复。用户随后明确恢复持续监测与空闲保卡：Codex 每 10 分钟复核，远端队列每 15 秒检查，保卡自动让位于正式任务。

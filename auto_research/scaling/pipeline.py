@@ -10,7 +10,7 @@ from core.common import DataError, Waiting, write
 
 
 def worker(args):
-    from core import data, efficiency, evaluate, train, variants
+    from core import data, efficiency, evaluate, gpu, train, variants
 
     actions = {
         "audit": lambda: data.audit(),
@@ -32,6 +32,7 @@ def worker(args):
         "infer": lambda: evaluate.generate(args.run_id, args.milestone),
         "score": lambda: evaluate.score(args.run_id, args.milestone, args.bench),
         "verify": lambda: evaluate.verify(args.run_id, args.milestone),
+        "gpu-reserve": lambda: gpu.hold(args.gpu),
     }
     result = {"exit_code": 0, "kind": args.kind}
     try:
@@ -84,11 +85,13 @@ def main():
             "infer",
             "score",
             "verify",
+            "gpu-reserve",
         ),
     )
     phase.add_argument("--run-id")
     phase.add_argument("--milestone", type=int)
     phase.add_argument("--model")
+    phase.add_argument("--gpu", type=int)
     phase.add_argument("--micro-batch", type=int, default=1)
     phase.add_argument("--tag", default="manual")
     phase.add_argument("--shard", type=int)

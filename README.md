@@ -13,7 +13,7 @@
 
 ## 当前结果范围
 
-2026-10-12 用户纠正方案：GPT 生成答案与四方法说明，旧权重全部退出训练来源，15 项 9B 从原始基座重训，27B 的 4 项继续暂缓。旧 `scale_100k_20261011` 已退休，新产物为 `CoT_Analyse_artifacts/gpt_fresh_100k_20261012`。详见 [训练入口](auto_research/scaling/README.md) 和 [TODO](baseline_method/docs/SCALE_100K_TODO.md)；实际运行读取新产物 reports/STATUS.md 并核对进程。Codex 定时维护保持关闭。
+2026-10-12 用户纠正方案：GPT 生成答案与四方法说明，旧权重全部退出训练来源，15 项 9B 从原始基座重训，27B 的 4 项继续暂缓。旧 `scale_100k_20261011` 已退休，新产物为 `CoT_Analyse_artifacts/gpt_fresh_100k_20261012`。详见 [训练入口](auto_research/scaling/README.md) 和 [TODO](baseline_method/docs/SCALE_100K_TODO.md)；实际运行读取新产物 reports/STATUS.md 并核对进程。用户随后明确恢复持续监测与空闲保卡：Codex 每 10 分钟复核，远端队列每 15 秒检查，保卡自动让位于正式任务。
 
 - 基座：五个模型、四个 benchmark，另有 27B effort 对照。
 - 逆向 CoT：NEU、SUP、AUG-SUP、SSR，共 8 次训练、32 项评测，每次训练 131 步；总表首行保留未训练 Baseline。独立 9B NEU 低学习率对照为另 1 次训练、4 项评测。

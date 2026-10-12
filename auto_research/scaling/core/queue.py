@@ -275,14 +275,16 @@ def set_models(models):
     jobs = read(jobs_path) if jobs_path.exists() else {}
     if any(j["status"] in ("running", "dispatching") for j in jobs.values()):
         raise DataError("Stop the queue before changing model scope")
-    write(
-        root() / "config/operations.json",
+    operations_path = root() / "config/operations.json"
+    operations = read(operations_path) if operations_path.exists() else {}
+    operations.update(
         {
             "active_models": models,
             "time": time.time(),
             "reason": "Explicit user scheduling instruction",
-        },
+        }
     )
+    write(operations_path, operations)
     (root() / "state/active_complete.json").unlink(missing_ok=True)
     if jobs:
         apply_scope(jobs)
@@ -377,7 +379,7 @@ def gpu_inventory():
     result = subprocess.run(
         [
             "nvidia-smi",
-            "--query-gpu=index,memory.free,utilization.gpu",
+            "--query-gpu=index,memory.free,utilization.gpu,uuid",
             "--format=csv,noheader,nounits",
         ],
         capture_output=True,
@@ -390,9 +392,10 @@ def gpu_inventory():
             "gpu": int(fields[0]),
             "free_mib": int(fields[1]),
             "utilization": int(fields[2]),
+            "uuid": fields[3],
         }
         for line in result.stdout.splitlines()
-        if (fields := [x.strip() for x in line.split(",")]) and len(fields) == 3
+        if (fields := [x.strip() for x in line.split(",")]) and len(fields) == 4
     ]
 
 
@@ -690,6 +693,9 @@ def stop_jobs(jobs):
 
 
 def render(jobs, accepted, inventory):
+    from . import gpu as reservations
+
+    held = reservations.snapshot()
     counts = dict(Counter(j["status"] for j in jobs.values()))
     running = [
         {k: j.get(k) for k in ("id", "kind", "started_at", "gpus")}
@@ -715,6 +721,7 @@ def render(jobs, accepted, inventory):
         "running": running,
         "blocked": blocked,
         "gpus": inventory,
+        "gpu_reservations": held,
         "phase": "active"
         if running
         else "waiting_teacher_credentials"
@@ -730,6 +737,10 @@ def render(jobs, accepted, inventory):
         + "；其他模型暂缓，历史数据与配置保留。",
         "",
         f"新增有效数据：{accepted:,} / {payload['target_new']:,}；教师凭证：{'已就绪' if payload['credentials_ready'] else '等待恢复'}。",
+        "",
+        "资源保持 GPU："
+        + (", ".join(str(rec["gpu"]) for rec in held if rec["alive"]) or "无")
+        + "。保卡单独统计，不计入研究训练步数；训练、NLL 或评测就绪后自动让卡。",
         "",
         "## 正在执行",
         "",
@@ -806,6 +817,8 @@ def render(jobs, accepted, inventory):
 
 
 def run():
+    from . import gpu as reservations
+
     cfg = config()
     with lock(root() / "state/queue.lock"):
         write(root() / "state/controller.json", identity(os.getpid()))
@@ -893,6 +906,9 @@ def run():
                 with database() as db:
                     accepted = db.execute("SELECT COUNT(*) FROM accepted").fetchone()[0]
                 inventory = gpu_inventory()
+                held = reservations.load()
+                external = reservations.external_gpus(inventory, held)
+                reservations.release(held, list(external))
             except (OSError, subprocess.SubprocessError):
                 time.sleep(cfg["poll_seconds"])
                 continue
@@ -902,14 +918,7 @@ def run():
                 if j["status"] in ("running", "dispatching")
                 for gpu in j.get("gpus", [])
             }
-            available = [
-                r["gpu"]
-                for r in inventory
-                if r["gpu"] in cfg["gpus"]
-                and r["gpu"] not in leased
-                and r["free_mib"] >= cfg["free_memory_mib"]
-                and r["utilization"] <= cfg["idle_utilization_percent"]
-            ]
+            available = reservations.available(inventory, held, leased, external)
             active = Counter(
                 j["category"]
                 for j in jobs.values()
@@ -930,7 +939,18 @@ def run():
                     not count and active[job["category"]] >= limits[job["category"]]
                 ):
                     continue
-                devices, available = available[:count], available[count:]
+                devices = available[:count]
+                if devices:
+                    reservations.release(held, devices)
+                    fresh_inventory = gpu_inventory()
+                    fresh_external = reservations.external_gpus(fresh_inventory, held)
+                    free = reservations.available(
+                        fresh_inventory, {}, leased, fresh_external
+                    )
+                    if not set(devices) <= set(free):
+                        available = [device for device in available if device in free]
+                        continue
+                available = available[count:]
                 receipt = receipt_path(job)
                 receipt.unlink(missing_ok=True)
                 command = [cfg["training_python"]]
@@ -989,8 +1009,15 @@ def run():
                 write(intent.parent / "ack.json", {"time": time.time()})
                 log("job_started", job=job["id"], gpus=devices, launch=job["launches"])
             write(path, jobs)
-            render(jobs, accepted, inventory)
+            # Recheck foreign processes after potentially slow dispatch work.
+            fresh_inventory = gpu_inventory()
+            fresh_external = reservations.external_gpus(fresh_inventory, held)
+            reservations.release(held, list(fresh_external))
+            idle = reservations.available(fresh_inventory, held, leased, fresh_external)
+            reservations.maintain(held, [gpu for gpu in available if gpu in idle])
+            render(jobs, accepted, fresh_inventory)
             if all(j["status"] in ("done", "deferred") for j in jobs.values()):
+                reservations.stop_all()
                 enabled_runs = sum(
                     r["model"] in active_models()
                     for r in read(root() / "manifest.json")["runs"]
@@ -1025,6 +1052,7 @@ def run():
             time.sleep(cfg["poll_seconds"])
         # Graceful stop preserves all task/checkpoint state and terminates only owned groups.
         stop_jobs(jobs)
+        reservations.stop_all()
         write(path, jobs)
         log("controller_stopped")
 
@@ -1198,6 +1226,9 @@ def halt():
         jobs = read(path)
         stop_jobs(jobs)
         write(path, jobs)
+    from . import gpu as reservations
+
+    reservations.stop_all()
 
 
 def status():

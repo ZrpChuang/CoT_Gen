@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from core import common, data, queue, train
+from core import common, data, gpu, queue, train
 from core.common import freeze_lines, prompt_token_count, read, write
 from core.data import Decontaminator, context
 from core.variants import choose, random_assign
@@ -117,6 +117,86 @@ class SelectionContracts(unittest.TestCase):
                 if r["canonical"]["plain"] == r["canonical"]["structured"]
             )
         )
+
+
+class GpuReservationContracts(unittest.TestCase):
+    def test_reservations_yield_to_leases_and_foreign_processes(self):
+        inventory = [
+            {
+                "gpu": i,
+                "free_mib": 89000 if i < 4 else 97000,
+                "utilization": 50 if i < 4 else 0,
+            }
+            for i in range(6)
+        ]
+        cfg = {
+            "gpus": [0, 1, 2, 3, 4],
+            "free_memory_mib": 90000,
+            "idle_utilization_percent": 15,
+        }
+        with patch.object(gpu, "config", return_value=cfg):
+            devices = gpu.available(inventory, {str(i): {} for i in range(3)}, {1}, {2})
+        self.assertEqual(devices, [0, 4])
+
+    def test_compute_process_ownership_uses_exact_live_group(self):
+        inventory = [{"gpu": i, "uuid": "GPU-" + str(i)} for i in range(3)]
+        records = {"0": {"identity": {"pid": 123}}}
+        output = subprocess.CompletedProcess(
+            [], 0, "GPU-0, 456\nGPU-1, 789\nGPU-2, 987\n", ""
+        )
+        with (
+            patch.object(gpu, "alive", return_value=True),
+            patch.object(gpu.subprocess, "run", return_value=output),
+            patch.object(
+                gpu.os, "getpgid", side_effect=[123, 999, ProcessLookupError()]
+            ),
+        ):
+            self.assertEqual(gpu.external_gpus(inventory, records), {1, 2})
+
+    def test_release_cancels_owned_launch_and_leaves_foreign_devices_alone(self):
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            witness = {"pid": 123, "start_ticks": "456", "cmdline": "owned"}
+            records = {
+                "0": {"intent": str(directory / "intent.json"), "identity": witness}
+            }
+            with (
+                patch.object(gpu, "folder", return_value=directory),
+                patch.object(gpu, "alive", return_value=False),
+                patch.object(gpu, "stop") as terminate,
+                patch.object(gpu, "log"),
+            ):
+                gpu.release(records, [0, 1])
+            terminate.assert_called_once_with(witness)
+            self.assertTrue((directory / "cancel.json").exists())
+            self.assertEqual(records, {})
+
+    def test_new_launch_never_reuses_cancelled_handshake(self):
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            records = {}
+            witness = {"pid": 123, "start_ticks": "456", "cmdline": "owned"}
+            with (
+                patch.object(gpu, "folder", return_value=directory),
+                patch.object(gpu, "settings", return_value={"enabled": True}),
+                patch.object(
+                    gpu, "config", return_value={"training_python": sys.executable}
+                ),
+                patch.object(gpu, "root", return_value=directory),
+                patch.object(
+                    gpu, "launch", return_value=type("Process", (), {"pid": 123})()
+                ),
+                patch.object(gpu, "identity", return_value=witness),
+                patch.object(gpu, "alive", return_value=False),
+                patch.object(gpu, "stop"),
+                patch.object(gpu, "log"),
+            ):
+                gpu.maintain(records, [0])
+                first = Path(records["0"]["intent"])
+                gpu.release(records, [0])
+                gpu.maintain(records, [0])
+                self.assertNotEqual(first, Path(records["0"]["intent"]))
+                self.assertTrue((first.parent / "cancel.json").exists())
 
 
 class QueueContracts(unittest.TestCase):

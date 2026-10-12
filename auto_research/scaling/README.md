@@ -2,7 +2,13 @@
 
 2026-10-12 用户纠正方案：**GPT 生成答案、GPT 构造四种 CoT；丢弃旧训练权重，从原始基座重新训练。** 旧 `scale_100k_20261011` 队列已退休，禁止再次启动或作为本次 parent。旧结果仅供历史问题分析。
 
-当前产物：`CoT_Analyse_artifacts/gpt_fresh_100k_20261012/`。本轮启用 15 项 9B，27B 的 4 项暂缓。Codex 定时维护保持关闭，远端 supervisor 独立执行已部署队列。
+当前产物：`CoT_Analyse_artifacts/gpt_fresh_100k_20261012/`。本轮启用 15 项 9B，27B 的 4 项暂缓。用户于 2026-10-12 明确恢复持续监测并要求空闲时保卡：Codex 每 10 分钟复核，远端 supervisor 独立执行队列，每 15 秒检查资源。
+
+## 监测与保卡
+
+保卡开关位于产物 `config/operations.json` 的 `gpu_reservation.enabled`，默认关闭；本轮按用户明确授权启用。仅使用本任务已分配的 8 张 GPU。空闲卡运行低占空比的 CUDA 资源保持 worker，训练、NLL 或评测就绪时先终止对应保卡进程，核验释放后再派发任务。发现外部计算进程时释放同卡的保卡 worker，不停止外部进程。
+
+每张卡的 PID、启动时间与持久化握手保存在 `state/gpu_reservations/`，运行日志集中于 `logs/reservations/`。controller 重启后接管已有进程；停止队列、禁用开关或研究任务全部完成时退出；监督失联超过 15 分钟自动退出。`reports/STATUS.md` 和 `state/status.json` 分别列出保卡与研究任务，保卡不产生研究 optimizer step。此功能维持当前 GPU 活动，不能保证云平台保留整个计算任务。
 
 ## 当前固定方案
 
@@ -84,6 +90,7 @@ cd /mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse/auto_research/scaling
 | `core/efficiency.py` | 固定训练样本吞吐对照、容量检查、阶段执行计划和效率报告 |
 | `core/evaluate.py` | 冻结评测、vLLM 生命周期和自动核验 |
 | `core/queue.py` | 依赖队列、资源分配、重试、监督和进度报告 |
+| `core/gpu.py` | 经用户授权的可抢占保卡、身份核验和资源让渡 |
 | `tests/` | 数据隔离、格式选择和队列恢复的关键验证 |
 
 产物统一位于 `/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse_artifacts/scale_100k_20261011/`：
