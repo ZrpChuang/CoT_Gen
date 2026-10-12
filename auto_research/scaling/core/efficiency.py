@@ -182,7 +182,14 @@ def profile(model_name, milestone, micro_batch, tag):
     ]
     if max(len(s["input_ids"]) for s in samples) > config()["max_sequence_tokens"]:
         raise DataError("Profiling fixture would require truncation")
-    model = load_model(model_name, Path(record["parent_checkpoint"]))
+    from .train import initial_parent, parent
+
+    checkpoint = (
+        initial_parent(record)
+        if milestone == 0
+        else parent(record["run_id"], milestone)[0]
+    )
+    model = load_model(model_name, checkpoint)
     device = int(os.environ.get("LOCAL_RANK", "0"))
     torch.cuda.set_device(device)
     model.to(device)

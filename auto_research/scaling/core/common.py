@@ -189,7 +189,7 @@ def credentials_ready():
         data = read(path)
         return all(
             isinstance(data["keys"][key], list) and data["keys"][key]
-            for key in ("GPT", "Qwen_Max")
+            for key in config().get("required_credential_groups", ("GPT", "Qwen_Max"))
         )
     except (OSError, ValueError, KeyError, TypeError):
         return False

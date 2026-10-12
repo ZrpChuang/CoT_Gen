@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from core import queue
+from core import common, data, queue, train
 from core.common import freeze_lines, prompt_token_count, read, write
 from core.data import Decontaminator, context
 from core.variants import choose, random_assign
@@ -120,6 +120,32 @@ class SelectionContracts(unittest.TestCase):
 
 
 class QueueContracts(unittest.TestCase):
+    def test_fresh_study_has_no_historical_tuning_fixture(self):
+        cfg = {
+            **queue.config(),
+            "initialization": "fresh_base",
+            "parent_unique_inputs": 0,
+        }
+        records = [
+            {"run_id": "neu", "variant": "NEU", "model": "Qwen_35_9B", "group": "main"}
+        ]
+        with (
+            patch.object(queue, "config", return_value=cfg),
+            patch.object(queue, "read", return_value={"runs": records}),
+        ):
+            jobs = queue.definitions()
+        self.assertNotIn(queue.job_id("tune", "Qwen_35_9B", 0), jobs)
+        later = jobs[queue.job_id("tune", "Qwen_35_9B", 25000)]
+        self.assertIn(queue.job_id("train", 10000, "neu"), later["dependencies"])
+
+    def test_retired_study_cannot_restart(self):
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)
+            write(out / "state/retired_by_user_20261012.json", {})
+            with patch.object(queue, "root", return_value=out):
+                with self.assertRaisesRegex(common.DataError, "retired"):
+                    queue.start()
+
     def test_tuning_marker_handles_integer_milestone(self):
         with patch.object(queue, "root", return_value=Path("/artifacts")):
             job = {"kind": "tune", "args": ["--model", "Qwen_35_9B", "--milestone", 0]}
@@ -253,6 +279,88 @@ class QueueContracts(unittest.TestCase):
             self.assertFalse(
                 queue.ready(generation, {"audit": {"status": "done"}}, 100000)
             )
+
+
+class FreshTrainingContracts(unittest.TestCase):
+    def setUp(self):
+        self.cfg = {
+            "initialization": "fresh_base",
+            "parent_unique_inputs": 0,
+            "milestones": [10000, 25000],
+        }
+        self.record = {
+            "run_id": "neu",
+            "parent_checkpoint": None,
+            "parent_global_step": 0,
+            "parent_training_examples": 0,
+        }
+
+    def test_first_stage_starts_at_base_with_zero_steps(self):
+        with (
+            patch.object(train, "config", return_value=self.cfg),
+            patch.object(train, "run_record", return_value=self.record),
+        ):
+            self.assertEqual(train.parent("neu", 10000), (None, 0, 0))
+            with self.assertRaises(common.DataError):
+                train.parent("neu", 999)
+
+    def test_any_historical_adapter_is_forbidden(self):
+        with patch.object(train, "config", return_value=self.cfg):
+            for key, value in (
+                ("parent_checkpoint", "/old/checkpoint-131"),
+                ("parent_data", "/old/train.jsonl"),
+                ("parent_global_step", 131),
+            ):
+                with self.assertRaises(common.DataError):
+                    train.initial_parent({**self.record, key: value})
+
+    def test_later_stage_parent_cannot_escape_new_experiment(self):
+        with tempfile.TemporaryDirectory() as temp:
+            out = Path(temp)
+            meta = {
+                "complete": True,
+                "checkpoint": str(out / "runs/neu/10000/training/checkpoint-313"),
+                "cumulative_global_step": 313,
+                "cumulative_unique_inputs": 10000,
+            }
+            with (
+                patch.object(train, "config", return_value=self.cfg),
+                patch.object(train, "run_record", return_value=self.record),
+                patch.object(train, "root", return_value=out),
+                patch.object(train, "read", return_value=meta),
+            ):
+                self.assertEqual(train.parent("neu", 25000)[1:], (313, 10000))
+                meta["checkpoint"] = "/old/checkpoint-131"
+                with self.assertRaises(common.DataError):
+                    train.parent("neu", 25000)
+
+    def test_gpt_credentials_do_not_require_qwen(self):
+        cfg = {"api_credentials": "/unused", "required_credential_groups": ["GPT"]}
+        with (
+            patch.object(common, "config", return_value=cfg),
+            patch.object(
+                common, "read", return_value={"keys": {"GPT": ["test-placeholder"]}}
+            ),
+        ):
+            self.assertTrue(common.credentials_ready())
+
+    def test_fresh_generation_rejects_qwen_teacher(self):
+        gpt = {"model": "gpt-6-astra", "credential_group": "GPT"}
+        cfg = {
+            **self.cfg,
+            "explanation_policy": "solution_summary_v1",
+            "generation_recipe": {"reference_generator": gpt, "cot_generator": gpt},
+        }
+        with patch.object(data, "config", return_value=cfg):
+            recipe, prompts = data.generation_policy()
+            self.assertEqual(recipe["reference_generator"]["model"], "gpt-6-astra")
+            self.assertEqual(set(prompts), {"NEU", "SUP", "AUG-SUP", "SSR"})
+            cfg["generation_recipe"]["reference_generator"] = {
+                "model": "qwen3.8-max",
+                "credential_group": "Qwen_Max",
+            }
+            with self.assertRaises(common.DataError):
+                data.generation_policy()
 
 
 if __name__ == "__main__":

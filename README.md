@@ -5,7 +5,7 @@
 | 内容 | 阅读入口 | 运行入口 |
 |---|---|---|
 | 四种逆向 CoT 方法 × 两模型 × 四 benchmark | [总表与结论](baseline_method/docs/RESULTS.md) | [统一流水线](baseline_method/README.md) |
-| 100K 扩训：本轮先跑 15 项 9B，27B 暂缓 | [进度与 TODO](baseline_method/docs/SCALE_100K_TODO.md) | [远端队列与效率规则](auto_research/scaling/README.md) |
+| GPT 全新 100K 数据、15 项 9B 从基座重训；27B 暂缓 | [进度与 TODO](baseline_method/docs/SCALE_100K_TODO.md) | [远端队列与效率规则](auto_research/scaling/README.md) |
 | 原始模型、27B effort 对照 | [基座结论](test_scripts/Base_model_result_conclusion.md) | 各模型目录中的冻结评测代码 |
 | CoT 格式研究与尚未完成的终评 | [研究结论](auto_research/pattern_20261004/RESULTS.md) | 研究目录中的阶段说明 |
 | 固定训练源、采样索引和四个测试集 | [数据说明](docs/data/DATASETS.md) | training_data/、test_data/ |
@@ -13,7 +13,7 @@
 
 ## 当前结果范围
 
-100K 队列已部署，本轮范围为 15 项 9B，27B 的 4 项暂缓。2026-10-12 10:25 已恢复远端连接，核验 118 份冻结文件和 19 个历史 checkpoint-131 后恢复 supervisor；新增有效训练数据为 0，正式扩训仍等待教师凭证。已有训练数据用于独立效率对照，不计入 100K 训练。维护状态与恢复步骤见 [扩训 TODO](baseline_method/docs/SCALE_100K_TODO.md)，外部产物的 reports/STATUS.md 需结合更新时间和真实进程判断。
+2026-10-12 用户纠正方案：GPT 生成答案与四方法说明，旧权重全部退出训练来源，15 项 9B 从原始基座重训，27B 的 4 项继续暂缓。旧 `scale_100k_20261011` 已退休，新产物为 `CoT_Analyse_artifacts/gpt_fresh_100k_20261012`。详见 [训练入口](auto_research/scaling/README.md) 和 [TODO](baseline_method/docs/SCALE_100K_TODO.md)；实际运行读取新产物 reports/STATUS.md 并核对进程。Codex 定时维护保持关闭。
 
 - 基座：五个模型、四个 benchmark，另有 27B effort 对照。
 - 逆向 CoT：NEU、SUP、AUG-SUP、SSR，共 8 次训练、32 项评测，每次训练 131 步；总表首行保留未训练 Baseline。独立 9B NEU 低学习率对照为另 1 次训练、4 项评测。

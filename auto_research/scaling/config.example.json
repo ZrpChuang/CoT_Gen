@@ -1,5 +1,5 @@
 {
-  "run_id": "scale_100k_20261011",
+  "run_id": "gpt_fresh_100k_20261012",
   "project_root": "/absolute/path/to/project_root",
   "output_root": "/absolute/path/to/output_root",
   "training_python": "/absolute/path/to/training_python",
@@ -16,7 +16,7 @@
     "Qwen_38_27B": "/absolute/path/to/Qwen_38_27B"
   },
   "target_unique_inputs": 100000,
-  "parent_unique_inputs": 4175,
+  "parent_unique_inputs": 0,
   "milestones": [
     10000,
     25000,
@@ -62,5 +62,69 @@
   "evaluation_at": [
     100000
   ],
-  "protocol_scope": "local frozen four-benchmark protocol; expanded multilingual and multi-turn distribution; stage-wise continuation, not exact paper reproduction"
+  "protocol_scope": "GPT-only shared answers and public solution summaries; fresh-base LoRA; fixed local evaluation; not exact paper reproduction",
+  "initialization": "fresh_base",
+  "legacy_excluded_unique_inputs": 4175,
+  "required_credential_groups": [
+    "GPT"
+  ],
+  "explanation_policy": "solution_summary_v1",
+  "lora_initialization": {
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "in_proj_qkv",
+      "k_proj",
+      "in_proj_b",
+      "v_proj",
+      "out_proj",
+      "q_proj",
+      "down_proj",
+      "in_proj_a",
+      "in_proj_z",
+      "o_proj",
+      "up_proj",
+      "gate_proj"
+    ]
+  },
+  "generation_recipe": {
+    "reference_generator": {
+      "model": "gpt-6-astra",
+      "local": false,
+      "base_urls": [
+        "https://your-approved-gpt-responses-endpoint"
+      ],
+      "max_tokens": 8192,
+      "supports_temperature": false,
+      "credential_group": "GPT",
+      "protocol": "azure_responses",
+      "api_version": "2025-04-01-preview",
+      "extra_body": {
+        "reasoning": {
+          "effort": "medium",
+          "summary": "auto"
+        }
+      }
+    },
+    "cot_generator": {
+      "model": "gpt-6-astra",
+      "local": false,
+      "base_urls": [
+        "https://your-approved-gpt-responses-endpoint"
+      ],
+      "max_tokens": 8192,
+      "supports_temperature": false,
+      "credential_group": "GPT",
+      "protocol": "azure_responses",
+      "api_version": "2025-04-01-preview",
+      "extra_body": {
+        "reasoning": {
+          "effort": "medium",
+          "summary": "auto"
+        }
+      }
+    },
+    "reference_length_retry_max_tokens": 32768
+  }
 }

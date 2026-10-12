@@ -19,6 +19,41 @@ def run_record(run_id):
 
 
 def validate_history():
+    if config().get("initialization") == "fresh_base":
+        checked = []
+        for record in read(root() / "manifest.json")["runs"]:
+            initial_parent(record)
+            model = Path(config()["models"][record["model"]])
+            index = model / "model.safetensors.index.json"
+            weights = (
+                set(read(index)["weight_map"].values())
+                if index.exists()
+                else {"model.safetensors"}
+            )
+            if not (model / "config.json").is_file() or not all(
+                (model / weight).is_file() and (model / weight).stat().st_size > 0
+                for weight in weights
+            ):
+                raise DataError(
+                    "Original base weights are incomplete: " + record["model"]
+                )
+            checked.append(
+                {
+                    "run_id": record["run_id"],
+                    "base_model": str(model),
+                    "trained_parent": None,
+                }
+            )
+        write(
+            root() / "state/checks/history.json",
+            {
+                "passed": True,
+                "initialization": "fresh_base",
+                "runs": checked,
+                "time": time.time(),
+            },
+        )
+        return
     import torch
     from safetensors import safe_open
 
@@ -179,18 +214,49 @@ def encode(run_id, milestone):
         )
 
 
+def initial_parent(record):
+    """A fresh experiment may never resolve an old trained adapter or dataset."""
+    if config().get("initialization") == "fresh_base":
+        if config()["parent_unique_inputs"] != 0 or any(
+            record.get(key)
+            for key in (
+                "parent_checkpoint",
+                "parent_complete",
+                "parent_data",
+                "parent_data_sha256",
+                "parent_global_step",
+                "parent_training_examples",
+            )
+        ):
+            raise DataError("Fresh initialization forbids historical training parents")
+        return None
+    return Path(record["parent_checkpoint"])
+
+
 def parent(run_id, milestone):
     cfg = config()
     record = run_record(run_id)
+    first = initial_parent(record)
+    if milestone not in cfg["milestones"]:
+        raise DataError("Unknown training milestone")
     previous = cfg["parent_unique_inputs"]
     for value in cfg["milestones"]:
         if value == milestone:
             break
         previous = value
     if previous == cfg["parent_unique_inputs"]:
-        return Path(record["parent_checkpoint"]), record["parent_global_step"], previous
+        return first, record["parent_global_step"], previous
     meta = read(directory(run_id, previous) / "training/complete.json")
-    return Path(meta["checkpoint"]), meta["cumulative_global_step"], previous
+    checkpoint = Path(meta["checkpoint"])
+    if config().get(
+        "initialization"
+    ) == "fresh_base" and not checkpoint.resolve().is_relative_to(
+        directory(run_id, previous).resolve()
+    ):
+        raise DataError("Stage parent escaped this fresh experiment")
+    if not meta.get("complete") or meta["cumulative_unique_inputs"] != previous:
+        raise DataError("Stage parent is incomplete or has a different data scale")
+    return checkpoint, meta["cumulative_global_step"], previous
 
 
 def completed_checkpoint(path, world=None):
@@ -224,7 +290,7 @@ def completed_checkpoint(path, world=None):
 
 def load_model(model_name, checkpoint):
     import torch
-    from peft import PeftModel
+    from peft import LoraConfig, PeftModel, get_peft_model
     from transformers import Qwen3_5ForCausalLM, Qwen3_5ForConditionalGeneration
 
     cls = (
@@ -239,16 +305,33 @@ def load_model(model_name, checkpoint):
     base.config.use_cache = False
     if hasattr(base.config, "text_config"):
         base.config.text_config.use_cache = False
-    model = PeftModel.from_pretrained(
-        base, str(checkpoint), is_trainable=True, local_files_only=True
-    )
+    if checkpoint is None:
+        if config().get("initialization") != "fresh_base":
+            raise DataError("Missing parent outside fresh-base experiment")
+        recipe = config()["lora_initialization"]
+        model = get_peft_model(
+            base,
+            LoraConfig(
+                r=recipe["rank"],
+                lora_alpha=recipe["alpha"],
+                lora_dropout=recipe["dropout"],
+                target_modules=recipe["target_modules"],
+                task_type="CAUSAL_LM",
+                bias="none",
+                init_lora_weights=True,
+            ),
+        )
+    else:
+        model = PeftModel.from_pretrained(
+            base, str(checkpoint), is_trainable=True, local_files_only=True
+        )
     model.enable_input_require_grads()
     return model
 
 
 def preflight(model_name, capacity=False):
     import torch
-    from transformers import AutoTokenizer
+    from transformers import AutoTokenizer, set_seed
 
     marker = (
         root()
@@ -265,7 +348,14 @@ def preflight(model_name, capacity=False):
     tok = AutoTokenizer.from_pretrained(
         config()["models"][model_name], local_files_only=True
     )
-    model = load_model(model_name, Path(record["parent_checkpoint"])).to("cuda")
+    set_seed(record["parent_recipe"]["seed"])
+    model = load_model(model_name, initial_parent(record)).to("cuda")
+    fresh_witness = None
+    if config().get("initialization") == "fresh_base":
+        matrices = [p for name, p in model.named_parameters() if ".lora_B." in name]
+        if not matrices or any(torch.count_nonzero(p).item() for p in matrices):
+            raise DataError("Fresh LoRA must start with exactly zero B matrices")
+        fresh_witness = {"lora_B_matrices": len(matrices), "all_exactly_zero": True}
     fixture = {
         "question": "Compute 2 + 3.",
         "cot": "Add two and three.",
@@ -313,6 +403,8 @@ def preflight(model_name, capacity=False):
             "loss": result.loss.item(),
             "sequence_tokens": len(pack["input_ids"]),
             "parent": record["parent_checkpoint"],
+            "base_model": config()["models"][model_name],
+            "fresh_initialization_witness": fresh_witness,
             "optimizer_steps": 0,
             "gradient_checkpointing": capacity,
             "peak_allocated_mib": torch.cuda.max_memory_allocated() / 2**20,
@@ -481,7 +573,9 @@ def train(run_id, milestone):
                 "run_id": run_id,
                 "model": record["model"],
                 "milestone": milestone,
-                "parent_checkpoint": str(checkpoint),
+                "parent_checkpoint": str(checkpoint) if checkpoint else None,
+                "base_model": cfg["models"][record["model"]],
+                "initialization": cfg.get("initialization", "historical_adapter"),
                 "parent_cumulative_steps": step_offset,
                 "previous_unique_inputs": previous,
                 "new_unique_inputs": data_meta["rows"],
@@ -531,7 +625,9 @@ def train(run_id, milestone):
             "cumulative_unique_inputs": milestone,
             "new_unique_inputs": data_meta["rows"],
             "recipe": recipe,
-            "parent_checkpoint": str(checkpoint),
+            "parent_checkpoint": str(checkpoint) if checkpoint else None,
+            "base_model": cfg["models"][record["model"]],
+            "initialization": cfg.get("initialization", "historical_adapter"),
             "checkpoint": str(final),
             "world_size": world,
             "data_sha256": data_meta["data_sha256"],
@@ -592,15 +688,19 @@ def sync_wandb(run_id, milestone):
         resume="allow",
         name=run_id + "-" + str(milestone),
         group=cfg["run_id"],
-        job_type="scale-continuation",
+        job_type="gpt-fresh-training"
+        if cfg.get("initialization") == "fresh_base"
+        else "scale-continuation",
         dir=str(out),
         config={
             "run_id": run_id,
             "milestone": milestone,
             "parent": meta["parent_checkpoint"],
+            "base_model": cfg["models"][meta["model"]],
+            "initialization": cfg.get("initialization", "historical_adapter"),
             "model": meta["model"],
             "variant": meta["variant"],
-            "historical_recipe": meta["parent_recipe"],
+            "training_recipe": meta["parent_recipe"],
             "stage_policy": cfg["stage_optimizer_policy"],
         },
         settings=wandb.Settings(init_timeout=90, disable_git=True, disable_code=True),

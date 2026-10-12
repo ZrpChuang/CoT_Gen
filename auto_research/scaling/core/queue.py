@@ -86,7 +86,7 @@ def definitions():
             category="gpu",
             priority=-90,
         )
-        if model == "Qwen_35_9B":
+        if model == "Qwen_35_9B" and cfg.get("initialization") != "fresh_base":
             add(
                 job_id("tune", model, 0),
                 "tune",
@@ -161,11 +161,16 @@ def definitions():
                 add(encoded, "encode", args, dependencies, priority=stage * 100 + 4)
             tuning = job_id("tune", model, milestone)
             if model == "Qwen_35_9B" and record["group"] == "main" and variant == "NEU":
+                tuning_dependencies = [encoded, job_id("capacity", model)]
+                if stage:
+                    tuning_dependencies.append(
+                        job_id("train", cfg["milestones"][stage - 1], run_id)
+                    )
                 add(
                     tuning,
                     "tune",
                     ["--model", model, "--milestone", milestone],
-                    [encoded, job_id("capacity", model)],
+                    tuning_dependencies,
                     gpus=cfg["training_gpu_count"][model],
                     category="gpu",
                     priority=stage * 100 + 5,
@@ -446,6 +451,7 @@ def results(jobs):
     records = read(root() / "manifest.json")["runs"]
     models = list(config()["models"])
     final = config()["target_unique_inputs"]
+    fresh = config().get("initialization") == "fresh_base"
     labels = dict(
         zip(BENCHMARKS, ("IFEval", "MultiChallenge", "EQ-Bench 3", "ArenaHard"))
     )
@@ -464,6 +470,21 @@ def results(jobs):
         return before + " → " + after
 
     def scores(record, bench):
+        if fresh:
+            new_dir = directory(record["run_id"], final) / "evaluation"
+            verified = (
+                jobs[job_id("verify", final, record["run_id"])]["status"] == "done"
+            )
+            value = (
+                metric(new_dir / bench / "metrics.json", bench) if verified else None
+            )
+            return (
+                "暂缓"
+                if record["model"] not in active_models()
+                else f"{value:.2f}"
+                if value is not None
+                else "未完成"
+            )
         if record["group"] == "main":
             old_dir = BASE / record["variant"] / record["model"] / "evaluation"
         elif record["group"] == "learning_rate_control":
@@ -478,9 +499,11 @@ def results(jobs):
         )
 
     rows = [
-        "# 统一扩训结果",
+        "# GPT 全新训练结果" if fresh else "# 统一扩训结果",
         "",
-        "分数：历史 4,175 → 累计 100K（括号为百分点变化）。新结果仅在整组四项评测核验通过后展示。BASE 为原始未训练模型。",
+        "全新 GPT 共享答案与解题说明、从原始基座新建 LoRA，旧训练权重及旧生成缓存全部弃用。只展示新实验核验结果；BASE 为原始未训练模型。"
+        if fresh
+        else "分数：历史 4,175 → 累计 100K（括号为百分点变化）。新结果仅在整组四项评测核验通过后展示。BASE 为原始未训练模型。",
         "",
         "| 方法 | "
         + " | ".join(
@@ -526,7 +549,7 @@ def results(jobs):
         )
     rows += [
         "",
-        "## 历史对照与诊断（9B）",
+        "## 从基座重跑的对照与诊断（9B）" if fresh else "## 历史对照与诊断（9B）",
         "",
         "| 训练臂 | " + " | ".join(labels.values()) + " |",
         "|---|---:|---:|---:|---:|",
@@ -761,7 +784,7 @@ def render(jobs, accepted, inventory):
             if sync.exists():
                 record["actual_wandb_run"] = read(sync).get("url")
         rows.append(
-            f"| {run_id} | {max(done, default=4175):,} | {', '.join(active) or ('暂缓' if record['model'] not in active_models() else '排队')} | {'已核验' if verified else '未完成'} |"
+            f"| {run_id} | {max(done, default=config()['parent_unique_inputs']):,} | {', '.join(active) or ('暂缓' if record['model'] not in active_models() else '排队')} | {'已核验' if verified else '未完成'} |"
         )
     rows += ["", "## 异常", ""]
     rows += [
@@ -1080,6 +1103,15 @@ def upgrade():
 
 def start():
     cfg = config()
+    if (root() / "state/retired_by_user_20261012.json").exists():
+        raise DataError(
+            "This experiment was retired by the user; create a new experiment"
+        )
+    if cfg.get("initialization") == "fresh_base":
+        from .train import initial_parent
+
+        for record in read(root() / "manifest.json")["runs"]:
+            initial_parent(record)
     if (root() / "state/supervisor.json").exists() and alive(
         read(root() / "state/supervisor.json")
     ):

@@ -1,4 +1,39 @@
-# 统一扩训队列
+# GPT 全新 100K 数据与从基座重训
+
+2026-10-12 用户纠正方案：**GPT 生成答案、GPT 构造四种 CoT；丢弃旧训练权重，从原始基座重新训练。** 旧 `scale_100k_20261011` 队列已退休，禁止再次启动或作为本次 parent。旧结果仅供历史问题分析。
+
+当前产物：`CoT_Analyse_artifacts/gpt_fresh_100k_20261012/`。本轮启用 15 项 9B，27B 的 4 项暂缓。Codex 定时维护保持关闭，远端 supervisor 独立执行已部署队列。
+
+## 当前固定方案
+
+| 项目 | 本轮设置 |
+|---|---|
+| 问题来源 | 已下载 LMArena 原始数据，多语言、多轮原生上下文 |
+| 隔离 | 排除旧 4,175 条、冻结 dev、测试文本重合和重复上下文 |
+| 目标 | 100,000 个全新且共同通过检查的独立输入，旧样本不计入 |
+| 答案 | GPT `gpt-6-astra` medium；四方法共享同一答案 |
+| CoT | 同一 GPT 基于共享 Q/A 生成 NEU / SUP / AUG-SUP / SSR |
+| 说明策略 | `solution_summary_v1`：简洁解题依据，避免答案质量点评，不要求还原模型私有思考 |
+| 初始化 | 原始基座 + 新建 LoRA；旧 adapter、优化器、调度器、RNG、生成缓存全部弃用 |
+| LoRA | rank 16、alpha 32、dropout 0.05；目标模块固定在配置中 |
+| 配方 | BF16、global batch 32、完整序列最多 8K、禁止截断；主方法 LR 1e-4，对照/诊断 LR 1e-5 |
+| 阶段 | 10K → 25K → 50K → 100K，每阶段只训练新增输入一遍 |
+| 恢复 | 阶段间只继承本次 adapter，重建 AdamW 与阶段 scheduler；阶段内恢复完整状态 |
+| 评测 | 固定四 benchmark，100K 最终 checkpoint，不按测试分数选择 |
+
+首阶段 parent 为 `null`，历史样本数及步数均为 0。各阶段预计约 313 / 469 / 782 / 1,563 步，共约 3,127 步；实际以 Trainer 记录为准，另记 DDP padding。BASE 保留在总表首行，不训练。
+
+四方法沿用 NEU 常规说明、SUP 抑制答案泄漏、AUG-SUP 加强抑制、SSR 骨架与说明的比较框架。本轮重新编写公开解题说明提示词，不与旧数据混合，不宣称论文严格复现。GPT 语义审计只是近似检查，不是事实正确性金标。独立输入不足 100K 时记录缺口，不重复充数或降低门槛。
+
+15 项 9B：四主方法、NEU 低学习率对照，以及 answer_only、aug_sup_lr1e5、body_format、body_matched_random、matched_random_format、paired_plain、paired_steps、ssr_lr1e5、student_format、sup_lr1e5。诊断格式选择仍由原始未训练 9B 的固定 NLL 规则生成。
+
+入口仍为 `python pipeline.py start/status/stop`，忽略提交的 `config.json` 指向新目录。复制配置示例后填写路径及已批准的 GPT endpoint。凭证独立存储，当前只要求 `keys.GPT`。新产物 `reports/PLAN.md` 为冻结方案，`reports/STATUS.md` 为实际进度，`reports/RESULTS.md` 只展示新实验经核验的成绩。
+
+旧数据/旧 adapter 的速度结果不代表本轮。新实验重新验证基座初始化、完整 8K 容量，再用本次固定 NEU 数据作 baseline 和单变量效率对照。未经容量、数值等价、重复测速与断点恢复检查的候选不用于正式训练；已启动阶段的执行计划固定。
+
+---
+
+## 已退休的旧续训方案（以下仅供历史审计，勿执行）
 
 从已有的 19 次训练继续到累计 100K 个不同的问题及上下文。主实验 4 方法 × 2 模型，加 1 个学习率对照和 10 个历史诊断；BASE 不训练。代码只负责这项固定实验，不根据测试成绩搜索或改写训练配方。
 
