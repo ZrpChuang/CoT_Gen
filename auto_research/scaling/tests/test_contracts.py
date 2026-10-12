@@ -120,6 +120,48 @@ class SelectionContracts(unittest.TestCase):
 
 
 class GpuReservationContracts(unittest.TestCase):
+    def test_container_host_pid_attestation_requires_live_owned_worker(self):
+        with tempfile.TemporaryDirectory() as temp:
+            directory = Path(temp)
+            wrapper = {"pid": 123}
+            worker = {"pid": 456}
+            write(
+                directory / "0/ready.json",
+                {"uuid": "GPU-0", "nvml_pid": 200398, "worker": worker},
+            )
+            with (
+                patch.object(gpu, "folder", return_value=directory),
+                patch.object(gpu, "alive", return_value=True),
+                patch.object(
+                    gpu,
+                    "compute_processes",
+                    return_value={("GPU-0", 200398), ("GPU-0", 200399)},
+                ),
+                patch.object(
+                    gpu.os, "getpgid", side_effect=[123, ProcessLookupError()]
+                ),
+            ):
+                self.assertEqual(
+                    gpu.external_gpus(
+                        [{"gpu": 0, "uuid": "GPU-0"}], {"0": {"identity": wrapper}}
+                    ),
+                    {0},
+                )
+            with (
+                patch.object(gpu, "folder", return_value=directory),
+                patch.object(gpu, "alive", return_value=True),
+                patch.object(
+                    gpu, "compute_processes", return_value={("GPU-0", 200398)}
+                ),
+                patch.object(gpu.os, "getpgid", return_value=123),
+            ):
+                self.assertEqual(
+                    gpu.external_gpus(
+                        [{"gpu": 0, "uuid": "GPU-0"}], {"0": {"identity": wrapper}}
+                    ),
+                    set(),
+                )
+
     def test_reservations_yield_to_leases_and_foreign_processes(self):
         inventory = [
             {

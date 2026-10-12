@@ -11,7 +11,19 @@ import time
 import uuid
 from pathlib import Path
 
-from .common import CODE, alive, config, identity, launch, log, read, root, stop, write
+from .common import (
+    CODE,
+    DataError,
+    alive,
+    config,
+    identity,
+    launch,
+    log,
+    read,
+    root,
+    stop,
+    write,
+)
 
 
 def folder():
@@ -43,12 +55,7 @@ def load():
     return records
 
 
-def external_gpus(inventory, records):
-    """Never preempt external processes, including processes sharing a held GPU."""
-    groups = {
-        rec["identity"]["pid"] for rec in records.values() if alive(rec.get("identity"))
-    }
-    uuids = {row["uuid"]: row["gpu"] for row in inventory}
+def compute_processes():
     result = subprocess.run(
         [
             "nvidia-smi",
@@ -60,17 +67,42 @@ def external_gpus(inventory, records):
         check=True,
         timeout=20,
     )
-    external = set()
+    processes = set()
     for line in result.stdout.splitlines():
         fields = [part.strip() for part in line.split(",")]
-        if len(fields) != 2 or fields[0] not in uuids:
+        if len(fields) == 2 and fields[1].isdigit():
+            processes.add((fields[0], int(fields[1])))
+    return processes
+
+
+def external_gpus(inventory, records):
+    """NVML reports host PIDs in containers; workers attest their own CUDA PID."""
+    groups = {
+        rec["identity"]["pid"] for rec in records.values() if alive(rec.get("identity"))
+    }
+    owned_cuda = set()
+    for key, rec in records.items():
+        path = folder() / key / "ready.json"
+        if not alive(rec.get("identity")) or not path.exists():
+            continue
+        ready = read(path)
+        worker = ready.get("worker")
+        try:
+            if alive(worker) and os.getpgid(worker["pid"]) == rec["identity"]["pid"]:
+                owned_cuda.add((ready["uuid"], ready["nvml_pid"]))
+        except ProcessLookupError:
+            pass
+    uuids = {row["uuid"]: row["gpu"] for row in inventory}
+    external = set()
+    for gpu_uuid, pid in compute_processes():
+        if gpu_uuid not in uuids or (gpu_uuid, pid) in owned_cuda:
             continue
         try:
-            owned = os.getpgid(int(fields[1])) in groups
+            owned = os.getpgid(pid) in groups
         except (OSError, ValueError):
             owned = False
         if not owned:
-            external.add(uuids[fields[0]])
+            external.add(uuids[gpu_uuid])
     return external
 
 
@@ -195,17 +227,26 @@ def hold(device):
     signal.signal(signal.SIGTERM, lambda *_: finished.set())
     signal.signal(signal.SIGINT, lambda *_: finished.set())
     torch.set_num_threads(1)
+    from .queue import gpu_inventory
+
+    gpu_uuid = next(row["uuid"] for row in gpu_inventory() if row["gpu"] == device)
+    before = {pid for name, pid in compute_processes() if name == gpu_uuid}
     torch.cuda.set_device(0)
     memory = torch.empty(1024 * 2**20, dtype=torch.uint8, device="cuda")
     memory.zero_()
     a = torch.randn(4096, 4096, device="cuda", dtype=torch.bfloat16)
     b = torch.randn_like(a)
     output = torch.empty_like(a)
+    candidates = {pid for name, pid in compute_processes() if name == gpu_uuid} - before
+    if len(candidates) != 1:
+        raise DataError("Cannot uniquely attest reservation CUDA process")
     write(
         folder() / str(device) / "ready.json",
         {
             "time": time.time(),
             "gpu": device,
+            "uuid": gpu_uuid,
+            "nvml_pid": candidates.pop(),
             "worker": identity(os.getpid()),
             "kind": "resource_reservation",
             "research_optimizer_steps": 0,
