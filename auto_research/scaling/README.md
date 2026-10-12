@@ -8,7 +8,7 @@
 
 保卡开关位于产物 `config/operations.json` 的 `gpu_reservation.enabled`，默认关闭；本轮按用户明确授权启用。仅使用本任务已分配的 8 张 GPU。空闲卡运行低占空比的 CUDA 资源保持 worker，训练、NLL 或评测就绪时先终止对应保卡进程，核验释放后再派发任务。发现外部计算进程时释放同卡的保卡 worker，不停止外部进程。
 
-每张卡的 PID、启动时间与持久化握手保存在 `state/gpu_reservations/`，运行日志集中于 `logs/reservations/`。controller 重启后接管已有进程；停止队列、禁用开关或研究任务全部完成时退出；监督失联超过 15 分钟自动退出。`reports/STATUS.md` 和 `state/status.json` 分别列出保卡与研究任务，保卡不产生研究 optimizer step。此功能维持当前 GPU 活动，不能保证云平台保留整个计算任务。
+容器内通过 CUDA 上下文创建前后的唯一进程差集登记 NVML 宿主机 PID，并核验活 worker 所属进程组，无法确认的进程一律视为外部。每张卡的 PID、启动时间与持久化握手保存在 `state/gpu_reservations/`，运行日志集中于 `logs/reservations/`。controller 重启后接管已有进程；停止队列、禁用开关或研究任务全部完成时退出；监督失联超过 15 分钟自动退出。`reports/STATUS.md` 和 `state/status.json` 分别列出保卡与研究任务，保卡不产生研究 optimizer step。此功能维持当前 GPU 活动，不能保证云平台保留整个计算任务。
 
 ## 当前固定方案
 
