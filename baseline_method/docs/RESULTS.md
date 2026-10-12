@@ -1,5 +1,7 @@
 # 原始基座与四种方法的 benchmark 结果
 
+**历史结果，非本轮重训成绩。** 2026-10-12 用户弃用旧训练权重，改为 GPT 生成共享答案和四方法说明，从原始基座重新训练。旧分数保留用于审计退化；新成绩仅写入 `CoT_Analyse_artifacts/gpt_fresh_100k_20261012/reports/RESULTS.md`，不与本表混填。
+
 ## 2026-10-11 训练复核
 
 详见 [TRAINING_REVIEW.md](TRAINING_REVIEW.md)：重新核对40份指标、8组训练和32组评测配置；新增合成目标语义风险分析，区分已有学习率对照证据与待验证解释。后续 answer-only/格式变体实验见 auto_research，不能视为尚未进行。

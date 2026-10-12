@@ -1,16 +1,18 @@
 # 四种方法的 baseline 实验
 
+**2026-10-12：本目录训练结果作为历史证据保留，训练权重已弃用。** 用户要求 GPT 同时生成答案与四方法说明，并从原始基座重新训练。当前执行入口为 [scaling](../auto_research/scaling/README.md)，新产物是 `CoT_Analyse_artifacts/gpt_fresh_100k_20261012/`；不要从本目录旧 checkpoint 续训。
+
 先看 [总表与结论](docs/RESULTS.md)，再按需要进入方法目录或运行代码。四方法 × 两模型 × 四 benchmark，共8次训练、32项评测；每组训练131步。原始 Baseline 在总表第一行。
 
 | 要做的事 | 入口 |
 |---|---|
 | 看成绩、实验设置和诊断 | [docs/RESULTS.md](docs/RESULTS.md) |
-| 查看 100K 统一续训范围与 TODO | [docs/SCALE_100K_TODO.md](docs/SCALE_100K_TODO.md) |
+| 查看 GPT 全新 100K 重训范围与 TODO | [docs/SCALE_100K_TODO.md](docs/SCALE_100K_TODO.md) |
 | 运行远端常驻 100K 队列 | [auto_research/scaling/README.md](../auto_research/scaling/README.md) |
 | 理解每个文件的用途 | [docs/FILES.md](docs/FILES.md) |
 | 看全工作区整理方案 | [docs/PLAN.md](docs/PLAN.md) |
 | review 不确定能否删除的材料 | [docs/REVIEW.md](docs/REVIEW.md) |
-| 运行实验 | `python pipeline.py --help` |
+| 查看历史流水线命令 | `python pipeline.py --help`；本轮训练使用 scaling 入口 |
 
 ```text
 baseline_method/
