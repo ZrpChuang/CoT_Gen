@@ -375,6 +375,8 @@ class GpuReservationContracts(unittest.TestCase):
             return {456: 123, 789: 999}[pid]
 
         with (
+            tempfile.TemporaryDirectory() as temp,
+            patch.object(gpu, "folder", return_value=Path(temp)),
             patch.object(gpu, "alive", return_value=True),
             patch.object(gpu.subprocess, "run", return_value=output),
             patch.object(gpu.os, "getpgid", side_effect=group),
