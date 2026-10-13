@@ -330,6 +330,38 @@ def generation_policy():
     return recipe, prompts
 
 
+def ordered_batch(rows, one, pool, pending, prefetch, observe, poll_seconds=5):
+    """Overlap one future batch while publishing exactly the original row order."""
+    for rid, payload in rows:
+        if rid not in pending:
+            pending[rid] = pool.submit(one, json.loads(payload))
+    current = {rid: pending[rid] for rid, _ in rows}
+    previewed = False
+    for rid, _ in rows:
+        future = current[rid]
+        while True:
+            # Do not speculate during an entirely failing batch/circuit breaker.
+            if not previewed and any(
+                f.done() and not f.cancelled() and f.exception() is None
+                for f in current.values()
+            ):
+                for next_id, payload in prefetch():
+                    if next_id not in pending:
+                        pending[next_id] = pool.submit(one, json.loads(payload))
+                previewed = True
+            observe(current, pending)
+            if future.done():
+                break
+            futures.wait([future], timeout=poll_seconds)
+        pending.pop(rid)
+        try:
+            result, error = future.result()
+            status = "accepted" if result else "rejected"
+        except Exception as exc:
+            result, error, status = None, type(exc).__name__, "retry"
+        yield rid, result, error, status
+
+
 def generate():
     from transformers import AutoTokenizer
 
@@ -368,6 +400,11 @@ def generate():
     conn = database()
     conn.close()
     local = threading.local()
+    with database() as db:
+        cached_count = db.execute("SELECT COUNT(*) FROM requests").fetchone()[0]
+    active_requests = {}
+    last_cache_write = None
+    last_observation = 0
 
     def connection():
         if not hasattr(local, "db"):
@@ -375,6 +412,7 @@ def generate():
         return local.db
 
     def request(rid, stage, spec, messages, temperature=None):
+        nonlocal cached_count, last_cache_write
         with db_lock:
             db = connection()
             saved = db.execute(
@@ -382,18 +420,27 @@ def generate():
             ).fetchone()
         if saved:
             return json.loads(saved[0])
-        out = E.request(
-            spec,
-            messages,
-            temperature=temperature,
-            session_id=f"{cfg['run_id']}-{rid}-{stage}",
-        )
+        thread = threading.get_ident()
         with db_lock:
-            db.execute(
+            active_requests[thread] = {"stage": stage, "started_at": time.time()}
+        try:
+            out = E.request(
+                spec,
+                messages,
+                temperature=temperature,
+                session_id=f"{cfg['run_id']}-{rid}-{stage}",
+            )
+        finally:
+            with db_lock:
+                active_requests.pop(thread, None)
+        with db_lock:
+            inserted = db.execute(
                 "INSERT OR IGNORE INTO requests VALUES(?,?,?)",
                 (rid, stage, json.dumps(out, ensure_ascii=False)),
             )
             db.commit()
+            cached_count += inserted.rowcount
+            last_cache_write = time.time()
         return out
 
     def one(row):
@@ -523,6 +570,8 @@ def generate():
     concurrency = min(cfg["generation_workers"], limits()["generation_concurrency"])
     log("generation_api_limits", **limits(), effective_concurrency=concurrency)
     with futures.ThreadPoolExecutor(max_workers=concurrency) as pool:
+        pending = {}
+        batch_number = 0
         while True:
             if not credentials_ready():
                 raise Waiting(
@@ -563,17 +612,72 @@ def generate():
                 raise DataError(
                     f"Eligible source exhausted: accepted {count}/{target}; no repetition or reduced target allowed"
                 )
-            pending = {
-                rid: pool.submit(one, json.loads(payload)) for rid, payload in rows
-            }
+
+            batch_number += 1
+            batch_started_at = time.time()
+            prefetch_batches = read(root() / "config/operations.json").get(
+                "generation_prefetch_batches", 0
+            )
+            if prefetch_batches not in (0, 1):
+                raise DataError("generation_prefetch_batches must be zero or one")
+
+            def prefetch():
+                # Fixed original batches/retries still select and commit in priority order.
+                # Preview only new pending rows; never redo an active candidate attempt.
+                slots = min(
+                    cfg["generation_batch"] * prefetch_batches,
+                    max(0, remaining - len(pending)),
+                    max(0, 2 * cfg["generation_batch"] - len(pending)),
+                )
+                if not slots:
+                    return []
+                excluded = set(pending) | {rid for rid, _ in rows}
+                with database() as db:
+                    preview = db.execute(
+                        "SELECT id,payload FROM candidates WHERE status='pending' AND attempts<? ORDER BY priority LIMIT ?",
+                        (cfg["max_candidate_attempts"], slots + len(excluded)),
+                    ).fetchall()
+                return [row for row in preview if row[0] not in excluded][:slots]
+
+            def observe(current, outstanding):
+                nonlocal last_observation
+                now = time.time()
+                if now - last_observation < 5:
+                    return
+                with db_lock:
+                    requests = [
+                        {
+                            "stage": rec["stage"],
+                            "elapsed_seconds": round(now - rec["started_at"], 1),
+                        }
+                        for rec in active_requests.values()
+                    ]
+                    telemetry = {
+                        "time": now,
+                        "accepted_new": count,
+                        "request_cache": cached_count,
+                        "last_cache_write": last_cache_write,
+                        "active_requests": requests,
+                        "candidate_futures": len(outstanding),
+                        "completed_uncommitted": sum(
+                            f.done() for f in outstanding.values()
+                        ),
+                        "current_batch_remaining": sum(
+                            not f.done() for f in current.values()
+                        ),
+                        "concurrency": concurrency,
+                        "prefetch_batches": prefetch_batches,
+                        "batch_number": batch_number,
+                        "batch_started_at": batch_started_at,
+                    }
+                write(root() / "state/generation_runtime.json", telemetry)
+                last_observation = now
+
             transport_failed = []
-            for rid, _ in rows:
-                try:
-                    result, error = pending[rid].result()
-                    status = "accepted" if result else "rejected"
-                except Exception as exc:
-                    # Do not put exception text from network libraries into shared logs.
-                    result, error, status = None, type(exc).__name__, "retry"
+            for rid, result, error, status in ordered_batch(
+                rows, one, pool, pending, prefetch, observe
+            ):
+                if status == "retry":
                     transport_failed.append(rid)
                 with database() as db:
                     db.execute(

@@ -696,6 +696,7 @@ def render(jobs, accepted, inventory):
     from . import gpu as reservations
 
     held = reservations.snapshot()
+    generation = generation_summary(accepted)
     counts = dict(Counter(j["status"] for j in jobs.values()))
     running = [
         {k: j.get(k) for k in ("id", "kind", "started_at", "gpus")}
@@ -722,6 +723,7 @@ def render(jobs, accepted, inventory):
         "blocked": blocked,
         "gpus": inventory,
         "gpu_reservations": held,
+        "generation": generation,
         "phase": "active"
         if running
         else "waiting_teacher_credentials"
@@ -741,6 +743,13 @@ def render(jobs, accepted, inventory):
         "资源保持 GPU："
         + (", ".join(str(rec["gpu"]) for rec in held if rec["alive"]) or "无")
         + "。保卡单独统计，不计入研究训练步数；训练、NLL 或评测就绪后自动让卡。",
+        "",
+        "## 数据生成进度",
+        "",
+        f"最近 {generation['window_minutes']:.1f} 分钟：新增 {generation['accepted_delta']:,} 条共同合格样本，新增 {generation['cache_delta']:,} 条请求缓存；有效速度 {generation['accepted_per_minute']:.2f} 条/分钟。",
+        f"首批 10K 尚缺 {max(0, 10000 - accepted):,} 条；按上述窗口速度预计剩余 {generation['hours_to_10k'] if generation['hours_to_10k'] is not None else '暂不可估计'} 小时。",
+        f"活跃请求 {generation['active_requests']} / {generation['concurrency']}；最久等待 {generation['oldest_request_seconds']:.1f} 秒；已完成待按序入库 {generation['completed_uncommitted']} 条；预取 {generation['prefetch_batches']} 批。",
+        f"运行遥测状态：{generation['telemetry_status']}。进程存活不能代替样本进展，缓存数不能计作合格样本。",
         "",
         "## 正在执行",
         "",
@@ -814,6 +823,48 @@ def render(jobs, accepted, inventory):
         write(manifest_path, manifest)
     results(jobs)
     return payload
+
+
+def generation_summary(accepted):
+    """Bounded durable rate history and request ages; never liveness-only progress."""
+    now = time.time()
+    runtime_path = root() / "state/generation_runtime.json"
+    runtime = read(runtime_path) if runtime_path.exists() else {}
+    path = root() / "state/generation_monitor.json"
+    history = read(path).get("history", []) if path.exists() else []
+    cache = runtime.get("request_cache", history[-1]["cache"] if history else 0)
+    history = [s for s in history if s["time"] >= now - 6 * 3600]
+    latest = {"time": now, "accepted": accepted, "cache": cache}
+    if not history or now - history[-1]["time"] >= 60:
+        history.append(latest)
+    eligible = [s for s in history if s["time"] <= now - 3600]
+    anchor = eligible[-1] if eligible else history[0]
+    minutes = max(0, (now - anchor["time"]) / 60)
+    delta = max(0, accepted - anchor["accepted"])
+    rate = delta / minutes if minutes >= 5 else 0
+    requests = runtime.get("active_requests", [])
+    result = {
+        "time": now,
+        "window_minutes": round(minutes, 1),
+        "accepted_delta": delta,
+        "cache_delta": max(0, cache - anchor["cache"]),
+        "accepted_per_minute": round(rate, 3),
+        "hours_to_10k": round(max(0, 10000 - accepted) / rate / 60, 1)
+        if rate
+        else None,
+        "active_requests": len(requests),
+        "oldest_request_seconds": max(
+            (r["elapsed_seconds"] for r in requests), default=0
+        ),
+        "concurrency": runtime.get("concurrency", 8),
+        "completed_uncommitted": runtime.get("completed_uncommitted", 0),
+        "prefetch_batches": runtime.get("prefetch_batches", 0),
+        "telemetry_status": "fresh"
+        if now - runtime.get("time", 0) < 120
+        else "stale_or_unavailable",
+    }
+    write(path, {**result, "history": history[-361:]})
+    return result
 
 
 def run():

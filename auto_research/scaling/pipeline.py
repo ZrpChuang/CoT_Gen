@@ -26,6 +26,7 @@ def worker(args):
         "profile": lambda: efficiency.profile(
             args.model, args.milestone, args.micro_batch, args.tag
         ),
+        "generation-trial": lambda: efficiency.generation_trial(),
         "train": lambda: train.train(args.run_id, args.milestone),
         "wandb": lambda: train.sync_wandb(args.run_id, args.milestone),
         "eval-preflight": lambda: evaluate.preflight(),
@@ -79,6 +80,7 @@ def main():
             "capacity",
             "tune",
             "profile",
+            "generation-trial",
             "train",
             "wandb",
             "eval-preflight",

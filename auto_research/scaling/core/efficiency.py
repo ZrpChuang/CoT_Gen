@@ -9,7 +9,176 @@ import subprocess
 import time
 from pathlib import Path
 
-from .common import DataError, config, native_pack, read, root, sha, write
+from .common import (
+    DataError,
+    alive,
+    config,
+    database,
+    identity,
+    lock,
+    native_pack,
+    read,
+    root,
+    sha,
+    write,
+)
+
+
+def generation_decision(phases):
+    baselines = [p["accepted_per_minute"] for p in phases if not p["prefetch_batches"]]
+    candidates = [p["accepted_per_minute"] for p in phases if p["prefetch_batches"]]
+    return (
+        len(baselines) == len(candidates) == 2
+        and min(candidates) > max(baselines) * 1.1
+        and all(p["accepted_delta"] >= 30 for p in phases)
+    )
+
+
+def generation_trial():
+    """Bounded CPU controller: baseline/candidate twice, fixed conservative API caps."""
+    from .api import limits
+
+    out = root() / "efficiency/generation"
+    out.mkdir(parents=True, exist_ok=True)
+    with lock(out / "trial.lock"):
+        if (out / "trial.json").exists() and read(out / "trial.json").get("complete"):
+            return
+        started = time.time()
+        guard = sha(config())
+        policy = limits()
+        expected = {
+            "generation_concurrency": 8,
+            "requests_per_minute_per_key": 30,
+            "tokens_per_minute_per_key": 1500000,
+            "minimum_interval_seconds": 2.0,
+        }
+        if policy != expected:
+            raise DataError("Generation trial requires the authorized API caps")
+        mode = 0
+        phases = []
+        result = {
+            "time": started,
+            "complete": False,
+            "identity": identity(os.getpid()),
+            "claim": "Operational adjacent-window trial; inputs differ across windows. No benchmark or training-speed claim.",
+            "phase_seconds": 600,
+            "budget_seconds": 7200,
+            "phases": phases,
+        }
+        ops_path = root() / "config/operations.json"
+
+        def guardrails():
+            if (
+                time.time() - started > 7200
+                or sha(config()) != guard
+                or limits() != policy
+            ):
+                raise DataError(
+                    "Generation trial budget or immutable protocol guard failed"
+                )
+            job = read(root() / "state/jobs.json")["generate"]
+            if job["status"] != "running" or not alive(job.get("identity")):
+                raise DataError("Generator no longer active; stop operational trial")
+            if read(ops_path).get("generation_prefetch_batches", 0) != mode:
+                raise DataError("Generation operational setting changed externally")
+            runtime = read(root() / "state/generation_runtime.json")
+            if time.time() - runtime["time"] > 120:
+                raise DataError("Generation telemetry stale")
+            return runtime
+
+        def counts():
+            with database() as db:
+                return {
+                    t: db.execute("SELECT COUNT(*) FROM " + t).fetchone()[0]
+                    for t in ("accepted", "requests")
+                }
+
+        try:
+            for mode in (0, 1, 0, 1):
+                runtime = read(root() / "state/generation_runtime.json")
+                serial = runtime["batch_number"]
+                ops = read(ops_path)
+                ops["generation_prefetch_batches"] = mode
+                write(ops_path, ops)
+                # Drain two batch boundaries to avoid cached preview contaminating baseline.
+                result.update(phase="warmup", prefetch_batches=mode)
+                write(out / "trial.json", result)
+                while True:
+                    runtime = guardrails()
+                    if (
+                        runtime["batch_number"] >= serial + 2
+                        and runtime["prefetch_batches"] == mode
+                    ):
+                        break
+                    time.sleep(10)
+                before = counts()
+                begin = time.time()
+                result.update(phase="measure", phase_started_at=begin)
+                write(out / "trial.json", result)
+                while time.time() - begin < 600:
+                    guardrails()
+                    time.sleep(10)
+                after = counts()
+                seconds = time.time() - begin
+                record = {
+                    "prefetch_batches": mode,
+                    "started_at": begin,
+                    "seconds": seconds,
+                    "accepted_delta": after["accepted"] - before["accepted"],
+                    "cache_delta": after["requests"] - before["requests"],
+                }
+                record["accepted_per_minute"] = record["accepted_delta"] / seconds * 60
+                record["cache_per_minute"] = record["cache_delta"] / seconds * 60
+                phases.append(record)
+                write(out / "trial.json", result)
+                ledger = out / "ledger.tsv"
+                if not ledger.exists():
+                    ledger.write_text(
+                        "timestamp\tmode\taccepted_per_minute\taccepted_delta\tcache_delta\tseconds\tstatus\n"
+                    )
+                with ledger.open("a") as f:
+                    f.write(
+                        f"{begin}\t{mode}\t{record['accepted_per_minute']}\t{record['accepted_delta']}\t{record['cache_delta']}\t{seconds}\t{'baseline' if not mode else 'diagnostic'}\n"
+                    )
+            keep = generation_decision(phases)
+            result.update(
+                complete=True,
+                phase="complete",
+                status="keep_operational" if keep else "discard",
+                kept_prefetch_batches=int(keep),
+                finished_at=time.time(),
+            )
+        except BaseException as exc:
+            result.update(
+                phase="stopped",
+                status="crash",
+                error_type=type(exc).__name__,
+                finished_at=time.time(),
+            )
+            raise
+        finally:
+            ops = read(ops_path)
+            if ops.get("generation_prefetch_batches", 0) == mode:
+                ops["generation_prefetch_batches"] = result.get(
+                    "kept_prefetch_batches", 0
+                )
+                write(ops_path, ops)
+            write(out / "trial.json", result)
+            lines = [
+                "# GPT generation scheduling trial",
+                "",
+                result["claim"],
+                "",
+                f"Status: {result.get('status', 'running')}; each measured phase 600 seconds, total budget 7200 seconds.",
+                "",
+                "| Mode | Accepted/min | Accepted delta | Cache delta | Seconds |",
+                "|---|---:|---:|---:|---:|",
+            ]
+            lines += [
+                f"| {p['prefetch_batches']} | {p['accepted_per_minute']:.3f} | {p['accepted_delta']} | {p['cache_delta']} | {p['seconds']:.1f} |"
+                for p in phases
+            ]
+            (out / "REPORT.md").write_text("\n".join(lines) + "\n")
 
 
 def folder(model, milestone):

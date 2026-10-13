@@ -1,16 +1,19 @@
 """Protect data isolation, deterministic selectors, and durable queue dependencies."""
 
 import subprocess
+import json
+import threading
 import sqlite3
 import sys
 import tempfile
 import time
 import unittest
 from contextlib import nullcontext
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from core import api, common, data, gpu, queue, train
+from core import api, common, data, efficiency, gpu, queue, train
 from core.common import freeze_lines, prompt_token_count, read, write
 from core.data import Decontaminator, context
 from core.variants import choose, random_assign
@@ -68,6 +71,121 @@ class ApiContracts(unittest.TestCase):
 
 
 class DataContracts(unittest.TestCase):
+    def test_generation_trial_requires_two_wins_over_fastest_baseline(self):
+        phases = [
+            {
+                "prefetch_batches": mode,
+                "accepted_per_minute": rate,
+                "accepted_delta": 40,
+            }
+            for mode, rate in [(0, 4), (1, 5), (0, 4.2), (1, 4.8)]
+        ]
+        self.assertTrue(efficiency.generation_decision(phases))
+        phases[-1]["accepted_per_minute"] = 4.5
+        self.assertFalse(efficiency.generation_decision(phases))
+        self.assertFalse(efficiency.generation_decision(phases[:2]))
+
+    def test_prefetch_uses_idle_slot_without_changing_commit_order(self):
+        slow = threading.Event()
+        preview_done = threading.Event()
+        committed = []
+        pending = {}
+
+        def one(row):
+            if row["id"] == "a":
+                self.assertTrue(slow.wait(3))
+            if row["id"] == "c":
+                preview_done.set()
+            return row, None
+
+        rows = [(x, json.dumps({"id": x})) for x in ("a", "b")]
+        preview = [("c", json.dumps({"id": "c"}))]
+        with ThreadPoolExecutor(max_workers=2) as pool:
+
+            def consume():
+                for rid, result, error, status in data.ordered_batch(
+                    rows,
+                    one,
+                    pool,
+                    pending,
+                    lambda: preview,
+                    lambda *_: None,
+                    poll_seconds=0.01,
+                ):
+                    committed.append((rid, status))
+
+            runner = threading.Thread(target=consume)
+            runner.start()
+            try:
+                self.assertTrue(preview_done.wait(2))
+                self.assertEqual(committed, [])
+            finally:
+                slow.set()
+            runner.join(3)
+            self.assertFalse(runner.is_alive())
+            self.assertTrue(preview_done.wait(2))
+            self.assertEqual(committed, [("a", "accepted"), ("b", "accepted")])
+            self.assertEqual(set(pending), {"c"})
+            consumed = list(
+                data.ordered_batch(
+                    preview, one, pool, pending, lambda: [], lambda *_: None
+                )
+            )
+            self.assertEqual(consumed[0][0], "c")
+            self.assertEqual(pending, {})
+
+    def test_entirely_failed_batch_does_not_speculate_and_retry_reexecutes(self):
+        calls = []
+
+        def one(row):
+            calls.append(row["id"])
+            raise RuntimeError("fixture")
+
+        rows = [("a", '{"id":"a"}')]
+        with ThreadPoolExecutor(max_workers=1) as pool:
+            pending = {}
+            preview = MagicMock(return_value=[])
+            for _ in range(2):
+                result = list(
+                    data.ordered_batch(
+                        rows, one, pool, pending, preview, lambda *_: None
+                    )
+                )
+                self.assertEqual(result, [("a", None, "RuntimeError", "retry")])
+            preview.assert_not_called()
+        self.assertEqual(calls, ["a", "a"])
+
+    def test_generation_rate_uses_durable_counts_not_alive_heartbeat(self):
+        with tempfile.TemporaryDirectory() as temp:
+            r = Path(temp)
+            write(
+                r / "state/generation_monitor.json",
+                {"history": [{"time": 1000, "accepted": 100, "cache": 800}]},
+            )
+            write(
+                r / "state/generation_runtime.json",
+                {
+                    "time": 4600,
+                    "request_cache": 1600,
+                    "active_requests": [{"stage": "reference", "elapsed_seconds": 320}],
+                    "concurrency": 8,
+                },
+            )
+            with (
+                patch.object(queue, "root", return_value=r),
+                patch.object(queue.time, "time", return_value=4600),
+            ):
+                report = queue.generation_summary(200)
+                self.assertEqual(report["accepted_delta"], 100)
+                self.assertEqual(report["cache_delta"], 800)
+                self.assertEqual(report["oldest_request_seconds"], 320)
+                self.assertAlmostEqual(
+                    report["accepted_per_minute"], 100 / 60, places=3
+                )
+                stalled = queue.generation_summary(100)
+                self.assertEqual(stalled["accepted_per_minute"], 0)
+                self.assertIsNone(stalled["hours_to_10k"])
+
     def test_prompt_count_uses_tokens_not_batchencoding_fields(self):
         class Tokenizer:
             def apply_chat_template(self, messages, **kwargs):
