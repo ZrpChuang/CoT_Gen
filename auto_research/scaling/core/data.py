@@ -362,6 +362,59 @@ def ordered_batch(rows, one, pool, pending, prefetch, observe, poll_seconds=5):
         yield rid, result, error, status
 
 
+def generation_goal():
+    cfg = config()
+    total = cfg["target_unique_inputs"] - cfg["parent_unique_inputs"]
+    path = root() / "config/operations.json"
+    ops = read(path) if path.exists() else {}
+    goal = ops.get("generation_stop_after", total)
+    if type(goal) is not int or not 1 <= goal <= total:
+        raise DataError("Invalid generation stopping goal")
+    if goal < total and (
+        ops.get("generation_only") is not True
+        or goal + cfg["parent_unique_inputs"] not in cfg["milestones"]
+    ):
+        raise DataError(
+            "Scoped generation goal requires data-only mode and a frozen milestone"
+        )
+    return goal
+
+
+def generation_marker(goal=None):
+    goal = generation_goal() if goal is None else goal
+    total = config()["target_unique_inputs"] - config()["parent_unique_inputs"]
+    return root() / (
+        "data/generation_complete.json"
+        if goal == total
+        else f"data/generation_milestones/{goal}.json"
+    )
+
+
+def finish_generation(count, goal):
+    cfg = config()
+    total = cfg["target_unique_inputs"] - cfg["parent_unique_inputs"]
+    if count < goal:
+        raise DataError("Cannot complete a generation goal before enough accepted data")
+    stage = None
+    if goal < total:
+        prepare(goal + cfg["parent_unique_inputs"])
+        stage = str(
+            stage_directory(goal + cfg["parent_unique_inputs"]) / "manifest.json"
+        )
+    write(
+        generation_marker(goal),
+        {
+            "complete": True,
+            "accepted_new": count,
+            "goal_new": goal,
+            "study_target_new": total,
+            "study_complete": count >= total,
+            "stage_manifest": stage,
+            "time": time.time(),
+        },
+    )
+
+
 def generate():
     from transformers import AutoTokenizer
 
@@ -566,7 +619,7 @@ def generate():
         combined["answer_sha256"] = sha(answer)
         return combined, None
 
-    target = cfg["target_unique_inputs"] - cfg["parent_unique_inputs"]
+    target = generation_goal()
     concurrency = min(cfg["generation_workers"], limits()["generation_concurrency"])
     log("generation_api_limits", **limits(), effective_concurrency=concurrency)
     with futures.ThreadPoolExecutor(max_workers=concurrency) as pool:
@@ -580,10 +633,7 @@ def generate():
             with database() as db:
                 count = db.execute("SELECT COUNT(*) FROM accepted").fetchone()[0]
                 if count >= target:
-                    write(
-                        root() / "data/generation_complete.json",
-                        {"complete": True, "accepted_new": count, "time": time.time()},
-                    )
+                    finish_generation(count, target)
                     return
                 remaining = target - count
                 rows = db.execute(

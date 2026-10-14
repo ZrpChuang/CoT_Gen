@@ -36,7 +36,7 @@ from .common import (
     stop,
     write,
 )
-from .data import stage_directory
+from .data import generation_goal, generation_marker, stage_directory
 from .train import directory, encoding_directory
 
 
@@ -330,7 +330,7 @@ def marker(job):
             / "plan.json"
         )
     if kind == "generate":
-        return root() / "data/generation_complete.json"
+        return generation_marker()
     milestone = int(values["milestone"])
     if kind == "prepare":
         return stage_directory(milestone) / "manifest.json"
@@ -433,7 +433,7 @@ def receipt_path(job):
 def last_progress(job):
     paths = []
     if job["kind"] == "generate":
-        paths = [root() / "data/generation_progress.json"]
+        paths = [root() / "data/generation_progress.json", root() / "data/state.sqlite"]
     values = arguments(job)
     if "run_id" in values and "milestone" in values:
         out = directory(values["run_id"], int(values["milestone"]))
@@ -450,6 +450,17 @@ def last_progress(job):
             )
         )
     return max([job["started_at"], *(p.stat().st_mtime for p in paths if p.exists())])
+
+
+def generation_stall_seconds():
+    path = root() / "config/operations.json"
+    ops = read(path) if path.exists() else {}
+    value = ops.get(
+        "generation_no_progress_seconds", config()["cpu_job_timeout_hours"] * 3600
+    )
+    if type(value) not in (int, float) or not 1800 <= value <= 72 * 3600:
+        raise DataError("Generation stall limit must be 1800..259200 seconds")
+    return value
 
 
 def metric(path, bench):
@@ -744,6 +755,11 @@ def render(jobs, accepted, inventory):
         "gpus": inventory,
         "gpu_reservations": held,
         "generation": generation,
+        "generation_goal": generation_goal(),
+        "generation_guard": {
+            "poll_seconds": config()["poll_seconds"],
+            "stall_seconds": generation_stall_seconds(),
+        },
         "phase": "generation_only"
         if only_data
         else "active"
@@ -764,6 +780,9 @@ def render(jobs, accepted, inventory):
         else "当前按已授权队列范围执行。",
         "",
         f"新增有效数据：{accepted:,} / {payload['target_new']:,}；教师凭证：{'已就绪' if payload['credentials_ready'] else '等待恢复'}。",
+        f"本轮构建目标：{payload['generation_goal']:,} 组共同合格输入；达到后导出四方法数据并停止该范围。"
+        if only_data
+        else "",
         "",
         "资源保持 GPU："
         + (", ".join(str(rec["gpu"]) for rec in held if rec["alive"]) or "无")
@@ -775,6 +794,7 @@ def render(jobs, accepted, inventory):
         f"首批 10K 尚缺 {max(0, 10000 - accepted):,} 条；按上述窗口速度预计剩余 {generation['hours_to_10k'] if generation['hours_to_10k'] is not None else '暂不可估计'} 小时。",
         f"活跃请求 {generation['active_requests']} / {generation['concurrency']}；最久等待 {generation['oldest_request_seconds']:.1f} 秒；已完成待按序入库 {generation['completed_uncommitted']} 条；预取 {generation['prefetch_batches']} 批。",
         f"运行遥测状态：{generation['telemetry_status']}。进程存活不能代替样本进展，缓存数不能计作合格样本。",
+        f"远端护航每 {payload['generation_guard']['poll_seconds']} 秒检查；进程退出按身份恢复，连续 {payload['generation_guard']['stall_seconds'] / 60:.0f} 分钟无样本或缓存持久化进展时重试本任务，达到重试上限后保留故障。",
         "",
         "## 正在执行",
         "",
@@ -930,7 +950,10 @@ def run():
                         else cfg["cpu_job_timeout_hours"]
                     )
                     # Healthy large runs may last days; timeout means no durable progress.
-                    if time.time() - last_progress(job) > hours * 3600:
+                    seconds = hours * 3600
+                    if job["kind"] == "generate":
+                        seconds = generation_stall_seconds()
+                    if time.time() - last_progress(job) > seconds:
                         stop(record)
                         code = 124
                     else:
@@ -1108,6 +1131,15 @@ def run():
                         },
                     )
                     log("generation_only_scope_finished", accepted_new=accepted)
+                    state = read(root() / "state/status.json")
+                    state.update(
+                        phase="generation_goal_complete", running=[], time=time.time()
+                    )
+                    write(root() / "state/status.json", state)
+                    with (root() / "reports/STATUS.md").open("a") as report:
+                        report.write(
+                            f"\n## 本轮数据构建完成\n\n已达到 {generation_goal():,} 组共同合格输入并停止。训练继续暂停。\n"
+                        )
                     return
                 enabled_runs = sum(
                     r["model"] in active_models()

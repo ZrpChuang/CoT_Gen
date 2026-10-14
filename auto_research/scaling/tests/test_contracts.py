@@ -2,6 +2,7 @@
 
 import subprocess
 import json
+import os
 import threading
 import sqlite3
 import sys
@@ -71,6 +72,100 @@ class ApiContracts(unittest.TestCase):
 
 
 class DataContracts(unittest.TestCase):
+    def test_scoped_generation_exports_all_methods_without_marking_full_study_complete(
+        self,
+    ):
+        with tempfile.TemporaryDirectory() as temp:
+            r = Path(temp)
+            cfg = {
+                "target_unique_inputs": 10,
+                "parent_unique_inputs": 0,
+                "milestones": [3, 10],
+                "explanation_policy": "fixture",
+            }
+            with (
+                patch.object(data, "root", return_value=r),
+                patch.object(common, "root", return_value=r),
+                patch.object(data, "config", return_value=cfg),
+            ):
+                write(
+                    r / "config/operations.json",
+                    {"generation_only": True, "generation_stop_after": 3},
+                )
+                self.assertEqual(data.generation_goal(), 3)
+                with common.database() as db:
+                    for i in range(3):
+                        row = {
+                            "id": str(i),
+                            "stratum": "fixture",
+                            "question": "q",
+                            "messages": [{"role": "user", "content": "q"}],
+                            "answer": "a",
+                            "cots": {
+                                m: m + " explanation"
+                                for m in ["NEU", "SUP", "AUG-SUP", "SSR"]
+                            },
+                            "canonical": {
+                                "plain": "plain",
+                                "structured": "steps",
+                                "fallback": False,
+                            },
+                        }
+                        db.execute(
+                            "INSERT INTO accepted(id,payload) VALUES (?,?)",
+                            (str(i), json.dumps(row)),
+                        )
+                data.finish_generation(3, 3)
+                self.assertTrue(data.generation_marker().exists())
+                self.assertFalse((r / "data/generation_complete.json").exists())
+                self.assertFalse(read(data.generation_marker())["study_complete"])
+                manifest = read(r / "data/stages/3/manifest.json")
+                for m in ["NEU", "SUP", "AUG-SUP", "SSR"]:
+                    path = r / "data/stages/3" / (m + ".jsonl")
+                    self.assertEqual(len(path.read_text().splitlines()), 3)
+                    self.assertEqual(common.sha(path), manifest["hashes"][m])
+                write(
+                    r / "config/operations.json",
+                    {"generation_only": False, "generation_stop_after": 3},
+                )
+                with self.assertRaises(common.DataError):
+                    data.generation_goal()
+
+    def test_guard_counts_durable_cache_writes_not_telemetry_heartbeat(self):
+        with tempfile.TemporaryDirectory() as temp:
+            r = Path(temp)
+            for relative, stamp in [
+                ("data/state.sqlite", 100),
+                ("data/generation_progress.json", 50),
+                ("state/generation_runtime.json", 1000),
+            ]:
+                path = r / relative
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.touch()
+                os.utime(path, (stamp, stamp))
+            with (
+                patch.object(queue, "root", return_value=r),
+                patch.object(
+                    queue, "config", return_value={"cpu_job_timeout_hours": 72}
+                ),
+            ):
+                self.assertEqual(
+                    queue.last_progress(
+                        {"kind": "generate", "args": [], "started_at": 10}
+                    ),
+                    100,
+                )
+                write(
+                    r / "config/operations.json",
+                    {"generation_no_progress_seconds": 3600},
+                )
+                self.assertEqual(queue.generation_stall_seconds(), 3600)
+                write(
+                    r / "config/operations.json", {"generation_no_progress_seconds": 30}
+                )
+                with self.assertRaises(common.DataError):
+                    queue.generation_stall_seconds()
+
     def test_generation_trial_requires_two_wins_over_fastest_baseline(self):
         phases = [
             {
