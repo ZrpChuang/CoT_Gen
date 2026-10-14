@@ -252,10 +252,27 @@ def arguments(job):
     }
 
 
+def generation_only():
+    path = root() / "config/operations.json"
+    value = read(path).get("generation_only", False) if path.exists() else False
+    if type(value) is not bool:
+        raise DataError("generation_only must be a boolean")
+    return value
+
+
 def apply_scope(jobs):
     enabled = active_models()
+    only_data = generation_only()
     records = {r["run_id"]: r["model"] for r in read(root() / "manifest.json")["runs"]}
     for job in jobs.values():
+        if only_data and job["kind"] != "generate":
+            if job["status"] == "pending":
+                job.update(status="deferred", waiting_reason="user_generation_only")
+            continue
+        if job.get("waiting_reason") == "user_generation_only":
+            job.pop("waiting_reason")
+            if job["status"] == "deferred":
+                job["status"] = "pending"
         values = arguments(job)
         model = values.get("model") or records.get(values.get("run_id"))
         if model and model not in enabled and job["status"] == "pending":
@@ -347,6 +364,8 @@ def marker(job):
 
 
 def ready(job, jobs, accepted):
+    if generation_only() and job["kind"] != "generate":
+        return False
     if any(jobs[key]["status"] != "done" for key in job["dependencies"]):
         return False
     values = arguments(job)
@@ -696,6 +715,7 @@ def render(jobs, accepted, inventory):
     from . import gpu as reservations
 
     held = reservations.snapshot()
+    only_data = generation_only()
     generation = generation_summary(accepted)
     counts = dict(Counter(j["status"] for j in jobs.values()))
     running = [
@@ -724,7 +744,9 @@ def render(jobs, accepted, inventory):
         "gpus": inventory,
         "gpu_reservations": held,
         "generation": generation,
-        "phase": "active"
+        "phase": "generation_only"
+        if only_data
+        else "active"
         if running
         else "waiting_teacher_credentials"
         if not credentials_ready()
@@ -737,6 +759,9 @@ def render(jobs, accepted, inventory):
         "本轮启用："
         + ", ".join(sorted(active_models()))
         + "；其他模型暂缓，历史数据与配置保留。",
+        "当前仅构建 GPT 数据，训练、测速及 GPU 任务暂停。"
+        if only_data
+        else "当前按已授权队列范围执行。",
         "",
         f"新增有效数据：{accepted:,} / {payload['target_new']:,}；教师凭证：{'已就绪' if payload['credentials_ready'] else '等待恢复'}。",
         "",
@@ -804,7 +829,7 @@ def render(jobs, accepted, inventory):
             if sync.exists():
                 record["actual_wandb_run"] = read(sync).get("url")
         rows.append(
-            f"| {run_id} | {max(done, default=config()['parent_unique_inputs']):,} | {', '.join(active) or ('暂缓' if record['model'] not in active_models() else '排队')} | {'已核验' if verified else '未完成'} |"
+            f"| {run_id} | {max(done, default=config()['parent_unique_inputs']):,} | {', '.join(active) or ('暂缓' if record['model'] not in active_models() else '暂停' if only_data else '排队')} | {'已核验' if verified else '未完成'} |"
         )
     rows += ["", "## 异常", ""]
     rows += [
@@ -1074,6 +1099,16 @@ def run():
             render(jobs, accepted, fresh_inventory)
             if all(j["status"] in ("done", "deferred") for j in jobs.values()):
                 reservations.stop_all()
+                if generation_only():
+                    write(
+                        root() / "state/STOP",
+                        {
+                            "time": time.time(),
+                            "reason": "generation_only_scope_finished",
+                        },
+                    )
+                    log("generation_only_scope_finished", accepted_new=accepted)
+                    return
                 enabled_runs = sum(
                     r["model"] in active_models()
                     for r in read(root() / "manifest.json")["runs"]

@@ -628,6 +628,62 @@ class QueueContracts(unittest.TestCase):
             queue.apply_scope(jobs)
         self.assertEqual(jobs["large"]["status"], "pending")
 
+    def test_generation_only_never_dispatches_training_or_other_gpu_work(self):
+        jobs = {
+            "generate": {
+                "kind": "generate",
+                "args": [],
+                "dependencies": ["audit"],
+                "status": "pending",
+            },
+            "audit": {"kind": "audit", "args": [], "status": "done"},
+            "train": {
+                "kind": "train",
+                "args": ["--run-id", "small"],
+                "dependencies": [],
+                "status": "pending",
+            },
+            "select": {
+                "kind": "select",
+                "args": [],
+                "dependencies": [],
+                "status": "pending",
+            },
+            "tune": {
+                "kind": "tune",
+                "args": [],
+                "dependencies": [],
+                "status": "pending",
+            },
+        }
+        with (
+            patch.object(queue, "generation_only", return_value=True),
+            patch.object(queue, "active_models", return_value={"Qwen_35_9B"}),
+            patch.object(
+                queue,
+                "read",
+                return_value={"runs": [{"run_id": "small", "model": "Qwen_35_9B"}]},
+            ),
+            patch.object(queue, "credentials_ready", return_value=True),
+        ):
+            queue.apply_scope(jobs)
+            self.assertEqual(jobs["audit"]["status"], "done")
+            self.assertTrue(queue.ready(jobs["generate"], jobs, 100000))
+            for key in ("train", "select", "tune"):
+                self.assertEqual(jobs[key]["status"], "deferred")
+                self.assertFalse(queue.ready(jobs[key], jobs, 100000))
+
+    def test_generation_only_flag_requires_explicit_boolean(self):
+        with tempfile.TemporaryDirectory() as temp:
+            r = Path(temp)
+            with patch.object(queue, "root", return_value=r):
+                self.assertFalse(queue.generation_only())
+                write(r / "config/operations.json", {"generation_only": True})
+                self.assertTrue(queue.generation_only())
+                write(r / "config/operations.json", {"generation_only": "true"})
+                with self.assertRaises(common.DataError):
+                    queue.generation_only()
+
     def test_pending_data_and_missing_credentials_never_launch(self):
         job = {
             "kind": "prepare",
