@@ -9,7 +9,8 @@ import shutil
 import time
 from pathlib import Path
 
-from .common import DataError, config, native_pack, read, root, sha, write
+from .common import (DataError, config, execution_scope, evaluation_milestones,
+                     native_pack, read, root, sha, write)
 
 
 def run_record(run_id):
@@ -529,7 +530,7 @@ def train(run_id, milestone):
         optim="adamw_torch_fused",
         logging_steps=5,
         save_strategy="steps",
-        save_steps=cfg["checkpoint_steps"],
+        save_steps=(execution_scope() or {}).get("checkpoint_steps", cfg["checkpoint_steps"]),
         save_total_limit=2,
         eval_strategy="no",
         report_to="none",
@@ -645,7 +646,7 @@ def train(run_id, milestone):
             "runtime_scope": "Current train call includes resume only; attempts and metrics preserve history.",
             "time": time.time(),
         }
-        if milestone in cfg["evaluation_at"]:
+        if milestone in evaluation_milestones():
             unwrapped = trainer.accelerator.unwrap_model(trainer.model)
             merged = unwrapped.merge_and_unload()
             target = out / "model"

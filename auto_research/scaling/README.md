@@ -1,5 +1,21 @@
 # GPT 全新 100K 数据与从基座重训
 
+
+## 当前执行：首批 10K 四主方法训练与评测
+
+2026-10-18 用户授权：8 卡分四组，每组双卡 DDP，NEU / SUP / AUG-SUP / SSR 各使用已核验的首批 10K，从原始 9B 基座新建 LoRA。四组都训练完成后自动执行冻结的 IFEval、MultiChallenge、EQ-Bench 3、ArenaHard，随后独立核验并汇总；BASE 保留首行。每 2 小时汇报实际训练、checkpoint、W&B 和评测进度。
+
+操作范围写入产物 `config/operations.json.execution_scope`：`milestone=10000`、四个 `run_ids`、`evaluate=true`、`skip_efficiency_trials=true`，以及四组 `gpu_groups`。调度器只放行这些训练、W&B、评测及必要依赖；继续生成、后续阶段、11 个其他对照和 27B 暂停。冻结 100K 方案保留，10K 是本次额外授权的固定阶段评测，不按测试分数选择 checkpoint 或改配方。
+
+GPU 0/1、2/3、4/5、6/7 分别绑定 NEU、SUP、AUG-SUP、SSR。已授权交接的独立保卡先登记 PID、启动时间和 CUDA 证据，停其全局 watchdog 后保留各卡原进程；对应 GPU 任务就绪时仅释放该卡已登记的保卡 PID。空闲或任务重试期间由队列补充保卡；全部训练、评分、核验和 W&B 完成后恢复原有独立 watchdog。未知进程不会被停止。
+
+本次每 25 步保存完整 checkpoint，保留最近两份；阶段内恢复 adapter、optimizer、scheduler、RNG 与数据位置，未完整写入的 checkpoint 隔离保留。Global batch 32、默认每卡 batch 1 / 累积 16、完整 8K、mask、LoRA、学习率和种子不变。效率搜索暂停。
+
+冻结评测文件保持逐字一致，外层入口仅增加跨进程 8 路远程请求锁及既定每密钥 30 RPM / 150 万 TPM / 至少 2 秒准入限制；本地生成不占远程槽。失败重试仍计入额度，模型、采样、提示词、解析与评分保持原协议。
+
+产物仍在 `CoT_Analyse_artifacts/gpt_fresh_100k_20261012`；先看 `reports/TRAIN10K.md`、`reports/STATUS.md`、`reports/RESULTS.md`。以下历史记录服从最新操作范围。
+
+
 2026-10-12 用户纠正方案：**GPT 生成答案、GPT 构造四种 CoT；丢弃旧训练权重，从原始基座重新训练。** 旧 `scale_100k_20261011` 队列已退休，禁止再次启动或作为本次 parent。旧结果仅供历史问题分析。
 
 当前产物：`CoT_Analyse_artifacts/gpt_fresh_100k_20261012/`。本轮启用 15 项 9B，27B 的 4 项暂缓。用户于 2026-10-12 明确恢复持续监测并要求空闲时保卡，随后将 Codex 巡检改为每小时一次；远端 supervisor 独立执行队列，每 15 秒检查资源，此检查不调用 GPT。

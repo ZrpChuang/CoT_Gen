@@ -4,7 +4,8 @@ import hashlib
 import sqlite3
 import time
 import uuid
-from contextlib import closing
+import fcntl
+from contextlib import closing, contextmanager
 
 from .common import DataError, read, root
 
@@ -62,3 +63,29 @@ def reserve_quota(key, tokens):
                 )
                 return path, request_id
         time.sleep(0.7)
+
+
+@contextmanager
+def remote_request_slot():
+    """Bound remote calls across all evaluator processes; locks release on crashes."""
+    directory = root() / "state/api_slots"
+    directory.mkdir(parents=True, exist_ok=True)
+    while True:
+        selected = None
+        for index in range(limits()["generation_concurrency"]):
+            handle = (directory / f"{index}.lock").open("a")
+            try:
+                fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError:
+                handle.close()
+            else:
+                selected = handle
+                break
+        if selected is not None:
+            break
+        time.sleep(0.2)
+    try:
+        yield
+    finally:
+        fcntl.flock(selected, fcntl.LOCK_UN)
+        selected.close()

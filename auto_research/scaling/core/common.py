@@ -50,6 +50,48 @@ def root():
     return Path(config()["output_root"])
 
 
+def execution_scope():
+    """Optional user-authorized stage/run scope; the scientific recipe stays frozen."""
+    path = root() / "config/operations.json"
+    value = read(path).get("execution_scope") if path.exists() else None
+    if value is None:
+        return None
+    if (
+        not isinstance(value, dict)
+        or value.get("milestone") not in config()["milestones"]
+        or not isinstance(value.get("run_ids"), list)
+        or not value["run_ids"]
+        or len(set(value["run_ids"])) != len(value["run_ids"])
+        or type(value.get("evaluate")) is not bool
+        or type(value.get("skip_efficiency_trials")) is not bool
+        or type(value.get("checkpoint_steps", 100)) is not int
+        or value.get("checkpoint_steps", 100) < 1
+    ):
+        raise DataError("Invalid operational execution scope")
+    groups = value.get("gpu_groups", {})
+    devices = [gpu for group in groups.values() for gpu in group]
+    if (
+        set(groups) != set(value["run_ids"])
+        or len(devices) != len(set(devices))
+        or not set(devices) <= set(config()["gpus"])
+        or any(len(group) != 2 for group in groups.values())
+    ):
+        raise DataError("Scoped GPU groups must be disjoint two-GPU pairs")
+    return value
+
+
+def evaluation_milestones():
+    scope = execution_scope()
+    return set(config()["evaluation_at"]) | (
+        {scope["milestone"]} if scope and scope["evaluate"] else set()
+    )
+
+
+def reporting_milestone():
+    scope = execution_scope()
+    return scope["milestone"] if scope else config()["target_unique_inputs"]
+
+
 def active_models():
     """Operational scope is separate from the frozen scientific configuration."""
     path = root() / "config/operations.json"

@@ -24,6 +24,9 @@ from .common import (
     active_models,
     alive,
     config,
+    execution_scope,
+    evaluation_milestones,
+    reporting_milestone,
     credentials_ready,
     database,
     identity,
@@ -177,7 +180,7 @@ def definitions():
                 )
             training = job_id("train", milestone, run_id)
             dependencies = [encoded, job_id("capacity", model)]
-            if model == "Qwen_35_9B":
+            if model == "Qwen_35_9B" and not (execution_scope() or {}).get("skip_efficiency_trials"):
                 dependencies.append(tuning)
             if stage:
                 dependencies.append(
@@ -210,13 +213,20 @@ def definitions():
                 category="sync",
                 priority=stage * 100 + 20,
             )
-            if milestone in cfg["evaluation_at"]:
+            if milestone in evaluation_milestones():
                 inference = job_id("infer", milestone, run_id)
+                inference_dependencies = [training, "eval_preflight"]
+                scope = execution_scope()
+                if scope and milestone == scope["milestone"] and run_id in scope["run_ids"]:
+                    inference_dependencies += [
+                        job_id("train", milestone, other) for other in scope["run_ids"]
+                        if other != run_id
+                    ]
                 add(
                     inference,
                     "infer",
                     args,
-                    [training, "eval_preflight"],
+                    inference_dependencies,
                     gpus=2,
                     category="gpu",
                     priority=stage * 100 + 5,
@@ -260,11 +270,48 @@ def generation_only():
     return value
 
 
+def scoped_jobs(jobs):
+    scope = execution_scope()
+    if scope is None:
+        return None
+    allowed = set()
+    def include(key):
+        if key in allowed:
+            return
+        if key not in jobs:
+            raise DataError("Scoped task missing: " + key)
+        allowed.add(key)
+        for dependency in jobs[key]["dependencies"]:
+            include(dependency)
+    for run_id in scope["run_ids"]:
+        for kind in ("train", "wandb", "verify") if scope["evaluate"] else ("train", "wandb"):
+            include(job_id(kind, scope["milestone"], run_id))
+    return allowed
+
+
+def job_devices(job, available):
+    scope = execution_scope()
+    run_id = arguments(job).get("run_id")
+    if scope and job["kind"] in ("train", "infer"):
+        devices = scope["gpu_groups"].get(run_id, [])
+        return devices if set(devices) <= set(available) else []
+    return available[:job["gpu_count"]]
+
+
 def apply_scope(jobs):
     enabled = active_models()
     only_data = generation_only()
+    allowed = scoped_jobs(jobs)
     records = {r["run_id"]: r["model"] for r in read(root() / "manifest.json")["runs"]}
     for job in jobs.values():
+        if allowed is not None and job.get("id") not in allowed:
+            if job["status"] in ("pending", "deferred"):
+                job.update(status="deferred", waiting_reason="user_execution_scope")
+            continue
+        if job.get("waiting_reason") == "user_execution_scope":
+            job.pop("waiting_reason")
+            if job["status"] == "deferred":
+                job["status"] = "pending"
         if only_data and job["kind"] != "generate":
             if job["status"] == "pending":
                 job.update(status="deferred", waiting_reason="user_generation_only")
@@ -364,6 +411,9 @@ def marker(job):
 
 
 def ready(job, jobs, accepted):
+    allowed = scoped_jobs(jobs)
+    if allowed is not None and job["id"] not in allowed:
+        return False
     if generation_only() and job["kind"] != "generate":
         return False
     if any(jobs[key]["status"] != "done" for key in job["dependencies"]):
@@ -483,7 +533,7 @@ def results(jobs):
     """Render verified metrics only; missing or partial evaluations remain explicit."""
     records = read(root() / "manifest.json")["runs"]
     models = list(config()["models"])
-    final = config()["target_unique_inputs"]
+    final = reporting_milestone()
     fresh = config().get("initialization") == "fresh_base"
     labels = dict(
         zip(BENCHMARKS, ("IFEval", "MultiChallenge", "EQ-Bench 3", "ArenaHard"))
@@ -534,7 +584,7 @@ def results(jobs):
     rows = [
         "# GPT 全新训练结果" if fresh else "# 统一扩训结果",
         "",
-        "全新 GPT 共享答案与解题说明、从原始基座新建 LoRA，旧训练权重及旧生成缓存全部弃用。只展示新实验核验结果；BASE 为原始未训练模型。"
+        f"当前报告规模：{final:,} 独立输入。全新 GPT 共享答案与解题说明、从原始基座新建 LoRA。只展示新实验核验结果；BASE 为原始未训练模型。"
         if fresh
         else "分数：历史 4,175 → 累计 100K（括号为百分点变化）。新结果仅在整组四项评测核验通过后展示。BASE 为原始未训练模型。",
         "",
@@ -755,7 +805,8 @@ def render(jobs, accepted, inventory):
         "gpus": inventory,
         "gpu_reservations": held,
         "generation": generation,
-        "generation_goal": generation_goal(),
+        "generation_goal": reporting_milestone() if execution_scope() else generation_goal(),
+        "execution_scope": execution_scope(),
         "generation_guard": {
             "poll_seconds": config()["poll_seconds"],
             "stall_seconds": generation_stall_seconds(),
@@ -826,7 +877,7 @@ def render(jobs, accepted, inventory):
             for m in config()["milestones"]
             if jobs[job_id("train", m, run_id)]["status"] == "running"
         ]
-        final = config()["target_unique_inputs"]
+        final = reporting_milestone()
         verified = jobs[job_id("verify", final, run_id)]["status"] == "done"
         record["status"] = (
             "deferred"
@@ -1037,7 +1088,9 @@ def run():
                     not count and active[job["category"]] >= limits[job["category"]]
                 ):
                     continue
-                devices = available[:count]
+                devices = job_devices(job, available)
+                if len(devices) != count:
+                    continue
                 if devices:
                     reservations.release(held, devices)
                     fresh_inventory = gpu_inventory()
@@ -1045,10 +1098,18 @@ def run():
                     free = reservations.available(
                         fresh_inventory, {}, leased, fresh_external
                     )
+                    # NVML utilization can lag after an identified keeper exits.
+                    # No remaining CUDA process and sufficient free memory prove handoff.
+                    free = set(free) | {
+                        row["gpu"] for row in fresh_inventory
+                        if row["gpu"] in devices
+                        and row["gpu"] not in leased | fresh_external
+                        and row["free_mib"] >= cfg["free_memory_mib"]
+                    }
                     if not set(devices) <= set(free):
                         available = [device for device in available if device in free]
                         continue
-                available = available[count:]
+                available = [device for device in available if device not in devices]
                 receipt = receipt_path(job)
                 receipt.unlink(missing_ok=True)
                 command = [cfg["training_python"]]
@@ -1141,8 +1202,9 @@ def run():
                             f"\n## 本轮数据构建完成\n\n已达到 {generation_goal():,} 组共同合格输入并停止。训练继续暂停。\n"
                         )
                     return
+                scope = execution_scope()
                 enabled_runs = sum(
-                    r["model"] in active_models()
+                    r["model"] in active_models() and (not scope or r["run_id"] in scope["run_ids"])
                     for r in read(root() / "manifest.json")["runs"]
                 )
                 if any(j["status"] == "deferred" for j in jobs.values()):
@@ -1153,10 +1215,14 @@ def run():
                             "active_models": sorted(active_models()),
                             "runs": enabled_runs,
                             "final_evaluations": enabled_runs * 4,
+                            "milestone": reporting_milestone(),
+                            "study_complete": False,
                             "time": time.time(),
                         },
                     )
                     log("active_scope_complete", runs=enabled_runs)
+                    if scope:
+                        reservations.restore_previous_watchdog()
                     return
                 write(
                     root() / "state/complete.json",

@@ -5,6 +5,7 @@ import json
 import os
 import threading
 import sqlite3
+import signal
 import sys
 import tempfile
 import time
@@ -14,13 +15,39 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from core import api, common, data, efficiency, gpu, queue, train
+from core import api, common, data, efficiency, evaluate, gpu, queue, train
 from core.common import freeze_lines, prompt_token_count, read, write
 from core.data import Decontaminator, context
 from core.variants import choose, random_assign
 
 
 class ApiContracts(unittest.TestCase):
+    def test_shared_remote_slots_bound_threads_and_release_after_errors(self):
+        with tempfile.TemporaryDirectory() as temp:
+            active = [0, 0]
+            mutex = threading.Lock()
+            def work(i):
+                try:
+                    with api.remote_request_slot():
+                        with mutex:
+                            active[0] += 1
+                            active[1] = max(active[1], active[0])
+                        time.sleep(0.05)
+                        with mutex:
+                            active[0] -= 1
+                        if i == 0:
+                            raise RuntimeError("fixture request failure")
+                except RuntimeError:
+                    pass
+            with patch.object(api, "root", return_value=Path(temp)), patch.object(
+                api, "limits", return_value={"generation_concurrency": 2}
+            ):
+                with ThreadPoolExecutor(max_workers=5) as workers:
+                    list(workers.map(work, range(5)))
+                with api.remote_request_slot():
+                    pass
+            self.assertEqual(active, [0, 2])
+
     def test_per_key_spacing_and_independent_credentials(self):
         with tempfile.TemporaryDirectory() as temp:
             clock = [1000.0]
@@ -69,6 +96,54 @@ class ApiContracts(unittest.TestCase):
                         )
                     clock[0] = 1061.1
                     api.reserve_quota("fixture", 100)
+
+
+class ScopedExecutionContracts(unittest.TestCase):
+    def test_only_four_10k_runs_and_their_evaluations_are_dispatchable(self):
+        methods = ["NEU", "SUP", "AUG-SUP", "SSR"]
+        records = [dict(run_id=m+"__Qwen_35_9B", variant=m,
+                        model="Qwen_35_9B", group="main") for m in methods]
+        records += [dict(run_id="control", variant="answer_only", model="Qwen_35_9B", group="control"),
+                    dict(run_id="large", variant="NEU", model="Qwen_38_27B", group="main")]
+        scope = dict(milestone=10000, run_ids=[r["run_id"] for r in records[:4]],
+                     evaluate=True, skip_efficiency_trials=True,
+                     gpu_groups={r["run_id"]:[2*i,2*i+1] for i,r in enumerate(records[:4])})
+        cfg = dict(common.config())
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            write(root/"manifest.json", {"runs":records})
+            write(root/"config/operations.json", {"execution_scope":scope,
+                  "generation_only":False, "active_models":["Qwen_35_9B"]})
+            with patch.object(common,"root",return_value=root), patch.object(queue,"root",return_value=root):
+                jobs = queue.definitions()
+                queue.apply_scope(jobs)
+                live = [j for j in jobs.values() if j["status"]=="pending"]
+                for kind,expected in [("train",4),("infer",4),("score",16),("wandb",4),
+                                      ("select",0),("tune",0),("generate",0)]:
+                    self.assertEqual(sum(j["kind"]==kind for j in live),expected,kind)
+                self.assertTrue(all(int(queue.arguments(j).get("milestone",10000))==10000 for j in live))
+                outside=jobs["train__25000__NEU__Qwen_35_9B"]
+                outside["status"]="pending"
+                self.assertFalse(queue.ready(outside,jobs,100000))
+                job=jobs["train__10000__SUP__Qwen_35_9B"]
+                self.assertEqual(queue.job_devices(job,list(range(8))),[2,3])
+                self.assertEqual(queue.job_devices(job,[0,1,2,4,5,6,7]),[])
+                self.assertIn(10000,common.evaluation_milestones())
+                self.assertEqual(common.reporting_milestone(),10000)
+                scope["gpu_groups"][records[1]["run_id"]]=[0,1]
+                write(root/"config/operations.json",{"execution_scope":scope})
+                with self.assertRaises(common.DataError):common.execution_scope()
+
+    def test_adopted_keeper_handoff_signals_only_witnessed_pid(self):
+        record={"pid":4321,"start_ticks":"1","cmdline":"approved keeper"}
+        held={"0":{"adopted_external":True,"identity":record}}
+        with patch.object(gpu,"alive",side_effect=[True,False,False,False]), \
+             patch.object(gpu.os,"kill") as kill, patch.object(gpu.os,"killpg") as killpg, \
+             patch.object(gpu,"save"),patch.object(gpu,"log"):
+            gpu.release(held,[0])
+        self.assertEqual(held,{})
+        kill.assert_called_once_with(4321,signal.SIGTERM)
+        killpg.assert_not_called()
 
 
 class DataContracts(unittest.TestCase):

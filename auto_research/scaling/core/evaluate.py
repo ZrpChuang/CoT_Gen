@@ -7,6 +7,7 @@ import os
 import shutil
 import socket
 import subprocess
+import sys
 import time
 import urllib.request
 from pathlib import Path
@@ -24,6 +25,7 @@ from .common import (
     identity,
     read,
     root,
+    source_module,
     sha,
     stop,
     write,
@@ -163,7 +165,11 @@ def child(out, bench, stage):
         subprocess.run(
             [
                 config()["evaluation_python"],
-                str(out / "evaluate.py"),
+                str(Path(__file__).resolve().parents[1] / "pipeline.py"),
+                "worker",
+                "frozen-eval",
+                "--evaluation-dir",
+                str(out),
                 "--bench",
                 bench,
                 "--stage",
@@ -176,6 +182,25 @@ def child(out, bench, stage):
             check=True,
             timeout=config()["inference_timeout_hours"] * 3600,
         )
+
+
+def frozen_child(out, bench, stage):
+    """Run the unchanged evaluator with stricter shared transport admission only."""
+    from .api import remote_request_slot, reserve_quota
+
+    module = source_module(Path(out) / "evaluate.py", "frozen_scoped_evaluator")
+    module.reserve_quota = reserve_quota
+    original = module.request
+
+    def request(spec, *args, **kwargs):
+        if spec.get("local"):
+            return original(spec, *args, **kwargs)
+        with remote_request_slot():
+            return original(spec, *args, **kwargs)
+
+    module.request = request
+    sys.argv = [str(Path(out) / "evaluate.py"), "--bench", bench, "--stage", stage]
+    module.main()
 
 
 def generate(run_id, milestone):

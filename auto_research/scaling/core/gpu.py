@@ -21,6 +21,7 @@ from .common import (
     log,
     read,
     root,
+    sha,
     stop,
     write,
 )
@@ -88,7 +89,10 @@ def external_gpus(inventory, records):
         ready = read(path)
         worker = ready.get("worker")
         try:
-            if alive(worker) and os.getpgid(worker["pid"]) == rec["identity"]["pid"]:
+            if alive(worker) and (
+                (rec.get("adopted_external") and worker == rec["identity"])
+                or os.getpgid(worker["pid"]) == rec["identity"]["pid"]
+            ):
                 owned_cuda.add((ready["uuid"], ready["nvml_pid"]))
         except ProcessLookupError:
             pass
@@ -138,6 +142,23 @@ def release(records, devices):
         record = records.get(str(device))
         if record is None:
             continue
+        if record.get("adopted_external"):
+            # An explicitly adopted keeper may share its parent's process group.
+            # Signal this witnessed PID only, never an unrelated process group.
+            witness = record["identity"]
+            if alive(witness):
+                os.kill(witness["pid"], signal.SIGTERM)
+                deadline = time.monotonic() + 10
+                while alive(witness) and time.monotonic() < deadline:
+                    time.sleep(0.2)
+                if alive(witness):
+                    os.kill(witness["pid"], signal.SIGKILL)
+            if alive(witness):
+                raise RuntimeError("Adopted GPU keeper did not release")
+            records.pop(str(device))
+            save(records)
+            log("adopted_gpu_keeper_released", gpu=device, pid=witness["pid"])
+            continue
         state = Path(record["intent"]).parent
         write(state / "cancel.json", {"time": time.time()})
         witness = record.get("identity")
@@ -155,6 +176,30 @@ def release(records, devices):
 def stop_all():
     records = load()
     release(records, [int(key) for key in records])
+
+
+def restore_previous_watchdog():
+    """Restore the user's original idle keeper only after this scope has finished."""
+    path = root() / "state/keeper_handoff.json"
+    if not path.exists():
+        return
+    handoff = read(path)
+    if not handoff.get("restore_on_completion") or handoff.get("restored"):
+        return
+    original = handoff["watchdog"]
+    script = Path(original["script"])
+    if sha(script) != original["sha256"]:
+        raise DataError("Original keeper watchdog changed during training")
+    process = subprocess.Popen(
+        [original["python"], str(script), "--gpus",
+         ",".join(map(str, config()["gpus"]))],
+        cwd=script.parent, stdin=subprocess.DEVNULL,
+        stdout=(root() / "logs/restored_keeper_watchdog.log").open("a"),
+        stderr=subprocess.STDOUT, start_new_session=True,
+    )
+    handoff.update(restored=identity(process.pid), restored_at=time.time())
+    write(path, handoff)
+    log("original_keeper_watchdog_restored", pid=process.pid)
 
 
 def snapshot():

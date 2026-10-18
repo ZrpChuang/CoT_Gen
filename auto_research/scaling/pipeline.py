@@ -33,6 +33,7 @@ def worker(args):
         "infer": lambda: evaluate.generate(args.run_id, args.milestone),
         "score": lambda: evaluate.score(args.run_id, args.milestone, args.bench),
         "verify": lambda: evaluate.verify(args.run_id, args.milestone),
+        "frozen-eval": lambda: evaluate.frozen_child(args.evaluation_dir, args.bench, args.stage),
         "gpu-reserve": lambda: gpu.hold(args.gpu),
     }
     result = {"exit_code": 0, "kind": args.kind}
@@ -87,6 +88,7 @@ def main():
             "infer",
             "score",
             "verify",
+            "frozen-eval",
             "gpu-reserve",
         ),
     )
@@ -98,6 +100,8 @@ def main():
     phase.add_argument("--tag", default="manual")
     phase.add_argument("--shard", type=int)
     phase.add_argument("--bench")
+    phase.add_argument("--evaluation-dir", type=Path)
+    phase.add_argument("--stage", choices=("generate", "score"))
     phase.add_argument("--receipt", type=Path)
     args = parser.parse_args()
     if args.command == "execute":
