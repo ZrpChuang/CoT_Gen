@@ -1,5 +1,6 @@
 """Conservative operational API limits; never change scientific request settings."""
 
+import errno
 import hashlib
 import sqlite3
 import time
@@ -76,8 +77,10 @@ def remote_request_slot():
             handle = (directory / f"{index}.lock").open("a")
             try:
                 fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
-            except BlockingIOError:
+            except OSError as exc:
                 handle.close()
+                if exc.errno not in (errno.EAGAIN, errno.EACCES, errno.EBUSY):
+                    raise
             else:
                 selected = handle
                 break
