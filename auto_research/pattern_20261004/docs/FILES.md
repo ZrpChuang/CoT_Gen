@@ -6,7 +6,7 @@
 |---|---|---|
 | `README.md` | 阅读与运行入口 | P1 |
 | `RESULTS.md` | 核心成绩、完成范围与解释边界 | P0 |
-| `configs/artifacts.json` | 外部20个归档与30个权重目录的位置索引 | P1 |
+| `configs/artifacts.json` | 外部21个归档、10个保留adapter与20个已删权重目录的状态索引 | P1 |
 | `configs/benchmarks/aug_sup_lr1e5/config.json` | 冻结的评测协议配置 | P1 |
 | `configs/benchmarks/body_format/config.json` | 冻结的评测协议配置 | P1 |
 | `configs/benchmarks/ssr_lr1e5/config.json` | 冻结的评测协议配置 | P1 |
@@ -71,7 +71,7 @@
 | `docs/CLEANUP.md` | 本次实际整理范围、数量、证据和验证 | P1 |
 | `docs/FILES.md` | 当前每个文件的用途清单 | P1 |
 | `docs/HISTORY.md` | 各阶段结论和控制设计，取代散放计划/巡检的阅读面 | P1 |
-| `docs/REVIEW.md` | 唯一权重和归档是否永久删除的具体review | P1 |
+| `docs/REVIEW.md` | 2026-10-23永久删除范围、保留证据与恢复限制 | P1 |
 | `logs/README.md` | 阅读与运行入口 | P1 |
 | `pipeline.py` | 统一入口：汇总、校验、训练、开发评测、格式选择、归档恢复 | P0 |
 | `results/benchmarks/aug_sup_lr1e5/arena_hard_v2/generation_config.json` | 实际生成参数和数据协议哈希 | P0 |

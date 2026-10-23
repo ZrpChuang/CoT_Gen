@@ -12,7 +12,7 @@
 | configs/ | 各实验配方、冻结协议、本机路径、原始证据哈希、产物索引 |
 | data/ | 10份最终训练集、固定screen100和confirm200；不散放逐条中间缓存 |
 | results/ | 训练记录、开发集、确认集、四benchmark的逐题回答、评分和指标 |
-| docs/ | [文件用途](docs/FILES.md)、[阶段历史](docs/HISTORY.md)、[整理记录](docs/CLEANUP.md)、[待删除review](docs/REVIEW.md) |
+| docs/ | [文件用途](docs/FILES.md)、[阶段历史](docs/HISTORY.md)、[整理记录](docs/CLEANUP.md)、[保留与删除记录](docs/REVIEW.md) |
 | logs/ | 历史运行日志的统一读取入口 |
 
 ## 常用命令
@@ -37,7 +37,7 @@ train 的 dry-run 只打印命令；正式训练移除该参数。开发评测�
 
 ## 历史证据与模型
 
-外部产物库：`/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse_artifacts/auto_research/pattern_20261004/`。configs/artifacts.json 列出全部归档和权重；docs/ARCHIVE_INDEX.tsv.gz 可按原路径查找文件。
+外部产物库：`/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse_artifacts/auto_research/pattern_20261004/`。configs/artifacts.json 列出现存归档、保留adapter和已删权重状态；docs/ARCHIVE_INDEX.tsv.gz 可按原路径查找文件。
 
 历史源码、阶段计划、巡检与逐条请求缓存都保存在带 MANIFEST.jsonl 的归档中。恢复某个归档到新的外部目录：
 
@@ -46,3 +46,7 @@ python pipeline.py restore --archive /path/to/bundle.tar.gz --output /path/to/re
 ```
 
 恢复工具还会校验归档内文件哈希；链接目标单独记录在 RESTORED_LINKS.json。旧manifest保留当时的路径和源码哈希，维护代码用于新实验，复核旧实验时使用归档中的原始源码快照。复跑不是自动续跑原终评；本次整理未新增模型请求或训练。
+
+## 2026-10-23 存储清理
+
+已删除停止研究的10组合并模型和10组训练断点，释放180.49 GiB；10组最终LoRA、原20个证据归档、数据及逐题结果保留，另保留1个配置/训练元数据归档。原状态续训不可恢复，复跑推理需使用基座和LoRA重新合并。详细清单见[docs/REVIEW.md](docs/REVIEW.md)，现存位置及删除状态见`configs/artifacts.json`和外部`WEIGHTS.json`。当前10K实验不在清理范围。

@@ -1,25 +1,17 @@
-# 需要review的永久删除项
+# 历史产物保留与删除记录
 
-归档与权重当前保留。散文件已归档清理，下面只讨论是否永久删除唯一产物。
+2026-10-23 按用户“清理一下历史格式研究产物”执行，范围仅限已停止的 `pattern_20261004`。
 
-| 内容 | 数量 / 大小（十进制GB） | 删除影响 | 建议 |
-|---|---:|---|---|
-| 训练checkpoint | 10组 / 5.399 | 失去optimizer/RNG与原状态续训 | 仅保留最终baseline时可删，待review |
-| 合并服务模型 | 10组 / 188.398 | 直接复跑服务需要重新合并 | 先验证基座+adapter重建，再决定 |
-| 最终LoRA adapter | 10组 / 1.932 | 失去训练后的核心小权重 | 保留 |
-| 20个原始证据归档 | 0.971 GB | 含付费回答、裁判原始返回、失败尝试和历史源码 | 保留；不建议永久删除 |
+| 内容 | 处理 | 影响 |
+|---|---|---|
+| 10组合并服务模型，188.398 GB | 已永久删除 | 复跑前需从原基座与最终LoRA重新合并 |
+| 10组checkpoint，5.399 GB | 已永久删除 | optimizer、scheduler、RNG不再保留，不能按原状态续训 |
+| 10组最终LoRA，1.932 GB | 保留并校验SHA256 | 每份与对应checkpoint-131中的adapter逐字节哈希一致 |
+| 原20个数据、回答、裁判、源码和日志归档 | 全部保留并校验SHA256 | 历史证据仍可查 |
+| 被删目录的小型配置与训练元数据，160文件 | 合并为1个已校验归档 | `archives/training/weights-metadata_20261023.tar.gz` |
 
-产物库：`/mnt/bn/vai-llm-hl2/ruipeng/CoT_Analyse_artifacts/auto_research/pattern_20261004`。每组目录为 models/{方法}/{adapter,model,checkpoints}；详细原文件、大小和原inode见 WEIGHTS.json。
+历史产物占用从 **183.20 GiB** 降到 **2.71 GiB**，实测回收 **180.49 GiB**。删除20目录、240文件；283份保留数据、结果、归档、清单及adapter的删除前后SHA256一致。
 
-| 方法 | checkpoint GB | 合并模型 GB |
-|---|---:|---:|
-| answer_only | 0.540 | 18.840 |
-| aug_sup_lr1e5 | 0.540 | 18.840 |
-| body_format | 0.540 | 18.840 |
-| body_matched_random | 0.540 | 18.840 |
-| matched_random_format | 0.540 | 18.840 |
-| paired_plain | 0.540 | 18.840 |
-| paired_steps | 0.540 | 18.840 |
-| ssr_lr1e5 | 0.540 | 18.840 |
-| student_format | 0.540 | 18.840 |
-| sup_lr1e5 | 0.540 | 18.840 |
+原基座目录存在，10份LoRA均保留；本次没有重新加载或合并模型，不宣称已完成重建数值等价测试。历史源代码、最终4175条训练集、逐题评分及核心结论保留；当前新10K实验的权重、数据及评测文件不在删除范围。
+
+详细删除清单、原文件大小/inode、保留SHA256和实测空间位于产物库 `CLEANUP_20261023.json`；`WEIGHTS.json`已逐项标记retained或deleted_20261023。`ARCHIVE_INDEX.tsv.gz`保留旧路径映射，权重现存状态以WEIGHTS.json及本记录为准。
