@@ -1,0 +1,78 @@
+{
+  "vocabulary_equal": true,
+  "special_ids_equal": true,
+  "encoded_96_packs_mismatches": [],
+  "tokenizer.json_diffs": [
+    "/model/merges:list",
+    "/decoder/add_prefix_space:value",
+    "/decoder/trim_offsets:value",
+    "/decoder/use_regex:value",
+    "/added_tokens:list",
+    "/pre_tokenizer/pretokenizers:list"
+  ],
+  "tokenizer_config.json_diffs": [
+    "/backend:missing",
+    "/model_specific_special_tokens:missing",
+    "/video_token:missing",
+    "/extra_special_tokens:missing",
+    "/added_tokens_decoder:missing",
+    "/vision_eos_token:missing",
+    "/vision_bos_token:missing",
+    "/is_local:missing",
+    "/chat_template:missing",
+    "/audio_token:missing",
+    "/audio_eos_token:missing",
+    "/image_token:missing",
+    "/additional_special_tokens:missing",
+    "/add_bos_token:missing",
+    "/local_files_only:missing",
+    "/audio_bos_token:missing"
+  ],
+  "config.json_diffs": [
+    "/eos_token_id:missing",
+    "/vision_config/dtype:missing",
+    "/vision_config/model_type:value",
+    "/dtype:missing",
+    "/text_config/tie_word_embeddings:missing",
+    "/text_config/bos_token_id:missing",
+    "/text_config/pad_token_id:missing",
+    "/text_config/use_cache:value",
+    "/text_config/partial_rotary_factor:missing",
+    "/pad_token_id:missing",
+    "/transformers_version:value",
+    "/use_cache:missing"
+  ],
+  "decoded_96_packs_mismatches": [],
+  "normalized_config_differences": [
+    [
+      "/pad_token_id",
+      "MISSING",
+      "248044"
+    ],
+    [
+      "/dtype",
+      "None",
+      "bfloat16"
+    ],
+    [
+      "/_name_or_path",
+      "${BASE_MODEL}",
+      "${ARTIFACT_ROOT}/runs/NEU__Qwen_35_9B/10000/model"
+    ],
+    [
+      "/text_config/use_cache",
+      "True",
+      "False"
+    ],
+    [
+      "/vision_config/dtype",
+      "None",
+      "bfloat16"
+    ],
+    [
+      "/eos_token_id",
+      "MISSING",
+      "248046"
+    ]
+  ]
+}

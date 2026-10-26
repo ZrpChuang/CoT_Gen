@@ -13,7 +13,7 @@
 
 ## 当前结果范围
 
-2026-10-25最新复核：首批10K四种9B均训练313步，16项评测与独立核验完成，三项benchmark明显退化。曲线、数据及脚本问题见[训练复核](baseline_method/docs/TRAINING_REVIEW.md)。以下2026-10-12方案与旧实验数量均为历史记录；后续100K、其他对照及27B未启动。
+2026-10-25最新复核：首批10K四种9B均训练313步，16项评测与独立核验完成，三项benchmark明显退化。曲线、数据及脚本问题见[训练复核](baseline_method/docs/TRAINING_REVIEW.md)，完整[复盘备份](baseline_method/docs/reviews/2026-10-25_10k_training/README.md)含图表、脚本及统计证据。以下2026-10-12方案与旧实验数量均为历史记录；后续100K、其他对照及27B未启动。
 
 2026-10-12 用户纠正方案：GPT 生成答案与四方法说明，旧权重全部退出训练来源，15 项 9B 从原始基座重训，27B 的 4 项继续暂缓。旧 `scale_100k_20261011` 已退休，新产物为 `CoT_Analyse_artifacts/gpt_fresh_100k_20261012`。详见 [训练入口](auto_research/scaling/README.md) 和 [TODO](baseline_method/docs/SCALE_100K_TODO.md)；实际运行读取新产物 reports/STATUS.md 并核对进程。用户随后明确恢复持续监测与空闲保卡：Codex 每小时复核，远端队列每 15 秒检查，保卡自动让位于正式任务。
 

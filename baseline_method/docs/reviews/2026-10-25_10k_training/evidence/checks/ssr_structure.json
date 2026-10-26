@@ -1,0 +1,20 @@
+{
+  "skeleton_step_count": {
+    "3": 6102,
+    "2": 1616,
+    "4": 2240,
+    "5": 42
+  },
+  "functional_tags": {
+    "PLAN": 30195,
+    "EVAL": 254,
+    "SUMM": 162,
+    "RETR": 41,
+    "INFR": 54,
+    "BRCH": 2
+  },
+  "with_high_low": 0,
+  "reason_paragraphs": {
+    "1": 10000
+  }
+}

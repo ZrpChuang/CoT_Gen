@@ -1,0 +1,634 @@
+{
+  "NEU": {
+    "base_pass": 491,
+    "model_pass": 366,
+    "lost": 133,
+    "gained": 8,
+    "by_instruction": {
+      "keywords:letter_frequency": [
+        33,
+        28,
+        11,
+        17
+      ],
+      "startend:quotation": [
+        41,
+        41,
+        25,
+        16
+      ],
+      "keywords:frequency": [
+        42,
+        39,
+        28,
+        12
+      ],
+      "keywords:forbidden_words": [
+        49,
+        48,
+        37,
+        11
+      ],
+      "length_constraints:number_sentences": [
+        52,
+        51,
+        40,
+        11
+      ],
+      "punctuation:no_comma": [
+        66,
+        56,
+        52,
+        9
+      ],
+      "combination:repeat_prompt": [
+        41,
+        32,
+        28,
+        8
+      ],
+      "detectable_format:number_highlighted_sections": [
+        48,
+        45,
+        41,
+        7
+      ],
+      "change_case:english_capital": [
+        25,
+        21,
+        14,
+        7
+      ],
+      "change_case:capital_word_frequency": [
+        25,
+        24,
+        17,
+        7
+      ],
+      "length_constraints:number_words": [
+        52,
+        51,
+        46,
+        6
+      ],
+      "change_case:english_lowercase": [
+        39,
+        36,
+        31,
+        6
+      ],
+      "keywords:existence": [
+        39,
+        39,
+        33,
+        6
+      ],
+      "length_constraints:number_paragraphs": [
+        27,
+        26,
+        21,
+        6
+      ],
+      "detectable_content:number_placeholders": [
+        27,
+        27,
+        22,
+        5
+      ],
+      "detectable_format:number_bullet_lists": [
+        31,
+        30,
+        25,
+        5
+      ],
+      "startend:end_checker": [
+        26,
+        26,
+        21,
+        5
+      ],
+      "detectable_content:postscript": [
+        26,
+        26,
+        23,
+        3
+      ],
+      "detectable_format:title": [
+        37,
+        37,
+        35,
+        2
+      ],
+      "combination:two_responses": [
+        24,
+        22,
+        22,
+        1
+      ],
+      "detectable_format:multiple_sections": [
+        14,
+        14,
+        14,
+        0
+      ],
+      "detectable_format:json_format": [
+        17,
+        16,
+        16,
+        0
+      ],
+      "language:response_language": [
+        31,
+        30,
+        31,
+        0
+      ],
+      "length_constraints:nth_paragraph_first_word": [
+        12,
+        0,
+        0,
+        0
+      ],
+      "detectable_format:constrained_response": [
+        10,
+        10,
+        10,
+        0
+      ]
+    }
+  },
+  "SUP": {
+    "base_pass": 491,
+    "model_pass": 360,
+    "lost": 141,
+    "gained": 10,
+    "by_instruction": {
+      "startend:quotation": [
+        41,
+        41,
+        24,
+        17
+      ],
+      "keywords:frequency": [
+        42,
+        39,
+        23,
+        17
+      ],
+      "keywords:letter_frequency": [
+        33,
+        28,
+        12,
+        16
+      ],
+      "punctuation:no_comma": [
+        66,
+        56,
+        48,
+        11
+      ],
+      "length_constraints:number_words": [
+        52,
+        51,
+        41,
+        11
+      ],
+      "length_constraints:number_sentences": [
+        52,
+        51,
+        42,
+        10
+      ],
+      "detectable_format:number_highlighted_sections": [
+        48,
+        45,
+        39,
+        8
+      ],
+      "keywords:forbidden_words": [
+        49,
+        48,
+        40,
+        8
+      ],
+      "keywords:existence": [
+        39,
+        39,
+        32,
+        7
+      ],
+      "combination:repeat_prompt": [
+        41,
+        32,
+        30,
+        6
+      ],
+      "change_case:capital_word_frequency": [
+        25,
+        24,
+        19,
+        6
+      ],
+      "startend:end_checker": [
+        26,
+        26,
+        20,
+        6
+      ],
+      "detectable_format:number_bullet_lists": [
+        31,
+        30,
+        26,
+        5
+      ],
+      "change_case:english_capital": [
+        25,
+        21,
+        17,
+        5
+      ],
+      "length_constraints:number_paragraphs": [
+        27,
+        26,
+        22,
+        5
+      ],
+      "change_case:english_lowercase": [
+        39,
+        36,
+        33,
+        4
+      ],
+      "combination:two_responses": [
+        24,
+        22,
+        19,
+        4
+      ],
+      "detectable_format:json_format": [
+        17,
+        16,
+        14,
+        3
+      ],
+      "detectable_content:number_placeholders": [
+        27,
+        27,
+        25,
+        2
+      ],
+      "detectable_format:multiple_sections": [
+        14,
+        14,
+        12,
+        2
+      ],
+      "language:response_language": [
+        31,
+        30,
+        30,
+        1
+      ],
+      "detectable_format:title": [
+        37,
+        37,
+        37,
+        0
+      ],
+      "detectable_content:postscript": [
+        26,
+        26,
+        26,
+        0
+      ],
+      "length_constraints:nth_paragraph_first_word": [
+        12,
+        0,
+        0,
+        0
+      ],
+      "detectable_format:constrained_response": [
+        10,
+        10,
+        10,
+        0
+      ]
+    }
+  },
+  "AUG-SUP": {
+    "base_pass": 491,
+    "model_pass": 363,
+    "lost": 140,
+    "gained": 12,
+    "by_instruction": {
+      "startend:quotation": [
+        41,
+        41,
+        22,
+        19
+      ],
+      "punctuation:no_comma": [
+        66,
+        56,
+        43,
+        15
+      ],
+      "keywords:letter_frequency": [
+        33,
+        28,
+        13,
+        15
+      ],
+      "length_constraints:number_sentences": [
+        52,
+        51,
+        37,
+        15
+      ],
+      "length_constraints:number_words": [
+        52,
+        51,
+        38,
+        13
+      ],
+      "keywords:frequency": [
+        42,
+        39,
+        28,
+        12
+      ],
+      "detectable_format:number_bullet_lists": [
+        31,
+        30,
+        23,
+        8
+      ],
+      "keywords:forbidden_words": [
+        49,
+        48,
+        41,
+        8
+      ],
+      "change_case:english_lowercase": [
+        39,
+        36,
+        30,
+        7
+      ],
+      "change_case:capital_word_frequency": [
+        25,
+        24,
+        17,
+        7
+      ],
+      "detectable_format:number_highlighted_sections": [
+        48,
+        45,
+        42,
+        6
+      ],
+      "change_case:english_capital": [
+        25,
+        21,
+        17,
+        6
+      ],
+      "keywords:existence": [
+        39,
+        39,
+        33,
+        6
+      ],
+      "combination:repeat_prompt": [
+        41,
+        32,
+        31,
+        5
+      ],
+      "length_constraints:number_paragraphs": [
+        27,
+        26,
+        22,
+        5
+      ],
+      "detectable_content:number_placeholders": [
+        27,
+        27,
+        24,
+        3
+      ],
+      "combination:two_responses": [
+        24,
+        22,
+        21,
+        3
+      ],
+      "startend:end_checker": [
+        26,
+        26,
+        23,
+        3
+      ],
+      "detectable_format:json_format": [
+        17,
+        16,
+        15,
+        1
+      ],
+      "detectable_format:title": [
+        37,
+        37,
+        37,
+        0
+      ],
+      "detectable_format:multiple_sections": [
+        14,
+        14,
+        14,
+        0
+      ],
+      "language:response_language": [
+        31,
+        30,
+        31,
+        0
+      ],
+      "detectable_content:postscript": [
+        26,
+        26,
+        26,
+        0
+      ],
+      "length_constraints:nth_paragraph_first_word": [
+        12,
+        0,
+        0,
+        0
+      ],
+      "detectable_format:constrained_response": [
+        10,
+        10,
+        10,
+        0
+      ]
+    }
+  },
+  "SSR": {
+    "base_pass": 491,
+    "model_pass": 350,
+    "lost": 149,
+    "gained": 8,
+    "by_instruction": {
+      "keywords:letter_frequency": [
+        33,
+        28,
+        8,
+        20
+      ],
+      "startend:quotation": [
+        41,
+        41,
+        23,
+        18
+      ],
+      "punctuation:no_comma": [
+        66,
+        56,
+        47,
+        14
+      ],
+      "length_constraints:number_words": [
+        52,
+        51,
+        39,
+        13
+      ],
+      "combination:repeat_prompt": [
+        41,
+        32,
+        24,
+        11
+      ],
+      "length_constraints:number_paragraphs": [
+        27,
+        26,
+        16,
+        11
+      ],
+      "keywords:forbidden_words": [
+        49,
+        48,
+        37,
+        11
+      ],
+      "length_constraints:number_sentences": [
+        52,
+        51,
+        42,
+        10
+      ],
+      "change_case:english_capital": [
+        25,
+        21,
+        15,
+        9
+      ],
+      "keywords:frequency": [
+        42,
+        39,
+        31,
+        9
+      ],
+      "change_case:english_lowercase": [
+        39,
+        36,
+        29,
+        7
+      ],
+      "change_case:capital_word_frequency": [
+        25,
+        24,
+        18,
+        7
+      ],
+      "detectable_format:number_highlighted_sections": [
+        48,
+        45,
+        40,
+        6
+      ],
+      "keywords:existence": [
+        39,
+        39,
+        33,
+        6
+      ],
+      "startend:end_checker": [
+        26,
+        26,
+        21,
+        5
+      ],
+      "detectable_format:number_bullet_lists": [
+        31,
+        30,
+        26,
+        4
+      ],
+      "detectable_content:number_placeholders": [
+        27,
+        27,
+        25,
+        2
+      ],
+      "detectable_format:title": [
+        37,
+        37,
+        35,
+        2
+      ],
+      "combination:two_responses": [
+        24,
+        22,
+        21,
+        2
+      ],
+      "detectable_format:multiple_sections": [
+        14,
+        14,
+        13,
+        1
+      ],
+      "language:response_language": [
+        31,
+        30,
+        30,
+        1
+      ],
+      "detectable_content:postscript": [
+        26,
+        26,
+        25,
+        1
+      ],
+      "detectable_format:json_format": [
+        17,
+        16,
+        17,
+        0
+      ],
+      "length_constraints:nth_paragraph_first_word": [
+        12,
+        0,
+        0,
+        0
+      ],
+      "detectable_format:constrained_response": [
+        10,
+        10,
+        10,
+        0
+      ]
+    }
+  }
+}

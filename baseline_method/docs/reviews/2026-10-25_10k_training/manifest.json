@@ -1,0 +1,136 @@
+{
+  "review_date": "2026-10-25",
+  "author": "张瑞鹏 (ZrpChuang)",
+  "source_git_commit": "4788f87301ae082490f8cca7f341f4156ef8a0c2",
+  "sample_seed": 20261025,
+  "random_unique_inputs": 24,
+  "targeted_unique_inputs": 3,
+  "manually_read_random_explanations": 48,
+  "encoded_length_eos_checks": 40000,
+  "sampled_native_pack_template_checks": 96,
+  "new_training_runs": 0,
+  "new_api_requests": 0,
+  "gpu_compute_started": false,
+  "backup_date": "2026-10-26",
+  "artifact_id": "gpt_fresh_100k_20261012",
+  "artifact_relative_review": "reports/reviews/2026-10-25_10k_training",
+  "original_private_manifest_sha256": "fe9de032b610da7703c2ffeb25052a549c435c244c8ce297255f4f2dcac08e6b",
+  "source_sha256": {
+    "REVIEW.md": "f862a51284f3db9a33aa051cea6b2831f160e0950cafafa2b04d85f42b22d486",
+    "SAMPLES.md": "34ebe0f28b707eb2b389cf6cdcabe6950b403327263faf3b334c83679ab56be8",
+    "evidence/checks/data_statistics.json": "fa7f6f16e941384aedf8a95bf953667088a24a0159c21e95c9074e6b3eddee82",
+    "evidence/checks/encoding_checks.json": "b519223e9f49e87660851c1dec0860bd50aaf6cf94231a17f35863d44cf8378f",
+    "evidence/checks/evaluation_length_comparison.json": "c9a2e46ce1d35ec7d32798ec63473b03a7493b289fca1748944ffa96167c9e4e",
+    "evidence/checks/ifeval_constraint_changes.json": "c180bcefa0d9c73bd70853dc5e9262d21341cd4aad86cc55b5344bfd589e3e8e",
+    "evidence/checks/quality_flags.json": "24a52225587c55587126d98d76a3acb55725658689ff9be91d4e1ff53ccb2251",
+    "evidence/checks/ssr_structure.json": "86b34a51dbc79d5ab629f66c3a4a16247b9471f13ab54c2518a70df9e1ec6ab3",
+    "evidence/checks/tokenizer_checks.json": "9b542b915c558de452b840a89dbabdf8b098a64171ed00af9cad0a2892646cd6",
+    "evidence/paper/paper.txt": "6a0f8fed32eae4a202bed346208cbf48d2e3f751983e9cbaa3e14f5c9a21d1b0",
+    "evidence/samples/ifeval_failure_pairs.json": "39cd261131890c785e89262db34eeb52d80b6347503e5e9f107d855c237ca335",
+    "evidence/samples/samples.json": "64262b010745b6b8063809e48b2511271fe8aec3e69e77322d2504693b69e5fd",
+    "evidence/samples/targeted_candidates.json": "47b6423227182393435446b6ad0c20e7e1eb99ea05b587f878f58c00c564f914",
+    "evidence/source/common.py": "85f05d809de0535caf0bedb991c4b319bbc2e7fef929d46046b76f9b74554c1f",
+    "evidence/source/data.py": "30ffd3ca074d4f165c861cb307b27f7033062211c4e963de06deb345da22813d",
+    "evidence/source/efficiency.py": "dcdce7891414cc084e4fc8ea10878b5828e9d8b44826e3e16af6aae3d0cbc0cf",
+    "evidence/source/evaluate.py": "a6687893f99baeb660c4ac11467c27d23f3ca9929e1b3b7bd9dc7a10cc2289f3",
+    "evidence/source/installed/qwen_forward.py": "7714d5ffa1772764ce6d7ff6d8053848344c6d16e15976b64c11d136e53af8ad",
+    "evidence/source/installed/trainer__get_num_items_in_batch.py": "cd07d211c9ede363aaa0a6572e60c983ac3f6cad541a7f92e4bc07db4b7a67de",
+    "evidence/source/installed/trainer_compute_loss.py": "d69530b75a519003f6dfbb38a616f0c54cd21de1c934b815a0444837ec630999",
+    "evidence/source/installed/trainer_get_batch_samples.py": "0b3727386f73f67053b12b91e01c69673c8baf57e9a68769220a25515c468f94",
+    "evidence/source/installed/trainer_training_step.py": "7acfd3d5040fed7c2ea94cfce8979d1fb8d38bb1f79f4dbb20f729c8bd96863c",
+    "evidence/source/train.py": "dada6468a4f7ba98d76d0e54fa903538404fc72238d5f488396a261fb773d37d",
+    "evidence/source/variants.py": "c2df455ceade0529d476620f4fbd460a2fae75ed3dc13c40109512fcf3f76ef7",
+    "evidence/training/historical_lr_control.md": "adae985acfc7e21138861d2238c67dac8a3712367948fb662307d3bac88b19db",
+    "evidence/training/metrics.json": "a97f30d42d12d2fdfa76944aadbb68a12ffeacdc24ebe5893dd5a1a6a662f655",
+    "evidence/training/training.json": "c855fee28250263973572fb4b94b8ee5b8e4181cf889fa9d0f6f42e9428cf361",
+    "evidence/training/versions.json": "a5aaeaa3174859f9f0e410dce878703f1968acbfe08159a72e26ad0e2555c095",
+    "figures/data_distribution.png": "3b465cce92d2c513973a967e1c8e64c01d06dad646d76beb1861fe6a747cede8",
+    "figures/data_distribution.svg": "94766727e52db70dd27ff022448f8daa3f948029c4a1da8d9c05ea75e479b702",
+    "figures/reasoning_length.png": "e50465ec73446d95d1d843be8767fb941e9b5af476f45dc928fe01e22b7522e5",
+    "figures/reasoning_length.svg": "11feeb81600080830265921e3a0f75918eca932fc1846f3bbb66752b9b0cf63f",
+    "figures/training_curves.png": "6262792a77182778ac85f1580c924c954e7923e8ce7ab4fa0f9134a92e767be4",
+    "figures/training_curves.svg": "48a1f7d0fda5327241673290575e28f7f1379c4d9f8e6c9d1b572894bb651911",
+    "review.py": "a5c1c53a79dc2635896ffea69a99b522416af3e8f8b4291172ecc2f038885db8"
+  },
+  "reviewed_sources": {
+    "auto_research/scaling/core/efficiency.py": {
+      "sha256": "dcdce7891414cc084e4fc8ea10878b5828e9d8b44826e3e16af6aae3d0cbc0cf",
+      "commit": "4788f87301ae082490f8cca7f341f4156ef8a0c2",
+      "url": "https://github.com/ZrpChuang/CoT_Gen/blob/4788f87301ae082490f8cca7f341f4156ef8a0c2/auto_research/scaling/core/efficiency.py"
+    },
+    "auto_research/scaling/core/variants.py": {
+      "sha256": "c2df455ceade0529d476620f4fbd460a2fae75ed3dc13c40109512fcf3f76ef7",
+      "commit": "4788f87301ae082490f8cca7f341f4156ef8a0c2",
+      "url": "https://github.com/ZrpChuang/CoT_Gen/blob/4788f87301ae082490f8cca7f341f4156ef8a0c2/auto_research/scaling/core/variants.py"
+    },
+    "auto_research/scaling/core/common.py": {
+      "sha256": "85f05d809de0535caf0bedb991c4b319bbc2e7fef929d46046b76f9b74554c1f",
+      "commit": "4788f87301ae082490f8cca7f341f4156ef8a0c2",
+      "url": "https://github.com/ZrpChuang/CoT_Gen/blob/4788f87301ae082490f8cca7f341f4156ef8a0c2/auto_research/scaling/core/common.py"
+    },
+    "auto_research/scaling/core/train.py": {
+      "sha256": "dada6468a4f7ba98d76d0e54fa903538404fc72238d5f488396a261fb773d37d",
+      "commit": "4788f87301ae082490f8cca7f341f4156ef8a0c2",
+      "url": "https://github.com/ZrpChuang/CoT_Gen/blob/4788f87301ae082490f8cca7f341f4156ef8a0c2/auto_research/scaling/core/train.py"
+    },
+    "auto_research/scaling/core/evaluate.py": {
+      "sha256": "a6687893f99baeb660c4ac11467c27d23f3ca9929e1b3b7bd9dc7a10cc2289f3",
+      "commit": "4788f87301ae082490f8cca7f341f4156ef8a0c2",
+      "url": "https://github.com/ZrpChuang/CoT_Gen/blob/4788f87301ae082490f8cca7f341f4156ef8a0c2/auto_research/scaling/core/evaluate.py"
+    },
+    "auto_research/scaling/core/data.py": {
+      "sha256": "30ffd3ca074d4f165c861cb307b27f7033062211c4e963de06deb345da22813d",
+      "commit": "4788f87301ae082490f8cca7f341f4156ef8a0c2",
+      "url": "https://github.com/ZrpChuang/CoT_Gen/blob/4788f87301ae082490f8cca7f341f4156ef8a0c2/auto_research/scaling/core/data.py"
+    }
+  },
+  "installed_library_excerpt_fingerprints": {
+    "evidence/source/installed/qwen_forward.py": "7714d5ffa1772764ce6d7ff6d8053848344c6d16e15976b64c11d136e53af8ad",
+    "evidence/source/installed/trainer__get_num_items_in_batch.py": "cd07d211c9ede363aaa0a6572e60c983ac3f6cad541a7f92e4bc07db4b7a67de",
+    "evidence/source/installed/trainer_compute_loss.py": "d69530b75a519003f6dfbb38a616f0c54cd21de1c934b815a0444837ec630999",
+    "evidence/source/installed/trainer_get_batch_samples.py": "0b3727386f73f67053b12b91e01c69673c8baf57e9a68769220a25515c468f94",
+    "evidence/source/installed/trainer_training_step.py": "7acfd3d5040fed7c2ea94cfce8979d1fb8d38bb1f79f4dbb20f729c8bd96863c"
+  },
+  "publication_changes": [
+    "Raw samples, answers, quality text examples, installed-library excerpts and paper full text omitted; hashes retained for private audit.",
+    "Machine absolute paths replaced by BASE_MODEL/ARTIFACT_ROOT placeholders.",
+    "Source snapshots deduplicated against identical repository files at pinned commit.",
+    "SAMPLES.md contains human summaries only; REVIEW.md adds previously verified final scores.",
+    "Trailing spaces in exported SVG path data normalized for Git; plot coordinates unchanged."
+  ],
+  "reproduction_scope": "Replot preserved statistics only; full audit needs private original data and model artifacts.",
+  "files": {
+    ".gitignore": "bbd7f392b8458f1b18593d8035f9837d4646ba9b08bf99e3d9688f685f2231f4",
+    "README.md": "a5293018fd4d0eb3b2c5a7fa575cc14b1230fddd0b43ed3d8d419e7c310736c4",
+    "REVIEW.md": "fadd4e291e489a4c8fd8103f9df04652217dfe9d463899f11d764396bf728378",
+    "SAMPLES.md": "07704e2406595916483bc662e5261ef58e3803df9da4dad239e324a23e214446",
+    "evidence/checks/data_statistics.json": "03fe00f73d85e277ea5d4613db3fe6140eec658ca788e4d4c5219c63350e1e8f",
+    "evidence/checks/encoding_checks.json": "b50a283667420c71852e5fee6dca133306ab04cf0b78ecee9a681ecaaf119cab",
+    "evidence/checks/evaluation_length_comparison.json": "4944be912c4443bc15ec919a8a293e2f88971c49b2833f857a0233ffafc38a7b",
+    "evidence/checks/ifeval_constraint_changes.json": "ef8fcea4e0f11cb2f9c6f1545767209b9abe6eeda229e3a976dd2d424e342417",
+    "evidence/checks/quality_flags.json": "6841ec5bb73d2604488c135e4b4b5756d93636a42c37c27492789607a73996a5",
+    "evidence/checks/ssr_structure.json": "48bd4737f0cbc5876707bd84be86825a5d00ec26359b1a7dee9d396135e8d45c",
+    "evidence/checks/tokenizer_checks.json": "bd79bb9214847f4352bfceaf0a625f12d1176a7af27a7c6788983aa7d56ed93b",
+    "evidence/training/final_verification.json": "56acee2cc02d2789b1c91451c533e0ecb450f1323ead5203882a6a3ac660bd0c",
+    "evidence/training/historical_lr_control.md": "f30a02ba1159e6c86d1ba72ca863e1f842333893a1e03d2ad5dad7ac80f39791",
+    "evidence/training/metrics.json": "a97f30d42d12d2fdfa76944aadbb68a12ffeacdc24ebe5893dd5a1a6a662f655",
+    "evidence/training/training.json": "716b415017948f96026709b988b190983149a8686950994e1b0c75519aaa33eb",
+    "evidence/training/versions.json": "a5aaeaa3174859f9f0e410dce878703f1968acbfe08159a72e26ad0e2555c095",
+    "figures/data_distribution.png": "3b465cce92d2c513973a967e1c8e64c01d06dad646d76beb1861fe6a747cede8",
+    "figures/data_distribution.svg": "8ca9fd3282a6bc5b26a34407b9d51540a0765e97dac59271280fb470f196c3db",
+    "figures/reasoning_length.png": "e50465ec73446d95d1d843be8767fb941e9b5af476f45dc928fe01e22b7522e5",
+    "figures/reasoning_length.svg": "fd87e529d24245d7cf0792f0dae6a998a2ccc73b8ffb9300d274933a9a1369ce",
+    "figures/training_curves.png": "6262792a77182778ac85f1580c924c954e7923e8ce7ab4fa0f9134a92e767be4",
+    "figures/training_curves.svg": "6bfa41b81deace8023414735aeed0409c2f5e015e554249b9b763cf345743805",
+    "requirements.txt": "0a8b47ddc92915f16a905da39abd7fde1479ab8d5ec58f42a337afe2e0e3c288",
+    "review.py": "a5c1c53a79dc2635896ffea69a99b522416af3e8f8b4291172ecc2f038885db8"
+  },
+  "backup_validation": {
+    "date": "2026-10-26",
+    "all_package_hashes_verified": true,
+    "relative_links_resolve": true,
+    "max_direct_entries_per_package_directory": 9,
+    "private_text_and_machine_path_scan": "passed",
+    "plot_rebuild": "All three PNGs byte-identical; all three SVGs rendered from saved statistics with pinned dependencies."
+  }
+}

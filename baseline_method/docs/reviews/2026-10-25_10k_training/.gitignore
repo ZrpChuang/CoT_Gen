@@ -1,0 +1,7 @@
+# Private source material and runtime outputs remain in the artifact store.
+/evidence/samples/
+/evidence/paper/
+/.venv/
+/.matplotlib-cache/
+__pycache__/
+*.log

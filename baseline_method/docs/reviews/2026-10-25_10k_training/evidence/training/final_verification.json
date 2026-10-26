@@ -1,0 +1,163 @@
+{
+  "checked_at": "2026-10-24T14:08:09.940121+08:00",
+  "score_jobs_complete": 16,
+  "method_audits_verified": 4,
+  "wandb_complete": 4,
+  "all_scientific_scores_verified": true,
+  "scores": {
+    "BASE": {
+      "ifeval": 90.76,
+      "multi_challenge": 55.31,
+      "eq_bench3": 30.8,
+      "arena_hard_v2": 12.64
+    },
+    "NEU": {
+      "ifeval": 67.65,
+      "multi_challenge": 27.11,
+      "eq_bench3": 30.87,
+      "arena_hard_v2": 3.41
+    },
+    "SUP": {
+      "ifeval": 66.54,
+      "multi_challenge": 27.11,
+      "eq_bench3": 33.02,
+      "arena_hard_v2": 4.72
+    },
+    "AUG-SUP": {
+      "ifeval": 67.1,
+      "multi_challenge": 30.04,
+      "eq_bench3": 32.48,
+      "arena_hard_v2": 4.14
+    },
+    "SSR": {
+      "ifeval": 64.7,
+      "multi_challenge": 24.18,
+      "eq_bench3": 31.89,
+      "arena_hard_v2": 3.19
+    }
+  },
+  "evidence": {
+    "BASE": {
+      "ifeval": {
+        "n": 541,
+        "metric_sha256": "8b5db1128fbce7979d8059ece18e97739a3cb7a3bdcccdf9aff8070bcba53e97",
+        "verified": true
+      },
+      "multi_challenge": {
+        "n": 273,
+        "metric_sha256": "d629b7183b5899cfd4bc8c6df4fb13ed01df6708bbd478112259059e638a6170",
+        "verified": true
+      },
+      "eq_bench3": {
+        "n": 45,
+        "metric_sha256": "fbe875b1a82a55c8afcc32fb5587cdd96790b62333cce7f0dd7534e7604de80d",
+        "verified": true
+      },
+      "arena_hard_v2": {
+        "n": 750,
+        "metric_sha256": "59f1f809d7fe88146ac26921ecc461a0cc9a2fdd4cb89ea278969ef05a980088",
+        "verified": true
+      }
+    },
+    "NEU": {
+      "ifeval": {
+        "n": 541,
+        "metric_sha256": "c7ff8add6b7fe5a63167cd5f3e1a7636928455094ee774b35abd2364316c81b9",
+        "verified": true
+      },
+      "multi_challenge": {
+        "n": 273,
+        "metric_sha256": "9d11c860f1ef50ada138fc2885bcccf95a001f7592d071a62904c8731563d633",
+        "verified": true
+      },
+      "eq_bench3": {
+        "n": 45,
+        "metric_sha256": "4a5d880bd840d20bc86b59574304f18a4609820e0b44039f45914db75d8759d1",
+        "verified": true
+      },
+      "arena_hard_v2": {
+        "n": 750,
+        "metric_sha256": "7859840703ad0913d09c9d42927897893545873bbd8f690cf98552cf02201cae",
+        "verified": true
+      }
+    },
+    "SUP": {
+      "ifeval": {
+        "n": 541,
+        "metric_sha256": "ac4ee04a296f85068b4342f8149efb42b1de5c1ad3573ae03ce783dd47ea124d",
+        "verified": true
+      },
+      "multi_challenge": {
+        "n": 273,
+        "metric_sha256": "d81d66511d7be134626e81a33a6a505f6186c4a6efcbdba3966145d6b8fd98d1",
+        "verified": true
+      },
+      "eq_bench3": {
+        "n": 45,
+        "metric_sha256": "1ce45e3b9246d4b229bfb7cb90eb39591f6f996d6b8c6d913fe3c97ad16d6fdf",
+        "verified": true
+      },
+      "arena_hard_v2": {
+        "n": 750,
+        "metric_sha256": "a5985805175c9e8ba4d70d2dc9239caa4597cba5dd51e3574070d4f8dba86b1b",
+        "verified": true
+      }
+    },
+    "AUG-SUP": {
+      "ifeval": {
+        "n": 541,
+        "metric_sha256": "afd9234c029f6cb6da93be7d42b18b3cf3b9598216b99a0e8cb0c4a8cdeff1c4",
+        "verified": true
+      },
+      "multi_challenge": {
+        "n": 273,
+        "metric_sha256": "437d18b4f68f400a06ab93e17b88d7603f0293be7c047c01d1c6390f7d4dcf88",
+        "verified": true
+      },
+      "eq_bench3": {
+        "n": 45,
+        "metric_sha256": "34c9348d48a5a61d109383b5c39750245e2e7eb86365ee59266bbd7c85a3016c",
+        "verified": true
+      },
+      "arena_hard_v2": {
+        "n": 750,
+        "metric_sha256": "b09da329fa888ff67e8a03786cd08ba2bb4c43d995810e278794232660e49906",
+        "verified": true
+      }
+    },
+    "SSR": {
+      "ifeval": {
+        "n": 541,
+        "metric_sha256": "c12857e9f52df31ad78861dc53dd3e7359ae1724c9437b4c55485a725624375f",
+        "verified": true
+      },
+      "multi_challenge": {
+        "n": 273,
+        "metric_sha256": "61c07176af55f51b0c9729673ebe04a083ba291d932cd5d50f00273182f7f3c2",
+        "verified": true
+      },
+      "eq_bench3": {
+        "n": 45,
+        "metric_sha256": "469eae45850101552c1784e1f2cf2a4151d8c387e74db3cfc84db132544d9f5a",
+        "verified": true
+      },
+      "arena_hard_v2": {
+        "n": 750,
+        "metric_sha256": "31459a22fb5bbdda7837f9bdf7a6677312b0e4c7a9ba06df6e043c3e01eaf9ce",
+        "verified": true
+      }
+    }
+  },
+  "scope": "10K four9B final checkpoints313; no27B/no100K/noothercontrols",
+  "completion_marker": {
+    "complete": true,
+    "active_models": [
+      "Qwen_35_9B"
+    ],
+    "runs": 4,
+    "final_evaluations": 16,
+    "milestone": 10000,
+    "study_complete": false,
+    "time": 1792822064.0827096
+  }
+}
