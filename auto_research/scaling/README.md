@@ -21,7 +21,13 @@ python backup.py publish --stage /path/to/staging
 
 默认使用登录账号的`CoT_Gen-artifacts-private`数据仓库及`CoT_Gen-adapters-private`模型仓库，路径按`snapshots/YYYY-MM-DD`归档。创建时指定private并再次核验；遇到同名公开仓库拒绝上传。对已有日期只校验相同文件，不覆盖。上传后固定revision、核对文件数/大小/SHA256，再下载一份LoRA检查张量头；这不替代加载基座后的数值恢复测试。原始完整合并权重在验证恢复前保留。
 
-服务器若不能连接Hugging Face，先把`staging/`取回能访问的本机再上传。`prepared.json`表示本地打包完成；仅`published.json`及服务端核验才表示上传完成。状态与引用见[备份索引](../../docs/data/ARTIFACT_BACKUP.json)。当前尚待Hugging Face登录，不代表云端备份已完成。
+服务器若不能连接Hugging Face，先使用`fetch`把已完成的`dataset/`、`model/`和`prepared.json`取回本机；它不传输临时数据库和工作目录，并核对全部SHA256及23份LoRA头：
+
+```bash
+python backup.py fetch --ssh-target USER@HOST --port 22222 --remote-stage /remote/staging --stage /local/staging
+```
+
+归档内的历史原始清单保留为来源指纹；对经过脱敏或过滤的副本，应以外层`manifest.json`/`prepared.json`的备份哈希为准，不把原始哈希当作脱敏副本的哈希。`prepared.json`表示本地打包完成；仅`published.json`及服务端核验才表示上传完成。状态与引用见[备份索引](../../docs/data/ARTIFACT_BACKUP.json)。2026-11-05已完成服务器端快照（数据及证据8个文件、模型121个文件，共约8.22 GiB）；本机取回及Hugging Face登录尚在进行，不代表云端备份已完成。
 
 
 ## 2026-10-23：首批10K评测续跑与日期入口

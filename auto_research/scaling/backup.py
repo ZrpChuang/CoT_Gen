@@ -18,6 +18,8 @@ import sqlite3
 import tarfile
 import tempfile
 import io
+import subprocess
+import shlex
 
 
 SECRETS = [
@@ -73,9 +75,20 @@ def scan_stream(stream, label):
     tail = b""
     for chunk in iter(lambda: stream.read(1024 * 1024), b""):
         data = tail + chunk
-        if any(pattern.search(data) for pattern in SECRETS):
+        if any(pattern.search(data) for _, pattern in candidate_patterns(data)):
             raise ValueError("Possible credential; inspect privately before upload: " + label)
         tail = data[-512:]
+
+
+def candidate_patterns(data):
+    """Cheap literal gates avoid regex-scanning numerical token audit arrays."""
+    literals = [b"hf_", b"_GPT_AK", b"sk-", b"PRIVATE KEY"]
+    for index, literal in enumerate(literals):
+        if literal in data:
+            yield index, SECRETS[index]
+    lower = data.lower()
+    if any(value in lower for value in [b"api_key", b"api-key", b"apikey", b"access_token", b"access-token", b"accesstoken", b"password"]):
+        yield 4, SECRETS[4]
 
 
 def check_file(path, label):
@@ -102,7 +115,7 @@ def check_file(path, label):
 
 def redact(data):
     count = 0
-    for index, pattern in enumerate(SECRETS):
+    for index, pattern in candidate_patterns(data):
         replacement = (lambda m: m.group(1) + b"[REDACTED_CREDENTIAL]" + m.group(3)) if index == 4 else b"[REDACTED_CREDENTIAL]"
         data, n = pattern.subn(replacement, data)
         count += n
@@ -451,6 +464,44 @@ def publish(args):
     write_json(args.stage / "published.json", results)
 
 
+def fetch(args):
+    """Fetch only completed payloads, never scratch or credential directories."""
+    ssh = ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=15",
+           "-o", "ServerAliveInterval=15", "-o", "ServerAliveCountMax=3",
+           "-p", str(args.port)]
+    raw = subprocess.check_output(ssh + [args.ssh_target,
+          shlex.join(["cat", str(args.remote_stage / "prepared.json")])])
+    prepared = json.loads(raw)
+    args.stage.mkdir(parents=True, exist_ok=True)
+    write_json(args.stage / "prepared.json", prepared)
+    for kind in ["dataset", "model"]:
+        destination = args.stage / kind
+        destination.mkdir(parents=True, exist_ok=True)
+        print("FETCH", kind, flush=True)
+        remote = args.ssh_target + ":" + shlex.quote(str(args.remote_stage / kind) + "/")
+        subprocess.run(["rsync", "-a", "--partial", "--timeout=180", "-e", shlex.join(ssh),
+                        remote, str(destination) + "/"], check=True)
+        for record in prepared["repositories"][kind]["files"]:
+            local = destination / record["path"]
+            if local.stat().st_size != record["bytes"] or digest(local) != record["sha256"]:
+                raise ValueError("Downloaded snapshot checksum mismatch: " + record["path"])
+        print("LOCAL_VERIFIED", kind, len(prepared["repositories"][kind]["files"]), flush=True)
+    from safetensors import safe_open
+    adapters = list((args.stage / "model/adapters").rglob("adapter_model.safetensors"))
+    if len(adapters) != 23:
+        raise ValueError("Expected 23 final adapters")
+    for adapter in adapters:
+        with safe_open(str(adapter), framework="np") as tensors:
+            if not list(tensors.keys()):
+                raise ValueError("Empty adapter: " + str(adapter))
+    write_json(args.stage / "download_verified.json", {
+        "date": prepared["date"], "repositories": {
+            k: {"bytes": v["bytes"], "files": len(v["files"])}
+            for k, v in prepared["repositories"].items()},
+        "sha256_verified": True, "final_adapter_headers_read": 23,
+        "full_base_forward_test": False, "cloud_upload_complete": False})
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
@@ -461,8 +512,13 @@ def main():
     upload = commands.add_parser("publish")
     upload.add_argument("--stage", type=Path, required=True)
     upload.add_argument("--namespace")
+    download = commands.add_parser("fetch")
+    download.add_argument("--ssh-target", required=True)
+    download.add_argument("--port", type=int, default=22222)
+    download.add_argument("--remote-stage", type=Path, required=True)
+    download.add_argument("--stage", type=Path, required=True)
     args = parser.parse_args()
-    (prepare if args.command == "prepare" else publish)(args)
+    {"prepare": prepare, "publish": publish, "fetch": fetch}[args.command](args)
 
 
 if __name__ == "__main__":

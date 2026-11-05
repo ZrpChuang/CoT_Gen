@@ -1,7 +1,7 @@
 {
   "date": "2026-11-05",
   "author": "张瑞鹏 (ZrpChuang)",
-  "status": "preparing_private_snapshot_awaiting_hf_login",
+  "status": "remote_snapshot_prepared_local_fetch_in_progress_awaiting_hf_login",
   "source_git_commit": "3cb88adc8d8ca39c8ba8c18448101441f8eb7a8e",
   "upload_completed": false,
   "private_repositories": null,
@@ -48,5 +48,31 @@
   ],
   "tool": "auto_research/scaling/backup.py",
   "receipt_policy": "Only fill private repo IDs, immutable revisions and verified checksums after actual authenticated upload.",
-  "backup_tool_sha256": "9fd9bba1a6c1dbdfd19097248d9be9b5567dbef5fa2d3ab2f988e163848a70f5"
+  "backup_tool_sha256": "24ba529024470bf46920da0681ebc88ae829680a59f722da4a51801cb0dae629",
+  "preparation_checks": {
+    "sqlite_integrity": "ok",
+    "accepted_examples_in_sqlite_snapshot": 10000,
+    "sanitized_database_cells": 10,
+    "originals_modified": false,
+    "all_cloud_uploads_complete": false,
+    "archive_payload_files_verified": 1260,
+    "copied_adapter_and_sidecar_checksums_verified": 115,
+    "final_adapter_count": 23,
+    "all_eight_stage_jsonl_files_have_10000_rows": true
+  },
+  "prepared_snapshot": {
+    "date": "2026-11-05",
+    "repositories": {
+      "dataset": {
+        "bytes": 3210645985,
+        "files": 8
+      },
+      "model": {
+        "bytes": 5618891055,
+        "files": 121
+      }
+    },
+    "sha256_checklist": "Private prepared.json; contains checksums for all 129 payload files",
+    "cloud_upload_complete": false
+  }
 }
