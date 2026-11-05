@@ -1,7 +1,7 @@
 {
   "date": "2026-11-05",
   "author": "张瑞鹏 (ZrpChuang)",
-  "status": "remote_snapshot_prepared_local_fetch_in_progress_awaiting_hf_login",
+  "status": "local_snapshot_verified_authenticated_private_upload_in_progress",
   "source_git_commit": "3cb88adc8d8ca39c8ba8c18448101441f8eb7a8e",
   "upload_completed": false,
   "private_repositories": null,
@@ -74,5 +74,13 @@
     },
     "sha256_checklist": "Private prepared.json; contains checksums for all 129 payload files",
     "cloud_upload_complete": false
+  },
+  "transfer": {
+    "local_sha256_verified_files": 129,
+    "local_adapter_headers_verified": 23,
+    "authenticated_account": "RuipengZhang",
+    "dataset_private_repo_created": "RuipengZhang/CoT_Gen-artifacts-private",
+    "estimated_upload_mib_per_second": 1.5,
+    "estimate_is_conditional": true
   }
 }

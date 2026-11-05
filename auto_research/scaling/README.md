@@ -27,7 +27,7 @@ python backup.py publish --stage /path/to/staging
 python backup.py fetch --ssh-target USER@HOST --port 22222 --remote-stage /remote/staging --stage /local/staging
 ```
 
-归档内的历史原始清单保留为来源指纹；对经过脱敏或过滤的副本，应以外层`manifest.json`/`prepared.json`的备份哈希为准，不把原始哈希当作脱敏副本的哈希。`prepared.json`表示本地打包完成；仅`published.json`及服务端核验才表示上传完成。状态与引用见[备份索引](../../docs/data/ARTIFACT_BACKUP.json)。2026-11-05已完成服务器端快照（数据及证据8个文件、模型121个文件，共约8.22 GiB）；本机取回及Hugging Face登录尚在进行，不代表云端备份已完成。
+归档内的历史原始清单保留为来源指纹；对经过脱敏或过滤的副本，应以外层`manifest.json`/`prepared.json`的备份哈希为准，不把原始哈希当作脱敏副本的哈希。`prepared.json`表示本地打包完成；仅`published.json`及服务端核验才表示上传完成。状态与引用见[备份索引](../../docs/data/ARTIFACT_BACKUP.json)。2026-11-05已完成服务器端快照（数据及证据8个文件、模型121个文件，共约8.22 GiB）；本机已取回并核对全部129份文件的SHA256及23份LoRA头；Hugging Face登录通过，私有上传正在进行。只有上传、云端校验及回下载检查通过后才标记完成。
 
 
 ## 2026-10-23：首批10K评测续跑与日期入口
