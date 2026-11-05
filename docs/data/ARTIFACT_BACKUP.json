@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-05",
+  "author": "张瑞鹏 (ZrpChuang)",
+  "status": "preparing_private_snapshot_awaiting_hf_login",
+  "source_git_commit": "3cb88adc8d8ca39c8ba8c18448101441f8eb7a8e",
+  "upload_completed": false,
+  "private_repositories": null,
+  "source_policy": "Public datasets and unchanged base weights stay upstream; Git stores URL, immutable revision and checksums. Local modifications/conversions and generated artifacts are retained.",
+  "public_sources": [
+    {
+      "name": "arena_hard_v2",
+      "source": "https://github.com/lmarena/arena-hard-auto",
+      "revision": "196f6b826783b3da7310e361a805fa36f0be83f3"
+    },
+    {
+      "name": "eq_bench3",
+      "source": "https://github.com/EQ-bench/eqbench3",
+      "revision": "affc5a000bbdb965b807e09ca7875f8530fa8f56"
+    },
+    {
+      "name": "multi_challenge",
+      "source": "https://github.com/ekwinox117/multi-challenge",
+      "revision": "5ccefcca6a39020d66c1383c4e6a809cb07afa33"
+    },
+    {
+      "name": "ifeval",
+      "source": "https://github.com/google-research/google-research/tree/master/instruction_following_eval",
+      "revision": "d36068b845da4c2b24927fee2cea1e6ef98dadda"
+    },
+    {
+      "name": "lmarena_140k",
+      "source": "https://huggingface.co/datasets/lmarena-ai/arena-human-preference-140k",
+      "revision": "6322995ab34d7c2693e3f47dd13fa5caa0789a74"
+    }
+  ],
+  "inventory": {
+    "regular_files": 2928,
+    "logical_bytes": 427411119043,
+    "recommended_core_bytes_before_filtering": 9369393864,
+    "current_final_resume_extra_bytes": 1466817942,
+    "final_adapters": 23,
+    "unique_final_adapter_sha256": 23,
+    "final_adapter_weight_bytes": 5158772448
+  },
+  "restore_limitations": [
+    "Exact public base revisions absent from local metadata; config/index/tokenizer/header fingerprints and available text conversion script retained.",
+    "Full merged-model equality and base-plus-adapter forward test not performed; merged weights not deleted."
+  ],
+  "tool": "auto_research/scaling/backup.py",
+  "receipt_policy": "Only fill private repo IDs, immutable revisions and verified checksums after actual authenticated upload.",
+  "backup_tool_sha256": "9fd9bba1a6c1dbdfd19097248d9be9b5567dbef5fa2d3ab2f988e163848a70f5"
+}

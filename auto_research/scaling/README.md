@@ -1,5 +1,29 @@
 # GPT 全新 100K 数据与从基座重训
 
+## 2026-11-05：研究产物私有备份
+
+首批10K四种9B训练、16项评测与W&B同步已完成；本次只整理和备份，不启动数据生成、训练、效率搜索、GPU任务或定时巡检。
+
+`backup.py`使用盘点JSON作为明确的文件清单。`prepare`只需要Python标准库，在挂载原始产物的机器执行：
+
+```bash
+python backup.py prepare --inventory /path/to/inventory.json --stage /path/to/staging --date YYYY-MM-DD
+```
+
+它保留生成数据、逐题评测、最终LoRA及本次最后checkpoint的恢复状态；公开数据集/基座只记录来源及指纹，不上传完整副本。数据库使用一致性快照并检查10K接受数；临时数据库写入本机临时盘，避免共享盘随机写入。只对备份副本脱敏，记录原始和备份哈希；原件不修改、不删除。受审的最终23份adapter有独立指纹；临时任务、主机配置和密钥排除，归档内部也做过滤。历史27B文本基座的配置/index及可用转换脚本单独留档；没有完整基座数值恢复的结论。
+
+`publish`在能访问Hugging Face并已登录的机器执行。依赖`huggingface_hub`、`safetensors`及`numpy`，版本固定在`requirements-backup.txt`，应装在独立环境。Token通过`hf auth login`管理，不写入仓库或命令参数：
+
+```bash
+hf auth login
+python backup.py publish --stage /path/to/staging
+```
+
+默认使用登录账号的`CoT_Gen-artifacts-private`数据仓库及`CoT_Gen-adapters-private`模型仓库，路径按`snapshots/YYYY-MM-DD`归档。创建时指定private并再次核验；遇到同名公开仓库拒绝上传。对已有日期只校验相同文件，不覆盖。上传后固定revision、核对文件数/大小/SHA256，再下载一份LoRA检查张量头；这不替代加载基座后的数值恢复测试。原始完整合并权重在验证恢复前保留。
+
+服务器若不能连接Hugging Face，先把`staging/`取回能访问的本机再上传。`prepared.json`表示本地打包完成；仅`published.json`及服务端核验才表示上传完成。状态与引用见[备份索引](../../docs/data/ARTIFACT_BACKUP.json)。当前尚待Hugging Face登录，不代表云端备份已完成。
+
+
 ## 2026-10-23：首批10K评测续跑与日期入口
 
 使用2026-10-18完成的四种9B checkpoint-313，续跑固定四项评测。日期入口位于当前产物的 `evaluations/YYYY-MM-DD_HHMM_qwen35-9b_10k/`：README、manifest、RESULTS、BASE与四方法、集中logs。benchmark入口链接原始逐题文件；manifest分别记录训练日期、回答来源和评分续跑日期，恢复前评分另存快照，保留断点及证据。

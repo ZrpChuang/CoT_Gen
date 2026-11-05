@@ -4,6 +4,7 @@
 
 | 内容 | 阅读入口 | 运行入口 |
 |---|---|---|
+| 研究产物私有备份：盘点与上传状态 | [备份索引](docs/data/ARTIFACT_BACKUP.json) | [备份工具说明](auto_research/scaling/README.md) |
 | 四种逆向 CoT 方法 × 两模型 × 四 benchmark | [总表与结论](baseline_method/docs/RESULTS.md) | [统一流水线](baseline_method/README.md) |
 | GPT首批10K：4种9B训练与16项评测完成；后续暂缓 | [进度与 TODO](baseline_method/docs/SCALE_100K_TODO.md) | [远端队列与效率规则](auto_research/scaling/README.md) |
 | 原始模型、27B effort 对照 | [基座结论](test_scripts/Base_model_result_conclusion.md) | 各模型目录中的冻结评测代码 |
