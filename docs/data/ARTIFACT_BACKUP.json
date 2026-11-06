@@ -1,10 +1,29 @@
 {
   "date": "2026-11-05",
   "author": "张瑞鹏 (ZrpChuang)",
-  "status": "local_snapshot_verified_authenticated_private_upload_in_progress",
+  "status": "private_upload_and_restore_header_verification_complete",
   "source_git_commit": "3cb88adc8d8ca39c8ba8c18448101441f8eb7a8e",
-  "upload_completed": false,
-  "private_repositories": null,
+  "upload_completed": true,
+  "private_repositories": {
+    "dataset": {
+      "repo_id": "RuipengZhang/CoT_Gen-artifacts-private",
+      "repo_type": "dataset",
+      "private": true,
+      "revision": "cbf3c48cbb3e00185cae1fbb1feb2cb46c712761",
+      "prefix": "snapshots/2026-11-05",
+      "verified_files": 8,
+      "bytes": 3210645985
+    },
+    "model": {
+      "repo_id": "RuipengZhang/CoT_Gen-adapters-private",
+      "repo_type": "model",
+      "private": true,
+      "revision": "3b00cc558fd2a96d1316ab6aaee459bcc27f406b",
+      "prefix": "snapshots/2026-11-05",
+      "verified_files": 121,
+      "bytes": 5618891055
+    }
+  },
   "source_policy": "Public datasets and unchanged base weights stay upstream; Git stores URL, immutable revision and checksums. Local modifications/conversions and generated artifacts are retained.",
   "public_sources": [
     {
@@ -54,7 +73,7 @@
     "accepted_examples_in_sqlite_snapshot": 10000,
     "sanitized_database_cells": 10,
     "originals_modified": false,
-    "all_cloud_uploads_complete": false,
+    "all_cloud_uploads_complete": true,
     "archive_payload_files_verified": 1260,
     "copied_adapter_and_sidecar_checksums_verified": 115,
     "final_adapter_count": 23,
@@ -73,7 +92,7 @@
       }
     },
     "sha256_checklist": "Private prepared.json; contains checksums for all 129 payload files",
-    "cloud_upload_complete": false
+    "cloud_upload_complete": true
   },
   "transfer": {
     "local_sha256_verified_files": 129,
@@ -87,5 +106,18 @@
     "recovery_upload_threads": 1,
     "recovery_commit_max_bytes": 268435456,
     "recovery_commit_max_files": 32
+  },
+  "completed_at": "2026-11-06T05:17:49.866430+00:00",
+  "cloud_verification": {
+    "all_payload_files": 129,
+    "sha256_verified": true,
+    "downloaded_adapter_sha256": "b07f42f0fab5f49a8f9c93e4b08daa5d837b86d20eefda8ae7a263af613d764f",
+    "tensor_count": 496,
+    "header_shapes_read": true,
+    "full_base_forward_test": false,
+    "manifest_sha256": {
+      "dataset": "6ed2faeae256dd1e7d311c3721c64d1e4df9cc331fd84123fd9cfb1271ec05aa",
+      "model": "735ce42787e48607d2804d1869e6382293bb7f1cde1189af61cd558237529f67"
+    }
   }
 }
