@@ -48,7 +48,7 @@
   ],
   "tool": "auto_research/scaling/backup.py",
   "receipt_policy": "Only fill private repo IDs, immutable revisions and verified checksums after actual authenticated upload.",
-  "backup_tool_sha256": "24ba529024470bf46920da0681ebc88ae829680a59f722da4a51801cb0dae629",
+  "backup_tool_sha256": "316075ab1f72bb36f3bf3b149b1cbff2ef5955d44d58e159ce282a27d84c25d7",
   "preparation_checks": {
     "sqlite_integrity": "ok",
     "accepted_examples_in_sqlite_snapshot": 10000,
@@ -80,7 +80,12 @@
     "local_adapter_headers_verified": 23,
     "authenticated_account": "RuipengZhang",
     "dataset_private_repo_created": "RuipengZhang/CoT_Gen-artifacts-private",
-    "estimated_upload_mib_per_second": 1.5,
-    "estimate_is_conditional": true
+    "dataset_verified_revision": "cbf3c48cbb3e00185cae1fbb1feb2cb46c712761",
+    "dataset_verified_files": 8,
+    "model_last_attempt_error": "S3 RequestTimeout",
+    "recovery_transport": "process_scoped_legacy_lfs",
+    "recovery_upload_threads": 1,
+    "recovery_commit_max_bytes": 268435456,
+    "recovery_commit_max_files": 32
   }
 }

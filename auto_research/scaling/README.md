@@ -19,7 +19,7 @@ hf auth login
 python backup.py publish --stage /path/to/staging
 ```
 
-默认使用登录账号的`CoT_Gen-artifacts-private`数据仓库及`CoT_Gen-adapters-private`模型仓库，路径按`snapshots/YYYY-MM-DD`归档。创建时指定private并再次核验；遇到同名公开仓库拒绝上传。对已有日期只校验相同文件，不覆盖。上传后固定revision、核对文件数/大小/SHA256，再下载一份LoRA检查张量头；这不替代加载基座后的数值恢复测试。原始完整合并权重在验证恢复前保留。
+默认使用登录账号的`CoT_Gen-artifacts-private`数据仓库及`CoT_Gen-adapters-private`模型仓库，路径按`snapshots/YYYY-MM-DD`归档。创建时指定private并再次核验；遇到同名公开仓库拒绝上传。对已有日期先核验所有已有文件的大小与SHA256，允许继续上传完全匹配的子集；遇到未知或不匹配文件拒绝覆盖。每次提交最多32个文件或256 MiB（单个较大文件独立提交），上传并发固定为1，逐批核验并写入`publication_progress.json`，不把部分提交计为整库完成。上传后固定revision、核对文件数/大小/SHA256，再下载一份LoRA检查张量头；这不替代加载基座后的数值恢复测试。原始完整合并权重在验证恢复前保留。
 
 服务器若不能连接Hugging Face，先使用`fetch`把已完成的`dataset/`、`model/`和`prepared.json`取回本机；它不传输临时数据库和工作目录，并核对全部SHA256及23份LoRA头：
 
@@ -28,6 +28,8 @@ python backup.py fetch --ssh-target USER@HOST --port 22222 --remote-stage /remot
 ```
 
 归档内的历史原始清单保留为来源指纹；对经过脱敏或过滤的副本，应以外层`manifest.json`/`prepared.json`的备份哈希为准，不把原始哈希当作脱敏副本的哈希。`prepared.json`表示本地打包完成；仅`published.json`及服务端核验才表示上传完成。状态与引用见[备份索引](../../docs/data/ARTIFACT_BACKUP.json)。2026-11-05已完成服务器端快照（数据及证据8个文件、模型121个文件，共约8.22 GiB）；本机已取回并核对全部129份文件的SHA256及23份LoRA头；Hugging Face登录通过，私有上传正在进行。只有上传、云端校验及回下载检查通过后才标记完成。
+
+2026-11-06恢复记录：模型整体上传先遇到Xet分块错误，改用LFS后又收到存储服务的`RequestTimeout`。已保留失败证据；上传改为单路、分批提交，只补齐核验后缺失的文件。本机本轮使用进程级`HF_HUB_DISABLE_XET=1`，没有修改共享依赖环境。数据仓库8个文件已通过云端校验；模型及整体验证仍在进行，不能将已有数据回执当成全部备份完成。
 
 
 ## 2026-10-23：首批10K评测续跑与日期入口

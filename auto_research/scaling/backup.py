@@ -398,8 +398,48 @@ def prepare(args):
                                   for k, v in prepared["repositories"].items()}), flush=True)
 
 
+def upload_batches(records, max_bytes=256 * 1024 * 1024, max_files=32):
+    """Bound each commit; a single oversized file remains its own batch."""
+    batch, size = [], 0
+    for record in records:
+        if batch and (len(batch) >= max_files or size + record["bytes"] > max_bytes):
+            yield batch
+            batch, size = [], 0
+        batch.append(record)
+        size += record["bytes"]
+    if batch:
+        yield batch
+
+
+def verify_snapshot(api, repo, kind, prefix, revision, records):
+    """Accept only an exact-checksum subset so interrupted commits can resume."""
+    from huggingface_hub import hf_hub_download
+    expected = {prefix + "/" + r["path"]: r for r in records}
+    files = {v.path: v for v in api.list_repo_tree(repo_id=repo, repo_type=kind,
+             revision=revision, recursive=True)
+             if hasattr(v, "size") and v.path.startswith(prefix + "/")}
+    unexpected = set(files) - set(expected)
+    if unexpected:
+        raise ValueError("Unexpected files in dated snapshot; refusing overwrite: " + repo)
+    checked = set()
+    for path, remote in files.items():
+        record = expected[path]
+        if remote.size != record["bytes"]:
+            raise ValueError("Remote size mismatch: " + path)
+        lfs = getattr(remote, "lfs", None)
+        sha = getattr(lfs, "sha256", None) if lfs else None
+        if not sha:
+            downloaded = hf_hub_download(repo_id=repo, repo_type=kind,
+                                        revision=revision, filename=path)
+            sha = digest(Path(downloaded))
+        if sha != record["sha256"]:
+            raise ValueError("Remote SHA256 mismatch: " + path)
+        checked.add(record["path"])
+    return checked
+
+
 def publish(args):
-    from huggingface_hub import HfApi, hf_hub_download
+    from huggingface_hub import HfApi, hf_hub_download, CommitOperationAdd
     from safetensors import safe_open
     api = HfApi()
     account = api.whoami()["name"]
@@ -409,41 +449,40 @@ def publish(args):
     for kind, name in [("dataset", "CoT_Gen-artifacts-private"), ("model", "CoT_Gen-adapters-private")]:
         repo = namespace + "/" + name
         api.create_repo(repo_id=repo, repo_type=kind, private=True, exist_ok=True)
-        if not api.repo_info(repo_id=repo, repo_type=kind).private:
+        info = api.repo_info(repo_id=repo, repo_type=kind)
+        if not info.private:
             raise ValueError("Refusing to upload to a public repository: " + repo)
         folder = args.stage / kind
-        for f in prepared["repositories"][kind]["files"]:
+        records = prepared["repositories"][kind]["files"]
+        for f in records:
             if digest(folder / f["path"]) != f["sha256"]:
                 raise ValueError("Local snapshot changed: " + f["path"])
         prefix = "snapshots/" + prepared["date"]
-        existing = api.list_repo_files(repo_id=repo, repo_type=kind)
-        expected_paths = {prefix + "/" + f["path"] for f in prepared["repositories"][kind]["files"]}
-        existing_paths = {p for p in existing if p.startswith(prefix + "/")}
-        if existing_paths:
-            if existing_paths != expected_paths:
-                raise ValueError("Existing dated snapshot has different files; will not overwrite: " + repo)
-            revision = api.repo_info(repo_id=repo, repo_type=kind).sha
-        else:
-            commit = api.upload_folder(repo_id=repo, repo_type=kind, folder_path=folder,
-                                       path_in_repo=prefix,
-                                       commit_message="Back up reviewed CoT artifacts " + prepared["date"])
+        revision = info.sha
+        checked_paths = verify_snapshot(api, repo, kind, prefix, revision, records)
+        missing = [r for r in records if r["path"] not in checked_paths]
+        for batch in upload_batches(missing):
+            # One transfer at a time avoids starving parallel S3 upload sockets.
+            # parent_commit detects concurrent writers rather than overwriting them.
+            commit = api.create_commit(repo_id=repo, repo_type=kind,
+                operations=[CommitOperationAdd(path_in_repo=prefix + "/" + r["path"],
+                             path_or_fileobj=folder / r["path"]) for r in batch],
+                num_threads=1, parent_commit=revision,
+                commit_message="Back up reviewed CoT artifacts " + prepared["date"])
             revision = commit.oid
-        files = {v.path: v for v in api.list_repo_tree(repo_id=repo, repo_type=kind,
-                   revision=revision, recursive=True) if hasattr(v, "size")}
-        checked = 0
-        for record in prepared["repositories"][kind]["files"]:
-            path = prefix + "/" + record["path"]
-            remote = files.get(path)
-            if remote is None or remote.size != record["bytes"]:
-                raise ValueError("Remote size/missing-file mismatch: " + path)
-            lfs = getattr(remote, "lfs", None)
-            sha = getattr(lfs, "sha256", None) if lfs else None
-            if not sha:
-                downloaded = hf_hub_download(repo_id=repo, repo_type=kind, revision=revision, filename=path)
-                sha = digest(Path(downloaded))
-            if sha != record["sha256"]:
-                raise ValueError("Remote SHA256 mismatch: " + path)
-            checked += 1
+            checked_paths = verify_snapshot(api, repo, kind, prefix, revision, records)
+            if not {r["path"] for r in batch}.issubset(checked_paths):
+                raise ValueError("Committed batch is incomplete: " + repo)
+            progress = {"repo_id": repo, "repo_type": kind, "revision": revision,
+                        "verified_files": len(checked_paths), "total_files": len(records),
+                        "verified_bytes": sum(r["bytes"] for r in records if r["path"] in checked_paths),
+                        "total_bytes": prepared["repositories"][kind]["bytes"],
+                        "complete": len(checked_paths) == len(records)}
+            write_json(args.stage / "publication_progress.json", progress)
+            print("COMMITTED_BATCH", json.dumps(progress), flush=True)
+        if len(checked_paths) != len(records):
+            raise ValueError("Snapshot is incomplete: " + repo)
+        checked = len(checked_paths)
         result = {"repo_id": repo, "repo_type": kind, "private": True,
                   "revision": revision, "prefix": prefix, "verified_files": checked,
                   "bytes": prepared["repositories"][kind]["bytes"]}
@@ -458,6 +497,10 @@ def publish(args):
         keys = list(tensors.keys())
         assert keys
         shapes = {key: list(tensors.get_slice(key).get_shape()) for key in keys}
+    expected_sha = next(r["sha256"] for r in prepared["repositories"]["model"]["files"]
+                        if model["prefix"] + "/" + r["path"] == filename)
+    if digest(Path(downloaded)) != expected_sha:
+        raise ValueError("Downloaded representative adapter SHA256 mismatch")
     results["restore_check"] = {"downloaded_adapter": filename, "tensor_count": len(keys),
                                "header_shapes_read": True, "full_base_forward_test": False,
                                "sha256": digest(Path(downloaded)), "shapes": shapes}
